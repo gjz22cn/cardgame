@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mr_dialog_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#88000000" >
+
+    <RelativeLayout
+        android:layout_width="480dp"
+        android:layout_height="310dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/recharge_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true" >
+
+            <LinearLayout
+                android:id="@+id/gg_detail"
+                style="@style/sign_dialog"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="36dp"
+                    android:gravity="center" >
+
+                    <RelativeLayout
+                        android:layout_width="207dp"
+                        android:layout_height="36dp"
+                        android:layout_centerInParent="true"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:layout_width="88dp"
+                            android:layout_height="21dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/match_rank_view"
+                            android:gravity="center" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="270dp"
+                    android:layout_marginTop="-3dp"
+                    android:background="@drawable/rank_bg"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="29dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/match_rank_top" >
+
+                        <Button
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="3dp"
+                            android:background="@drawable/close_btn" />
+
+                        <Button
+                            android:id="@+id/rank_close_btn"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@null" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="29dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="3" >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/mrd_item_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/yellow"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:id="@+id/mrd_match_ranking"
+                                android:layout_width="31dp"
+                                android:layout_height="22dp"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/rank_prize_tip" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/mrd_item_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/mrd_item_zhidou"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <ListView
+                        android:id="@+id/match_rank_list"
+                        android:layout_width="fill_parent"
+                        android:layout_height="190dp"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="29dp"
+                        android:cacheColorHint="#00000000"
+                        android:divider="@drawable/rank_wire"
+                        android:fadingEdge="none"
+                        android:listSelector="#00000000"
+                        android:scrollbars="none" >
+                    </ListView>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

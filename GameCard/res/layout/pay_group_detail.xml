@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mm_pay_layout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pay_heyi_background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/pay_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/pay_top_background" >
+
+        <Button
+            android:id="@+id/gen_detail_back"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:text="@string/pay_back"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/gen_detail_back"
+            android:background="@drawable/pay_top_shu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="充值"
+            android:textColor="@color/white"
+            android:textSize="26dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="金豆:"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/gen_detail_zhi_dou"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:gravity="left|center_vertical"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/red_line2" />
+
+    <LinearLayout
+        android:id="@+id/redbackground"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/pay_buttom_background"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <TextView
+            android:id="@+id/ali_zhi_dou"
+            android:layout_width="310dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="手机卡所属运营商："
+            android:textColor="#ffffff"
+            android:textSize="14dp" />
+
+        <RadioGroup
+            android:id="@+id/gen_radio"
+            android:layout_width="310dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/gen_detail_yi"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/radio_group_bg"
+                android:button="@null"
+                android:checked="true"
+                android:textColor="#ffffff"
+                android:visibility="invisible" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:text="移动"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:visibility="invisible" />
+
+            <RadioButton
+                android:id="@+id/gen_detail_lian"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/radio_group_bg"
+                android:button="@null"
+                android:visibility="invisible" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:text="联通"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:visibility="invisible" />
+
+            <RadioButton
+                android:id="@+id/gen_detail_dian"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/radio_group_bg"
+                android:button="@null"
+                android:visibility="invisible" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:text="电信"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:visibility="invisible" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/red_line2" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="10dp"
+        android:text="快捷购买"
+        android:textColor="#ecf027"
+        android:textSize="15dp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:id="@+id/pay_gtoup_bottom_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="38dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/pay_buttom_background"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="bottom"
+                android:text="温馨提示："
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/text1"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@+id/text1"
+                android:gravity="bottom"
+                android:text="所有用户的充值将由第三方支付平台监管"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text2"
+                android:layout_marginLeft="5dp"
+                android:text="和代收费，杜绝隐性收费，请大家放心充值！"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:id="@+id/ScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/pay_gtoup_bottom_ll"
+            android:layout_marginBottom="5dp"
+            android:fadingEdge="none"
+            android:scrollbars="none" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:id="@+id/gen_layout_yi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible" >
+
+                    <Button
+                        android:id="@+id/gen_detail_yi_30_btn"
+                        style="@style/phone_buy_btn_style"
+                        android:text="@string/pay_type1_30"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/gen_detail_yi_25_btn"
+                        style="@style/phone_buy_btn_style"
+                        android:text="@string/pay_type1_25"
+                        android:textColor="#7b0202"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/gen_detail_yi_20_btn"
+                        style="@style/phone_buy_btn_style"
+                        android:text="@string/pay_type1_20"
+                        android:textColor="#7b0202"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/gen_detail_yi_15_btn"
+                        style="@style/phone_buy_btn_style"
+                        android:text="@string/pay_type1_15"
+                        android:textColor="#7b0202"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/gen_detail_yi_10_btn"
+                        style="@style/phone_buy_btn_style"
+                        android:text="@string/pay_type1_10"
+                        android:textColor="#7b0202" />
+
+                    <Button
+                        android:id="@+id/gen_detail_yi_8_btn"
+                        style="@style/phone_buy_btn_style"
+                        android:text="@string/pay_type1_8"
+                        android:textColor="#7b0202"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/gen_detail_yi_5_btn"
+                        style="@style/phone_buy_btn_style"
+                        android:text="@string/pay_type1_5"
+                        android:textColor="#7b0202" />
+
+                    <Button
+                        android:id="@+id/gen_detail_yi_2_btn"
+                        style="@style/phone_buy_btn_style"
+                        android:text="@string/pay_type1_2"
+                        android:textColor="#7b0202"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+        <ListView
+            android:id="@+id/vac_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/pay_gtoup_bottom_ll"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:scrollbars="none"
+            android:visibility="gone" >
+        </ListView>
+
+        <ListView
+            android:id="@+id/tianyi_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/pay_gtoup_bottom_ll"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:scrollbars="none"
+            android:visibility="gone" >
+        </ListView>
+    </RelativeLayout>
+
+</LinearLayout>

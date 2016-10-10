@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/exchange_dialog_layout"
+    android:layout_width="515dp"
+    android:layout_height="295dp" >
+
+    <LinearLayout
+        android:layout_width="500dp"
+        android:layout_height="285dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+
+        <RadioGroup
+            android:id="@+id/if_dialog_rg"
+            android:layout_width="30dp"
+            android:layout_height="280dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/if_dialog_detail_rb"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detail_rb_bg"
+                android:button="@null"
+                android:textColor="#ffffff" />
+
+            <RadioButton
+                android:id="@+id/if_dialog_record__rb"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/record_rb_bg"
+                android:button="@null"
+                android:textColor="#ffffff" />
+
+            <RadioButton
+                android:id="@+id/if_dialog_rank_rb"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rank_rb_bg"
+                android:button="@null"
+                android:textColor="#ffffff" />
+        </RadioGroup>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/fuhe_imfor_bg" >
+
+            <!-- 详情  start -->
+
+            <RelativeLayout
+                android:id="@+id/if_dialog_detail_rl"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:visibility="visible" >
+
+                <Button
+                    android:id="@+id/if_dialog_detail_signup_btn"
+                    style="@style/dialog_cancle_btn_style2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="报名" />
+
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="3dp"
+                    android:layout_above="@+id/if_dialog_detail_signup_btn" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@+id/if_dialog_detail_ll"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:id="@+id/if_dialog_detail_content_tv"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="满十五人即开赛，无需报名费用，每局台费1000金豆，比赛结束自动结算，用户随时可以加入比赛，每轮淘汰6人，三局决出胜负。采用立出局赛制。"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/green_slip1" />
+
+                            <TextView
+                                android:id="@+id/if_dialog_detail_join_num_tv"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="当前报名人数：52人"
+                                android:textColor="@color/red"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/if_dialog_detail_join_num_slip_tv"
+                                android:layout_width="fill_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/green_slip1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/all_prize_layout"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:weightSum="5" >
+
+                            <LinearLayout
+                                android:id="@+id/all_prize_layout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="25dp"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:id="@+id/if_dialog_detail_tv"
+                                    android:layout_width="50dp"
+                                    android:layout_height="18dp"
+                                    android:background="@drawable/prize"
+                                    android:gravity="center" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/all_prize_layout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="25dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:id="@+id/all_prize_tip_layout"
+                                    android:layout_width="85dp"
+                                    android:layout_height="25dp"
+                                    android:background="@drawable/all_prize_tip"
+                                    android:text=""
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/if_dialog_detail_prize_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="25dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:gravity="center_vertical"
+                                    android:singleLine="true"
+                                    android:text="10000金豆，100钻石"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ListView
+                            android:id="@+id/if_dialog_detail_list"
+                            android:layout_width="fill_parent"
+                            android:layout_height="100dp"
+                            android:cacheColorHint="#00000000"
+                            android:divider="#00000000"
+                            android:fadingEdge="none"
+                            android:listSelector="#00000000"
+                            android:scrollbars="none" >
+                        </ListView>
+                    </LinearLayout>
+                </ScrollView>
+            </RelativeLayout>
+            <!-- 详情  end -->
+            <!-- 排名 start -->
+
+            <LinearLayout
+                android:id="@+id/if_dialog_rank_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="31dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/rank" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/green_slip2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="31dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/name" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/green_slip2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="31dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/integral" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/green_t_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="3" >
+
+                    <LinearLayout
+                        android:id="@+id/if_dialog_rank_my_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/if_dialog_rank_my_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/yellow"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/if_dialog_rank_my_ranking"
+                            android:layout_width="31dp"
+                            android:layout_height="22dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/rank_prize_tip"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/if_dialog_rank_my_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/if_dialog_rank_my_integral"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@drawable/green_slip1" />
+
+                <ListView
+                    android:id="@+id/if_dialog_rank_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="210dp"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@drawable/green_slip1"
+                    android:fadingEdge="none"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" >
+                </ListView>
+            </LinearLayout>
+            <!-- 排名 end -->
+
+
+            <!-- 历史记录 start -->
+
+            <LinearLayout
+                android:id="@+id/if_dialog_record_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal"
+                    android:weightSum="12" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="31dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/rank_name" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/green_slip2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="31dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/record_time" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/green_slip2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="31dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/record_rank" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/green_slip2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="31dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/record_prize" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@drawable/green_slip1" />
+
+                <ListView
+                    android:id="@+id/if_dialog_record_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="210dp"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@drawable/green_slip1"
+                    android:fadingEdge="none"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" >
+                </ListView>
+
+                <Button
+                    android:id="@+id/get_more_data"
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:background="@android:color/transparent"
+                    android:text="更多获奖记录"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/close_btn" />
+
+    <Button
+        android:id="@+id/if_dialog_close_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@null" />
+
+</RelativeLayout>

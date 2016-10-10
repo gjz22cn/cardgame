@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/envalues_list_layout"
+    android:layout_width="350dp"
+    android:layout_height="200dp"
+    android:background="@drawable/photo_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/mainpage_pay_tip" />
+
+        <Button
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/close_btn" />
+
+        <Button
+            android:id="@+id/evalues_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="@android:color/transparent" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/bag_wire" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/mainpage_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/main_ok"
+            style="@style/dialog_ok_btn_style"
+            android:layout_marginTop="5dp"
+            android:text="确认"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

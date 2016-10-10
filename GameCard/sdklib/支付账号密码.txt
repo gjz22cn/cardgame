@@ -1,0 +1,43 @@
+点金支付	
+	网址	http://pay.mdong.com.cn/
+	账号	admin@guolian360.com
+	密码	guolian360
+============================================================
+当乐支付	
+	网址	http://money.downjoy.com/connectadmin/login.html
+	账号	280
+	密码	guolian360	
+
+============================================================
+微派支付	
+	网址	http://www.wiipay.cn/login.jsp
+	账号	253
+	密码	glsll1111	
+				
+============================================================
+爱贝支付	
+	网址	http://service.iapppay.com:8888/paywss/
+	账号	admin@guolian360.com
+	密码	123369	
+	
+============================================================
+移动MM支付	
+	网址	dev.10086.cn
+	账号	admin@guolian360.com
+	密码	360.guolian
+				
+============================================================
+冒泡支付	
+	网址	http://open.mopo.com/developer/sdk/index
+	账号	guolianx360
+	密码	guolian360
+		 		
+============================================================
+机锋支付	
+	网址	http://dev.gfan.com/
+	账号	admin@guolian360.com
+	密码	guo.lian			
+			
+
+
+	

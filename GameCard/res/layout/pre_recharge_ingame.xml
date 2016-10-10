@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pre_recharge_root_ingame"
+    style="@style/pre_recharge_rect_style"
+    android:gravity="center" >
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="400dp"
+        android:layout_height="240dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/pre_recharge_ingame_bg"
+        android:padding="0dp" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/text_pre_recharge_title_no_bills"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size20" />
+
+        <LinearLayout
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp" >
+
+            <TextView
+                android:id="@+id/text_description_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:gravity="left|center_vertical"
+                android:singleLine="true"
+                android:text="@string/text_pre_recharge_notice_one"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size13" />
+
+            <TextView
+                android:id="@+id/text_description_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/text_pre_recharge_bureau_wager"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dzed_content_rl"
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/pre_recharge_btn_one"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/pre_recharge_item_ingame_bg"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="1dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="1dp" >
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:id="@+id/pre_recharge_text_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@string/text_charge_w"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size20"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_pre_recharge_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size15"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/vertical_line"
+                        android:contentDescription="@string/image_description" />
+
+                    <ImageView
+                        android:id="@+id/verticle_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/vertical_line"
+                        android:contentDescription="@string/image_description" />
+
+                    <ImageView
+                        android:id="@+id/img_beans_logo"
+                        android:layout_width="25dp"
+                        android:layout_height="23dp"
+                        android:layout_alignBottom="@id/verticle_line"
+                        android:layout_toLeftOf="@id/verticle_line"
+                        android:background="@drawable/beans_logo"
+                        android:contentDescription="@string/image_description" />
+
+                    <TextView
+                        android:id="@+id/textview_can_win_beans_one"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/img_beans_logo"
+                        android:gravity="center"
+                        android:text="@string/text_can_win_beans"
+                        android:textColor="#bfdefe"
+                        android:textSize="@dimen/text_size18"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/general_btn_bg"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:text="@string/text_pay_immediately"
+                    android:textSize="@dimen/text_size16"
+                    android:textStyle="bold" 
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pre_recharge_btn_two"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/pre_recharge_item_ingame_bg"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="1dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="1dp" >
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" 
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:id="@+id/pre_recharge_text_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@string/text_charge_w"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size20"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_pre_recharge_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size15"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/vertical_line"
+                        android:contentDescription="@string/image_description" />
+
+                    <ImageView
+                        android:id="@+id/verticle_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/vertical_line"
+                        android:contentDescription="@string/image_description" />
+
+                    <ImageView
+                        android:id="@+id/img_beans_logo"
+                        android:layout_width="25dp"
+                        android:layout_height="23dp"
+                        android:layout_alignBottom="@id/verticle_line"
+                        android:layout_toLeftOf="@id/verticle_line"
+                        android:background="@drawable/beans_logo"
+                        android:contentDescription="@string/image_description" />
+
+                    <TextView
+                        android:id="@+id/textview_can_win_beans_two"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/img_beans_logo"
+                        android:gravity="center"
+                        android:text="@string/text_can_win_beans"
+                        android:textColor="#bfdefe"
+                        android:textSize="@dimen/text_size18"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/general_btn_bg"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:text="@string/text_pay_immediately"
+                    android:textSize="@dimen/text_size16"
+                    android:textStyle="bold" 
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/pre_recharge_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dzed_content_rl"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/pre_recharge_beans_notice_bg"
+            android:gravity="left|center_vertical"
+            android:paddingBottom="1dp"
+            android:paddingTop="1dp"
+            android:text="@string/text_pre_recharge_notice_two"
+            android:textColor="@color/black"
+            android:textStyle="bold" 
+            android:textSize="@dimen/text_size13"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/pre_recharge_ingame_btn_cancel"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/pre_recharge_cancel" />
+
+</RelativeLayout>

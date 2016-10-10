@@ -1,0 +1,145 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/envalues_list_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#88000000" >
+
+    <RelativeLayout
+        android:layout_width="415dp"
+        android:layout_height="270dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/game_end_dialog_bg"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/gped_top_rl"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/gped_title_img"
+                android:layout_width="90dp"
+                android:layout_height="22dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/game_over_tital" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/gped_bottom_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:background="@drawable/iq_grade_dialog_slip_bar" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/gped_cancel"
+                    style="@style/dialog_cancle_btn_style"
+                    android:layout_width="75dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="160dp"
+                    android:text="@string/pay_back"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/gped_sign_up"
+                    style="@style/dialog_ok_btn_style"
+                    android:layout_width="75dp"
+                    android:layout_height="25dp"
+                    android:text="@string/sign_up"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/gped_center_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/gped_bottom_ll"
+            android:layout_below="@+id/gped_top_rl"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/game_place_dialog_text_bg"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/gped_win_or_lose_icon_Iv"
+                    android:layout_width="150dp"
+                    android:layout_height="92dp"
+                    android:background="@drawable/game_place_dialog_lose_icon" />
+
+                <LinearLayout
+                    android:id="@+id/gped_prize_ll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                       android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:background="@drawable/game_text_bg"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="您的奖品是"
+                        android:textSize="11sp"
+                        android:textColor="@color/orange_red" />
+
+                    <ListView
+                        android:id="@+id/gped_lv"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:cacheColorHint="#00000000"
+                        android:divider="@null"
+                        android:fadingEdge="none"
+                        android:listSelector="#00000000"
+                        android:scrollbars="none" >
+                    </ListView>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/gped_tv1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:text="你好土豪金，咋们做朋友吧"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

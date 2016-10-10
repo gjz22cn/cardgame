@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/goods_layout"
+    style="@style/bag_view_margin"
+    android:layout_width="396dp"
+    android:layout_height="80dp"
+    android:layout_alignBottom="@+id/main_menu_ll"
+    android:layout_marginLeft="64dp"
+    android:background="@drawable/goods_bg"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:visibility="gone" >
+
+    <Button
+        android:id="@+id/duihuan"
+        style="@style/main_menu_bar_btn_wh1"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/goods_stove" />
+
+    <ImageView
+        android:id="@+id/goods_envalues_image"
+        style="@style/main_menu_bar_btn_wh1"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/home_goods_values" />
+
+    <ImageView
+        android:id="@+id/goods_guide_image"
+        style="@style/main_menu_bar_btn_wh1"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/home_goods_guide" />
+
+    <ImageView
+        android:id="@+id/menu_friends_btn"
+        style="@style/main_menu_bar_btn_wh1"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/home_friend" />
+    
+    <ImageView
+        android:id="@+id/menu_lottery_btn"
+        style="@style/main_menu_bar_btn_wh1"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/home_lottery_button" />
+
+    <Button
+        android:id="@+id/menu_rank_btn"
+        style="@style/main_menu_bar_btn_wh1"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/home_goods_bag" />
+
+</LinearLayout>

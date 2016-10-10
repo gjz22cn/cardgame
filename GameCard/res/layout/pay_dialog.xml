@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pay_dialog_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/dialog_bg"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:id="@+id/dialog_center_layout"
+            android:layout_width="250dp"
+            android:layout_height="170dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/photo_bg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/dialog_tip_text"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:gravity="top"
+                android:textColor="#FFFFFF"
+                 android:text="恭喜您，等级达到150，不滞于物，草木竹石均可为剑，渐进于无剑胜有剑之境。（获得15000金豆，抽奖券15张）"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:id="@+id/pay_btn_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="-50dp"
+                android:orientation="horizontal" >
+				
+                <Button
+                    android:id="@+id/pay_other"
+                    style="@style/dialog_cancle_btn_style"
+                   	android:layout_marginRight="50dp"
+                   	android:layout_height="30dp"
+                   	android:textSize="14dp"
+                   	android:background="@drawable/cancel_btn_bg"
+                />
+
+                <Button
+                    android:id="@+id/pay_free"
+                    style="@style/dialog_cancle_btn_style"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/get_zhidou"
+                    android:visibility="gone"
+                    android:textSize="14dp" />
+				
+                <Button
+                    android:id="@+id/pay_ok"
+                    style="@style/dialog_ok_btn_style"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ok_btn_bg"
+                    android:textSize="14dp" 
+                    android:layout_toRightOf="@+id/common_cancel" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/cancel_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/dialog_center_layout" >
+
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/close_btn" />
+
+            <Button
+                android:id="@+id/pay_cancel"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:background="@null" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

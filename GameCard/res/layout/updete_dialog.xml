@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ud_layout"
+    android:layout_width="400dp"
+    android:layout_height="250dp"
+    android:background="@drawable/update_dialog_bg1"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/showmsg_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/update_tip" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:text="检测到最新版本，点击更新后将下载更新包， 下载完成后请到系统通知栏中点击apk下载项，完成版本更新"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/common_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:gravity="left"
+            android:text="更新内容如下："
+            android:textColor="#bf1528"
+            android:textSize="18dp" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="130dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="2dp" >
+
+            <ListView
+                android:id="@+id/update_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:clickable="false"
+                android:divider="#00000000"
+                android:fadingEdge="none"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:listSelector="#00000000"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@+id/up_null_tv"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@null" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ud_bottom_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone" >
+
+        <Button
+            android:id="@+id/common_cancel"
+            style="@style/dialog_cancle_btn_style"
+            android:text="@string/do_not_change_now"
+            android:textSize="15dp" />
+
+        <CheckBox
+            android:id="@+id/check_box"
+            style="@style/gameCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text=" 下次不再提醒"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tips_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="更新包下载完成！ "
+            android:textColor="@color/yellow"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/common_ok"
+            style="@style/updialog_ok_btn_style"
+            android:text="@string/change" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ud_quick_installation_btn"
+        style="@style/updialog_ok_btn_style"
+        android:layout_width="360dp"
+        android:layout_height="33dp"
+        android:layout_gravity="center"
+        android:background="@drawable/update_dialog_btn"
+        android:gravity="center"
+        android:text="安装包已经下载完，点击安装"
+        android:textColor="@color/dialog_ok_btn_text_color"
+        android:textSize="@dimen/dialog_btn_text_size" />
+
+</LinearLayout>

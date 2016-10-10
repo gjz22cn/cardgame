@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/assistant_top"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".IqGradeDialog" >
+
+    <TextView
+        android:id="@+id/menu_transparent_tv2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#00000000"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/pic"
+            android:layout_width="115dp"
+            android:layout_height="130dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/begin"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="95dp"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/jiao"
+            android:layout_width="10dp"
+            android:layout_height="14dp"
+            android:layout_alignBottom="@+id/begin_l"
+            android:layout_marginBottom="45dp"
+            android:layout_marginLeft="1.5dp"
+            android:background="@drawable/assistant_jiao" />
+
+        <LinearLayout
+            android:id="@+id/begin_l"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="4.5dp"
+            android:background="@drawable/assistant_background"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <!-- 一个button -->
+
+            <TextView
+                android:id="@+id/title_tx"
+                android:layout_width="250dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/gold"
+                android:textSize="12dp"
+                android:typeface="monospace"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/title_img"
+                android:layout_width="220dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:visibility="gone" />
+
+            <!-- 统计 -->
+
+            <com.lordcard.ui.view.AssistantListview
+                android:id="@+id/llayout"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:divider="@null"
+                android:visibility="gone" />
+
+            <com.lordcard.ui.view.AssistantGridview
+                android:id="@+id/glayout"
+                android:layout_width="290dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="18dp"
+                android:numColumns="auto_fit"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/as_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/begin_l"
+            android:background="@drawable/close_btn" />
+
+        <TextView
+            android:id="@+id/menu_transparent_tv4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#00000000"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</RelativeLayout>

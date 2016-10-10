@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_mst"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/main_menu_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_bar"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/memubar_bg" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginRight="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/memubar_wire" />
+
+                <Button
+                    android:id="@+id/menu_receive_been_btn"
+                    style="@style/main_menu_bar_btn_wh1"
+                    android:background="@drawable/home_receive_been_button_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginRight="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/memubar_wire" />
+
+                <Button
+                    android:id="@+id/menu_add_money_btn"
+                    style="@style/main_menu_bar_btn_wh1"
+                    android:background="@drawable/home_present" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginRight="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/memubar_wire" />
+
+                <Button
+                    android:id="@+id/goods_bag_image"
+                    style="@style/main_menu_bar_btn_wh1"
+                    android:background="@drawable/home_goods_list" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginRight="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/memubar_wire" />
+
+                <ImageView
+                    android:id="@+id/menu_zhidou_btn"
+                    style="@style/main_menu_bar_btn_wh1"
+                    android:layout_height="47dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/home_zhidou" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginRight="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/memubar_wire" />
+
+                <ImageView
+                    android:id="@+id/menu_feedback_btn"
+                    style="@style/main_menu_bar_btn_wh1"
+                    android:src="@drawable/feedback_tip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/main_menu_bar_slip_margin"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/memubar_wire" />
+
+                <Button
+                    style="@style/main_menu_bar_btn_wh1"
+                    android:background="@null" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/menu_play_btn"
+        style="@style/main_menu_bar_btn_wh1"
+        android:layout_width="75dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/home_quick_play_bg" />
+
+    <LinearLayout
+        android:id="@+id/menu_left_ll"
+        android:layout_width="145dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/menu_setting_btn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:src="@drawable/nan_user_img" />
+
+        <LinearLayout
+            android:id="@+id/chongzhi_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="6dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/menu_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:singleLine="true"
+                android:text="有心栽柳"
+                android:textColor="@color/white"
+                android:textSize="12dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/bean_tip" />
+
+                <TextView
+                    android:id="@+id/menu_zhidou_tv"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="123456"
+                    android:textColor="@color/gold"
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/menu_transparent_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#aa000000"
+        android:visibility="gone" />
+
+    <include layout="@layout/bag_view_check" />
+
+</RelativeLayout>

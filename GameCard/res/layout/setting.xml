@@ -1,0 +1,824 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/set_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/room_center_bg" />
+
+    <RelativeLayout
+        android:id="@+id/gpl_top_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/visable_bg" >
+
+        <Button
+            android:id="@+id/set_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/setting_back_bg" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/set_account"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gpl_top_left_select"
+                android:text="我的账号"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/wire" />
+
+            <Button
+                android:id="@+id/set_set"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gpl_top_center"
+                android:text="游戏设置"
+                android:textColor="@color/gpl_top_btn_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/wire" />
+
+            <Button
+                android:id="@+id/set_feedback"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gpl_top_center"
+                android:text="意见反馈"
+                android:textColor="@color/gpl_top_btn_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/wire" />
+
+            <Button
+                android:id="@+id/set_about"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gpl_top_right"
+                android:text="关于游戏"
+                android:textColor="@color/gpl_top_btn_text_color" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="50dp" >
+
+        <!-- 我的帐号 start -->
+
+        <LinearLayout
+            android:id="@+id/game_account_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:visibility="visible" >
+
+            <!-- 左边 start -->
+
+            <LinearLayout
+                android:id="@+id/account_left"
+                android:layout_width="200dp"
+                android:layout_height="fill_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/photo_tip_bg" >
+
+                    <ImageView
+                        android:id="@+id/setting_touxiang"
+                        android:layout_width="68dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/nan_photo_tip" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID:"
+                        android:textColor="@color/gold" />
+
+                    <TextView
+                        android:id="@+id/use_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/zhucheshijiam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="注册时间："
+                        android:textColor="@color/gold"
+                        android:textSize="12dp" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/creatTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gold"
+                        android:textSize="12dp" >
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp" >
+
+                    <ImageView
+                        android:layout_width="11dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/lock" />
+
+                    <Button
+                        android:id="@+id/xiugaimima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="5dp"
+                        android:background="@null"
+                        android:text="账号绑定>>"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 左边 end -->
+
+            <ImageView
+                android:layout_width="2dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/h_slip" />
+            <!-- 右边 start -->
+
+            <LinearLayout
+                android:id="@+id/account_right"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="@dimen/game_setright_marginLeft"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="昵称:"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+
+                    <EditText
+                        android:id="@+id/nicheng"
+                        android:layout_width="200dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/textview_bg"
+                        android:hint="@string/alias_name_hint"
+                        android:maxLength="12"
+                        android:singleLine="true"
+                        android:textSize="15dp" >
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email_text"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+
+                    <EditText
+                        android:id="@+id/email_setting"
+                        android:layout_width="200dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/textview_bg"
+                        android:hint="@string/email_hint"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="50"
+                        android:singleLine="true"
+                        android:textSize="15dp" >
+                    </EditText>
+                    <!-- android:selectAllOnFocus="true"  android:imeOptions="actionNext|flagNoExtractUi" -->
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/radio_group"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="25dp"
+                        android:text="男生"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp" />
+
+                    <RadioButton
+                        android:id="@+id/man"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/radio_group_bg"
+                        android:button="@null"
+                        android:checked="true"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:text="女生"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp" />
+
+                    <RadioButton
+                        android:id="@+id/woman"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/radio_group_bg"
+                        android:button="@null" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:text="保密"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp" />
+
+                    <RadioButton
+                        android:id="@+id/mimi"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/radio_group_bg"
+                        android:button="@null" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="32dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ji_fen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="金豆:"
+                        android:textColor="@color/gold"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/setting_zhidou"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/gold"
+                        android:singleLine="true"
+                        android:textSize="15dp" />
+
+                    <Button
+                        android:id="@+id/chong_setting"
+                        android:layout_width="60dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/blue_btn"
+                        android:text="金豆充值"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="32dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="26dp"
+                        android:layout_marginLeft="4dp"
+                        android:src="@drawable/zhi_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="等级:"
+                        android:textColor="@color/gold"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/setting_zhishang"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/gold"
+                        android:textSize="15dp" />
+                <RelativeLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp" >
+                    <ProgressBar
+                        android:id="@+id/setting_iq_pg"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="100dp"
+                        android:layout_height="15dp"
+                        android:progressDrawable="@drawable/progressbar_bg"/>
+                    <TextView 
+                        android:id="@+id/setting_iq_pg_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:layout_centerInParent="true"
+                        android:text="0/100"
+                        android:textSize="10dp"/>
+                </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="left"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/setting_finish_button"
+                        style="@style/task_tip_btn_style"
+                        android:layout_marginLeft="90dp"
+                        android:text="保存"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                </LinearLayout>
+                <!-- 右边 end -->
+                <!-- 我的帐号 end -->
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 游戏设置 start -->
+
+        <LinearLayout
+            android:id="@+id/game_set_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="手势引导:"
+                            android:textColor="@color/gold"
+                            android:textSize="18dp" />
+
+                        <Button
+                            android:id="@+id/shoushi_yingdao"
+                            android:layout_width="68dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="@drawable/open" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="静        音:"
+                            android:textColor="@color/gold"
+                            android:textSize="18dp" />
+
+                        <Button
+                            android:id="@+id/setting_jingyin"
+                            android:layout_width="68dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="@drawable/open" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="震动开关:"
+                            android:textColor="@color/gold"
+                            android:textSize="18dp" />
+
+                        <Button
+                            android:id="@+id/zhendong_ToggleButton0"
+                            android:layout_width="68dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="@drawable/open" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="背景音乐:"
+                            android:textColor="@color/gold"
+                            android:textSize="18dp" />
+
+                        <Button
+                            android:id="@+id/ToggleButtonbgMusic"
+                            android:layout_width="68dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="@drawable/open" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="音效:"
+                    android:textColor="@color/gold"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="23dp"
+                        android:background="@drawable/voice_off" />
+
+                    <SeekBar
+                        android:id="@+id/music_seekBar"
+                        android:layout_width="245dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:max="100"
+                        android:maxHeight="18dp"
+                        android:minHeight="18dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:progressDrawable="@drawable/seekbar_define_style"
+                        android:thumb="@drawable/voice_thumb"
+                        android:thumbOffset="-5dip" />
+
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="23dp"
+                        android:background="@drawable/voice_on" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 游戏设置 end -->
+
+
+        <!-- 关于游戏 start -->
+
+        <LinearLayout
+            android:id="@+id/game_about_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="260dp"
+                    android:scrollbars="none" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="48dp"
+                        android:paddingTop="20dp" >
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about2"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_aboutphone"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_aboutqq"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_mz"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_mz1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_mz2"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_mz3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_mz4"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_mz5"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_mz6"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_rule"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/game_about_rule1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+
+                        <TextView
+                            android:id="@+id/game_version"
+                            android:layout_width="@dimen/game_guanyu_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/game_guanyu_size" />
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 关于游戏 end -->
+
+
+        <!-- 反馈 游戏 start -->
+
+        <LinearLayout
+            android:id="@+id/game_feedback_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="25dp" >
+
+                <LinearLayout
+                    android:id="@+id/game_feedback_top_ll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/game_feedback_edt"
+                        android:layout_width="350dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/textview_bg"
+                        android:hint="请输入您的反馈信息"
+                       	android:textSize="14sp"
+                        android:maxLength="500" />
+
+                    <Button
+                        android:id="@+id/game_feedback_ok_btn"
+                        style="@style/task_tip_btn_style"
+                        android:layout_marginLeft="20dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:text="提交"
+                        android:textColor="#FCE3DF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/game_feedback_phone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="50dp"
+                    android:gravity="right"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="12dp" /><!-- 客服电话： -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  "
+                        android:textColor="@color/white"
+                        android:textSize="12dp" /><!-- 4000666899 -->
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/game_feedback_lsitview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_above="@+id/game_feedback_phone"
+                    android:layout_below="@+id/game_feedback_top_ll"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@drawable/stove_line"
+                    android:fadingEdge="none"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" >
+                </ListView>
+            </RelativeLayout>
+        </LinearLayout>
+        <!-- 反馈 end -->
+    </RelativeLayout>
+
+    <!-- 底部三个按钮 -->
+
+</RelativeLayout>

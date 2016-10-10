@@ -1,0 +1,94 @@
+1.解压pay_proxy_res.rar并关联此工程
+2.去掉mmbilling.jar   libcasdkjni.so   libidentifyapp.so 支付宝等jar包
+3.assets中添加iapppay_3.0.5002_0.zip
+爱贝   http://service.iapppay.com:8888/paywss/
+    admin@guolian360.com
+	123369
+
+
+		<!--爱贝start -->
+	<activity android:name="com.sdk.aibei.pay.ui.ABPayActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+	 <activity
+            android:name="com.iapppay.mpay.ifmgr.PayManagerActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <service
+            android:name="com.iapppay.mpay.downmgr.DownLoadService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+               <!-- 银联 -->
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.SplashActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.CardMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.PayMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.PayItActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.PayResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.AccountMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.ChooseBankActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.GetpassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.ResetpassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.EditpassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.EditinfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.AddCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.AddCardFromAuthActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.UserProtocalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.CheckCardBalanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.CardInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.CardBalanceResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.unionpay.upomp.bypay.activity.CardBankResultActivity"
+            android:screenOrientation="portrait" />
+        
+        <!-- 一键支付 -->
+        <activity
+            android:name="com.fastpay.sdk.activity.FastPay"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        
+        <!--爱贝end -->

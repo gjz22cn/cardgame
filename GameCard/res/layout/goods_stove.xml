@@ -1,0 +1,165 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stove_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ImageView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/room_center_bg"/>
+
+    <RelativeLayout
+        android:id="@+id/set_center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp">
+
+        <!--金豆合成start -->
+
+        <LinearLayout
+            android:id="@+id/game_bean_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="@dimen/goods_stove_mabtn"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ListView
+                android:id="@+id/bean_stove_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="3dp"
+                android:cacheColorHint="#00000000"
+                android:divider="@drawable/stove_line"
+                android:fadingEdge="none"
+                android:scrollbars="none" >
+            </ListView>
+            <!--金豆合成 end -->
+        </LinearLayout>
+        <!-- 数码合成 start -->
+
+        <LinearLayout
+            android:id="@+id/game_digital_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="@dimen/goods_stove_mabtn"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="left"
+            android:orientation="vertical" >
+
+            <ListView
+                android:id="@+id/digital_stove_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@drawable/stove_line"
+                android:fadingEdge="none"
+                android:scrollbars="none" >
+            </ListView>
+        </LinearLayout>
+        <!-- 数码合成end -->
+        <!-- 帮助start -->
+
+        <LinearLayout
+            android:id="@+id/game_help_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="@dimen/goods_stove_mabtn"
+            android:gravity="left"
+            android:visibility="gone"
+            android:orientation="vertical" >
+            
+            <ListView
+            android:id="@+id/help_list_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:scrollbars="none" >
+        </ListView>
+
+        </LinearLayout>
+        <!-- 帮助end -->
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_top"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/visable_bg"
+        android:gravity="left">
+
+        <Button
+            android:id="@+id/stove_digital"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="@dimen/set_account_marginTop"
+            android:background="@drawable/gpl_top_left_select"
+            android:text="数码合成"
+            android:textColor="@color/gpl_top_btn_text_color" />
+        <ImageView 
+              android:id="@+id/stove_top_wire"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/stove_digital"
+            android:layout_toRightOf="@+id/stove_digital"
+            android:background="@drawable/wire"
+            />
+        <Button
+            android:id="@+id/stove_bean"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/set_account_marginTop"
+            android:layout_toRightOf="@+id/stove_top_wire"
+            android:background="@drawable/gpl_top_center"
+            android:text="金豆合成"
+            android:textColor="@color/gpl_top_btn_text_color" />
+            <ImageView 
+            android:id="@+id/stove_top_rwire2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/stove_bean"
+            android:layout_toRightOf="@+id/stove_bean"
+            android:background="@drawable/wire"
+            />
+        <Button
+            android:id="@+id/stove_help"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/set_account_marginTop"
+            android:layout_toRightOf="@+id/stove_top_rwire2"
+            android:background="@drawable/gpl_top_right"
+            android:text="帮助"
+            android:textColor="@color/gpl_top_btn_text_color" />
+        
+        <Button 
+            android:id="@+id/set_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/setting_back_bg"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"/>
+                
+    </RelativeLayout>
+    
+ <!-- 
+    <com.lordcard.ui.view.MainMenuBar
+        android:id="@+id/main_page_bottom_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible" />
+  -->
+    <!-- 底部三个按钮 -->
+
+</RelativeLayout>

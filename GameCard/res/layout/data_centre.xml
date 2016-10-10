@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/set_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/join_bj" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/room_center_bg" />
+
+    <RadioGroup
+        android:id="@+id/gen_radio"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/visable_bg"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/gen_announcement"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gpl_left_bg"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="系统公告"
+            android:textColor="@color/color_radio_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/wire" />
+
+        <RadioButton
+            android:id="@+id/gen_private"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gpl_centre_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="个人信息"
+            android:textColor="@color/color_radio_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/wire" />
+
+        <RadioButton
+            android:id="@+id/gen_assistant"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gpl_right_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="游戏助理"
+            android:textColor="@color/color_radio_button" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/num_announcement"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/gen_radio"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="100dp"
+        android:gravity="center"
+        android:textColor="@color/gold" />
+
+    <TextView
+        android:id="@+id/num_private"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/gen_radio"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="200dp"
+        android:gravity="center"
+        android:textColor="@color/gold" />
+
+    <TextView
+        android:id="@+id/num_assistant"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/gen_radio"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="300dp"
+        android:gravity="center"
+        android:textColor="@color/gold" />
+
+    <Button
+        android:id="@+id/set_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/setting_back_bg" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/gen_radio" >
+
+        <ListView
+            android:id="@+id/show_system_data"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@drawable/stove_line"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:scrollbars="none"
+            android:visibility="visible" >
+        </ListView>
+
+        <ListView
+            android:id="@+id/show_private_data"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@drawable/stove_line"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:scrollbars="none"
+            android:visibility="gone" >
+        </ListView>
+
+        <ListView
+            android:id="@+id/show_assistant"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@drawable/stove_line"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:scrollbars="none"
+            android:visibility="gone" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/no_message_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="亲，您还没收到信息哟^_^"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/assistant_view2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/xiao_LinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/xiaomei"
+            android:layout_width="25dp"
+            android:layout_height="80dp" />
+    </LinearLayout>
+
+</RelativeLayout>

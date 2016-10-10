@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    tools:context=".IqGradeDialog" >
+
+    <Button 
+        android:id="@+id/btnv2"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:textSize="12dp"
+        android:textColor="@color/white"
+        android:background="@drawable/assistant_btn_background"
+        android:text="统计用"/>
+ 
+</LinearLayout>

@@ -1,0 +1,108 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/set_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/room_center_bg" />
+
+    <RelativeLayout
+        android:id="@+id/menu_mst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ViewFlipper
+            android:id="@+id/viewflipper"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </ViewFlipper>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="200dp" >
+
+            <LinearLayout
+                android:id="@+id/login_sliding"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/login_sliding_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/girl_top_bg"
+                    android:visibility="gone"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                         android:id="@+id/page_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:background="@drawable/pic_text_bg"   
+                        android:gravity="center"
+                        android:text="第 2/15张" />
+
+                    <Button
+                        android:id="@+id/back_btn"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/setting_back_bg" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/login_sliding_handle_ll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/login_sliding_handle"
+                        android:layout_width="37dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/gone_button" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/girl_buttom_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:background="@drawable/girl_evaluete_buttom" >
+
+            <TextView
+                android:id="@+id/girl_buttom_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="苍井空：走进苍井空的世界，一起感受青春的律动。"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/close_buttom"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/girl_buttom_dismiss" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

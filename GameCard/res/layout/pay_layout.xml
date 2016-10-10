@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pay_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pay_heyi_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ali_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/pay_top_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/pay_top_background" >
+
+            <Button
+                android:id="@+id/ali_back"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:text="@string/pay_back"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/ali_back"
+                android:background="@drawable/pay_top_shu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="支付宝充值"
+                android:textColor="@color/white"
+                android:textSize="26dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/RelativeLayout1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="13dp"
+                android:gravity="center"
+                android:text="金豆:"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/ali_zhi_dou"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/red_line2" />
+
+        <LinearLayout
+            android:id="@+id/redbackground"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/pay_buttom_background"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="购买须知：一元可购买1万金豆且获增金豆。"
+                android:textColor="#FFFFFF"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:id="@+id/redbackground2"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="自定义金额:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/ali_edit"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/ali_edit"
+                    android:gravity="center"
+                    android:imeOptions="actionNext|flagNoExtractUi"
+                    android:maxLength="6"
+                    android:paddingLeft="3dp"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:text="10" >
+                </EditText>
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="RMB"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14dp" />
+
+                <Button
+                    android:id="@+id/ali_free_btn"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/pay_green_buy_bg"
+                    android:text="@string/buy"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/red_line2" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="快捷购买"
+            android:textColor="#ecf027"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ali_buttom_layout"
+        android:layout_below="@+id/ali_top_layout"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp" >
+
+                <Button
+                    android:id="@+id/ali_5_btn"
+                    style="@style/zhifubao_btn_style"
+                    android:text="5元支付宝充值=5万金豆" />
+
+                <ImageView
+                     android:id="@+id/extra_pic1"
+                   style="@style/jiazeng_style"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="3dp" 
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp" >
+
+                <Button
+                    android:id="@+id/ali_10_btn"
+                    style="@style/zhifubao_btn_style"
+                    android:text="10元支付宝充值=10万金豆" />
+
+          <ImageView
+               android:id="@+id/extra_pic2"
+                   style="@style/jiazeng_style"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="3dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp" >
+
+                <Button
+                    android:id="@+id/ali_20_btn"
+                    style="@style/zhifubao_btn_style"
+                    android:text="20元支付宝充值=20万金豆" />
+
+              <ImageView
+                   android:id="@+id/extra_pic3"
+                   style="@style/jiazeng_style"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="3dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp" >
+
+                <Button
+                    android:id="@+id/ali_100_btn"
+                    style="@style/zhifubao_btn_style"
+                    android:text="100元支付宝充值=100万金豆" />
+
+         <ImageView
+              android:id="@+id/extra_pic4"
+                   style="@style/jiazeng_style"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="3dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp" >
+
+                <Button
+                    android:id="@+id/ali_300_btn"
+                    style="@style/zhifubao_btn_style"
+                    android:text="300元支付宝充值=300万金豆" />
+
+          <ImageView
+               android:id="@+id/extra_pic5"
+                   style="@style/jiazeng_style"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="3dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+        
+     <RelativeLayout
+            android:id="@+id/ali_buttom_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/pay_buttom_background"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="bottom"
+                android:layout_marginTop="1dp"
+                android:text="温馨提示："
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/text1"
+                android:layout_toRightOf="@+id/text1"
+                android:gravity="bottom"
+                android:layout_marginTop="1dp"
+                android:text="所有用户的充值将由第三方支付平台监管"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text2"
+                android:layout_marginLeft="5dp"
+                android:text="和代收费，杜绝隐性收费，请大家放心充值！"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+</RelativeLayout>

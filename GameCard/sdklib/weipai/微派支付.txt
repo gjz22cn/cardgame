@@ -1,0 +1,11 @@
+1.alipay_plugin_20120428msp.apk放在assets
+2wpay-sdk3.5.jar 放在libs
+
+	<!-- begin 微派支付 -->
+	<activity android:name="com.sdk.weipai.pay.ui.WPPayActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+	<meta-data android:value="be39ffae30a8fde8b95d885418d3b0f4" android:name="WIIPAY_APP_ID"></meta-data>
+    <meta-data android:value="200000" android:name="WIIPAY_CHANNEL_CODE"></meta-data>
+	<!-- end微派支付 -->
+
+
+	

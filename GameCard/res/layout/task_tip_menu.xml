@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/task_tip_menu_mst"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/set_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/setting_back"
+        android:visibility="gone" />
+    <!-- 顶部四个按钮  start -->
+
+    <RelativeLayout
+        android:id="@+id/top_menu_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/visable_bg" >
+
+        <LinearLayout
+            android:id="@+id/bend_bottom_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/invitation_msg_btn"
+                style="@style/setting_tip_btn"
+                android:layout_width="98dp"
+                android:background="@drawable/gpl_top_left_select"
+                android:text="短信邀请"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/wire" />
+
+            <Button
+                android:id="@+id/bott_telphone_btn"
+                style="@style/setting_tip_btn"
+                android:background="@drawable/gpl_top_center"
+                android:text="本机号码"
+                android:textColor="@color/gpl_top_btn_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/wire" />
+
+            <Button
+                android:id="@+id/bott_userinfo_btn"
+                style="@style/setting_tip_btn"
+                android:background="@drawable/gpl_top_center"
+                android:text="完善信息"
+                android:textColor="@color/gpl_top_btn_text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/wire" />
+
+            <Button
+                android:id="@+id/invitation_friend_btn"
+                style="@style/setting_tip_btn"
+                android:background="@drawable/gpl_top_right"
+                android:text="邀请好友"
+                android:textColor="@color/gpl_top_btn_text_color" />
+<!-- 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/wire" />
+ -->
+            <Button
+                android:id="@+id/download_btn"
+                style="@style/setting_tip_btn"
+                android:background="@drawable/gpl_top_right"
+                android:text="应用下载"
+                android:textColor="@color/gpl_top_btn_text_color"
+                android:enabled="false"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </RelativeLayout>
+    <!-- 顶部四个按钮  end -->
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/room_center_bg" />
+
+    <RelativeLayout
+        android:id="@+id/menu_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/top_menu_rl" >
+
+        <!-- android:background="@drawable/wisdom_bean_bg" -->
+
+
+        <!-- 邀请码 -->
+
+        <RelativeLayout
+            android:id="@+id/invitation_code_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="130dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible" >
+
+            <LinearLayout
+                android:id="@+id/invitation_code__ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bean" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="提示："
+                    android:textColor="#ecf027"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/code_tip_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/invitation_code__ll"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/invitation_btn"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/msg" />
+
+                <EditText
+                    android:id="@+id/invitation_code_text"
+                    android:layout_width="220dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/shuruk"
+                    android:hint="请输入7位数字"
+                    android:imeOptions="actionNext|flagNoExtractUi"
+                    android:inputType="number"
+                    android:maxLength="7"
+                    android:paddingLeft="@dimen/bend_invitation_code_text_paddingLeft"
+                    android:selectAllOnFocus="true"
+                    android:text="" />
+
+                <Button
+                    android:id="@+id/invitation_code_btn"
+                    style="@style/task_tip_btn_style"
+                    android:layout_marginLeft="10dp"
+                    android:text="获取金豆" />
+            </LinearLayout>
+        </RelativeLayout>
+        <!-- 手机号 -->
+
+        <RelativeLayout
+            android:id="@+id/telphone_layout"
+            android:layout_width="480dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/telphone_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bean" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="提示："
+                    android:textColor="#ecf027"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/telphone_lable_auth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/telphone_ll"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical"
+                android:paddingRight="10dp" >
+
+                <LinearLayout
+                    android:id="@+id/invitation_code_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical" >
+
+                    <Button
+                        android:id="@+id/invitation_btn"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_marginLeft="40dp"
+                        android:background="@drawable/phone" />
+
+                    <EditText
+                        android:id="@+id/telphone_text"
+                        android:layout_width="220dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/shuruk"
+                        android:hint="请输手机号码"
+                        android:imeOptions="actionNext|flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:paddingLeft="25dp"
+                        android:selectAllOnFocus="true"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/telphone_btn_get"
+                        style="@style/task_tip_btn_style"
+                        android:layout_marginLeft="10dp"
+                        android:text="获取验证码" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/invitation_code_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical" >
+
+                    <Button
+                        android:id="@+id/invitation_btn"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_marginLeft="40dp"
+                        android:background="@drawable/msg" />
+
+                    <EditText
+                        android:id="@+id/telphone_text_auth"
+                        android:layout_width="220dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/shuruk"
+                        android:hint="请输入验证码"
+                        android:imeOptions="actionNext|flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="7"
+                        android:paddingLeft="30dp"
+                        android:selectAllOnFocus="true"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/telphone_btn"
+                        style="@style/task_tip_btn_style"
+                        android:layout_marginLeft="10dp"
+                        android:text="获取金豆" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- 完善信息 -->
+
+        <RelativeLayout
+            android:id="@+id/userinfo_layout"
+            android:layout_width="@dimen/bend_userinfo_layout_width"
+            android:layout_height="130dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/userinfo_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bean" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="提示："
+                    android:textColor="#ecf027"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/userinfo_lable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/userinfo_btn"
+                style="@style/task_tip_btn_style"
+                android:layout_below="@+id/userinfo_ll"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="完善信息" />
+        </RelativeLayout>
+
+        <!-- 邀请好友 -->
+
+        <RelativeLayout
+            android:id="@+id/frients_layout"
+            android:layout_width="@dimen/bend_frients_layout_width"
+            android:layout_height="130dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/frients_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bean" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="提示："
+                    android:textColor="#ecf027"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/frients_label"
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/frients_btn"
+                style="@style/task_tip_btn_style"
+                android:layout_below="@+id/frients_ll"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="邀请好友" />
+        </RelativeLayout>
+
+        <!-- 下载界面 -->
+
+        <RelativeLayout
+            android:id="@+id/download_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/down_marginBottom"
+            android:layout_marginTop="50dp"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/download_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bean" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="提示："
+                    android:textColor="#ecf027"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/text_tip"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ug_download"
+                android:layout_width="fill_parent"
+                android:layout_height="185dp"
+                android:layout_below="@+id/download_ll"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="left" >
+
+                    <Button
+                        android:id="@+id/left_move_btn"
+                        android:layout_width="@dimen/left_button_width"
+                        android:layout_height="@dimen/left_button_width"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/left_move_bg"
+                        android:textColor="#E83030" />
+                </LinearLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpagerLayout"
+                    android:layout_width="400dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="2.5dp" />
+
+                <LinearLayout
+                    android:id="@+id/ug_download2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="15dp" >
+
+                    <Button
+                        android:id="@+id/right_move_btn"
+                        android:layout_width="@dimen/left_button_width"
+                        android:layout_height="@dimen/left_button_width"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/right_move_bg"
+                        android:textColor="#E83030" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+    <!-- 底部三个按钮 -->
+
+
+    <!--
+    <com.lordcard.ui.view.MainMenuBar
+        android:id="@+id/main_page_bottom_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible"
+         />
+    -->
+
+</RelativeLayout>

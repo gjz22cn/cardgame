@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mm_pay_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pre_recharge_record_bg" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/pay_top_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/pay_top_background" >
+
+            <Button
+                android:id="@+id/mm_back"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:text="@string/pay_back"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/mm_back"
+                android:background="@drawable/pay_top_shu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="充值记录"
+                android:textColor="@color/white"
+                android:textSize="26dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/pay_middle_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+    		android:layout_marginRight="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/record_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:text="@string/text_time"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/record_money"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/text_money"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/record_dou"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="@string/text_beans"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/record_statu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/text_status"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/pay_record_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" 
+            android:scrollbars="none"
+            android:divider="@null"
+            android:fadingEdge="vertical"
+            android:listSelector="#00000000"
+            android:cacheColorHint="#00000000"  
+            android:drawSelectorOnTop="false">
+        </ListView>
+    </LinearLayout>
+
+</RelativeLayout>

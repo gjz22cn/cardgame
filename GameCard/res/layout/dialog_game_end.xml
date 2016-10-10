@@ -1,0 +1,428 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/doudizhi_end_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <!-- 底数  倍数  start -->
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:id="@+id/ying_bg"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp" />
+                <!-- android:background="@drawable/di_ying" /> -->
+
+                <LinearLayout
+                    android:id="@+id/di_shu"
+                    style="@style/end_result_bgwh"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <!-- android:background="@drawable/di_shu_bg" -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:text="底注"
+                        android:textColor="#FD3B1F"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/dizhuResult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="200"
+                        android:textColor="#FD3B1F"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="倍数"
+                        android:textColor="#FD3B1F"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/beishuResult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="3"
+                        android:textColor="#FD3B1F"
+                        android:textSize="13dp" />
+                </LinearLayout>
+            </RelativeLayout>
+            <!-- 底数  倍数  end -->
+            <!-- 玩家自己 start -->
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:id="@+id/zhi_ji_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/play_marginLeft" >
+
+                    <ImageView
+                        android:id="@+id/playimg1"
+                        android:layout_width="@dimen/dizhu_end_playimg_w"
+                        android:layout_height="@dimen/dizhu_end_playimg_h"
+                        android:layout_marginLeft="@dimen/playimg_marginLeft"
+                        android:layout_marginTop="5dp" />
+                    <!-- android:background="@drawable/nongmin" /> -->
+
+                    <ImageView
+                        android:id="@+id/playimg1_layout_bg"
+                        style="@style/zj_layout_bgwh"/>
+                    <!-- android:background="@drawable/di_zhu_bg" > -->
+
+                    <RelativeLayout
+                        android:id="@+id/play1Lastcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/lastpai_layout_hgt"
+                        android:layout_marginLeft="@dimen/pai_layout_marginLeft"
+                        android:layout_marginTop="17dp" >
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/play1_result"
+                    style="@style/result_layout_bgwh"
+                    android:layout_marginLeft="@dimen/play_result_marginLeft"
+                    android:layout_marginTop="10dp" />
+                <!-- android:background="@drawable/ying" /> -->
+
+                <RelativeLayout
+                    android:id="@+id/play1stove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/lastpai_layout_hgt"
+                    android:layout_alignRight="@+id/play1_result"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="18dp"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@+id/playimg1_stove_icon1"
+                        style="@style/jp_layout_bgwh" />
+
+                    <ImageView
+                        android:id="@+id/playimg1_stove_icon2"
+                        style="@style/jp_layout_bgwh"
+                        android:layout_marginLeft="-8dp"
+                        android:layout_toRightOf="@+id/playimg1_stove_icon1" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/zhi_ji_layout"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/playname1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:text="自己"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:id="@+id/zhi_ji_bean"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                        <!-- android:background="@drawable/bean_fen" /> -->
+
+                        <TextView
+                            android:id="@+id/payment1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="-1200"
+                            android:textColor="#FFF402"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- 玩家自己 end -->
+            <!-- 第二个玩家 start -->
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:id="@+id/wang_er_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/play_marginLeft" >
+
+                    <ImageView
+                        android:id="@+id/playimg2"
+                        android:layout_width="@dimen/dizhu_end_playimg_w"
+                        android:layout_height="@dimen/dizhu_end_playimg_h"
+                        android:layout_marginLeft="@dimen/playimg_marginLeft"
+                        android:layout_marginTop="5dp" />
+                    <!-- android:background="@drawable/nongmin" /> -->
+
+                    <ImageView
+                        android:id="@+id/playimg2_layout_bg"
+                        style="@style/zj_layout_bgwh"/>
+                    <!-- android:background="@drawable/di_zhu_bg" > -->
+
+                    <RelativeLayout
+                        android:id="@+id/play2Lastcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/lastpai_layout_hgt"
+                        android:layout_marginLeft="@dimen/pai_layout_marginLeft"
+                        android:layout_marginTop="17dp" >
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/play2_result"
+                    style="@style/result_layout_bgwh"
+                    android:layout_marginLeft="@dimen/play_result_marginLeft"
+                    android:layout_marginTop="10dp" />
+                <!-- android:background="@drawable/ying" /> -->
+
+                <RelativeLayout
+                    android:id="@+id/play2stove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/play2_result"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="13dp"
+                    android:visibility="visible" >
+
+                    <ImageView
+                        android:id="@+id/playimg2_stove_icon1"
+                        style="@style/jp_layout_bgwh" />
+
+                    <ImageView
+                        android:id="@+id/playimg2_stove_icon2"
+                        style="@style/jp_layout_bgwh"
+                        android:layout_marginLeft="-8dp"
+                        android:layout_toRightOf="@+id/playimg2_stove_icon1" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/wang_er_layout"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/playname2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:singleLine="true"
+                        android:text="智能玩家2"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:id="@+id/wan_er_bean"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                        <!-- android:background="@drawable/bean_fen" /> -->
+
+                        <TextView
+                            android:id="@+id/payment2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="-1200"
+                            android:textColor="#FFF402"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <!-- 第二个玩家 end -->
+            <!-- 第三个玩家 start -->
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:id="@+id/wang_san_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/play_marginLeft" >
+
+                    <ImageView
+                        android:id="@+id/playimg3"
+                        android:layout_width="@dimen/dizhu_end_playimg_w"
+                        android:layout_height="@dimen/dizhu_end_playimg_h"
+                        android:layout_marginLeft="@dimen/playimg_marginLeft"
+                        android:layout_marginTop="10dp" />
+                    <!-- android:background="@drawable/nongmin" /> -->
+
+                    <ImageView
+                        android:id="@+id/playimg3_layout_bg"
+                        style="@style/zj_layout_bgwh"/>
+                    <!-- android:background="@drawable/di_zhu_bg" > -->
+
+                    <RelativeLayout
+                        android:id="@+id/play3Lastcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/lastpai_layout_hgt"
+                        android:layout_marginLeft="@dimen/pai_layout_marginLeft"
+                        android:layout_marginTop="17dp" >
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/play3_result"
+                    style="@style/result_layout_bgwh"
+                    android:layout_marginLeft="@dimen/play_result_marginLeft"
+                    android:layout_marginTop="10dp" />
+                <!-- android:background="@drawable/ying" /> -->
+
+                <RelativeLayout
+                    android:id="@+id/play3stove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/play3_result"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="18dp"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@+id/playimg3_stove_icon1"
+                        style="@style/jp_layout_bgwh" />
+
+                    <ImageView
+                        android:id="@+id/playimg3_stove_icon2"
+                        style="@style/jp_layout_bgwh"
+                        android:layout_marginLeft="-8dp"
+                        android:layout_toRightOf="@+id/playimg3_stove_icon1" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/wang_san_layout"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/playname3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:text="智能玩家3"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:id="@+id/wan_san_bean"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                        <!-- android:background="@drawable/bean_fen" /> -->
+
+                        <TextView
+                            android:id="@+id/payment3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="-1200"
+                            android:textColor="#FFF402"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <!-- 第三个玩家 end -->
+            <!-- 底部两个按钮 start -->
+
+            <LinearLayout
+                android:id="@+id/doudizhu_end_bottom_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/doudizhu_restart"
+                    style="@style/dialog_cancle_btn_style"
+                    android:text="再来一局"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/doudizhu_end_exit"
+                    style="@style/dialog_cancle_btn_style"
+                    android:layout_marginLeft="30dp"
+                    android:text="离开房间"
+                    android:textSize="16dp" />
+            </LinearLayout>
+            <!-- 底部两个按钮 end -->
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/end_play_btn"
+        style="@style/main_menu_bar_btn_wh1"
+        android:layout_width="75dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/home_quick_play_bg" />
+
+</RelativeLayout>

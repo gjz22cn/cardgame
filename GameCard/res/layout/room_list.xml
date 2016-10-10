@@ -1,0 +1,595 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/room_list_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <!-- 顶部布局 -->
+
+
+    <!-- android:background="@drawable/room_center_bg" -->
+
+    <TextView
+        android:id="@+id/room_center_bg"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+  <ImageView
+        android:id="@+id/imageView_toplight"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:background="@drawable/mmtoplight" >
+    </ImageView>
+<!-- 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/top_bar" >
+    </ImageView>
+-->
+    <ImageView
+        android:id="@+id/star_view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/room_list_grid_view"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/star0" />
+    
+     <ImageView
+        android:id="@+id/star_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/room_list_grid_view"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/guangxiao2" />
+      <ImageView
+        android:id="@+id/star_view3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/room_list_grid_view"
+        android:layout_marginLeft="360dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/guangxiao2" />
+     <ImageView
+        android:id="@+id/light_view_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/room_list_grid_view"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/mlight2" />
+    <ImageView
+        android:id="@+id/light_view_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/room_list_grid_view"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/mlight" />
+    
+     <ImageView
+        android:id="@+id/light_right_view_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/room_list_grid_view"
+        android:layout_marginLeft="380dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/mlight" />
+    <ImageView
+        android:id="@+id/light_right_view_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/room_list_grid_view"
+        android:layout_marginLeft="380dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/mlight2" />
+    <LinearLayout
+        android:id="@+id/room_list_top_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/room_list_top_ll_bg1"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <!-- android:background="@drawable/room_list_top_ll_bg1" -->
+
+        <Button
+            android:id="@+id/common_room_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.95"
+            android:background="@null" />
+
+        <Button
+            android:id="@+id/game_place_room_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.95"
+            android:background="@null" />
+
+        <Button
+            android:id="@+id/vip_room_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.95"
+            android:background="@null" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="1.15"
+            android:gravity="top" >
+
+            <LinearLayout
+                android:id="@+id/room_news_rl"
+                android:layout_width="55dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/esms"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <ImageView
+                    android:id="@+id/room_news_iv"
+                    android:layout_width="20dp"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/news0" />
+
+                <TextView
+                    android:id="@+id/time_shi_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="10:59"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/zhisahngbiao_ll"
+                android:layout_width="85dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/room_news_rl"
+                android:background="@drawable/lvbar"
+                android:orientation="horizontal" >
+
+                <ProgressBar
+                    android:id="@+id/room_iq_pg"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="78dp"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="3dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:progressDrawable="@drawable/progressbar_bg2" />
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/room_list_pb_bg2" />
+
+                <TextView
+                    android:id="@+id/room_iq_pg_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="2dp"
+                    android:text="0/100"
+                    android:textColor="@color/white"
+                    android:textSize="6dp" />
+
+                <TextView
+                    android:id="@+id/room_iq_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/iq"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- 普通房间 -->
+
+    <GridView
+        android:id="@+id/room_list_grid_view"
+        android:layout_width="500dp"
+        android:layout_height="@dimen/room_item_list_height"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="10dp"
+        android:cacheColorHint="#00000000"
+        android:fadingEdge="none"
+        android:horizontalSpacing="@dimen/room_item_hspace"
+        android:listSelector="#00000000"
+        android:numColumns="auto_fit"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/room_item_vspace"
+        android:visibility="visible" />
+    <!-- 复合比赛场 -->
+
+    <GridView
+        android:id="@+id/fhpg_list_grid_view"
+        android:layout_width="510dp"
+        android:layout_height="@dimen/room_item_list_height"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:cacheColorHint="#00000000"
+        android:fadingEdge="none"
+        android:horizontalSpacing="@dimen/room_item_hspace"
+        android:listSelector="#00000000"
+        android:numColumns="auto_fit"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/room_item_vspace"
+        android:visibility="gone" />
+    <!--
+    快速比赛
+    <GridView
+        android:id="@+id/fpg_list_grid_view"
+        android:layout_width="510dp"
+        android:layout_height="@dimen/room_item_list_height"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:cacheColorHint="#00000000"
+        android:fadingEdge="none"
+        android:horizontalSpacing="@dimen/room_item_hspace"
+        android:listSelector="#00000000"
+        android:numColumns="auto_fit"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/room_item_vspace"
+        android:visibility="gone" />
+    -->
+    <!-- vip房间布局 -->
+
+    <LinearLayout
+        android:id="@+id/room_vip_view"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/room_item_list_height"
+        android:layout_below="@+id/room_list_top_ll"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:scrollbars="none"
+        android:visibility="gone"
+        android:weightSum="2" >
+
+        <LinearLayout
+            android:id="@+id/vip_join_layout"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="提示:"
+                    android:textColor="@color/gold"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="91dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/vip_join_tip"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/join_room_text"
+                android:layout_width="240dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/textview_bg"
+                android:hint="请输入房间号"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="number"
+                android:maxLength="8"
+                android:paddingLeft="5dp"
+                android:selectAllOnFocus="true"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/vip_join_btn"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/vip_join_btn_margin_top"
+                android:background="@drawable/green_btn_bg"
+                android:text="加入包间"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <!-- 分割线 -->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/h_slip"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/create_vip_tip"
+                android:layout_width="fill_parent"
+                android:layout_height="22dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="提示："
+                    android:textColor="@color/gold"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/vip"
+                    android:layout_centerHorizontal="true"
+                    android:singleLine="true"
+                    android:text="包间倍数不得低于2倍"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/vip"
+                android:layout_width="fill_parent"
+                android:layout_height="54dp"
+                android:layout_below="@id/create_vip_tip"
+                android:layout_marginBottom="35dp"
+                android:layout_marginTop="45dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/vip_ratio_lost"
+                    android:layout_width="39dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/jian_bg" />
+
+                <TextView
+                    android:id="@+id/vip_room_ratio"
+                    android:layout_width="72dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/vip_room_ratio"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textColor="#606060"
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/vip_ratio_add"
+                    android:layout_width="39dp"
+                    android:layout_height="46dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/jia_bg" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/vip_room_create"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/vip"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/green_btn_bg"
+                android:text="创建包间"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- 菜单栏 -->
+
+    <com.lordcard.ui.view.MainMenuBar
+        android:id="@+id/main_page_bottom_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible" />
+    <!-- bottom_line_vip bottomp_line_putong -->
+    <!-- 透明遮罩 -->
+
+    <LinearLayout
+        android:id="@+id/assistant_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/xiao_LinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/xiaomei"
+            android:layout_width="35dp"
+            android:layout_height="80dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/gg_zhezhao"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#AA000000"
+        android:visibility="gone" />
+    <!-- 公告栏 -->
+
+    <RelativeLayout
+        android:id="@+id/gg_detail"
+        android:layout_width="400dp"
+        android:layout_height="280dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical" >
+
+            <ScrollView
+                android:id="@+id/room_list_scrollView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fadingEdge="none"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="28dp"
+                    android:paddingTop="20dp" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/gg_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:gravity="center_horizontal"
+                            android:textColor="#8C5709"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/gg_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="尊敬的玩家："
+                        android:textColor="#8C5709"
+                        android:textSize="@dimen/game_guanyu_size" />
+
+                    <TextView
+                        android:id="@+id/gg_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#8C5709"
+                        android:textSize="@dimen/game_guanyu_size" />
+
+                    <TextView
+                        android:id="@+id/gg_team"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="掌中游斗地主"
+                        android:textColor="#8C5709"
+                        android:textSize="@dimen/game_guanyu_size" />
+
+                    <TextView
+                        android:id="@+id/gg_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="#8C5709"
+                        android:textSize="@dimen/game_guanyu_size" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/tishi_box"
+                style="@style/gameCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="180dp"
+                android:text="下次不再提醒       "
+                android:textColor="#783C00" />
+
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="确定"
+                android:textColor="#E83030" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/guide_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/roomlist_guide_view"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/igetit_view"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:src="@null" />
+    </RelativeLayout>
+</RelativeLayout>

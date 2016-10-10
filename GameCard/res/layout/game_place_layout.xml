@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/gpl_rl"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/gpl_top_null_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" />
+
+    <LinearLayout
+        android:id="@+id/gpl_top_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="3" >
+
+                <Button
+                    android:id="@+id/gpl_rank_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/gpl_top_left"
+                    android:text="排名"
+                    android:textColor="@color/gpl_top_btn_text_color" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/top_slip" />
+
+                <Button
+                    android:id="@+id/gpl_rule_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/gpl_top_center"
+                    android:text="比赛规则"
+                    android:textColor="@color/gpl_top_btn_text_color" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/top_slip" />
+
+                <Button
+                    android:id="@+id/gpl_award_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/gpl_top_right"
+                    android:text="奖励方案"
+                    android:textColor="@color/gpl_top_btn_text_color" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/gpl_refresh_btn"
+                    android:layout_width="23dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="7dp"
+                    android:background="@drawable/gp_refresh" />
+
+                <TextView
+                    android:id="@+id/gpl_refresh_value_tv"
+                    android:layout_width="130dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/gpl_refresh_btn"
+                    android:singleLine="true"
+                    android:text="奖金池：123金豆，5钻石"
+                    android:textColor="@color/gold"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="27dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="7dp"
+                    android:layout_toLeftOf="@+id/gpl_refresh_value_tv"
+                    android:background="@drawable/gp_golds" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/gpl_bottom_ll"
+        android:layout_below="@+id/gpl_top_null_tv"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/gp_reward_bg" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="28dp"
+            android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/gpl_list_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:weightSum="6" >
+
+            <TextView
+                android:id="@+id/gpl_no_tv"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:text="105"
+                android:textColor="@color/gold"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gpl_name_tv"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:text="山本一寸"
+                android:textColor="@color/gold"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gpl_integral_tv"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:text="105"
+                android:textColor="@color/gold"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gpl_prize_tv"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:text="105"
+                android:textColor="@color/gold"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/gpl_award_lv"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@drawable/red_slip"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:scrollbars="none" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/gpl_bottom_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <ImageButton
+            android:id="@+id/gpl_ten_minutes_ibtn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/gp_type_btn_bg"
+            android:src="@drawable/ten_minutes" />
+
+        <ImageButton
+            android:id="@+id/gpl_one_week_ibtn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/gp_type_btn_bg"
+            android:src="@drawable/one_week" />
+
+        <ImageButton
+            android:id="@+id/gpl_history_ibtn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/gp_type_btn_bg"
+            android:src="@drawable/history" />
+
+        <ImageButton
+            android:id="@+id/gpl_ibtn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/gp_type_btn_bg"
+            android:src="@drawable/one_week" />
+    </LinearLayout>
+
+</RelativeLayout>

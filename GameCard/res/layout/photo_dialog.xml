@@ -1,0 +1,209 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/photo_info_layout"
+    android:layout_width="310dp"
+    android:layout_height="240dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="7" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:weightSum="4" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/user_tip" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="大头菜"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/bean_tip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="金    豆："
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/bean_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/diamond_tip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="钻    石："
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/diamond_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/zhi_text" />
+                <TextView
+                    android:id="@+id/gift_zhishang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="你把我灌醉，你为我伤悲，放下了所有最，我拼命挽回"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/report_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/hat" />
+
+                <Button
+                    android:id="@+id/report_btn"
+                    android:layout_width="65dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/red_ok_btn"
+                    android:text="举报作弊"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="115dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="4"
+            android:background="@drawable/photo_tip_bg"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/pd_sex_iv"
+                android:layout_width="80dp"
+                android:layout_height="fill_parent"
+                android:src="@drawable/nan_photo_tip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/photo_line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/goods_evalue_gridhight"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical" >
+
+        <HorizontalScrollView
+            android:id="@+id/horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/goods_evalue_gridhight"
+            android:layout_gravity="center_vertical"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <GridView
+                    android:id="@+id/goods_info"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/goods_evalue_gridhight"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</LinearLayout>

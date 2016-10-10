@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mm_pay_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff6b1" >
+    <LinearLayout
+        android:id="@+id/bottom_tishi"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" 
+        android:background="@drawable/dj_tishi">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="温馨提示:"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:textColor="#ffffff"
+            android:text="动币为点金平台虚拟货币，本游戏所有充值均转换为金豆，请客户放心充值。"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/bottom_tishi">
+
+        <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/pay_top_background" >
+
+        <Button
+            android:id="@+id/dj_back"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:text="@string/pay_back"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/dj_back"
+            android:background="@drawable/pay_top_shu" />
+
+        <Button
+            android:id="@+id/dj_record"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:text="@string/pay_record"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/dj_record"
+            android:background="@drawable/pay_top_shu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="充值"
+            android:textColor="@color/white"
+            android:textSize="26dp" />
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dj_zhidou_line"
+            android:orientation="horizontal"
+            >
+
+
+                        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="金豆:"
+                android:textSize="18dp"
+                android:textColor="#7b0202" />
+
+            <TextView
+                android:id="@+id/zhi_dou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="80000"
+                android:textSize="14dp"
+                android:textColor="#7b0202" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/dj_50_btn"
+                    android:layout_width="310dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dj_pay_item"
+                    android:text="@string/pay_type5_50"
+                    android:textColor="#6D3804"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/dj_40_btn"
+                    android:layout_width="310dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dj_pay_item"
+                    android:text="@string/pay_type5_40"
+                    android:textColor="#6D3804"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/dj_30_btn"
+                    android:layout_width="310dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dj_pay_item"
+                    android:text="@string/pay_type5_30"
+                    android:textColor="#6D3804"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/dj_20_btn"
+                    android:layout_width="310dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dj_pay_item"
+                    android:text="@string/pay_type5_20"
+                    android:textColor="#6D3804"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/dj_10_btn"
+                    android:layout_width="310dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dj_pay_item"
+                    android:text="@string/pay_type5_10"
+                    android:textColor="#6D3804"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/dj_5_btn"
+                    android:layout_width="310dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dj_pay_item"
+                    android:text="@string/pay_type5_5"
+                    android:textColor="#6D3804"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/dj_2_btn"
+                    android:layout_width="310dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dj_pay_item"
+                    android:gravity="center"
+                    android:text="@string/pay_type5_2"
+                    android:textColor="#6D3804"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

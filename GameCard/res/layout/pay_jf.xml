@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mm_pay_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pay_heyi_background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/ali_buttom_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="38dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/pay_buttom_background"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="1dp"
+            android:gravity="bottom"
+            android:text="温馨提示："
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/text1"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@+id/text1"
+            android:gravity="bottom"
+            android:text="所有用户的充值将由第三方支付平台监管"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text2"
+            android:layout_marginLeft="5dp"
+            android:text="和代收费，杜绝隐性收费，请大家放心充值！"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/pay_top_background" >
+
+        <Button
+            android:id="@+id/gen_back"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:text="@string/pay_back"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/gen_back"
+            android:background="@drawable/pay_top_shu" />
+
+        <Button
+            android:id="@+id/gen_record"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:text="@string/pay_record"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/gen_record"
+            android:background="@drawable/pay_top_shu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="充值"
+            android:textColor="@color/white"
+            android:textSize="26dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/RelativeLayout1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="13dp"
+            android:gravity="center"
+            android:text="金豆:"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/gen_zhi_dou"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical|left"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/LinearLayout1"
+        android:background="@drawable/red_line2" />
+
+    <TextView
+        android:id="@+id/TextView1"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LinearLayout1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:text="机锋支付"
+        android:textColor="#ecf027"
+        android:textSize="14dp" />
+
+<ListView 
+    android:id="@+id/weipai"
+    android:layout_below="@+id/TextView1"
+    android:layout_above="@+id/ali_buttom_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:cacheColorHint="#00000000"
+    android:fadingEdge="none"
+    android:scrollbars="none"
+    android:divider="@null"
+    android:listSelector="#00000000">
+    
+</ListView>
+   
+</RelativeLayout>

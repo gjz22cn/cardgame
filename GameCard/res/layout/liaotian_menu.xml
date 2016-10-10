@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/liaotian_layout"
+    android:layout_width="@dimen/liaotian_width"
+    android:layout_height="@dimen/liaotian_hight" >
+
+    <RelativeLayout
+        android:id="@+id/liao_bg"
+        android:layout_width="@dimen/liaotian_width"
+        android:layout_height="350dp" 
+        android:background="@drawable/liaotian_bj_1">
+
+        <!-- android:background="@drawable/liaotian_bj_1" -->
+        <!-- android:background="@drawable/wisdom_bean_bg" -->
+
+
+        <!-- 中间三按钮 -->
+
+        <RelativeLayout
+            android:id="@+id/zhongjian_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp">
+
+            <Button
+                android:id="@+id/quite_image_btn"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="@dimen/buttons_marginTop"
+                android:background="@drawable/images_btn_2"
+                android:text="表情"
+                android:textColor="#E83030"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/usual_mess_btn"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="@dimen/buttons_marginTop"
+                android:background="@drawable/images_btn_1"
+                android:text="短语"
+                android:textColor="#E83030"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/think_mess_btn"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginTop="@dimen/buttons_marginTop"
+                android:background="@drawable/images_btn_1"
+                android:text="思考"
+                android:textColor="#E83030"
+                android:textSize="18dp"
+                android:textStyle="bold" /> 
+
+            <Button
+                android:id="@+id/girl_mess_btn"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginTop="@dimen/buttons_marginTop"
+                android:background="@drawable/images_btn_1"
+                android:text="美女"
+                android:textColor="#E83030"
+                android:textSize="18dp"
+                android:visibility="invisible"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="460dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/close_btn" />
+              <Button
+                android:id="@+id/guanbi_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="460dp"
+                android:background="@null" />
+        </RelativeLayout>
+
+        <!-- 动态表情 -->
+
+        <RelativeLayout
+            android:id="@+id/moren_image_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/zhongjian_layout"
+            android:layout_marginLeft="@dimen/list_marginleft"
+            android:layout_marginRight="@dimen/list_marginright"
+            android:gravity="center"
+            android:visibility="visible" >
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/list_marginleft_grid"
+                    android:orientation="vertical" >
+
+                    <GridView
+                        android:id="@+id/gridviews"
+                        android:layout_width="@dimen/grid_view_width"
+                        android:layout_height="@dimen/grid_view_hight"
+                        android:columnWidth="@dimen/grid_colum_width"
+                        android:gravity="center"
+                        android:horizontalSpacing="@dimen/grid_space_width"
+                        android:numColumns="4"
+                        android:stretchMode="columnWidth"
+                        android:layout_marginTop="8dp"
+                        android:verticalSpacing="@dimen/grid_space_high" >
+                    </GridView>
+                </LinearLayout>
+        </RelativeLayout>
+
+        <!-- 常用语 -->
+
+        <RelativeLayout
+            android:id="@+id/usual_mess_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/zhongjian_layout"
+            android:layout_marginLeft="@dimen/list_marginleft"
+            android:layout_marginRight="@dimen/list_marginright"
+            android:visibility="gone" >
+
+            <EditText
+                android:id="@+id/mess_text"
+                android:layout_width="@dimen/eidt_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="@dimen/edit_lable_marginTop"
+                android:background="@drawable/mess_bj_1"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="40"
+                android:selectAllOnFocus="true"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/send_mess_btn"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/button_lable_marginTop"
+                android:layout_toRightOf="@+id/mess_text"
+                android:background="@drawable/send_messbtn_bg"
+                android:text="" />
+
+            <ListView
+                android:id="@+id/message_list"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/liaot_list_hight"
+                android:layout_below="@+id/mess_text"
+                android:layout_marginLeft="@dimen/says_marginLeft"
+                android:cacheColorHint="#00000000"
+                android:divider="#00000000"
+                android:fadingEdge="none"
+                android:scrollbars="none" >
+            </ListView>
+        </RelativeLayout>
+
+        <!-- 思考 -->
+
+        <RelativeLayout
+            android:id="@+id/think_mess_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/zhongjian_layout"
+            android:layout_marginLeft="@dimen/list_marginleft"
+            android:layout_marginRight="@dimen/list_marginright"
+            android:visibility="gone" >
+
+            <EditText
+                android:id="@+id/think_text"
+                android:layout_width="@dimen/eidt_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="@dimen/edit_lable_marginTop"
+                android:background="@drawable/mess_bj_1"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="20"
+                android:selectAllOnFocus="true"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/send_mess_btn1"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/button_lable_marginTop"
+                android:layout_toRightOf="@+id/think_text"
+                android:background="@drawable/send_messbtn_bg"
+                android:text="" />
+
+            <ListView
+                android:id="@+id/think_list"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/liaot_list_hight"
+                android:layout_below="@+id/think_text"
+                android:layout_marginLeft="@dimen/says_marginLeft"
+                android:cacheColorHint="#00000000"
+                android:divider="#00000000"
+                android:fadingEdge="none"
+                android:scrollbars="none" >
+            </ListView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/girl_image_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/zhongjian_layout"
+            android:layout_marginLeft="@dimen/list_marginLeft"
+            android:layout_marginRight="@dimen/list_marginright"
+            android:gravity="center"
+            android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                     android:layout_marginLeft="@dimen/list_marginleft_grid"
+                    android:orientation="vertical" >
+
+                    <GridView
+                        android:id="@+id/girl_grid"
+                        android:layout_width="@dimen/grid_view_width"
+                        android:layout_height="@dimen/grid_view_hight"
+                        android:columnWidth="@dimen/grid_colum_width"
+                        android:gravity="center"
+                        android:horizontalSpacing="@dimen/grid_space_width"
+                        android:numColumns="4"
+                        android:stretchMode="columnWidth"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="8dp"
+                        android:verticalSpacing="@dimen/grid_space_high" >
+                    </GridView>
+                </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

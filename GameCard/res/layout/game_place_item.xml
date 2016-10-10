@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="235dp"
+    android:layout_height="100dp" >
+
+    <RelativeLayout
+        android:layout_width="235dp"
+        android:layout_height="100dp" >
+
+        <ImageView
+            android:id="@+id/game_pi_bg_iv"
+            android:layout_width="245dp"
+            android:layout_height="100dp"
+            android:src="@drawable/gpi_bg" />
+
+        <ImageView
+            android:id="@+id/game_pi_bg_tital_iv"
+            android:layout_width="80dp"
+            android:layout_height="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/gp_item_t3" />
+
+        <TextView
+            android:id="@+id/game_pi_bg_time_desc"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:textColor="@color/gp_text_color"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@+id/game_pi_bg_slip"
+            android:layout_width="70dp"
+            android:layout_height="1dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/game_pi_bg_time_desc"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/gp_text_color" />
+
+        <TextView
+            android:id="@+id/game_pi_bg_time_text"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/game_pi_bg_slip"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:textColor="@color/gp_text_color"
+            android:textSize="11dp" />
+
+        <!--
+         TextView
+        android:id="@+id/game_pi_bg_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/game_pi_bg_tital_iv"
+        android:maxLength="10"
+        android:text="每十分钟十人以上开赛"
+        android:textColor="#821304"
+        android:textSize="11dp" /
+        -->
+
+        <Button
+            android:id="@+id/game_pi_refresh_ib"
+            android:layout_width="52dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/refresh_btn_bg"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="9dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/game_pi_prize_bean_iv"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/bean_fen" />
+
+                <TextView
+                    android:id="@+id/game_pi_zhidou_tv"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="最高奖励:"
+                    android:textColor="@color/gold"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:id="@+id/game_pi_max_prize_tv"
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="美女一枚 + 100000金豆"
+                    android:textColor="@color/gold"
+                    android:textSize="11dp"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp" >
+
+                <Button
+                    android:id="@+id/game_pi_explanation_btn"
+                    android:layout_width="65dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/red_ok_btn"
+                    android:text="详情"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/game_pi_sign_up_btn"
+                    android:layout_width="65dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/red_ok_btn"
+                    android:text="报名"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <!-- android:background="@drawable/beij" -->
+   <RelativeLayout
+        android:id="@+id/invited_download"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/title_image"
+        android:layout_width="fill_parent"
+        android:layout_height="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/friend_bg" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/back_btn"
+        android:text="返回"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/sent"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/back"
+        android:layout_marginLeft="245dp"
+        android:background="@drawable/finish_btn"
+        android:text="完成"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp" >
+
+        <ListView
+            android:id="@+id/InvitedlistView"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:scrollbars="none" >
+        </ListView>
+
+        <com.lordcard.ui.view.MyLetterListView
+            android:id="@+id/myLetterListView"
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="#40000000" />
+       <EditText 
+       		android:id="@+id/tv_ObjName"
+       		android:layout_width="fill_parent"
+        	android:layout_height="52dp"
+       	 	android:layout_alignParentBottom="true"
+        	android:layout_centerHorizontal="true"
+       		android:background="@drawable/search" />
+    </RelativeLayout>
+</RelativeLayout>
+</RelativeLayout>

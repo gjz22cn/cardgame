@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mm_layout"
+    android:layout_width="@dimen/dialog_width"
+    android:layout_height="wrap_content"
+    android:gravity="center" >
+
+    <RelativeLayout
+        android:id="@+id/liao_bg"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/gpi_bg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="20dp"/>
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/gridviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="5"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="5dp" >
+            </GridView>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/goods_line" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/goods_choice"
+                    style="@style/dialog_ok_btn_style"
+                    android:text="@string/chose_goods" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/goods_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/mm_marginLeft"
+                android:background="@drawable/close_btn" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
