@@ -39,7 +39,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
-import cn.cmgame.billing.api.GameInterface;
+/* james hard code remove cm module */
+//import cn.cmgame.billing.api.GameInterface;
 import cn.egame.terminal.paysdk.EgamePay;
 import cn.play.dserv.CheckTool;
 import cn.play.dserv.ExitCallBack;
@@ -218,12 +219,13 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 		//初始化移动SDK
 		if(CGChargeActivity.isYd(this))
 		{
-			GameInterface.initializeApp(this);
+			//GameInterface.initializeApp(this);
 		}else
 		{
 			EgamePay.init(this);
 		}
-	    PreferenceHelper.getMyPreference().getEditor().putBoolean("jingyin", !GameInterface.isMusicEnabled()).commit();
+	    //PreferenceHelper.getMyPreference().getEditor().putBoolean("jingyin", !GameInterface.isMusicEnabled()).commit();
+	    PreferenceHelper.getMyPreference().getEditor().putBoolean("jingyin", true).commit();
 	}
 
 	@Override
@@ -898,7 +900,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 			builder.create().show();*/
 			if(CGChargeActivity.isYd(this))
 			{
-				GameInterface.exit(this);
+				//GameInterface.exit(this);
 			}else
 			{
 				this.runOnUiThread(new Runnable() {		

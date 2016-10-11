@@ -45,8 +45,10 @@ public class CGChargeActivity extends Activity{
 	 */
 	public static boolean isYd(Context context)
 	{
+		return false;
+		/* james hard code to remove cm module
 		String yd = context.getString(R.string.sms_type_yd);
 		String sms_type = context.getString(R.string.sms_type);
-		return yd != null && sms_type != null && yd.equals(sms_type);
+		return yd != null && sms_type != null && yd.equals(sms_type);*/
 	}
 }

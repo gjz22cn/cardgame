@@ -19,7 +19,9 @@ public class CrashApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		System.loadLibrary("megjb");
+		/* james hard code remove cm module
+		 * System.loadLibrary("megjb");
+		 */
 		CrashExceptionHandler crashExceptionHandler = CrashExceptionHandler.getInstance();
 		crashExceptionHandler.init(getApplicationContext());
 		Instance = this;
