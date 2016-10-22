@@ -72,8 +72,10 @@ public class StartActivity extends BaseActivity {
 
 			@Override
 			public void run() {
+				/* james removed
 				HttpRequest.loadJoinRoomTip(); // 加载房间提示信息
 				HttpRequest.loadGameNotice(); //加载游戏公告
+				*/
 			}
 		});
 		if (Database.CHECK_VERSION) {
@@ -100,11 +102,16 @@ public class StartActivity extends BaseActivity {
 
 			public void run() {
 				try {
+					/* james remove pay modules
 					PayUtils.loadPayInitParam(); //加载支付初始数据
 					PayUtils.loadPaySiteConfig(); //加载计费点配置数据
+					*/
 					HttpRequest.getComSettingDate(); //获取所有的共用配置
+					
 					/** 获取预充值配置参数 **/
+					/* james removed
 					PrerechargeManager.getPrerechargeParams();
+					*/
 				} catch (Exception e) {}
 			}
 		});

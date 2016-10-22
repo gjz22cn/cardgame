@@ -345,7 +345,9 @@ public class GameWaitView extends LinearLayout implements ChangeProInterface {
 		} else {
 			new Thread() {
 				public void run() {
+					/* james removed
 					HttpRequest.loadJoinRoomTip(); // 加载房间提示信息
+					*/
 				};
 			}.start();
 		}

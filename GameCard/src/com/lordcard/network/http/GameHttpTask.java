@@ -31,13 +31,14 @@ public class GameHttpTask {
 						GameCache.putObj(channelId,cfg);
 					}
 				}
+				/* james removed
 				//初始化支付配置
 				if (GameCache.getObj(CacheKey.PAY_INIT_MAP) == null) {
 					PayUtils.loadPayInitParam(); //加载支付初始数据
 				}
 				if (GameCache.getObj(CacheKey.PAY_SITE_MAP) == null) {
 					PayUtils.loadPaySiteConfig(); //加载计费点配置数据
-				}
+				} */
 				//获取所有的共用配置
 				if (GameCache.getObj(CacheKey.ALL_SETTING_KEY) == null) {
 					HttpRequest.getComSettingDate();
