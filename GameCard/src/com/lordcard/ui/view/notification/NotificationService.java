@@ -101,6 +101,7 @@ public class NotificationService extends Service {
 		editor.putLong("timespan", beforeTime);
 		editor.commit();
 		first = true;
+		/* james removed
 		ScheduledTask.addRateTask(new AutoTask() {
 
 			public void run() {
@@ -137,6 +138,7 @@ public class NotificationService extends Service {
 				}
 			}
 		}, 10000, 60000);//10秒后每隔1分钟执行，
+		*/
 		//开线程刷新系统时间
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {

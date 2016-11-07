@@ -1827,6 +1827,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 				}
 			} catch (Exception e) {
 				DialogUtils.mesTip(getString(R.string.vip_create_fail), false);
+				e.printStackTrace();
 				return TaskResult.FAILED;
 			}
 			return TaskResult.OK;

@@ -116,7 +116,7 @@ public class Database {
 	/** 数码合成*/
 	public static List<GoodsExchange> GOODS_STOVE_DIGITAL; 
 	/**没有校验过，则校验新版本*/
-	public static boolean CHECK_VERSION = true; 
+	public static boolean CHECK_VERSION = false; 
 	/**是否有新版本*/
 	public static boolean HAS_NEW_VERSION = false; 
 	/**是否有新版本*/

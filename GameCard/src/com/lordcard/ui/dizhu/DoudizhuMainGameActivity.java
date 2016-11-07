@@ -365,7 +365,9 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 
 	private void initGame(int type) {
 		/** 刷新用户物品信息 **/
+		/* james removed
 		refreshUserGoodsInfo();
+		*/
 		this.type = type;
 		selfIsMove = false;
 		newImageIsShow = false;

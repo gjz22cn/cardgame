@@ -98,6 +98,7 @@ public class InviteToDowanloadActivity extends BaseActivity {
 	private int type = 0; // 0:邀请下载游戏 1：邀请加入vip包房
 	private BaseAdapter adapter;
 	private ListView personList;
+	private WindowManager mWindowManager;
 	private TextView overlay;
 	private MyLetterListView letterListView;
 	private AsyncQueryHandler asyncQuery;
@@ -561,16 +562,27 @@ public class InviteToDowanloadActivity extends BaseActivity {
 		overlay = (TextView) inflater.inflate(R.layout.contact_overlay, null);
 		overlay.setVisibility(View.INVISIBLE);
 		WindowManager.LayoutParams lp = new WindowManager.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.TYPE_APPLICATION, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, PixelFormat.TRANSLUCENT);
-		WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
-		windowManager.addView(overlay, lp);
+		/* james bug fix for leaked window start */
+		/* old */
+		//WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+		//windowManager.addView(overlay, lp);
+		/* new */
+		mWindowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+		mWindowManager.addView(overlay, lp);
+		/* james bug fix for leaked window end  */
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		//		mst.unRegisterView(layout);
-		WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
-		windowManager.removeView(overlay);
+		/* james bug fix for leaked window start */
+		/* old */
+		//WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+		//windowManager.removeView(overlay);
+		/* new */
+		mWindowManager.removeView(overlay);
+		/* james bug fix for leaked window end*/
 	}
 
 	private class LetterListViewListener implements OnTouchingLetterChangedListener {

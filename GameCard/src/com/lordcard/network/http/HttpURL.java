@@ -15,19 +15,18 @@ import com.lordcard.common.util.ChannelUtils;
  *         create at 2013 2013-2-5 下午5:09:54
  */
 public class HttpURL {
-
+	public static final String GAMEWEB_SERVER = "http://192.168.1.101:3000/gameweb/";
 	// ///////////////////////////////////第三方接口参数
 	public static final String CHANNEL_NAME = ChannelUtils.getSerDir(); //渠道名称
 	/**游戏登录服务器 */
-	public static final String HTTP_PATH = "http://121.42.54.146:8080/gameweb/";
-//	public static final String HTTP_PATH = "http://121.41.104.75:8080/gameweb/";
-//	public static final String HTTP_PATH = "http://192.168.2.110:8080/gameweb/";
-	
-
+	//public static final String HTTP_PATH = "http://121.42.54.146:8080/gameweb/";
+	public static final String HTTP_PATH = GAMEWEB_SERVER;
 	/**游戏文件服务器地址： 更新包，资源文件下载等 */
-//	public static final String GAME_FILE_SER = "http://file.qianqian360.com/";
-	public static final String GAME_FILE_SER = "http://121.42.54.146:8080/";
-	public static final String UG_URL = "http://www.ug123.com.cn:81/tilm/";
+	//public static final String GAME_FILE_SER = "http://121.42.54.146:8080/";
+	public static final String GAME_FILE_SER = GAMEWEB_SERVER;
+	//public static final String UG_URL = "http://www.ug123.com.cn:81/tilm/";
+	public static final String UG_URL = GAMEWEB_SERVER;
+	
 	/** 游戏APK配置信息 */
 	public static final String CONFIG_SER = GAME_FILE_SER + "pic/v/" + CHANNEL_NAME + "/dz/"; // 地主游戏apk配置地址
 	public static final String APK_INFO = "v.json"; // 游戏apk版本配置信息
@@ -45,7 +44,7 @@ public class HttpURL {
 	/** 表情资源包下载路径 */
 	public static final String CHAT_RES_HTTP = GAME_FILE_SER + "download/gres/chat.zip";
 	/** 消息推送 */
-	public static final String NOTICE_PUSH_URL = HTTP_PATH + "/game/common/getServiceNotice.sc";
+	public static final String NOTICE_PUSH_URL = HTTP_PATH + "game/common/getServiceNotice.sc";
 	/** 获取消息通知 */
 	public static final String GAME_NOTICE_URL = HTTP_PATH + "game/common/getGameNotice.sc";
 	/** 赠送抽奖券 */

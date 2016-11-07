@@ -86,7 +86,7 @@ public class HttpRequest {
 	public static void getCacheServer(boolean getCache) {
 		final Map<String, String> paramMap = new HashMap<String, String>();
 		paramMap.put("gameType", String.valueOf(Database.GAME_TYPE));
-		final String url = HttpURL.HTTP_PATH + "/game/server/getServer.sc";
+		final String url = HttpURL.HTTP_PATH + "game/server/getServer.sc";
 		if (getCache) {
 			try {
 				String cacheKey = HttpUtils.getCacheKey(url, paramMap);
