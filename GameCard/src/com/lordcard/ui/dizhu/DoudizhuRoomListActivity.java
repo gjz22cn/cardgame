@@ -247,6 +247,17 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 			}
 		});
 		mst.adjustView(roomListLayout);
+		
+		/* james add: force enter vip room Tab */
+		{
+			Context ctx = CrashApplication.getInstance();
+			MobclickAgent.onEvent(ctx, "房间Tabvip房");
+			roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg2, true));
+			roomListGridView.setVisibility(View.GONE);
+			roomVipView.setVisibility(View.VISIBLE);
+			fhgpRoomListGridView.setVisibility(View.GONE);
+			SDKConstant.PAY_ROOM = 1;
+		}
 	}
 
 	/**

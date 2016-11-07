@@ -351,7 +351,10 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private TextView text_5;
 	private TextView text_4;
 	private TextView text_3;
-
+	/*james add start */
+	private int initCardNum=16;
+	/*james add end */
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.doudizhu_gameview);
@@ -1073,8 +1076,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 
 	public void refreshCardCountData() {
 		int count = 4;
-		for (int i = 3; i <= 17; i++) {
-			if (i == 16 || i == 17)
+		for (int i = 3; i <= initCardNum; i++) {
+			if (i == (initCardNum-1) || i == initCardNum)
 				count = 1;
 			else
 				count = 4;
@@ -2514,9 +2517,9 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		play1Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
 		play2Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
 		play3Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
-		play1SurplusCount.setText("17");
-		play2SurplusCount.setText("17");
-		play3SurplusCount.setText("17");
+		play1SurplusCount.setText(Integer.toString(initCardNum));
+		play2SurplusCount.setText(Integer.toString(initCardNum));
+		play3SurplusCount.setText(Integer.toString(initCardNum));
 		bierenchupai = null;
 		/** 叫分属性 */
 		fen1.setBackgroundResource(R.drawable.fen1_btn_bg);
