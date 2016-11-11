@@ -147,7 +147,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 //	private SharedPreferences sharedPrefrences;
 //	private Editor editor;
 	private RoomlistAdapter roomListAdapter = null;
-	private GridView roomListGridView, fhgpRoomListGridView;//,fgpRoomListGridView;//普通房间，快速赛场列表,复合赛场列表
+	//private GridView roomListGridView, fhgpRoomListGridView;//,fgpRoomListGridView;//普通房间，快速赛场列表,复合赛场列表
 	private LinearLayout roomTopll;// 顶部的布局
 	private Button commonRoomBtn, gamePlaceBtn;//, fgpBtn;//普通场，快速赛场，复合赛场切换按钮
 	private LinearLayout roomVipView;
@@ -253,9 +253,9 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 			Context ctx = CrashApplication.getInstance();
 			MobclickAgent.onEvent(ctx, "房间Tabvip房");
 			roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg2, true));
-			roomListGridView.setVisibility(View.GONE);
+			//roomListGridView.setVisibility(View.GONE);
 			roomVipView.setVisibility(View.VISIBLE);
-			fhgpRoomListGridView.setVisibility(View.GONE);
+			//fhgpRoomListGridView.setVisibility(View.GONE);
 			SDKConstant.PAY_ROOM = 1;
 		}
 	}
@@ -342,7 +342,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 						//						deleteData();// 消息看过后就从数据库中删除
 						break;
 					case HANDLER_WHAT_ROOM_PERSON_COUNT:
-						roomListAdapter.setRoomPersonCount();
+						//roomListAdapter.setRoomPersonCount();
 						break;
 				}
 			}
@@ -551,17 +551,17 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		Database.ContactPeopleList = new ArrayList<ContactPeople>();
 		roomTopll = (LinearLayout) findViewById(R.id.room_list_top_ll);
 		roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg1, true));
-		commonRoomBtn = (Button) findViewById(R.id.common_room_btn);
-		commonRoomBtn.setOnClickListener(clickListener);
+		//commonRoomBtn = (Button) findViewById(R.id.common_room_btn);
+		//commonRoomBtn.setOnClickListener(clickListener);
 		starVi = (ImageView) findViewById(R.id.star_view1);
 //		fgpBtn = (Button) findViewById(R.id.fast_game_place_room_btn);
 //		fgpBtn.setOnClickListener(clickListener);
-		gamePlaceBtn = (Button) findViewById(R.id.game_place_room_btn);
-		gamePlaceBtn.setOnClickListener(clickListener);
-		roomListGridView = (GridView) findViewById(R.id.room_list_grid_view);
+		//gamePlaceBtn = (Button) findViewById(R.id.game_place_room_btn);
+		//gamePlaceBtn.setOnClickListener(clickListener);
+		//roomListGridView = (GridView) findViewById(R.id.room_list_grid_view);
 
 //		fgpRoomListGridView = (GridView) findViewById(R.id.fpg_list_grid_view);
-		fhgpRoomListGridView = (GridView) findViewById(R.id.fhpg_list_grid_view);
+		//fhgpRoomListGridView = (GridView) findViewById(R.id.fhpg_list_grid_view);
 		mMainMenuBar = (MainMenuBar) findViewById(R.id.main_page_bottom_rl);
 		asslayout = (LinearLayout) findViewById(R.id.assistant_view);
 		xiaomeiLayout = (LinearLayout) findViewById(R.id.xiao_LinearLayout);
@@ -579,8 +579,8 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		zhiShangLl.setOnClickListener(clickListener);
 		zhiLiPb = (ProgressBar) findViewById(R.id.room_iq_pg);
 		zhiliTv = (TextView) findViewById(R.id.room_iq_pg_tv);
-		vipRoomBtn = (Button) findViewById(R.id.vip_room_btn);
-		vipRoomBtn.setOnClickListener(clickListener);
+		//vipRoomBtn = (Button) findViewById(R.id.vip_room_btn);
+		//vipRoomBtn.setOnClickListener(clickListener);
 		vipJoinBtn = (Button) findViewById(R.id.vip_join_btn);
 		vipJoinBtn.setOnClickListener(clickListener);
 		roomVipView = (LinearLayout) findViewById(R.id.room_vip_view);
@@ -600,6 +600,8 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	 * 获取游戏助理 消息中心
 	 */
 	private void getAssistant() {
+		/* james hard code */
+		/*
 		try {
 			// 第一次取游戏助理根据账号(数据库)来获取数据
 			assjson = HttpRequest.getAsstContent();
@@ -610,6 +612,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 			message.what = HANDLER_WHAT_ROOM_LIST_SET_ASSISTANT_DATA;
 			mHandler.sendMessage(message);
 		} catch (Exception e) {}
+		*/
 	}
 
 	/**
@@ -1276,11 +1279,11 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	private void setListViewData() {
 		// 游戏大厅
 		roomListAdapter = new RoomlistAdapter(DoudizhuRoomListActivity.this, taskManager);
-		roomListGridView.setAdapter(roomListAdapter);
+		//roomListGridView.setAdapter(roomListAdapter);
 		//先展示房间列表
 		mFGPlaceListAdapter = new FGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
 		mFHGPlaceListAdapter = new FHGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
-		fhgpRoomListGridView.setAdapter(mFHGPlaceListAdapter);
+		//fhgpRoomListGridView.setAdapter(mFHGPlaceListAdapter);
 		ThreadPool.startWork(new Runnable() {
 
 			public void run() {
@@ -1290,7 +1293,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 					public void run() {
 						mFGPlaceListAdapter = new FGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
 						mFHGPlaceListAdapter = new FHGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
-						fhgpRoomListGridView.setAdapter(mFHGPlaceListAdapter);
+						//fhgpRoomListGridView.setAdapter(mFHGPlaceListAdapter);
 					}
 				});
 			}
@@ -1541,7 +1544,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		public void onClick(View v) {
 			Context ctx = CrashApplication.getInstance();
 			switch (v.getId()) {
-				case R.id.common_room_btn: // 普通房
+				/*case R.id.common_room_btn: // 普通房
 					MobclickAgent.onEvent(ctx, "房间Tab普通房");
 					roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg1, true));
 					roomListGridView.setVisibility(View.VISIBLE);
@@ -1549,20 +1552,21 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 					roomVipView.setVisibility(View.GONE);
 					fhgpRoomListGridView.setVisibility(View.GONE);
 					SDKConstant.PAY_ROOM = 0;
-					break;
+					break;*/
 				//		case R.id.fast_game_place_room_btn: // 快速赛场
+				/*
 				case R.id.vip_room_btn: // vip房
 					MobclickAgent.onEvent(ctx, "房间Tabvip房");
 					roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg2, true));
-					roomListGridView.setVisibility(View.GONE);
+					//roomListGridView.setVisibility(View.GONE);
 					roomVipView.setVisibility(View.VISIBLE);
-					fhgpRoomListGridView.setVisibility(View.GONE);
+					//fhgpRoomListGridView.setVisibility(View.GONE);
 					SDKConstant.PAY_ROOM = 1;
-					break;
-				case R.id.game_place_room_btn: // 比赛场
+					break;*/
+				/*case R.id.game_place_room_btn: // 比赛场
 					MobclickAgent.onEvent(ctx, "房间Tab比赛场");
 					showMatch();
-					break;
+					break;*/
 				case R.id.vip_join_btn: // 加入vip包房
 					MobclickAgent.onEvent(ctx, "加入vip包房");
 					vipJoin();
@@ -1640,9 +1644,9 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 
 	private void showMatch() {
 		roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg3, true));
-		roomListGridView.setVisibility(View.GONE);
+		//roomListGridView.setVisibility(View.GONE);
 		roomVipView.setVisibility(View.GONE);
-		fhgpRoomListGridView.setVisibility(View.VISIBLE);
+		//fhgpRoomListGridView.setVisibility(View.VISIBLE);
 	}
 
 	/**

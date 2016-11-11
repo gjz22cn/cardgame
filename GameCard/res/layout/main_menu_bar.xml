@@ -46,31 +46,6 @@
                     android:layout_weight="1.8"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/home_present" />
-                <Button
-                    android:id="@+id/goods_bag_image"
-                    style="@style/main_menu_bar_btn_wh2"
-                    android:layout_weight="1.8"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/home_goods_list" />
-                <Button
-                    android:id="@+id/duihuan"
-                    style="@style/main_menu_bar_btn_wh2"
-                    android:layout_weight="1.8"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/goods_stove" />
-                <Button
-                    android:id="@+id/menu_rank_btn"
-                    style="@style/main_menu_bar_btn_wh2"
-                    android:layout_weight="1.8"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/home_goods_bag" />
-    		<Button
-      		  android:id="@+id/menu_play_btn"
-       		  style="@style/main_menu_bar_btn_wh2"
-        	  android:layout_weight="1"
-        	  android:layout_marginRight="0dp"
-              android:layout_marginTop="1dp"
-       	      android:background="@drawable/home_quick_play_bg" />
               </LinearLayout>
                 <Button
                     style="@style/main_menu_bar_btn_wh2"
