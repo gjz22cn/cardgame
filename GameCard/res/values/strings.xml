@@ -42,7 +42,6 @@
     <string name="text_nick">昵称</string>
     <string name="text_bean">金豆</string>
     <string name="my_bean">我的金豆:</string>
-    <string name="vip_join_tip">"             "本房间相约好友一起娱乐，可自定义倍数（2-100倍），最低2万金豆准入。 </string>
     <string name="game_about1">"      "掌中游斗地主游戏是四川掌中游信息技术有限公司旗下游戏品牌，是国内一流的游戏公司，主要产品是休闲棋牌游戏，大型网络游戏，游戏运营平台等。 </string>
     <string name="game_about2">"       "</string>
     <string name="game_about3">"       "四川掌中游信息技术有限公司作为一家负责任的企业，致力于用户的游戏体验，所有用户的充值将由第三方支付平台监管和代收费，杜绝隐性收费，请大家放心充值！</string>

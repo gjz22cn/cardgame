@@ -20,73 +20,6 @@
         android:layout_marginTop="41dp"
         android:background="@drawable/mmtoplight" >
     </ImageView>
-<!-- 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/top_bar" >
-    </ImageView>
--->
-    <ImageView
-        android:id="@+id/star_view1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/room_list_grid_view"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="45dp"
-        android:src="@drawable/star0" />
-    
-     <ImageView
-        android:id="@+id/star_view2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/room_list_grid_view"
-        android:layout_marginLeft="180dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/guangxiao2" />
-      <ImageView
-        android:id="@+id/star_view3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/room_list_grid_view"
-        android:layout_marginLeft="360dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/guangxiao2" />
-     <ImageView
-        android:id="@+id/light_view_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/room_list_grid_view"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/mlight2" />
-    <ImageView
-        android:id="@+id/light_view_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/room_list_grid_view"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/mlight" />
-    
-     <ImageView
-        android:id="@+id/light_right_view_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/room_list_grid_view"
-        android:layout_marginLeft="380dp"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/mlight" />
-    <ImageView
-        android:id="@+id/light_right_view_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/room_list_grid_view"
-        android:layout_marginLeft="380dp"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/mlight2" />
     <LinearLayout
         android:id="@+id/room_list_top_ll"
         android:layout_width="fill_parent"
@@ -95,22 +28,6 @@
         android:background="@drawable/room_list_top_ll_bg1"
         android:orientation="horizontal"
         android:weightSum="4" >
-
-<!--
-        <Button
-            android:id="@+id/common_room_btn"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.95"
-            android:background="@null" />
-
-        <Button
-            android:id="@+id/game_place_room_btn"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.95"
-            android:background="@null" />
-        -->
 
         <Button
             android:id="@+id/vip_room_btn"
@@ -221,49 +138,32 @@
         android:layout_height="@dimen/room_item_list_height"
         android:layout_below="@+id/room_list_top_ll"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:scrollbars="none"
         android:visibility="gone"
         android:weightSum="2" >
 
         <LinearLayout
             android:id="@+id/vip_join_layout"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="0dp"
+            android:layout_width="fill_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-            <RelativeLayout
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="提示:"
-                    android:textColor="@color/gold"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="91dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="3dp"
-                    android:text="@string/vip_join_tip"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-            </RelativeLayout>
-
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="加入游戏:     "
+                android:textColor="@color/gold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+                
             <EditText
                 android:id="@+id/join_room_text"
-                android:layout_width="240dp"
+                android:layout_width="120dp"
                 android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/textview_bg"
                 android:hint="请输入房间号"
                 android:imeOptions="actionNext|flagNoExtractUi"
@@ -277,7 +177,6 @@
                 android:id="@+id/vip_join_btn"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="@dimen/vip_join_btn_margin_top"
                 android:background="@drawable/green_btn_bg"
                 android:text="加入包间"
                 android:textColor="@color/white" />
@@ -291,85 +190,30 @@
             android:background="@drawable/h_slip"
             android:visibility="gone" />
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
+        <LinearLayout
+            android:layout_height="0dp"
+            android:layout_width="fill_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-            <LinearLayout
-                android:id="@+id/create_vip_tip"
-                android:layout_width="fill_parent"
-                android:layout_height="22dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="提示："
-                    android:textColor="@color/gold"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/vip"
-                    android:layout_centerHorizontal="true"
-                    android:singleLine="true"
-                    android:text="包间倍数不得低于2倍"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/vip"
-                android:layout_width="fill_parent"
-                android:layout_height="54dp"
-                android:layout_below="@id/create_vip_tip"
-                android:layout_marginBottom="35dp"
-                android:layout_marginTop="45dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/vip_ratio_lost"
-                    android:layout_width="39dp"
-                    android:layout_height="46dp"
-                    android:background="@drawable/jian_bg" />
-
-                <TextView
-                    android:id="@+id/vip_room_ratio"
-                    android:layout_width="72dp"
-                    android:layout_height="54dp"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/vip_room_ratio"
-                    android:gravity="center"
-                    android:text="10"
-                    android:textColor="#606060"
-                    android:textSize="25sp" />
-
-                <Button
-                    android:id="@+id/vip_ratio_add"
-                    android:layout_width="39dp"
-                    android:layout_height="46dp"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/jia_bg" />
-            </LinearLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="创建游戏:     "
+                android:textColor="@color/gold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+                
             <Button
                 android:id="@+id/vip_room_create"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:layout_below="@id/vip"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/green_btn_bg"
                 android:text="创建包间"
                 android:textColor="@color/white" />
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <!-- 菜单栏 -->

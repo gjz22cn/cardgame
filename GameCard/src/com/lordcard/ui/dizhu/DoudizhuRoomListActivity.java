@@ -184,7 +184,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	private long asstime, asstime2;//计时在线时间（游戏助理）
 	TimerTask task = null; //游戏助理task
 	private ImageView newsIv;// 消息图标
-	private ImageView starVi;
 	private ProgressBar zhiLiPb;//经验进度
 	private TextView zhiliTv;//经验进度值
 	private RelativeLayout zhiShangLl;//等级表入口
@@ -538,12 +537,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	 */
 	private void initView() {
 		roomListLayout = (RelativeLayout) findViewById(R.id.room_list_layout);
-		startLeftLight();//左边光束
-		startrightLight();//右边光束
-		startrightLight_left();//右边-左
-		startrightLight_right();//右边-右
-		startRotateStar();//旋转星星
-		startTopLight();
 		roomListLayout.setBackgroundResource(R.drawable.join_bj);
 		roomListLayout.setOnClickListener(this);
 		roomCenterBg = (TextView) findViewById(R.id.room_center_bg);
@@ -551,17 +544,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		Database.ContactPeopleList = new ArrayList<ContactPeople>();
 		roomTopll = (LinearLayout) findViewById(R.id.room_list_top_ll);
 		roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg1, true));
-		//commonRoomBtn = (Button) findViewById(R.id.common_room_btn);
-		//commonRoomBtn.setOnClickListener(clickListener);
-		starVi = (ImageView) findViewById(R.id.star_view1);
-//		fgpBtn = (Button) findViewById(R.id.fast_game_place_room_btn);
-//		fgpBtn.setOnClickListener(clickListener);
-		//gamePlaceBtn = (Button) findViewById(R.id.game_place_room_btn);
-		//gamePlaceBtn.setOnClickListener(clickListener);
-		//roomListGridView = (GridView) findViewById(R.id.room_list_grid_view);
-
-//		fgpRoomListGridView = (GridView) findViewById(R.id.fpg_list_grid_view);
-		//fhgpRoomListGridView = (GridView) findViewById(R.id.fhpg_list_grid_view);
 		mMainMenuBar = (MainMenuBar) findViewById(R.id.main_page_bottom_rl);
 		asslayout = (LinearLayout) findViewById(R.id.assistant_view);
 		xiaomeiLayout = (LinearLayout) findViewById(R.id.xiao_LinearLayout);
@@ -585,11 +567,11 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		vipJoinBtn.setOnClickListener(clickListener);
 		roomVipView = (LinearLayout) findViewById(R.id.room_vip_view);
 		joinRoomText = (EditText) findViewById(R.id.join_room_text);
-		ratioText = (TextView) findViewById(R.id.vip_room_ratio);
-		vipRatioAdd = (Button) findViewById(R.id.vip_ratio_add);
-		vipRatioAdd.setOnClickListener(clickListener);
-		vipRatioLost = (Button) findViewById(R.id.vip_ratio_lost);
-		vipRatioLost.setOnClickListener(clickListener);
+		//ratioText = (TextView) findViewById(R.id.vip_room_ratio);
+		//vipRatioAdd = (Button) findViewById(R.id.vip_ratio_add);
+		//vipRatioAdd.setOnClickListener(clickListener);
+		//vipRatioLost = (Button) findViewById(R.id.vip_ratio_lost);
+		//vipRatioLost.setOnClickListener(clickListener);
 		vipRoomCreate = (Button) findViewById(R.id.vip_room_create);
 		vipRoomCreate.setOnClickListener(clickListener);
 		
@@ -697,350 +679,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		}*/
 	}
 	
-	private void startStar()
-	{
-		AnimUtils.playAnim(starVi, ImageUtil.createStart(), 0);
-	}
-	ImageView view_TopLight;//右边光束
-	private void startTopLight()
-	{
-		if(view_TopLight == null)
-		{
-			view_TopLight = ((ImageView)findViewById(R.id.imageView_toplight));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.alpha_main_toplight);
-		view_TopLight.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startTopLight2();
-				mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_CHANGE_SYSTEM_TIME);
-				
-			}
-		});
-	}
-	ImageView view_TopLight2;//
-	private void startTopLight2()
-	{
-		if(view_TopLight2 == null)
-		{
-			view_TopLight2 = ((ImageView)findViewById(R.id.imageView_toplight));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.alpha_main_toplight_out);
-		view_TopLight2.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startTopLight();
-			}
-		});
-	}
-	/**
-	 * 播放旋转动画
-	 */
-	ImageView view_leftLight;//左边光束
-	ImageView view_rightLight;//右边光束
-	private byte runCount = 0;
-	private void startLeftLight()
-	{
-		if(view_leftLight == null)
-		{
-			view_leftLight = ((ImageView)findViewById(R.id.light_view_left));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_leftlight_in);
-		view_leftLight.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startLeftLigh2();
-				runCount++;
-				if(runCount>=2)
-				{
-					//roomListAdapter.setRoomPersonCount();
-					runCount = 0;
-					mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_PERSON_COUNT);
-					/*Random r = new Random();
-					if(r.nextInt(100)<40)
-					{
-						roomListAdapter.setRoomPersonCount();
-					}*/
-				}
-			}
-		});
-	}
-	private void startLeftLigh2()
-	{
-		if(view_leftLight == null)
-		{
-			view_leftLight = ((ImageView)findViewById(R.id.light_view_left));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_leftlight_out);
-		view_leftLight.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startLeftLight();
-			}
-		});
-	}
-	
-	private void startrightLight()
-	{
-		if(view_rightLight == null)
-		{
-			view_rightLight = ((ImageView)findViewById(R.id.light_view_right));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_rightlight_in);
-		view_rightLight.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startrightLigh2();
-			}
-		});
-	}
-	private void startrightLigh2()
-	{
-		if(view_rightLight == null)
-		{
-			view_rightLight = ((ImageView)findViewById(R.id.light_view_right));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_rightlight_out);
-		view_rightLight.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startrightLight();
-			}
-		});
-	}
-	/**
-	 * 右边光束-左
-	 */
-	ImageView view_rightLight_left;
-	private void startrightLight_left()
-	{
-		if(view_rightLight_left == null)
-		{
-			view_rightLight_left = ((ImageView)findViewById(R.id.light_right_view_left));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_rightlight_out);
-		view_rightLight_left.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startrightLight_left2();
-			}
-		});
-	}
-	private void startrightLight_left2()
-	{
-		if(view_rightLight_left == null)
-		{
-			view_rightLight_left = ((ImageView)findViewById(R.id.light_right_view_left));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_rightlight_in);
-		view_rightLight_left.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startrightLight_left();
-			}
-		});
-	}
-	/**
-	 * 右边光束-右
-	 */
-	ImageView view_rightLight_right;
-	private void startrightLight_right()
-	{
-		if(view_rightLight_right == null)
-		{
-			view_rightLight_right = ((ImageView)findViewById(R.id.light_right_view_right));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_rightlight_in);
-		view_rightLight_right.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startrightLight_right2();
-			}
-		});
-	}
-	private void startrightLight_right2()
-	{
-		if(view_rightLight_right == null)
-		{
-			view_rightLight_right = ((ImageView)findViewById(R.id.light_right_view_right));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_rightlight_out);
-		view_rightLight_right.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startrightLight_right();
-			}
-		});
-	}
-	/**
-	 * 星光
-	 */
-	ImageView view_star;
-	ImageView view_star2;
-	private void startRotateStar()
-	{
-		if (mMainMenuBar != null) {
-			mMainMenuBar.changeLingZhiDouBG();
-		}
-		if(view_star == null)
-		{
-			view_star = ((ImageView)findViewById(R.id.star_view2));
-		}
-		if(view_star2 == null)
-		{
-			view_star2 = ((ImageView)findViewById(R.id.star_view3));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_star_in);
-		view_star.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startRotateStar2();
-			}
-		});
-		view_star2.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startRotateStar2();
-			}
-		});
-	}
-	private void startRotateStar2()
-	{
-		if (mMainMenuBar != null) {
-			mMainMenuBar.changeLingZhiDouBG();
-		}
-		if(view_star == null)
-		{
-			view_star = ((ImageView)findViewById(R.id.star_view2));
-		}
-		if(view_star2 == null)
-		{
-			view_star2 = ((ImageView)findViewById(R.id.star_view3));
-		}
-		Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.rotate_main_star_out);
-		view_star.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startRotateStar();
-			}
-		});
-		view_star2.startAnimation(animationjg);
-		animationjg.setAnimationListener(new AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				startRotateStar();
-			}
-		});
-	}
 	/**
 	 * assMap赋值推送时间 开始时间  id
 	 * 
@@ -1378,7 +1016,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	protected void onStart() {
 		super.onStart();
 		getMessageStart();
-		startStar();
 		ImageUtil.clearHeadMapCache();
 		Database.ASSCLOSE = true;
 		Constant.startCount += 1;
@@ -1571,12 +1208,13 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 					MobclickAgent.onEvent(ctx, "加入vip包房");
 					vipJoin();
 					break;
+					/*
 				case R.id.vip_ratio_add: // 创建vip增加倍数
 					addRatio();
 					break;
 				case R.id.vip_ratio_lost: // 创建vip减少加倍数
 					lostRatio();
-					break;
+					break;*/
 				case R.id.vip_room_create: // 创建vip房
 					vipRoomCreate();
 					break;
@@ -1692,7 +1330,8 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	 */
 	public synchronized void vipRoomCreate() {
 		Context ctx = CrashApplication.getInstance();
-		int ratio = Integer.parseInt(ratioText.getText().toString()); // Hip包房倍数
+		//int ratio = Integer.parseInt(ratioText.getText().toString()); // Hip包房倍数
+		int ratio = 10; // Hip包房倍数
 		MobclickAgent.onEvent(ctx, "创建房间" + ratio);
 		// 加入游戏
 		vipCreateCheckTask = new VipRoomCreateCheckTask();
