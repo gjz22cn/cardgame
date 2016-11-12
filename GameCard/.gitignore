@@ -1,0 +1,10 @@
+/bin
+R.java
+/gradle
+/gradlew
+gradlew.bat
+/proguard
+.*.swp
+*.orig
+*.rej
+*~
