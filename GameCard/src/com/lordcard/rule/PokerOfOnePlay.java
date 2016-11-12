@@ -60,13 +60,13 @@ public class PokerOfOnePlay {
 			} else {
 				return pokers.get(0).getUnusedPoker(2);
 			}
-		case DoudizhuRule.Santiao:
+		case DoudizhuRule.Sandaier:
 			if (pokers.get(0).getUnusedNum() < 3) {
 				return new ArrayList<Poker>();
 			} else {
 				return pokers.get(0).getUnusedPoker(3);
 			}
-		case DoudizhuRule.zhadan:
+		case DoudizhuRule.Zhadan:
 			if (pokers.size() == 1 && pokers.get(0).getUnusedNum() == 4) {
 				return pokers.get(0).getUnusedPoker(4);
 			} else if (pokers.size() == 2 && pokers.get(0).getUnusedNum() == 1 && pokers.get(1).getUnusedNum() == 1) {
@@ -80,7 +80,7 @@ public class PokerOfOnePlay {
 				return pokers.get(0).getUnusedPoker(4);
 			}
 			return new ArrayList<Poker>();
-		case DoudizhuRule.shunzi:
+		case DoudizhuRule.Shunzi:
 			for (PokerOfOneValue poov : pokers) {
 				Poker p = poov.getOneUnusedPoker();
 				if (p == null) {
@@ -89,7 +89,7 @@ public class PokerOfOnePlay {
 				ret.add(p);
 			}
 			return ret;
-		case DoudizhuRule.feiji:
+		case DoudizhuRule.Feiji:
 			for (PokerOfOneValue poov : pokers) {
 				List<Poker> p = poov.getUnusedPoker(3);
 				if (p == null) {
@@ -99,7 +99,7 @@ public class PokerOfOnePlay {
 			}
 			return ret;
 
-		case DoudizhuRule.liandui:
+		case DoudizhuRule.Liandui:
 			for (PokerOfOneValue poov : pokers) {
 				List<Poker> p = poov.getUnusedPoker(2);
 				if (p == null) {
@@ -127,13 +127,13 @@ public class PokerOfOnePlay {
 			} else {
 				return pokers.get(0).getPokerIgnoreUsedState(2);
 			}
-		case DoudizhuRule.Santiao:
+		case DoudizhuRule.Sandaier:
 			if (pokers.get(0).PokerNum() < 3) {
 				return new ArrayList<Poker>();
 			} else {
 				return pokers.get(0).getPokerIgnoreUsedState(3);
 			}
-		case DoudizhuRule.zhadan:
+		case DoudizhuRule.Zhadan:
 			if (pokers.size() == 1 && pokers.get(0).PokerNum() == 4) {
 				return pokers.get(0).getPokerIgnoreUsedState(4);
 			} else if (pokers.size() == 2 && pokers.get(0).PokerNum() == 1 && pokers.get(1).PokerNum() == 1) {
@@ -147,7 +147,7 @@ public class PokerOfOnePlay {
 				return pokers.get(0).getPokerIgnoreUsedState(4);
 			}
 			return new ArrayList<Poker>();
-		case DoudizhuRule.shunzi:
+		case DoudizhuRule.Shunzi:
 			for (PokerOfOneValue poov : pokers) {
 				List<Poker> p = poov.getPokerIgnoreUsedState(1);
 				if (p == null) {
@@ -156,7 +156,7 @@ public class PokerOfOnePlay {
 				ret.addAll(p);
 			}
 			return ret;
-		case DoudizhuRule.feiji:
+		case DoudizhuRule.Feiji:
 			for (PokerOfOneValue poov : pokers) {
 				List<Poker> p = poov.getPokerIgnoreUsedState(3);
 				if (p == null) {
@@ -166,7 +166,7 @@ public class PokerOfOnePlay {
 			}
 			return ret;
 
-		case DoudizhuRule.liandui:
+		case DoudizhuRule.Liandui:
 			for (PokerOfOneValue poov : pokers) {
 				List<Poker> p = poov.getPokerIgnoreUsedState(2);
 				if (p == null) {

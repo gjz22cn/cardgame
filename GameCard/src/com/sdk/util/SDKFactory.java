@@ -11,7 +11,6 @@ import cn.egame.terminal.paysdk.EgamePay;
 
 import com.lordcard.common.exception.CrashApplication;
 import com.lordcard.common.util.ActivityUtils;
-import com.lordcard.ui.CGChargeActivity;
 import com.lordcard.ui.LoginActivity;
 import com.sdk.group.GroupPayActivity;
 import com.sdk.jd.sms.util.JDSMSPayUtil;
@@ -68,37 +67,8 @@ public class SDKFactory {
 			String payTo = configItem.getPayTo();
 			String vn = ActivityUtils.getVersionName();
 			if(TextUtils.isEmpty(payTo) || PaySite.ON_LINE.equals(payTo)){		
-				if(CGChargeActivity.isYd(JDSMSPayUtil.getContext()))
-				{
-					JDSMSPayUtil.goPay(payPoint, paySite);//直接走基地
-				}else
-				{
-					EGameSMSpayUtil.goPay(payPoint, paySite);
-				}
-				/*int SMS_Type = JDSMSPayUtil.getOperators();
-				switch(SMS_Type)
-				{
-				case 0://中国移动
-					//基地充值
-					JDSMSPayUtil.goPay(payPoint, paySite);//直接走基地
-					break;
-				case 1://中国电信
-					EGameSMSpayUtil.goPay(payPoint, paySite);
-					break;
-				case 2://中国联通
-					break;
-				}*/
-				//sdkFactory.goPay(payPoint,paySite);
-				//电信充值
-				//支付宝
+				EGameSMSpayUtil.goPay(payPoint, paySite);
 			}
-			/*if(TextUtils.isEmpty(payTo) || PaySite.ON_LINE.equals(payTo)){		
-				sdkFactory.goPay(payPoint,paySite);
-			}else if(PaySite.OFF_LINE.equals(payTo)){//单机账号充值
-				sdkFactory.localPay(payPoint,paySite);
-			}
-			MobclickAgent.onEvent(CrashApplication.getInstance(),"游戏单机充值_"+vn+"_ "+paySite);
-		    */
 		} catch (Exception e) {}
 	}
 	

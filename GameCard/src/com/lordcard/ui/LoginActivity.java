@@ -216,14 +216,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 		mst.adjustView(gameBg);
 		loginProgress = DialogUtils.getWaitProgressDialog(this, "登录中,请稍候...");
 		login(); // 登录
-		//初始化移动SDK
-		if(CGChargeActivity.isYd(this))
-		{
-			//GameInterface.initializeApp(this);
-		}else
-		{
-			EgamePay.init(this);
-		}
+		EgamePay.init(this);
 	    //PreferenceHelper.getMyPreference().getEditor().putBoolean("jingyin", !GameInterface.isMusicEnabled()).commit();
 	    PreferenceHelper.getMyPreference().getEditor().putBoolean("jingyin", true).commit();
 	}
@@ -294,15 +287,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 		//切换账号
 		changeAccountBtn.setEnabled(false);
 		changeAccountBtn.setVisibility(View.INVISIBLE);
-		/*if(CGChargeActivity.isYd(this))
-		{
-			bindAccountBtn.setEnabled(false);
-			bindAccountBtn.setVisibility(View.INVISIBLE);
-			bindAccountBtn.setText("");
-			//切换账号
-			changeAccountBtn.setEnabled(false);
-			changeAccountBtn.setVisibility(View.INVISIBLE);
-		}*/
 		bindAccountBtn.setOnClickListener(mOnClickListener);
 		accountTv = (TextView) findViewById(R.id.game_login_id);
 		goldTv = (TextView) findViewById(R.id.game_login_gold);
@@ -898,11 +882,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 				}
 			});
 			builder.create().show();*/
-			if(CGChargeActivity.isYd(this))
-			{
-				//GameInterface.exit(this);
-			}else
-			{
+
 				this.runOnUiThread(new Runnable() {		
 					@Override
 					public void run() {
@@ -919,8 +899,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 						});
 					}
 				});
-			}
-			
 		}
 		return false;
 	}

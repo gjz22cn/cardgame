@@ -52,13 +52,7 @@ public class StartActivity extends BaseActivity {
 		layout.setGravity(Gravity.CENTER);
 		layout.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		imageView = new ImageView(this);
-		if(CGChargeActivity.isYd(this))
-		{
-			imageView.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.start_game, false));
-		}else
-		{
-			imageView.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.start_game_dx, false));
-		}
+		imageView.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.start_game_dx, false));
 		imageView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		layout.addView(imageView);
 		setContentView(layout);

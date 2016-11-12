@@ -120,12 +120,6 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		// 我的帐号界面
 		accountView = (TextView) findViewById(R.id.use_id);
 		xiugaimima = (Button) findViewById(R.id.xiugaimima);
-		/*if(CGChargeActivity.isYd(this))
-		{
-			xiugaimima.setEnabled(false);
-			xiugaimima.setVisibility(View.INVISIBLE);
-			xiugaimima.setText("");
-		}*/
 		xiugaimima.setOnClickListener(this);
 		nickName = (EditText) findViewById(R.id.nicheng);
 		mRadioGroup = (RadioGroup) findViewById(R.id.radio_group);

@@ -14,7 +14,15 @@ import com.lordcard.entity.Poker;
  * 
  */
 public class DoudizhuRule {
-
+    public static final int Danpai = 1;
+    public static final int Yidui = 2;
+    public static final int Sandaier = 3;
+    public static final int Liandui = 4;
+    public static final int Shunzi = 5;
+    public static final int Feiji = 6;
+    public static final int Zhadan = 7;
+    public static final int siZhang = 15;
+/*
 	public static final int Danpai = 1;
 	public static final int Yidui = 2;
 	public static final int Santiao = 3;
@@ -30,6 +38,7 @@ public class DoudizhuRule {
 	public static final int wangzha = 13;
 	public static final int liandui = 14;
 	public static final int siZhang = 15;
+	*/
 	public static final int error = 0;
 
 	/**
@@ -195,52 +204,6 @@ public class DoudizhuRule {
 					}
 				}
 				break;
-			case Santiao:
-				tishi = new int[3];
-				int santiaovalue = Othercards.get(0).getValue();
-
-				for (int i = Mycards.size() - 1; i > 1; i--) {
-					// //System.out.println("最后一张的值为"+Mycards.get(i).getValue());
-					if (santiaovalue < Mycards.get(i).getValue()) {
-						if (Mycards.get(i).getValue() == Mycards.get(i - 1).getValue()
-								&& Mycards.get(i - 2).getValue() == Mycards.get(i - 1).getValue()) {
-							tishi[0] = Mycards.get(i).getNumber();
-							tishi[1] = Mycards.get(i - 1).getNumber();
-							tishi[2] = Mycards.get(i - 2).getNumber();
-							return tishi;
-						}
-					}
-				}
-				break;
-			case Sandaiyi:
-				tishi = new int[4];
-				int Sandaiyivalue = getMaxNumber(Othercards);
-				// System.out.println("三带一最大牌是 "+Sandaiyivalue);
-				int taget = 0;
-				int j = 1;
-				for (int i = Mycards.size() - 1; i > 1; i--) {
-					// //System.out.println("最后一张的值为"+Mycards.get(i).getValue());
-					if (Sandaiyivalue < Mycards.get(i).getValue()) {
-						if (Mycards.get(i).getValue() == Mycards.get(i - 1).getValue()
-								&& Mycards.get(i - 2).getValue() == Mycards.get(i - 1).getValue()) {
-							tishi[0] = Mycards.get(i).getNumber();
-							tishi[1] = Mycards.get(i - 1).getNumber();
-							tishi[2] = Mycards.get(i - 2).getNumber();
-							tishi[3] = 100;
-							taget = Mycards.get(i).getValue();
-							break;
-						}
-					}
-				}
-				while (tishi[3] == 100) {
-					if (Mycards.get(Mycards.size() - j).getValue() != taget) {
-						tishi[3] = Mycards.get(Mycards.size() - j).getNumber();
-						return tishi;
-					} else {
-						j++;
-					}
-				}
-				break;
 			case Sandaier:
 				tishi = new int[5];
 				int Sandaier = getMaxNumber(Othercards);
@@ -270,7 +233,7 @@ public class DoudizhuRule {
 					}
 				}
 				break;
-			case zhadan:
+			case Zhadan:
 				tishi = new int[4];
 				int zhadan = Othercards.get(0).getValue();
 				for (int i = Mycards.size() - 1; i > 2; i--) {
@@ -287,62 +250,14 @@ public class DoudizhuRule {
 					}
 
 				}
-				// if (Mycards.get)
-
 				break;
-			case sidaiyi:
-				tishi = new int[6];
-				int max = getMaxNumber(Othercards);
-				for (int i = Mycards.size() - 1; i > 2; i--) {
-					// //System.out.println("最后一张的值为"+Mycards.get(i).getValue());
-
-					if (max < Mycards.get(i).getValue()) {
-						if (numberCount(Mycards.get(i).getValue(), Mycards) == 4) {
-							tishi[0] = Mycards.get(i).getNumber();
-							tishi[1] = Mycards.get(i - 1).getNumber();
-							tishi[2] = Mycards.get(i - 2).getNumber();
-							tishi[3] = Mycards.get(i - 3).getNumber();
-
-							now.remove(Mycards.get(i));
-							now.remove(Mycards.get(i - 1));
-							now.remove(Mycards.get(i - 2));
-							tishi[4] = now.get(now.size() - 1).getNumber();
-							tishi[5] = now.get(now.size() - 2).getNumber();
-
-							return tishi;
-						}
-					}
-
-				}
-				break;
-			case sidaier:
-
-				tishi = getSiDaiErTiShi(Othercards, now);
-				if (tishi != null) {
-					return tishi;
-				}
-				break;
-			case feiji:
+			case Feiji:
 				tishi = getFeiJiTiShi(Othercards, now);
 				if (tishi != null) {
 					return tishi;
 				}
 				break;
-			case feijidaisan:
-
-				tishi = getFeiJiDaiSanTiShi(Othercards, now);
-				if (tishi != null) {
-					return tishi;
-				}
-				break;
-			case feijidaidui:
-				// tishi = new int[Othercards.size()];
-				tishi = getFeiJiDaiDuiTiShi(Othercards, now);
-				if (tishi != null) {
-					return tishi;
-				}
-				break;
-			case liandui:
+			case Liandui:
 				tishi = new int[Othercards.size()];
 				int minPai = Othercards.get(Othercards.size() - 1).getValue();
 
@@ -398,7 +313,7 @@ public class DoudizhuRule {
 					return tishi;
 				}
 				break;
-			case shunzi:
+			case Shunzi:
 				tishi = new int[Othercards.size()];
 				int shunzi = Othercards.get(Othercards.size() - 1).getValue();
 				// //System.out.println("别人顺子最小牌为"+shunzi);
@@ -429,7 +344,7 @@ public class DoudizhuRule {
 		}
 		// 如果打不过同类型的则检测自己是否有炸弹
 		int number = ifZhadan(Mycards);
-		if (number != -1 && cardType != zhadan) {
+		if (number != -1 && cardType != Zhadan) {
 			tishi = new int[4];
 			for (int i = 0; i < 4; i++) {
 				tishi[i] = Mycards.get(number - i).getNumber();
@@ -890,7 +805,7 @@ public class DoudizhuRule {
 	   switch (cardStyle) {
 	    case Danpai:
 	    case Yidui:
-	    case Santiao:
+	    case Sandaier:
 	    	value = cards.get(0).getValue();
 			break;
 		}
@@ -906,93 +821,58 @@ public class DoudizhuRule {
 		int cardStyle = 0;
 		if (cards.size() == 0) {// 如果0张牌
 			cardStyle = error; // error
-		}
+		}    
 		int pokerCount = getPokeCount(cards);
 		switch (cards.size()) {
-		case 1: // 如果是一张牌
+		case 1: // 如果是1张牌
 			cardStyle = Danpai; // 单牌
 			break;
-		case 2:// 如果是两张牌
+		case 2:// 如果是2张牌
 			if (cards.get(0).getValue() == cards.get(1).getValue()) {
 				cardStyle = Yidui;// 一对
-			} else if (cards.get(0).getValue() + cards.get(1).getValue() == 33) {
-				cardStyle = wangzha;// 王炸
 			}
 			break;
-		case 3:// 如果是三张牌
+			/*
+		case 3:// 如果是3张牌
 			if (pokerCount == 3) {
 				cardStyle = Santiao;
-				// System.out.println("三张");
 			}
-			break;
-		case 4:// 如果是四张牌
+			break;*/
+		case 4:// 如果是4张牌
 			if (pokerCount == 4) {
-				cardStyle = zhadan; // 炸弹
-			} else if (pokerCount == 3) {// 三带一
-				cardStyle = Sandaiyi;
-			}
+				cardStyle = Zhadan; // 炸弹
+			} else if(pokerCount == 2){
+                if(checkLiandui(cards)){
+                    return Liandui; // 连对
+                }
+            }
 			break;
-		case 5:// 如果是五张牌
-			if (pokerCount == 3) {// 三待二
-				if (cards.get(3).getValue() == cards.get(4).getValue() && cards.get(0).getValue() == cards.get(1).getValue()) {
-					cardStyle = Sandaier;
-				}
-			} else if (checkShunpai(cards)) {// 是顺牌
-				cardStyle = shunzi;
+		case 5:// 如果是5张牌
+			if (pokerCount == 3 || pokerCount == 4) {	// 三挑
+				cardStyle = Sandaier;
+			} else if (checkShunpai(cards)) {	// 是顺牌
+				cardStyle = Shunzi;
 			}
 			break;
 		case 6:// 如果是6张
-			if (pokerCount == 4) {
-				cardStyle = sidaiyi;
-				return sidaiyi;
-			} else if (checkShunpai(cards)) {
-				cardStyle = shunzi;
-				return shunzi;
+			if (checkShunpai(cards)) {
+				cardStyle = Shunzi;
 			} else if (checkLiandui(cards)) {
-				cardStyle = liandui;
-				return liandui;
-			} else if (pokerCount == 3) {
-				if (checkFeiji(cards)) {
-					cardStyle = feiji;
-				}
+				cardStyle = Liandui;
 			}
 			break;
 		}
 
 		if (cards.size() >= 7) {
-			// 检测4帶2對
-			if (pokerCount == 4 && cards.size() == 8 && cards.get(0).getValue() == cards.get(1).getValue()
-					&& cards.get(2).getValue() == cards.get(3).getValue() && cards.get(4).getValue() == cards.get(5).getValue()
-					&& cards.get(6).getValue() == cards.get(7).getValue()) {
-				return sidaier;
-			}
-			// 检测顺牌
-			if (checkShunpai(cards)) {
-				return shunzi;
-			}
-			// 检测连对
-			if (checkLiandui(cards)) {
-				return liandui;
-			}
-			// 检测连飞机
-			if (checkFeiji(cards)) {
-				return feiji;
-			}
-			if (cards.size() % 4 == 0) {
-				if (0 != checkFeijiDaisan(cards)) {
-					// System.out.println("飞机带散牌");
-					return feijidaisan;
-				}
-			}
-			if (cards.size() % 5 == 0) {
-				if (0 != checkFeijiDaidui(cards)) {
-					// System.out.println("飞机带队");
-					return feijidaidui;
-				}
+			if (checkShunpai(cards)) { 	// 检测顺牌
+				cardStyle = Shunzi;
+			} else if (checkLiandui(cards)) { // 检测连对
+				cardStyle = Liandui;
+			} else if (checkFeiji(cards)) { // 检测飞机
+				cardStyle = Feiji;
 			}
 		}
 		return cardStyle;
-
 	}
 
 	/**
@@ -1223,7 +1103,7 @@ public class DoudizhuRule {
 	 */
 	public static boolean checkLiandui(List<Poker> cards) {
 		int count = 0;
-		if (cards.size() >= 6 && cards.size() % 2 == 0) {
+		if (cards.size() >= 4 && cards.size() % 2 == 0) {
 			for (int i = 0; i < cards.size() - 1; i += 2) {
 				// 排除2和王
 				if (cards.get(i).getValue() == 16 || cards.get(i).getValue() == 17 || cards.get(i).getValue() == 15) {
@@ -1235,7 +1115,7 @@ public class DoudizhuRule {
 				} else {
 					return false;
 				}
-				// //System.out.println("执行到了这里"+count);
+
 				if (i + 2 < cards.size() - 1) {
 					if (cards.get(i + 2).getValue() + 1 != cards.get(i).getValue()) {
 						return false;
@@ -1243,7 +1123,7 @@ public class DoudizhuRule {
 				}
 			}
 		}
-		// //System.out.println(count);
+
 		if (count == cards.size() / 2) {
 			return true;
 		} else {
@@ -1305,17 +1185,9 @@ public class DoudizhuRule {
 			}
 		}
 
-		// 判断除去飞机的牌的数目是否为飞机数
-		// if(del.size()!=cards.size()/4){
-		// ////System.out.println("del.size()"+del.size()+"cards.size()/4"+cards.size()/4);
-		// return false;
-		// }
 
 		for (int i = 0; i < del.size(); i++) {
-			// System.out.println(del.get(i));
-
 			cards.remove(del.get(i));
-
 		}
 
 		if (cards.size() % 3 != 0 || cards.size() == 0) {
@@ -1341,16 +1213,6 @@ public class DoudizhuRule {
 			return cards.get(0).getValue();
 		}
 		return 0;
-
-		// for(int i = 0;i<cards.size();i++){
-		//
-		// }
-		// if(checkFeiji(cards)){
-		// return true;
-		// }else{
-		// return false;
-		// }
-
 	}
 
 	/**
@@ -1391,8 +1253,6 @@ public class DoudizhuRule {
 		}
 
 		for (int i = 0; i < del.size(); i++) {
-			// System.out.println(del.get(i));
-
 			cards.remove(del.get(i));
 		}
 
@@ -1420,47 +1280,37 @@ public class DoudizhuRule {
 	 * @return
 	 */
 	public static boolean checkFeiji(List<Poker> cards) {
-
-		int count = 1;
 		int size = cards.size();
-		// 如果是飞机不带
-		if (size % 3 == 0) {
-			for (int i = 0; i < cards.size() - 3; i += 3) {
-				// 排除2和王
-				if (cards.get(i).getValue() == 16 || cards.get(i).getValue() == 17 || cards.get(i).getValue() == 15) {
-					return false;
+		int num = size/5;
+		int v1=0, v2=0;
+		
+		/* 5556667788、333444555667788 */
+		if (size%5 != 0 ||  num < 2) {
+			return false;
+		}
+		
+		for(int i=0; i<num; i++) {
+			if(cards.get(i).getValue() ==  cards.get(i+1).getValue() &&
+					cards.get(i).getValue() ==  cards.get(i+2).getValue() &&
+					cards.get(num*3+i).getValue() ==  cards.get(num*3+i+1).getValue()) {
+				if (v1==0) {
+					v1 = cards.get(i).getValue();
+					v2 = cards.get(num*3+i).getValue();
 				} else {
-					if (cards.get(i).getValue() - 1 == cards.get(i + 3).getValue() && cards.get(i).getValue() == cards.get(i + 1).getValue()
-							&& cards.get(i).getValue() == cards.get(i + 2).getValue()) {
-						count++;
+					if (cards.get(i).getValue() == v1+1 &&
+							cards.get(num*3+i).getValue() == v2+1) {
+						v1 = cards.get(i).getValue();
+						v2 = cards.get(num*3+i).getValue();
 					} else {
 						return false;
 					}
 				}
+			} else {
+				return false;
 			}
-			// 检查最后的几张牌是否一致
-			if (cards.get(cards.size() - 1).getValue() == cards.get(cards.size() - 2).getValue()
-					&& cards.get(cards.size() - 1).getValue() == cards.get(cards.size() - 3).getValue() && count == size / 3) {
-				return true;
-			}
-
 		}
-		return false;
-
-	}
-
-	/**
-	 * 检测是不是四带两对
-	 * 
-	 * @param cards
-	 * @return
-	 */
-	public static boolean checkSidai2dui(List<Poker> cards) {
-
-		if (getPokeCount(cards) == 4 && cards.get(4).getValue() == cards.get(5).getValue() && cards.get(6).getValue() == cards.get(7).getValue()) {
-			return true;
-		}
-		return false;
+		
+		return true;
 	}
 
 	//

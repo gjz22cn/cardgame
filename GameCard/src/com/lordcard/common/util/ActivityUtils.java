@@ -70,7 +70,6 @@ import com.lordcard.entity.GameUser;
 import com.lordcard.entity.ReturnPing;
 import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpURL;
-import com.lordcard.ui.CGChargeActivity;
 import com.lordcard.ui.StartActivity;
 import com.lordcard.ui.base.BaseActivity;
 import com.lordcard.ui.base.IGameView;
@@ -549,7 +548,6 @@ public class ActivityUtils {
 	 * 弹出绑定账号对话框
 	 */
 	public static void showAccountBindDialog() {
-		//if(CGChargeActivity.isYd(Database.currentActivity))return;
 		GameUser gu = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
 		if (gu != null && gu.getRelaAccount() == null || gu.getRelaAccount().equals("")) {
 			String s = "您的金豆数大于200000，为了保障您的权益，请记住您的游戏ID或许绑定一个您可以记住的账号和密码，您可以使用新的游戏ID和账号登录";

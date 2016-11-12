@@ -4191,24 +4191,7 @@ public class PersonnalDoudizhuActivity extends BaseActivity implements IGameView
 				}
 				//AudioPlayUtils.getInstance().playSound(R.raw.outcard); // 出牌
 				break;
-			case DoudizhuRule.wangzha:// 如果是两张牌 王炸
-				wangzhaImageView.setVisibility(View.VISIBLE);
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playMultiMusic2(R.raw.nv_wangzha, R.raw.boombeffect);
-				} else {
-					AudioPlayUtils.getInstance().playMultiMusic2(R.raw.nan_wangzha, R.raw.boombeffect);
-				}
-				AnimUtils.playAnim(wangzhaImageView, ImageUtil.getResAnimaSoft("wanBomb"), 2000);
-				setTweenAnim(wangzhaImageView, R.anim.wangzha_out, IS_WANGZHA_ANIM);
-				break;
-			case DoudizhuRule.Santiao:// 如果是三张牌
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playSound(R.raw.nv_3dai0);
-				} else {
-					AudioPlayUtils.getInstance().playSound(R.raw.nan_3dai0);
-				}
-				break;
-			case DoudizhuRule.zhadan: // 如果是四张牌 炸弹
+			case DoudizhuRule.Zhadan: // 如果是四张牌 炸弹
 				zhadanIv.setVisibility(View.VISIBLE);
 				if ("1".equals(gender)) {
 					AudioPlayUtils.getInstance().playMultiMusic2(R.raw.nv_bomb, R.raw.boombeffect);
@@ -4217,13 +4200,6 @@ public class PersonnalDoudizhuActivity extends BaseActivity implements IGameView
 				}
 				setTweenAnim(zhadanIv, R.anim.zhadang_play, IS_ZHADAN_ANIM);
 				break;
-			case DoudizhuRule.Sandaiyi:// 如果是四张牌 三带一
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playSound(R.raw.nv_3dai1);
-				} else {
-					AudioPlayUtils.getInstance().playSound(R.raw.nan_3dai1);
-				}
-				break;
 			case DoudizhuRule.Sandaier:// 如果是五张牌 三待二
 				if ("1".equals(gender)) {
 					AudioPlayUtils.getInstance().playSound(R.raw.nv_3dai2);
@@ -4231,14 +4207,7 @@ public class PersonnalDoudizhuActivity extends BaseActivity implements IGameView
 					AudioPlayUtils.getInstance().playSound(R.raw.nan_3dai2);
 				}
 				break;
-			case DoudizhuRule.sidaiyi: // 如果是6张 "4带2
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playSound(R.raw.nv_4dai2);
-				} else {
-					AudioPlayUtils.getInstance().playSound(R.raw.nan_4dai2);
-				}
-				break;
-			case DoudizhuRule.shunzi: // 顺牌
+			case DoudizhuRule.Shunzi: // 顺牌
 				if ("1".equals(gender)) {
 					AudioPlayUtils.getInstance().playSound(R.raw.nv_shunzi);
 				} else {
@@ -4247,23 +4216,14 @@ public class PersonnalDoudizhuActivity extends BaseActivity implements IGameView
 				shunzImageView.setVisibility(View.VISIBLE);
 				AnimUtils.playAnim(shunzImageView, ImageUtil.getResAnimaSoft("shunz"), 3000);
 				break;
-			case DoudizhuRule.liandui: // 如果是6张 连对
+			case DoudizhuRule.Liandui: // 如果是6张 连对
 				if ("1".equals(gender)) {
 					AudioPlayUtils.getInstance().playSound(R.raw.nv_liandui);
 				} else {
 					AudioPlayUtils.getInstance().playSound(R.raw.nan_liandui);
 				}
 				break;
-			case DoudizhuRule.sidaier: // 检测4帶2對
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playSound(R.raw.nv_4dai22);
-				} else {
-					AudioPlayUtils.getInstance().playSound(R.raw.nan_4dai22);
-				}
-				break;
-			case DoudizhuRule.feiji: // 如果是6张 飞机
-			case DoudizhuRule.feijidaisan: // 飞机带2
-			case DoudizhuRule.feijidaidui: // 飞机带4
+			case DoudizhuRule.Feiji: // 如果是6张 飞机
 				if ("1".equals(gender)) {
 					AudioPlayUtils.getInstance().playMultiMusic2(R.raw.nv_feiji, R.raw.planeeffect);
 				} else {
@@ -4278,18 +4238,6 @@ public class PersonnalDoudizhuActivity extends BaseActivity implements IGameView
 		}
 	}
 
-//	// 短语，思考
-//	private List<String> getMessData() {
-//		String[] items = getResources().getStringArray(R.array.mes_language);
-//		List<String> list = Arrays.asList(items);
-//		return list;
-//	}
-//
-//	private List<String> getThinkData() {
-//		String[] items = getResources().getStringArray(R.array.think_language);
-//		List<String> list = Arrays.asList(items);
-//		return list;
-//	}
 
 	/**
 	 * 屏幕点击事件

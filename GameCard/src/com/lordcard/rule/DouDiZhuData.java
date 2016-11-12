@@ -250,7 +250,7 @@ public class DouDiZhuData {
 		addFeiJi();
 		// 添加顺子并且设置了那些对子被使用了
 		addShunZi();
-		addSanZhang();
+		//addSanZhang();
 		// 将没有被使用的对子添加到duiZi列表,清除被使用状态
 		addDuiZi();
 		// 将没有被使用的单牌添加到散牌列表，并清楚使用状态
@@ -539,7 +539,7 @@ public class DouDiZhuData {
 
 				if (pokers.containsKey(maxValue)) {
 					// 多对
-					PokerOfOnePlay poop = new PokerOfOnePlay(maxValue, DoudizhuRule.shunzi);
+					PokerOfOnePlay poop = new PokerOfOnePlay(maxValue, DoudizhuRule.Shunzi);
 					for (int j = i; j <= maxValue; ++j) {
 						poop.add(pokers.get(j));
 						// pokers.get(j).setUsedState(true);//设置已经使用状态，主要是给监测单牌使用
@@ -571,7 +571,7 @@ public class DouDiZhuData {
 
 				if (pokers.containsKey(maxValue)) {
 					// 多对
-					PokerOfOnePlay poop = new PokerOfOnePlay(maxValue, DoudizhuRule.shunzi);
+					PokerOfOnePlay poop = new PokerOfOnePlay(maxValue, DoudizhuRule.Shunzi);
 					for (int j = i; j <= maxValue; ++j) {
 						poop.add(pokers.get(j));
 						// pokers.get(j).setUsedState(true);//设置已经使用状态，主要是给监测单牌使用
@@ -600,7 +600,7 @@ public class DouDiZhuData {
 				}
 				if (pokers.containsKey(maxValue) && pokers.get(maxValue).PokerNum() >= 2) {
 					// 多对
-					PokerOfOnePlay poop = new PokerOfOnePlay(maxValue, DoudizhuRule.liandui);
+					PokerOfOnePlay poop = new PokerOfOnePlay(maxValue, DoudizhuRule.Liandui);
 					for (int j = i; j <= maxValue; ++j) {
 						poop.add(pokers.get(j));
 						// pokers.get(j).setUsedState(true);
@@ -620,6 +620,7 @@ public class DouDiZhuData {
 	/**
 	 * 添加三张
 	 */
+	/*
 	private void addSanZhang() {
 		for (PokerOfOneValue poov : this.getPokers().values()) {
 			// 添加三张
@@ -635,6 +636,7 @@ public class DouDiZhuData {
 			}
 		}
 	}
+	*/
 
 	/**
 	 * 添加三张
@@ -646,7 +648,7 @@ public class DouDiZhuData {
 				continue;
 			}
 
-			PokerOfOnePlay poop = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.Santiao);
+			PokerOfOnePlay poop = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.Sandaier);
 			poop.add(poov);
 			sanZhang.put(poov.getValue(), poop);
 		}
@@ -657,21 +659,9 @@ public class DouDiZhuData {
 	 */
 	private void addSanZhangAndSiZhangAndZhadan() {
 		for (PokerOfOneValue poov : this.getPokers().values()) {
-			// 添加三张
-			// if(poov.PokerNum() == 3){
-			// PokerOfOnePlay poop = new
-			// PokerOfOnePlay(poov.getValue(),DoudizhuRule.Santiao);
-			// poop.add(poov);
-			// sanZhang.put(poov.getValue(), poop);
-			// //设置已经使用标志（为了后面判断散牌和对子）
-			// for (Poker p : poov.getPokers()){
-			// p.setUsed(true);
-			// }
-			// continue;
-			// }
 			// 添加四张和炸弹
 			if (poov.PokerNum() == 4) {
-				PokerOfOnePlay poop = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.zhadan);
+				PokerOfOnePlay poop = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.Zhadan);
 				poop.add(poov);
 				zhaDan.put(poov.getValue(), poop);
 
@@ -688,7 +678,7 @@ public class DouDiZhuData {
 		}
 		// 添加王炸
 		if (pokers.containsKey(16) && pokers.containsKey(17)) {
-			PokerOfOnePlay poop = new PokerOfOnePlay(17, DoudizhuRule.zhadan);
+			PokerOfOnePlay poop = new PokerOfOnePlay(17, DoudizhuRule.Zhadan);
 			poop.add(pokers.get(16));
 			poop.add(pokers.get(17));
 			zhaDan.put(17, poop);
@@ -709,7 +699,7 @@ public class DouDiZhuData {
 				}
 				if (pokers.containsKey(maxValue) && pokers.get(maxValue).PokerNum() >= 3) {
 					// 多对
-					PokerOfOnePlay poop = new PokerOfOnePlay(maxValue, DoudizhuRule.feiji);
+					PokerOfOnePlay poop = new PokerOfOnePlay(maxValue, DoudizhuRule.Feiji);
 					for (int j = i; j <= maxValue; ++j) {
 						poop.add(pokers.get(j));
 
@@ -790,50 +780,30 @@ public class DouDiZhuData {
 			case DoudizhuRule.Yidui:
 				play = duiZi;
 				break;
-			case DoudizhuRule.Santiao:
-				play = sanZhang;
-				break;
-			case DoudizhuRule.Sandaiyi:
-				play = sanZhang;
-				attachmentCount = 1;
-				break;
 			case DoudizhuRule.Sandaier:
 				play = sanZhang;
 				attachmentCount = 1;
 				takeSanPai = false;
 				break;
-			case DoudizhuRule.zhadan:
-			case DoudizhuRule.wangzha:
+			case DoudizhuRule.Zhadan:
 				play = zhaDan;
 				break;
-			case DoudizhuRule.sidaiyi:
-				play = siZhang;
-				attachmentCount = 2;
-				break;
-			case DoudizhuRule.sidaier:
-				play = siZhang;
-				attachmentCount = 2;
-				takeSanPai = false;
-
-				break;
-			case DoudizhuRule.feiji:
-
-				play = feiJi.get(otherPokers.size() / 3);
-				break;
-			case DoudizhuRule.feijidaisan:
-				play = feiJi.get(otherPokers.size() / 4);
-				attachmentCount = otherPokers.size() / 4;
-				break;
-			case DoudizhuRule.feijidaidui:
+			case DoudizhuRule.Feiji:
+				//play = feiJi.get(otherPokers.size() / 3);
 				play = feiJi.get(otherPokers.size() / 5);
 				attachmentCount = otherPokers.size() / 5;
 				takeSanPai = false;
 				break;
-			case DoudizhuRule.liandui:
+				/*
+			case DoudizhuRule.feijidaidui:
+				play = feiJi.get(otherPokers.size() / 5);
+				attachmentCount = otherPokers.size() / 5;
+				takeSanPai = false;
+				break;*/
+			case DoudizhuRule.Liandui:
 				play = lianDui.get(otherPokers.size() / 2);
-
 				break;
-			case DoudizhuRule.shunzi:
+			case DoudizhuRule.Shunzi:
 				play = shunZi.get(otherPokers.size());
 				break;
 			}

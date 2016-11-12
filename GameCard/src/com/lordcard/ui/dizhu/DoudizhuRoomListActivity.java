@@ -90,7 +90,6 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpRequest;
 import com.lordcard.network.http.HttpURL;
 import com.lordcard.network.http.HttpUtils;
-import com.lordcard.ui.CGChargeActivity;
 import com.lordcard.ui.DataCentreActivity;
 import com.lordcard.ui.InviteToDowanloadActivity;
 import com.lordcard.ui.LoginActivity;
@@ -1033,7 +1032,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 			 * 1.金豆大于20万
 			 * 2.第一次进入房间列表(每次进入应用只弹出一次)
 			 * 3.未绑定过账号*/
-			if ((cacheUser.getBean() > 200000) && 1 == Constant.startCount && !ActivityUtils.isBindAccount()/* && !CGChargeActivity.isYd(this)*/) {
+			if ((cacheUser.getBean() > 200000) && 1 == Constant.startCount && !ActivityUtils.isBindAccount()) {
 				HashMap<String, String> TaskMenuMap = (HashMap<String, String>) GameCache.getObj(CacheKey.ALL_SETTING_KEY);
 				if (null == TaskMenuMap || !TaskMenuMap.containsKey(Constant.KEY_ACCOUNT_BIND_DIALOG_SHOW_COUNT) || TextUtils.isEmpty(TaskMenuMap.get(Constant.KEY_ACCOUNT_BIND_DIALOG_SHOW_COUNT))) {
 					ActivityUtils.showAccountBindDialog();
@@ -1611,14 +1610,14 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		ImageUtil.releaseDrawable(roomCenterBg.getBackground());
 		ImageUtil.releaseDrawable(roomTopll.getBackground());
 		ImageUtil.releaseDrawable(roomListLayout.getBackground());
-		ImageUtil.releaseDrawable(commonRoomBtn.getBackground());
+		//ImageUtil.releaseDrawable(commonRoomBtn.getBackground());
 //		ImageUtil.releaseDrawable(fgpBtn.getBackground());
 		ImageUtil.releaseDrawable(gamePlaceBtn.getBackground());
 		ImageUtil.releaseDrawable(vipRoomBtn.getBackground());
 		ImageUtil.releaseDrawable(roomVipView.getBackground());
 		ImageUtil.releaseDrawable(vipJoinBtn.getBackground());
-		ImageUtil.releaseDrawable(vipRatioAdd.getBackground());
-		ImageUtil.releaseDrawable(vipRatioLost.getBackground());
+		//ImageUtil.releaseDrawable(vipRatioAdd.getBackground());
+		//ImageUtil.releaseDrawable(vipRatioLost.getBackground());
 		ImageUtil.releaseDrawable(vipRoomCreate.getBackground());
 		ActivityPool.remove(this);
 		if (null != roomListLayout) {
