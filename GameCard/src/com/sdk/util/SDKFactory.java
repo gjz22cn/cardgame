@@ -7,7 +7,7 @@
 package com.sdk.util;
 
 import android.text.TextUtils;
-import cn.egame.terminal.paysdk.EgamePay;
+//import cn.egame.terminal.paysdk.EgamePay;
 
 import com.lordcard.common.exception.CrashApplication;
 import com.lordcard.common.util.ActivityUtils;

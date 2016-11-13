@@ -60,15 +60,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-		</activity>	
-		<activity android:name="cn.cmgame.billing.api.GameOpenActivity"
-                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                  android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.CHINAMOBILE_OMS_GAME" />
-                <category android:name="android.intent.category.CHINAMOBILE_GAMES" />
-            </intent-filter>
-        </activity>
+		</activity>
 		<activity android:name="com.lordcard.ui.LoginActivity" android:configChanges="orientation|keyboardHidden"  android:windowSoftInputMode="adjustPan" android:screenOrientation="landscape" android:launchMode="singleTask" android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 		
 		<!-- begin 游戏共用页面 -->
@@ -137,123 +129,9 @@
 		</service>
 		
 <!-- end 服务-->
-		
-<!-- ======================================================begin第三方配置============================================================== -->
-		<activity android:name="com.sdk.group.GroupPayActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustPan" android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-		<activity android:name="com.sdk.group.GroupPayDetailActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-	
-	<!-- begin 支付宝支付配置-->
-		<activity android:name="com.sdk.alipay.ui.AlixPayActivity" android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-		<activity android:name="com.sdk.alipay.ui.AliPayActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-	<!-- end 支付宝支付配置-->
-	
-	<!-- begin 移动MM支付 -->
-	<!-- end 移动MM支付-->
-	
-	<!-- begin　联通沃商店支付配置 -->
-        <meta-data android:name="cpId" android:value="cpid:86005642" />
-        <meta-data android:name="AppId" android:value="appid:902117482920130412135014703100" />
-        <activity android:name="com.sdk.vac.pay.ui.VACPayActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-	<!-- end 联通沃商店支付配置 -->
-	
-	<!-- begin 天翼支付  -->	
-		<activity android:name="com.estore.ui.CTEStoreSDKActivity"  android:screenOrientation="portrait" android:theme="@android:style/Theme.Translucent"/>
-	<!-- end 天翼支付  -->
-   		
-<!-- =====================================================end第三方配置============================================================= -->
-<!-- =电信支付================================================================ -->
-<!-- 根据游戏实际情况修改screenOrientation属性 -->
-        <activity
-            android:name="cn.egame.terminal.paysdk.EgamePayActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
-        </activity>
-        
-        <activity
-            android:name="com.iapppay.mpay.ifmgr.PayManagerActivity"
-            android:configChanges="keyboardHidden|orientation|navigation|screenSize"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        
-        <!-- 一键支付 -->
-        
-          <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.iapppay.oneclickpay.FastPayActivity" >
-        </activity> 
-               <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.iapppay.oneclickpay.InputCardActivity" >
-        </activity> 
-        <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.iapppay.oneclickpay.LLUnbindCardActivity" >
-        </activity> 
-               <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.iapppay.oneclickpay.YPUnbindCardActivity" >
-        </activity> 
-          <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.iapppay.oneclickpay.SplashActivity" >
-        </activity>    
-        <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.iapppay.oneclickpay.AgreementActivity">
-        </activity>    
-        
-        <activity
-            android:name="com.iapppay.oneclickpay.CommUnbindCardActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> 
-        <activity
-            android:name="com.iapppay.oneclickpay.CallWaitingActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />  
-             
-        <activity
-            android:name="com.iapppay.oneclickpay.SmsVerifyActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />   
-         
-                <activity
-            android:name="com.iapppay.oneclickpay.SmsVerifyUnbindCardActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />   
-        
-            
-        
+ 		
+<!-- =====================================================end第三方配置============================================================= -->          
           <!-- 银联标准版 -->
-         
-         <activity 
-             android:name="com.unionpay.uppay.PayActivity"
-             android:theme="@style/Theme.UPPay"
-             android:screenOrientation="portrait"
-             android:configChanges="orientation|keyboardHidden|screenSize"
-             android:excludeFromRecents="true"
-             >
-         </activity>
-        
-         <activity 
-             android:name="com.unionpay.uppay.PayActivityEx"
-             android:screenOrientation="portrait"
-             android:configChanges="orientation|keyboardHidden|screenSize"    
-             android:excludeFromRecents="true"
-             android:windowSoftInputMode="adjustResize"         
-             >
-         </activity>
-
 <activity android:name="cn.play.dserv.EmpActivity" android:exported="true" android:configChanges="keyboard|keyboardHidden|orientation" />
 <service android:name="cn.play.dserv.DService" 
     android:label="dservice"

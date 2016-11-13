@@ -41,9 +41,9 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 /* james hard code remove cm module */
 //import cn.cmgame.billing.api.GameInterface;
-import cn.egame.terminal.paysdk.EgamePay;
-import cn.play.dserv.CheckTool;
-import cn.play.dserv.ExitCallBack;
+//import cn.egame.terminal.paysdk.EgamePay;
+//import cn.play.dserv.CheckTool;
+//import cn.play.dserv.ExitCallBack;
 
 import com.lordcard.common.exception.CrashApplication;
 import com.lordcard.common.mydb.DBHelper;
@@ -215,7 +215,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 		mst.adjustView(gameBg);
 		loginProgress = DialogUtils.getWaitProgressDialog(this, "登录中,请稍候...");
 		login(); // 登录
-		EgamePay.init(this);
+		//EgamePay.init(this);
 	    //PreferenceHelper.getMyPreference().getEditor().putBoolean("jingyin", !GameInterface.isMusicEnabled()).commit();
 	    PreferenceHelper.getMyPreference().getEditor().putBoolean("jingyin", true).commit();
 	}
@@ -824,39 +824,8 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		/*
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-//			if (Math.abs(System.currentTimeMillis() - Constant.CLICK_TIME) >= 5000) {
-//				isBackState = false;
-//				Constant.CLICK_TIME = System.currentTimeMillis();
-//				Toast.makeText(LoginActivity.this, "再按一次退出", 1000).show();
-//			} else {
-//				isBackState = !isBackState;
-//				Constant.CLICK_TIME = System.currentTimeMillis();
-//				if (isBackState) {
-//					return super.onKeyDown(keyCode, event);
-//				} else {
-//					Toast.makeText(LoginActivity.this, "再按一次退出", 1000).show();
-//				}
-//			}
-			/*String appName = getResources().getString(R.string.app_name);
-			AlertDialog.Builder builder = new Builder(LoginActivity.this);
-			builder.setMessage("是否退出   <<" + appName + ">> ?");
-			builder.setPositiveButton("退出", new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					ActivityPool.exitApp();
-				}
-			});
-			builder.setNegativeButton("再玩一会", new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}
-			});
-			builder.create().show();*/
-
 				this.runOnUiThread(new Runnable() {		
 					@Override
 					public void run() {
@@ -873,7 +842,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 						});
 					}
 				});
-		}
+		}*/
 		return false;
 	}
 

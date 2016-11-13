@@ -1,6 +1,6 @@
 package com.lordcard.ui;
 
-import cn.egame.terminal.paysdk.EgamePay;
+//import cn.egame.terminal.paysdk.EgamePay;
 
 import com.zzyddz.shui.R;
 

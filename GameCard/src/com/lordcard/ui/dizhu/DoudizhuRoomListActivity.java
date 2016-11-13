@@ -1494,7 +1494,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		ImageUtil.releaseDrawable(roomCenterBg.getBackground());
 		ImageUtil.releaseDrawable(roomTopll.getBackground());
 		ImageUtil.releaseDrawable(roomListLayout.getBackground());
-		ImageUtil.releaseDrawable(vipRoomBtn.getBackground());
+		//ImageUtil.releaseDrawable(vipRoomBtn.getBackground());
 		ImageUtil.releaseDrawable(roomVipView.getBackground());
 		ImageUtil.releaseDrawable(vipJoinBtn.getBackground());
 		ImageUtil.releaseDrawable(vipRoomCreate.getBackground());
