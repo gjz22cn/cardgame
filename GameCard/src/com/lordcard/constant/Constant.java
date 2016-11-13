@@ -164,7 +164,7 @@ public class Constant {
 	/**  游戏状态：正在踢拉 	*/
 	public static final int STATUS_TL = 9;
 	
-	//打牌界面：DoudizhuMainGameActivity or PersonnalDoudizhuActivity
+	//打牌界面：DoudizhuMainGameActivity
 	/** 发送聊天信息-文字 	*/
 	public static final String GAME_VIEW_SEND_MESS_TEXT = "game_view_send_text";
 	/** 发送聊天信息-GIF表情 	*/
@@ -173,7 +173,7 @@ public class Constant {
 	public static final String GAME_VIEW_SEND_MESS_CLICK_TYPE = "game_view_send_mess_click_type";
 	
 	//================================= Handler what常量=================================//
-	//---打牌界面：DoudizhuMainGameActivity or PersonnalDoudizhuActivity
+	//---打牌界面：DoudizhuMainGameActivity
 	/** 发送聊天信息-文字what 	*/
 	public static final int HANDLER_WHAT_GAME_VIEW_SEND_MESS_TEXT = 778;
 	/** 发送聊天信息-GIF表情what 	*/

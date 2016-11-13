@@ -27,7 +27,6 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.ui.LoginActivity;
 import com.lordcard.ui.TaskMenuActivity;
 import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
-import com.lordcard.ui.personal.PersonnalDoudizhuActivity;
 import com.lordcard.ui.view.dialog.BaoXiangDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
 import com.lordcard.ui.view.dialog.SingleDialog;
@@ -424,10 +423,6 @@ public class DialogUtils {
 
 						public void cancelClick() {
 							dismiss();
-							MobclickAgent.onEvent(Database.currentActivity, "网慢慢进入单机游戏");
-							Intent intent = new Intent();
-							intent.setClass(Database.currentActivity, PersonnalDoudizhuActivity.class);
-							Database.currentActivity.startActivity(intent);
 						}
 					};
 					

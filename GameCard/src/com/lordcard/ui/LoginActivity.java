@@ -75,7 +75,6 @@ import com.lordcard.ui.base.BaseActivity;
 import com.lordcard.ui.base.FastJoinTask;
 import com.lordcard.ui.base.ILoginView;
 import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
-import com.lordcard.ui.personal.PersonnalDoudizhuActivity;
 import com.lordcard.ui.view.dialog.AccountBindDialog;
 import com.lordcard.ui.view.dialog.ChangeAccountDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
@@ -250,31 +249,12 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 			}
 		});
 		String isShow = GameCache.getStr(LOGIN_VIEW_FLIPPER);
-//		sharedViewfiper = getSharedPreferences("viewflipper", MODE_WORLD_READABLE);
-//		isShown = sharedViewfiper.getBoolean("flipper", false);
-//		if (!isShown) {
-		/*xs_del
-		 * if (isShow == null || "0".equals(isShow)) { //没有展示过
-			mViewFlipper.setVisibility(View.VISIBLE);
-			for (int i = 0; i < imageId.length; i++) {
-				ImageView mImageView = new ImageView(this);
-				mImageView.setBackgroundDrawable(ImageUtil.getResDrawable(imageId[i], false));
-				mImageView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-				mViewFlipper.addView(mImageView);
-			}
-			ImageView mImageView = new ImageView(this);
-			mImageView.setBackgroundColor(Color.TRANSPARENT);
-			mImageView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-			mViewFlipper.addView(mImageView);
-		}*/
 		mChangeAccountDialog = new ChangeAccountDialog(this, handler);
 		mAccountBindDialog = new AccountBindDialog(this, handler);
 		updateBtn = (Button) findViewById(R.id.update);
 		updateBtn.setOnClickListener(mOnClickListener);
 		loginBtn = (Button) findViewById(R.id.game_login_in);
 		loginBtn.setOnClickListener(mOnClickListener);
-		quickMatch = (Button) findViewById(R.id.game_quick_match);
-		quickMatch.setOnClickListener(mOnClickListener);
 		quickLogin = (Button) findViewById(R.id.game_quick_login);
 		quickLogin.setOnClickListener(mOnClickListener);
 		changeAccountBtn = (Button) findViewById(R.id.game_login_change_account);
@@ -511,12 +491,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 								}
 							}
 						}
-						break;
-					case R.id.game_quick_match:// 单机
-						MobclickAgent.onEvent(LoginActivity.this, "单机游戏点击");
-						Intent intent = new Intent();
-						intent.setClass(LoginActivity.this, PersonnalDoudizhuActivity.class);
-						startActivity(intent);
 						break;
 					case R.id.game_quick_login:// 快速游戏
 						MobclickAgent.onEvent(LoginActivity.this, "快速游戏点击");

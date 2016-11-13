@@ -105,14 +105,6 @@
                 android:background="@drawable/game_login_btn_bg" />
 
             <Button
-                android:id="@+id/game_quick_match"
-                style="@style/game_login_btn_wh"
-                android:layout_below="@+id/game_quick_login"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/game_join_match_bg" />
-
-            <Button
                 android:id="@+id/game_quick_login"
                 style="@style/game_login_btn_wh"
                 android:layout_below="@+id/game_login_in"

@@ -41,7 +41,6 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpRequest;
 import com.lordcard.network.task.GetRankTask;
 import com.lordcard.ui.interfaces.ChangeProInterface;
-import com.lordcard.ui.personal.PersonnalDoudizhuActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -158,25 +157,22 @@ public class GameWaitView extends LinearLayout implements ChangeProInterface {
 		translate.setRepeatMode(TranslateAnimation.REVERSE);
 		vipRoomId = (TextView) mainView.findViewById(R.id.vip_room_id);
 		Room room = Database.JOIN_ROOM;
-		if (activity.getClass().equals(PersonnalDoudizhuActivity.class)) {
-			vipRoomId.setText("单机斗地主");
-			joinProgrees.setVisibility(View.INVISIBLE);
+
+		if (room.getCode().equals("-1")) {
+			vipRoomId.setText("快速场");
+			Database.JOIN_ROOM_CODE = room.getCode();
+			Database.JOIN_ROOM_RATIO = 0;
+			Database.JOIN_ROOM_BASEPOINT = 0;
+			Database.GAME_BG_DRAWABLEID = R.drawable.join_bj;
 		} else {
-			if (room.getCode().equals("-1")) {
-				vipRoomId.setText("快速场");
-				Database.JOIN_ROOM_CODE = room.getCode();
-				Database.JOIN_ROOM_RATIO = 0;
-				Database.JOIN_ROOM_BASEPOINT = 0;
-				Database.GAME_BG_DRAWABLEID = R.drawable.join_bj;
-			} else {
-				setRoomName(room);
-			}
-			if (1 != Database.JOIN_ROOM.getRoomType()) {//不是超快赛
-				isFast = false;
-			} else {
-				isFast = true;
-			}
+			setRoomName(room);
 		}
+		if (1 != Database.JOIN_ROOM.getRoomType()) {//不是超快赛
+			isFast = false;
+		} else {
+			isFast = true;
+		}
+			
 		LayoutParams layoutParams = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		addView(mainView, layoutParams);
 		joinPro();

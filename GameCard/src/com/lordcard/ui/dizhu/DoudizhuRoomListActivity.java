@@ -148,12 +148,10 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	private RoomlistAdapter roomListAdapter = null;
 	//private GridView roomListGridView, fhgpRoomListGridView;//,fgpRoomListGridView;//普通房间，快速赛场列表,复合赛场列表
 	private LinearLayout roomTopll;// 顶部的布局
-	private Button commonRoomBtn, gamePlaceBtn;//, fgpBtn;//普通场，快速赛场，复合赛场切换按钮
 	private LinearLayout roomVipView;
 	private Button vipRoomBtn;
 	private EditText joinRoomText;
-	private TextView ratioText;
-	private Button vipJoinBtn, vipRatioAdd, vipRatioLost, vipRoomCreate;
+	private Button vipJoinBtn, vipRoomCreate;
 	private RelativeLayout roomListLayout, roomListGuide;
 	private ImageView igetitView;
 	private int signCount;
@@ -566,11 +564,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		vipJoinBtn.setOnClickListener(clickListener);
 		roomVipView = (LinearLayout) findViewById(R.id.room_vip_view);
 		joinRoomText = (EditText) findViewById(R.id.join_room_text);
-		//ratioText = (TextView) findViewById(R.id.vip_room_ratio);
-		//vipRatioAdd = (Button) findViewById(R.id.vip_ratio_add);
-		//vipRatioAdd.setOnClickListener(clickListener);
-		//vipRatioLost = (Button) findViewById(R.id.vip_ratio_lost);
-		//vipRatioLost.setOnClickListener(clickListener);
 		vipRoomCreate = (Button) findViewById(R.id.vip_room_create);
 		vipRoomCreate.setOnClickListener(clickListener);
 		
@@ -1128,7 +1121,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		}
 		try {
 			new LoadUserInfoTask().execute();
-//			setUserInfo();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1207,13 +1199,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 					MobclickAgent.onEvent(ctx, "加入vip包房");
 					vipJoin();
 					break;
-					/*
-				case R.id.vip_ratio_add: // 创建vip增加倍数
-					addRatio();
-					break;
-				case R.id.vip_ratio_lost: // 创建vip减少加倍数
-					lostRatio();
-					break;*/
 				case R.id.vip_room_create: // 创建vip房
 					vipRoomCreate();
 					break;
@@ -1287,49 +1272,10 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	}
 
 	/**
-	* 创建vip增加倍数
-	*/
-	public void addRatio() {
-		if (ratioText.getText().toString().equals("2")) {
-			ratioText.setText(String.valueOf(5));
-			return;
-		}
-		if (ratioText.getText().toString().equals("5")) {
-			ratioText.setText(String.valueOf(10));
-			return;
-		}
-		if (!ratioText.getText().toString().equals("100")) {
-			ratioText.setText(String.valueOf(Integer.parseInt(ratioText.getText().toString()) + 10));
-		}
-	}
-
-	/**
-	 * 创建vip减少加倍数
-	 */
-	public void lostRatio() {
-		if (ratioText.getText().toString().equals("2")) {
-			ratioText.setText(String.valueOf(2));
-			return;
-		}
-		if (ratioText.getText().toString().equals("5")) {
-			ratioText.setText(String.valueOf(2));
-			return;
-		}
-		if (ratioText.getText().toString().equals("10")) {
-			ratioText.setText(String.valueOf(5));
-			return;
-		}
-		if (!ratioText.getText().toString().equals("10")) {
-			ratioText.setText(String.valueOf(Integer.parseInt(ratioText.getText().toString()) - 10));
-		}
-	}
-
-	/**
 	 * 创建房间
 	 */
 	public synchronized void vipRoomCreate() {
 		Context ctx = CrashApplication.getInstance();
-		//int ratio = Integer.parseInt(ratioText.getText().toString()); // Hip包房倍数
 		int ratio = 10; // Hip包房倍数
 		MobclickAgent.onEvent(ctx, "创建房间" + ratio);
 		// 加入游戏
@@ -1610,14 +1556,9 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		ImageUtil.releaseDrawable(roomCenterBg.getBackground());
 		ImageUtil.releaseDrawable(roomTopll.getBackground());
 		ImageUtil.releaseDrawable(roomListLayout.getBackground());
-		//ImageUtil.releaseDrawable(commonRoomBtn.getBackground());
-//		ImageUtil.releaseDrawable(fgpBtn.getBackground());
-		ImageUtil.releaseDrawable(gamePlaceBtn.getBackground());
 		ImageUtil.releaseDrawable(vipRoomBtn.getBackground());
 		ImageUtil.releaseDrawable(roomVipView.getBackground());
 		ImageUtil.releaseDrawable(vipJoinBtn.getBackground());
-		//ImageUtil.releaseDrawable(vipRatioAdd.getBackground());
-		//ImageUtil.releaseDrawable(vipRatioLost.getBackground());
 		ImageUtil.releaseDrawable(vipRoomCreate.getBackground());
 		ActivityPool.remove(this);
 		if (null != roomListLayout) {

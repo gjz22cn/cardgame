@@ -61,13 +61,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 		</activity>	
-		<!-- <activity android:name="com.lordcard.ui.CGChargeActivity" android:configChanges="orientation|keyboardHidden"  android:screenOrientation="landscape"  android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
-		    <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-		</activity>	-->
-		        <activity android:name="cn.cmgame.billing.api.GameOpenActivity"
+		<activity android:name="cn.cmgame.billing.api.GameOpenActivity"
                   android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                   android:screenOrientation="landscape">
             <intent-filter>
@@ -100,7 +94,6 @@
 		<activity android:name="com.lordcard.ui.dizhu.DoudizhuRoomListActivity"  android:configChanges="orientation|keyboardHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.dizhu.DoudizhuMainGameActivity"   android:configChanges="orientation|keyboardHidden" android:screenOrientation="landscape" android:launchMode="singleTask" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.dizhu.DoudizhuGameEnd"   android:configChanges="orientation|keyboardHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-		<activity android:name="com.lordcard.ui.personal.PersonnalDoudizhuActivity"   android:configChanges="orientation|keyboardHidden" android:screenOrientation="landscape" android:launchMode="singleTask" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<!-- end 斗地主页面-->
 <!-- begin 广播-->
 		<!-- 短信发送状态监控 -->
