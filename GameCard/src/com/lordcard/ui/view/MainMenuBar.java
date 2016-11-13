@@ -99,7 +99,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 		}*/
 		inflater.inflate(R.layout.main_menu_bar, this);
 		goodsLayout = (LinearLayout) findViewById(R.id.goods_layout);
-		addMoneyBtn = (Button) findViewById(R.id.menu_add_money_btn);
+		//addMoneyBtn = (Button) findViewById(R.id.menu_add_money_btn);
 		//rankBtn = (Button) findViewById(R.id.menu_rank_btn);
 		//goodsBagView = (Button) findViewById(R.id.goods_bag_image);
 		settingIv = (ImageView) findViewById(R.id.menu_setting_btn);
@@ -113,10 +113,10 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 		goodsGuideView = (ImageView) findViewById(R.id.goods_guide_image);
 		feedbackBtn = (ImageView) findViewById(R.id.menu_feedback_btn);
 		//quickPlay = (Button) findViewById(R.id.menu_play_btn);
-		receiveBeenBtn = (Button) findViewById(R.id.menu_receive_been_btn);
-		receiveBeenBtn.setOnClickListener(this);
+		//receiveBeenBtn = (Button) findViewById(R.id.menu_receive_been_btn);
+		//receiveBeenBtn.setOnClickListener(this);
 		//quickPlay.setOnClickListener(this);
-		addMoneyBtn.setOnClickListener(this);
+		//addMoneyBtn.setOnClickListener(this);
 		//rankBtn.setOnClickListener(this);
 		friendsBtn.setOnClickListener(this);
 		zhidouBtn.setOnClickListener(this);
@@ -167,7 +167,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 		GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
 		
 		switch (v.getId()) {
-			case R.id.menu_add_money_btn:// 充值
+			//case R.id.menu_add_money_btn:// 充值
 			case R.id.chongzhi_ll:
 				if (ActivityUtils.simExist() && ActivityUtils.getSimType() != Constant.SIM_OTHER) {
 					Intent detailIntent = new Intent();
@@ -177,10 +177,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				} else {
 					Toast.makeText(getContext(), "请插入sim卡", Toast.LENGTH_SHORT).show();
 				}
-				/*MobclickAgent.onEvent(context, "工具栏充值");
-				Intent in = new Intent();
-				in.setClass(getContext(), SDKFactory.getPayView());
-				getContext().startActivity(in);*/
 				break;
 			case R.id.menu_rank_btn:// 背包
 				MobclickAgent.onEvent(context, "工具栏背包");
@@ -285,9 +281,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 					FastJoinTask.fastJoin();
 				}
 				break;
-			case R.id.menu_receive_been_btn://领金豆
-				takenBean();
-			break;
 		}
 	}
 
@@ -299,104 +292,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 	private void visibleLayout() {
 		goodsLayout.setVisibility(View.VISIBLE);
 		transparentTv.setVisibility(View.VISIBLE);
-	}
-	
-	/**
-	 * 检测今天是否领取过金豆，没领的话闪烁领金豆按钮
-	 */
-	private byte lzdTimer;
-	public void changeLingZhiDouBG()
-	{
-		lzdTimer = (byte) (++lzdTimer%100);
-		String getZhiDouDate=GameCache.getStr(CacheKey.GET_ZHI_DOU_DATE);
-		if(!TextUtils.isEmpty(getZhiDouDate)&& getZhiDouDate.equals(DateUtil.getNowDate())){
-			//已经领过了
-			receiveBeenBtn.setBackgroundResource(R.drawable.home_receive_been_button_1);
-		}else{
-			//还未领过
-			receiveBeenBtn.setBackgroundResource(lzdTimer%2==0?R.drawable.home_receive_been_button_1:R.drawable.home_receive_been_button_2);
-			//
-			//AnimUtils.playButtonAnim(receiveBeenBtn, ImageUtil.getResAnimaSoft("home_receive_been_button"), 0);
-		}
-	}
-	public void checkLingZhiDou(){
-		String getZhiDouDate=GameCache.getStr(CacheKey.GET_ZHI_DOU_DATE);
-		if(!TextUtils.isEmpty(getZhiDouDate)&& getZhiDouDate.equals(DateUtil.getNowDate())){
-			//已经领过了
-			receiveBeenBtn.setBackgroundResource(R.drawable.home_receive_been_button_1);
-		}else{
-			//还未领过
-			AnimUtils.playButtonAnim(receiveBeenBtn, ImageUtil.getResAnimaSoft("home_receive_been_button"), 0);
-		}
-	}
-	
-	/**
-	 * 领取金豆
-	 * @Title: takenBean  
-	 * @param 
-	 * @return void
-	 * @throws
-	 */
-	@SuppressWarnings("unchecked")
-	private void takenBean(){
-		ThreadPool.startWork(new Runnable() {
-			@Override
-			public void run() {
-				MobclickAgent.onEvent(context, "工具栏领金豆");
-				HashMap<String, String> TaskMenuMap = (HashMap<String, String>)GameCache.getObj(CacheKey.ALL_SETTING_KEY);
-				int lowBeen=1000;
-				if(null != TaskMenuMap && TaskMenuMap.containsKey("sendbean_limit")){
-					try {
-						lowBeen=Integer.parseInt(TaskMenuMap.get("sendbean_limit"));
-					} catch (Exception e) {
-					}
-				}
-				String result = GameCache.getStr(CacheKey.KEY_TEXT_VIEW_MESSAGE_DATA);
-				final Map<String, String> map = JsonHelper.fromJson(result, new TypeToken<Map<String, String>>() {});
-				
-				GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-				if (null!=cacheUser && cacheUser.getBean()<lowBeen) {
-					// 加入前判断 是否赠送金豆
-					final long sendBean = HttpRequest.sentBean();
-					
-					Database.currentActivity.runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							String msg = "";
-							if (sendBean > 0){// 送豆判断成功
-								GameUser gameUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-								msg="英雄也有落难时，我们为你准备了"+sendBean+"金豆，助你东山再起。";
-								if (null != gameUser) {
-									GameCache.putStr(CacheKey.GET_ZHI_DOU_DATE, DateUtil.getNowDate());
-									zhidouTv.setText(PatternUtils.changeZhidou(0 > gameUser.getBean() ? 0 : gameUser.getBean())); //金豆
-									changeLingZhiDouBG();
-								}
-							}else if(0==sendBean){
-								String s="亲，您今天已经领取过了，每天只能领取一次哦，如果需要更多金豆的话，就充一些吧。";
-								if (null != map && map.containsKey("has_received")){
-									msg = TextUtils.isEmpty(map.get("has_received")) ? s : map.get("has_received");
-								}
-							}else{
-								msg="领取金豆失败!";
-							}
-							
-							showTokenBeanDialog(msg);
-						}
-					});
-					
-				}else{
-					String s="亲，金豆不足1000时才能领取哦！如果需要更多金豆，就充一些吧！";
-					if (null != map && map.containsKey("receive_fail")){
-						s = TextUtils.isEmpty(map.get("receive_fail")) ? s : map.get("receive_fail");
-					}
-					
-					showTokenBeanDialog(s);
-				}
-				
-
-				
-			}
-		});
 	}
 	
 	public void showTokenBeanDialog(final String msg){

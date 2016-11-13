@@ -1034,9 +1034,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 			cacheUser.setRound(0);// 还原比赛轮数为0
 			GameCache.putObj(CacheKey.GAME_USER, cacheUser);
 		}
-		if (mMainMenuBar != null) {
-			mMainMenuBar.changeLingZhiDouBG();
-		}
+
 		//		Database.VIP_GAME_TYPE = DoudizhuMainGameActivity.class;
 		if (null != roomListAdapter && null != mFGPlaceListAdapter && null != mFHGPlaceListAdapter) {
 			new Thread() {
