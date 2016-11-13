@@ -86,7 +86,6 @@
 		<activity android:name="com.lordcard.ui.GamePlaceActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.StoveActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.NotifiyActivity" android:launchMode="singleTask"/>
-		<activity android:name="com.lordcard.ui.payrecord.PayRecordActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.DataCentreActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<!-- end 游戏共用页面 -->
 		

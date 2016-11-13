@@ -32,8 +32,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
-import com.lordcard.adapter.FGPlaceListAdapter;
-import com.lordcard.adapter.FHGPlaceListAdapter;
 import com.lordcard.common.util.DialogUtils;
 import com.lordcard.common.util.JsonHelper;
 import com.lordcard.common.util.MultiScreenTool;
@@ -70,7 +68,6 @@ public class DetailDialog extends Dialog implements OnClickListener {
 	private TextView signUpNum;//报名人数
 	private TextView signUpTv; //报名数分割线
 	private TextView goldsImg;//奖金池图片
-	private Button signUpBtn; //报名
 	private RadioGroup radioGroup; //单选按钮组
 	private RadioButton rankRb, detailRb, recordRb; //排名，详情、记录单选钮
 	private String code;
@@ -145,16 +142,10 @@ public class DetailDialog extends Dialog implements OnClickListener {
 			signUpNum.setVisibility(View.GONE);
 		}
 		detailListView = (ListView) findViewById(R.id.if_dialog_detail_list);
-		signUpBtn = (Button) findViewById(R.id.if_dialog_detail_signup_btn);
 		detailLl = (RelativeLayout) findViewById(R.id.if_dialog_detail_rl);
 		rankLl = (LinearLayout) findViewById(R.id.if_dialog_rank_ll);
 		detailLl.setVisibility(View.VISIBLE);
 		rankLl.setVisibility(View.INVISIBLE);
-		if ("0".equals(isSignUp)) {//未报名
-			signUpBtn.setText("报名");
-		} else if ("1".equals(isSignUp)) {//已报名
-			signUpBtn.setText("参赛");
-		}
 
 		//排名
 		myLl = (LinearLayout) findViewById(R.id.if_dialog_rank_my_ll);
@@ -250,7 +241,6 @@ public class DetailDialog extends Dialog implements OnClickListener {
 			detailGolds.setText("最高奖励:" + room.getMaxAward());
 			detailGolds.setVisibility(View.INVISIBLE);
 		}
-		signUpBtn.setOnClickListener(this);
 
 		//		private RadioButton rankRb,detailRb; //排名，详情单选钮
 	}
@@ -407,25 +397,6 @@ public class DetailDialog extends Dialog implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.if_dialog_close_btn://关闭对话框
-			dismiss();
-			break;
-		case R.id.if_dialog_detail_signup_btn: //报名
-			Message message = new Message();
-			if (isFuhe) {// 复合赛制
-				MobclickAgent.onEvent(context, "详细复合报名");
-				message.what = FHGPlaceListAdapter.WHAT1;
-				Bundle bundle = new Bundle();
-				bundle.putInt(FHGPlaceListAdapter.POSITION, position);
-				message.setData(bundle);
-				mHandler.sendMessage(message);
-
-			} else {
-				message.what = FGPlaceListAdapter.WHAT2;
-				Bundle bundle = new Bundle();
-				bundle.putInt(FGPlaceListAdapter.POSITION, position);
-				message.setData(bundle);
-				mHandler.sendMessage(message);
-			}
 			dismiss();
 			break;
 		}

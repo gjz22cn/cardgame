@@ -35,13 +35,8 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.ui.view.AlignLeftGallery;
 import com.sdk.constant.SDKConfig;
 import com.sdk.constant.SDKConstant;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
-import com.sdk.util.PayUtils;
 import com.sdk.util.RechargeUtils;
 import com.sdk.util.SDKFactory;
-import com.sdk.util.vo.PayPoint;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -91,8 +86,8 @@ public class SignDialog extends Dialog implements android.view.View.OnClickListe
 		showText = (TextView) findViewById(R.id.sign_dialog_text1_tv);
 		backBtn = (Button) findViewById(R.id.sign_dialog_back_btn);
 		backBtn.setOnClickListener(this);
-		okBtn = (Button) findViewById(R.id.sign_dialog_ok_btn);
-		okBtn.setOnClickListener(this);
+		//okBtn = (Button) findViewById(R.id.sign_dialog_ok_btn);
+		//okBtn.setOnClickListener(this);
 		closeBtn = (Button) findViewById(R.id.dialog_close_btn);
 		closeBtn.setOnClickListener(this);
 		mGallery = (AlignLeftGallery) findViewById(R.id.sign_gallery);
@@ -102,17 +97,7 @@ public class SignDialog extends Dialog implements android.view.View.OnClickListe
 			showText.setText("您已经连续登录" + signList.get(signCount).getDay() + ",将获得" + signContent.get(signCount));
 			Toast.makeText(context, "恭喜您成功签到！", 500).show();
 		}
-		String msgTip = context.getString(R.string.sign_msg);
-//		if (SDKConfig.SIGN_MONEY == null) {
-//			SDKConfig.SIGN_MONEY = "2";
-//		}
-		PayPoint payPoint = PayUtils.getPaySitePoint(PaySite.SIGN_IN);
-		if(payPoint != null){
-			msgTip = msgTip.replace("{buybean}",String.valueOf(payPoint.getMoney()));
-			TextView tv = ((TextView) findViewById(R.id.sign_dialog_text3_tv));
-			tv.setText(msgTip);
-		}
-		
+		String msgTip = context.getString(R.string.sign_msg);		
 	}
 
 	private void initData() {
@@ -236,18 +221,16 @@ public class SignDialog extends Dialog implements android.view.View.OnClickListe
 				mst.unRegisterView(layout);
 				dismiss();
 				break;
-			case R.id.sign_dialog_ok_btn:
+			/*case R.id.sign_dialog_ok_btn:
 				// 进入充值界面
 				MobclickAgent.onEvent(context, "签到充值");
 				SDKConfig.SIGN_DIALOG = true;
 				JDSMSPayUtil.setContext(context);
 				//点金快速支付暂时固定5元
-//				SDKFactory.fastPay(Integer.parseInt(SDKConfig.SIGN_MONEY), SDKConstant.SIGN);
-				PayTipUtils.showTip(0,PaySite.SIGN_IN); //配置的提示方式
-				
+				PayTipUtils.showTip(0,PaySite.SIGN_IN); //配置的提示方式			
 				mst.unRegisterView(layout);
 				dismiss();
-				break;
+				break;*/
 			case R.id.dialog_close_btn:
 				mst.unRegisterView(layout);
 				dismiss();

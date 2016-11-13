@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.lordcard.constant.CacheKey;
 import com.lordcard.entity.ChannelCfg;
 import com.lordcard.network.base.ThreadPool;
-import com.sdk.util.PayUtils;
 
 
 public class GameHttpTask {

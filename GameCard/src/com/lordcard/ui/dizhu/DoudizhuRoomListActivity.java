@@ -53,8 +53,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
-import com.lordcard.adapter.FGPlaceListAdapter;
-import com.lordcard.adapter.FHGPlaceListAdapter;
 import com.lordcard.adapter.RoomlistAdapter;
 import com.lordcard.broadcast.PackageReceiver;
 import com.lordcard.common.anim.AnimUtils;
@@ -101,9 +99,6 @@ import com.lordcard.ui.view.dialog.GameIqUpgradeDialog;
 import com.lordcard.ui.view.dialog.IqGradeDialog;
 import com.lordcard.ui.view.dialog.SignDialog;
 import com.sdk.constant.SDKConstant;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
 import com.sdk.util.RechargeUtils;
 import com.sdk.util.SDKFactory;
 import com.umeng.analytics.MobclickAgent;
@@ -117,10 +112,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	public static final int HANDLER_WHAT_ROOM_LIST_GET_SIGN_UP = 2001;
 	/**刷新系统时间*/
 	public static final int HANDLER_WHAT_ROOM_LIST_CHANGE_SYSTEM_TIME = 2002;
-	/** 更新快速赛场Adapter*/
-	public static final int HANDLER_WHAT_ROOM_LIST_CHANGE_FAST = 2003;
-	/** 更新复合赛场Adapter*/
-	public static final int HANDLER_WHAT_ROOM_LIST_CHANGE_SORT = 2004;
 	/** 刷新游戏大厅Adapter*/
 	public static final int HANDLER_WHAT_ROOM_LIST_REFRESH_ROOM_LIST = 2005;
 	/**弹出等级升级对话框*/
@@ -135,10 +126,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	public static final int HANDLER_WHAT_ROOM_LIST_SHOW_ASSISTANT = 2010;
 	/** 房间列表界面：设置游戏助理数据*/
 	public static final int HANDLER_WHAT_ROOM_LIST_SET_ASSISTANT_DATA = 2011;
-	/** 刷新快速赛场Adapter*/
-	public static final int HANDLER_WHAT_ROOM_LIST_REFRESH_FAST = 2012;
-	/** 刷新复合赛场Adapter*/
-	public static final int HANDLER_WHAT_ROOM_LIST_REFRESH_SORT = 2013;
 	/** 刷新游戏大厅人数*/
 	public static final int HANDLER_WHAT_ROOM_PERSON_COUNT = 2014;
 	/**游戏助理Map*/
@@ -162,8 +149,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	public boolean cutGame = false; // 是否切换游戏
 	private MainMenuBar mMainMenuBar;// 菜单栏
 	private Handler mHandler;
-	private FGPlaceListAdapter mFGPlaceListAdapter;//快速赛场
-	private FHGPlaceListAdapter mFHGPlaceListAdapter;//复合赛场
 	private int page;
 	private GenericTask vipJoinTask, vipCreateCheckTask;
 	private TextView roomCenterBg;
@@ -285,20 +270,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 						{
 							roomListAdapter.setRoomPersonCount();
 						}*/
-						break;
-					case HANDLER_WHAT_ROOM_LIST_REFRESH_FAST:// 刷新快速赛场
-						mFGPlaceListAdapter.notifyDataSetChanged();
-						break;
-					case HANDLER_WHAT_ROOM_LIST_REFRESH_SORT:// 刷新复合赛场
-						mFHGPlaceListAdapter.notifyDataSetChanged();
-						break;
-					case HANDLER_WHAT_ROOM_LIST_CHANGE_FAST:// 更新快速赛场
-						mFGPlaceListAdapter.initData();
-						mFGPlaceListAdapter.notifyDataSetChanged();
-						break;
-					case HANDLER_WHAT_ROOM_LIST_CHANGE_SORT:// 更新复合赛场
-						mFHGPlaceListAdapter.initData();
-						mFHGPlaceListAdapter.notifyDataSetChanged();
 						break;
 					case HANDLER_WHAT_ROOM_LIST_REFRESH_ROOM_LIST:// 刷新游戏大厅
 						roomListAdapter.setRoomList();
@@ -911,8 +882,8 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		roomListAdapter = new RoomlistAdapter(DoudizhuRoomListActivity.this, taskManager);
 		//roomListGridView.setAdapter(roomListAdapter);
 		//先展示房间列表
-		mFGPlaceListAdapter = new FGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
-		mFHGPlaceListAdapter = new FHGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
+		//mFGPlaceListAdapter = new FGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
+		//mFHGPlaceListAdapter = new FHGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
 		//fhgpRoomListGridView.setAdapter(mFHGPlaceListAdapter);
 		ThreadPool.startWork(new Runnable() {
 
@@ -921,8 +892,8 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 				runOnUiThread(new Runnable() {
 
 					public void run() {
-						mFGPlaceListAdapter = new FGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
-						mFHGPlaceListAdapter = new FHGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
+						//mFGPlaceListAdapter = new FGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
+						//mFHGPlaceListAdapter = new FHGPlaceListAdapter(DoudizhuRoomListActivity.this, taskManager, mHandler);
 						//fhgpRoomListGridView.setAdapter(mFHGPlaceListAdapter);
 					}
 				});
@@ -990,8 +961,8 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 
 									@Override
 									public void run() {
-										mFGPlaceListAdapter.ChangeSignUp();
-										mFHGPlaceListAdapter.ChangeSignUp();
+										//mFGPlaceListAdapter.ChangeSignUp();
+										//mFHGPlaceListAdapter.ChangeSignUp();
 										mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_SIGN_UP_TIME);
 									}
 								});
@@ -1036,7 +1007,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		}
 
 		//		Database.VIP_GAME_TYPE = DoudizhuMainGameActivity.class;
-		if (null != roomListAdapter && null != mFGPlaceListAdapter && null != mFHGPlaceListAdapter) {
+		if (null != roomListAdapter) {
 			new Thread() {
 
 				public void run() {
@@ -1077,26 +1048,10 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 												Database.HALL_CACHE = JsonHelper.fromJson(hallResult, GameHallView.class);
 												GameCache.putStr(CacheKey.ROOM_HALL, hallResult);
 											} catch (Exception e) {}
-											mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_CHANGE_SORT);
-											mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_CHANGE_FAST);
+											//mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_CHANGE_SORT);
+											//mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_CHANGE_FAST);
 											mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_REFRESH_ROOM_LIST);
 											//所有房间
-										} else if ("rk".equals(roomType[i])) {//rk:复合赛房间
-											List<Room> room = HttpRequest.getRoomInfo(roomType[i]);
-											if (null != room) {
-												Database.HALL_CACHE.getSortRoomList().clear();
-												Database.HALL_CACHE.setSortRoomList(room);
-												mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_CHANGE_SORT);
-												Log.d("hallResult", "REFRESH_SORT     " + room);
-											}
-										} else if ("fast".equals(roomType[i])) {//fast:快速赛房间
-											List<Room> room = HttpRequest.getRoomInfo(roomType[i]);
-											if (null != room) {
-												Database.HALL_CACHE.getFastRoomList().clear();
-												Database.HALL_CACHE.setFastRoomList(room);
-												mHandler.sendEmptyMessage(HANDLER_WHAT_ROOM_LIST_CHANGE_FAST);
-												Log.d("hallResult", "REFRESH_FAST     " + room);
-											}
 										} else if ("gen".equals(roomType[i])) {//gen:普通房间
 											List<Room> room = HttpRequest.getRoomInfo(roomType[i]);
 											if (null != room) {
@@ -1341,12 +1296,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 					} else if (HttpRequest.NO_SERVER.equals(v)) { // 游戏服务器不存在
 						DialogUtils.mesTip(getString(R.string.no_game_server), false);
 					}
-				} else if (CmdUtils.CMD_HDETAIL.equals(detail.getCmd())) { //金豆不足
-					Room room = JsonHelper.fromJson(detail.getDetail(), Room.class);
-//					DialogUtils.rechargeTip(room, false, null);
-					JDSMSPayUtil.setContext(context);
-					double b = RechargeUtils.calRoomJoinMoney(room);
-					PayTipUtils.showTip(b, PaySite.VIP_CREATE); //配置的提示方式
 				} else if (CmdUtils.CMD_RJOIN.equals(detail.getCmd())) { // 成功
 																			// 返回游戏服务器IP地址
 					Room room = JsonHelper.fromJson(detail.getDetail(), Room.class);
@@ -1401,15 +1350,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 						} else if (HttpRequest.NO_SERVER.equals(v)) { // 游戏服务器不存在
 							DialogUtils.mesTip(getString(R.string.no_game_server), false);
 						}
-						return TaskResult.FAILED;
-					} else if (CmdUtils.CMD_HDETAIL.equals(detail.getCmd())) { //金豆不足
-						Room vipRoom = new Room();
-						vipRoom.setLimit(Long.parseLong(detail.getDetail()));
-						vipRoom.setHomeType(Constant.ROOM_VIP_PRIVATE);
-//						DialogUtils.rechargeTip(vipRoom, false, null);
-						JDSMSPayUtil.setContext(context);
-						double b = RechargeUtils.calRoomJoinMoney(vipRoom);
-						PayTipUtils.showTip(b, PaySite.VIP_CREATE); //配置的提示方式
 						return TaskResult.FAILED;
 					} else if (CmdUtils.CMD_CREATE.equals(detail.getCmd())) { // 成功
 						if (HttpRequest.SUCCESS_STATE.equals(detail.getDetail())) { // 校验通过
@@ -1570,14 +1510,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		if (roomListGuide != null) {
 			roomListGuide.removeAllViews();
 			roomListGuide = null;
-		}
-		if (mFGPlaceListAdapter != null) {
-			mFGPlaceListAdapter.onDestory();
-			mFGPlaceListAdapter = null;
-		}
-		if (null != mFHGPlaceListAdapter) {
-			mFHGPlaceListAdapter.onDestory();
-			mFHGPlaceListAdapter = null;
 		}
 		mst = null;
 		if (null != roomListAdapter) {

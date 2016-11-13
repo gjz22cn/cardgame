@@ -59,10 +59,6 @@ import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
 import com.lordcard.ui.view.dialog.DownloadDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
 import com.sdk.constant.SDKConfig;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
-import com.sdk.util.SDKFactory;
 
 public class Assistant extends RelativeLayout implements OnClickListener {
 
@@ -477,8 +473,7 @@ public class Assistant extends RelativeLayout implements OnClickListener {
 														BTNCODE = btnContent.getAsstBtns().get(position).getCode();
 														
 //														SDKFactory.fastPay(Integer.parseInt(result.get("mn")), SDKConstant.ASST);
-														JDSMSPayUtil.setContext(context);
-														PayTipUtils.showTip(Integer.parseInt(result.get("mn")),PaySite.GAME_HELP_CLICK); //配置的提示方式
+														//PayTipUtils.showTip(Integer.parseInt(result.get("mn")),PaySite.GAME_HELP_CLICK); //配置的提示方式
 													} catch (Exception e) {
 														// TODO: handle exception
 													} finally {
@@ -495,12 +490,7 @@ public class Assistant extends RelativeLayout implements OnClickListener {
 											// 已有物品
 											zhezhao2.setVisibility(View.GONE);
 										} else if (result.get("st").equals("5")) {
-											//金豆不足 提示充值
-											zhezhao2.setVisibility(View.GONE);
-											SDKConfig.SIGN_PAY_CODE = result.get("pc");
-//											chonzhi(result.get("mn"), SDKConstant.ASST);
-											JDSMSPayUtil.setContext(context);
-											PayTipUtils.showTip(Integer.parseInt(result.get("mn")),PaySite.GAME_HELP_CLICK); //配置的提示方式
+											
 										} else if (result.get("st").equals("0")) {
 											// 购买物品成功
 											assistantDismiss();
@@ -594,9 +584,6 @@ public class Assistant extends RelativeLayout implements OnClickListener {
 	 */
 	public void goActivity(String name, int code) {
 		Intent it = new Intent();
-		if (name.equals("pay")) {
-			it.setClass(Database.currentActivity, SDKFactory.getPayView());
-		} else {
 			Bundle bundle = new Bundle();
 			bundle.putInt("page", code);
 			it.putExtras(bundle);
@@ -606,7 +593,6 @@ public class Assistant extends RelativeLayout implements OnClickListener {
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-		}
 		Database.currentActivity.startActivity(it);
 	}
 

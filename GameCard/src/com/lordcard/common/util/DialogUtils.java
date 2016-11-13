@@ -187,7 +187,7 @@ public class DialogUtils {
 						public void okClick() {
 							GameCache.remove(CacheKey.GAME_USER);
 							Intent in = new Intent();
-							in.setClass(act, SDKFactory.getLoginView());
+							in.setClass(act, LoginActivity.class);
 							act.startActivity(in);
 							ActivityUtils.finishAcitivity();
 						}

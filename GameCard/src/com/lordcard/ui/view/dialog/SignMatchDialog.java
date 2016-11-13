@@ -22,8 +22,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
-import com.lordcard.adapter.FGPlaceListAdapter;
-import com.lordcard.adapter.FHGPlaceListAdapter;
 import com.lordcard.common.util.DialogUtils;
 import com.lordcard.common.util.JsonHelper;
 import com.lordcard.common.util.MultiScreenTool;
@@ -113,8 +111,8 @@ public class SignMatchDialog extends Dialog implements OnClickListener {
 		}
 		backButton.setOnClickListener(this);
 
-		signButton = (Button) findViewById(R.id.sign_rank_ok_btn);
-		signButton.setOnClickListener(this);
+		//signButton = (Button) findViewById(R.id.sign_rank_ok_btn);
+		//signButton.setOnClickListener(this);
 
 		closeBtn = (Button) findViewById(R.id.dialog_close_btn);
 		closeBtn.setOnClickListener(this);
@@ -166,7 +164,7 @@ public class SignMatchDialog extends Dialog implements OnClickListener {
 				dismiss();
 			}
 			break;
-		case R.id.sign_rank_ok_btn:
+		/*case R.id.sign_rank_ok_btn:
 			Message message = new Message();
 			if (isFuhe) {// 复合赛制
 				MobclickAgent.onEvent(context, "复活赛排名");
@@ -184,7 +182,7 @@ public class SignMatchDialog extends Dialog implements OnClickListener {
 				mHandler.sendMessage(message);
 				dismiss();
 			}
-			break;
+			break;*/
 		case R.id.dialog_close_btn:
 			dismiss();
 			break;

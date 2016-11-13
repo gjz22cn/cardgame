@@ -11,9 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sdk.constant.SDKConstant;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
 import com.sdk.util.SDKFactory;
 
 public class JiPaiQiChargeDialog extends BaseDialog {
@@ -35,12 +32,8 @@ public class JiPaiQiChargeDialog extends BaseDialog {
 				dismiss();
 				break;
 			case R.id.btn_jipaiqi_charge:
-				JDSMSPayUtil.setContext(context);
-				PayTipUtils.showTip(0,PaySite.RECORED_CARD); //配置的提示方式
-//				if(SmsPayUtil.canUseSmsPay()){
-////					SDKFactory.smsPay(0, SDKConstant.PLAYING);
-//				}
-//				SDKFactory.smsPay(0, SDKConstant.PLAYING);
+				//JDSMSPayUtil.setContext(context);
+				//PayTipUtils.showTip(0,PaySite.RECORED_CARD); //配置的提示方式
 				dismiss();
 				break;
 		}

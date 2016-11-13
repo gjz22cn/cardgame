@@ -49,13 +49,7 @@ import com.lordcard.constant.Database;
 import com.lordcard.entity.GameUser;
 import com.lordcard.entity.Play;
 import com.lordcard.network.http.GameCache;
-import com.lordcard.prerecharge.PrerechargeManager;
-import com.lordcard.prerecharge.PrerechargeManager.PrerechargeDialogType;
 import com.lordcard.ui.base.IGameView;
-import com.lordcard.ui.payrecord.PayRecordOrder;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
 import com.sdk.util.RechargeUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -77,7 +71,7 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 	/**升级(大级)*/
 	public static final int GED_SHOW_IQ_GRADE_MAX = 1215;
 	/**显示充值提示对话框*/
-	public static final int SHOW_ADD_BEEN = 1217;
+	//public static final int SHOW_ADD_BEEN = 1217;
 //	/**显示等待对话框*/
 //	private static final int VISIBLE_VIEW = 121;
 	/**将按钮设成可用*/
@@ -180,18 +174,6 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 					case ENABLE_DIALOG:
 						enableButtons(true);
 						break;
-					case SHOW_ADD_BEEN:
-						JDSMSPayUtil.setContext(context);
-						double money = RechargeUtils.calRoomJoinMoney(Database.JOIN_ROOM);
-						PayTipUtils.showTip(money, PaySite.GAME_END_AUTO);
-//						Dialog dialog = SDKFactory.getPayDialog(context, Database.JOIN_ROOM, null,false);
-//						android.view.WindowManager.LayoutParams lay2 = dialog.getWindow().getAttributes();
-//						setParams(lay2);
-//						Window window2 = dialog.getWindow();
-//						window2.setGravity(Gravity.CENTER); //此处可以设置dialog显示的位置
-//						window2.setWindowAnimations(R.style.mystyle2); //添加动画
-//						dialog.show();
-						break;
 					default:
 						break;
 				}
@@ -221,35 +203,7 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 		bottomLl = (RelativeLayout) findViewById(R.id.dzed_c_rl_bottom_ll);
 		/**是否显示冻结图标**/
 		imgFreeze = (ImageView) findViewById(R.id.dzed_img_freeze);
-		if (isWinGame() && PrerechargeManager.isPrePay()) {
-			Animation freezeAnimation = AnimationUtils.loadAnimation(context, R.anim.pre_recharge_freeze_anim);
-			freezeAnimation.setAnimationListener(new AnimationListener() {
-
-				@Override
-				public void onAnimationStart(Animation animation) {
-					enableButtons(false);
-				}
-
-				@Override
-				public void onAnimationRepeat(Animation animation) {}
-
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					PayRecordOrder mPayRecordOrder = PrerechargeManager.mPayRecordOrder;
-					for (Play endPlay : users) {
-						if (endPlay.getOrder() == order) {
-							mPayRecordOrder.setWinBean((long) endPlay.getPayment());
-							mPayRecordOrder.setBaseBean((long) mPayRecordOrder.getMoney() * 10000);
-							break;
-						}
-					}
-					PrerechargeManager.createPrerechargeDialog(PrerechargeDialogType.Dialog_endgame, context, mPayRecordOrder, mHandler, 0).show();
-				}
-			});
-			imgFreeze.startAnimation(freezeAnimation);
-		} else {
-			imgFreeze.setVisibility(View.GONE);
-		}
+		imgFreeze.setVisibility(View.GONE);
 		nameTv1 = (TextView) findViewById(R.id.dzed_nickname_1);
 		nameTv2 = (TextView) findViewById(R.id.dzed_nickname_2);
 		nameTv3 = (TextView) findViewById(R.id.dzed_nickname_3);
@@ -271,8 +225,8 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 		againBtn.setOnClickListener(this);
 		backBtn = (Button) findViewById(R.id.dzed_back);
 		backBtn.setOnClickListener(this);
-		rechargeBtn = (Button) findViewById(R.id.dzed_recharge_btn);
-		rechargeBtn.setOnClickListener(this);
+		//rechargeBtn = (Button) findViewById(R.id.dzed_recharge_btn);
+		//rechargeBtn.setOnClickListener(this);
 		mBeiShuList = (ListView) findViewById(R.id.beishu_list);
 		// 如果是超快赛，则定时跳转到等待界面
 		if (1 == Database.JOIN_ROOM.getRoomType()) {
@@ -376,7 +330,7 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 		if (null != Database.JOIN_ROOM && end.getBean() < Database.JOIN_ROOM.getLimit()) {
 			Log.d("freshUserInfo", "end.getBean()<Database.JOIN_ROOM.getLimit()：" + (end.getBean() < Database.JOIN_ROOM.getLimit()));
 //			DialogUtils.rechargeTip(Database.JOIN_ROOM, true, null);
-			mHandler.sendEmptyMessage(SHOW_ADD_BEEN);
+			//mHandler.sendEmptyMessage(SHOW_ADD_BEEN);
 		} else {
 			Log.i("freshUserInfo", "Database.JOIN_ROOM==null");
 		}
@@ -633,23 +587,11 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 						btBean = Database.JOIN_ROOM.getLimit() - bean;
 					}
 				}
-				if (btBean > 0) { //金豆不足需要充值 ，直接在前端先判断。不需要多准确。
-					JDSMSPayUtil.setContext(context);
-					PayTipUtils.showTip(btBean / 10000, PaySite.ROOM_ITEM_CLICK); //房间
-				} else {
-					mHandler.sendEmptyMessage(GO_AGAIN);
-				}
+				mHandler.sendEmptyMessage(GO_AGAIN);
 				break;
 			case R.id.dzed_back://返回大厅
 				mHandler.sendEmptyMessage(GO_BACK);
 				//发消息关闭游戏界面
-				break;
-			case R.id.dzed_recharge_btn://充值
-				MobclickAgent.onEvent(context, "游戏中充值");
-//				SDKFactory.smsPay(0, SDKConstant.PLAYING);
-				JDSMSPayUtil.setContext(context);
-				double b = RechargeUtils.calRoomJoinMoney(Database.JOIN_ROOM);
-				PayTipUtils.showTip(b, PaySite.GAME_END_CLICK); //配置的提示方式
 				break;
 			default:
 				break;

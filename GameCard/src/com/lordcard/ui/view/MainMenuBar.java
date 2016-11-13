@@ -49,11 +49,6 @@ import com.lordcard.ui.view.dialog.EnvalueDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
 import com.lordcard.ui.view.dialog.GuideDialog;
 import com.lordcard.ui.view.dialog.LotteryDialog;
-import com.sdk.group.GroupPayActivity;
-import com.sdk.group.GroupPayDetailActivity;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
 import com.sdk.util.SDKFactory;
 import com.umeng.analytics.MobclickAgent;
 
@@ -169,14 +164,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 		switch (v.getId()) {
 			//case R.id.menu_add_money_btn:// 充值
 			case R.id.chongzhi_ll:
-				if (ActivityUtils.simExist() && ActivityUtils.getSimType() != Constant.SIM_OTHER) {
-					Intent detailIntent = new Intent();
-					detailIntent.putExtra("key", String.valueOf(Constant.SIM_MOBILE));
-					detailIntent.setClass(getContext(), GroupPayDetailActivity.class);
-					getContext().startActivity(detailIntent);
-				} else {
-					Toast.makeText(getContext(), "请插入sim卡", Toast.LENGTH_SHORT).show();
-				}
 				break;
 			case R.id.menu_rank_btn:// 背包
 				MobclickAgent.onEvent(context, "工具栏背包");
@@ -292,32 +279,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 	private void visibleLayout() {
 		goodsLayout.setVisibility(View.VISIBLE);
 		transparentTv.setVisibility(View.VISIBLE);
-	}
-	
-	public void showTokenBeanDialog(final String msg){
-		Database.currentActivity.runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				GameDialog gameDialog = new GameDialog(context, true) {
-					public void okClick() {
-						JDSMSPayUtil.setContext(context);
-						PayTipUtils.showTip(0,PaySite.ROOM_RECEIVE_BEEN);
-					}
-					@Override
-					public void cancelClick() {
-						super.cancelClick();
-					}
-				};
-				
-				gameDialog.show();
-				gameDialog.setCancelText("关闭");
-				gameDialog.setOkText("充金豆");
-				gameDialog.setText(msg);
-				gameDialog.setOkButtonBg(R.drawable.select1_btn_bg);
-				gameDialog.setCancelButtonBg(R.drawable.select_btn_bg);
-			}
-		});
 	}
 
 	public void onDestory() {

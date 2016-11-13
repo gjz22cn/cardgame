@@ -31,10 +31,8 @@ import com.lordcard.network.base.ThreadPool;
 import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpRequest;
 import com.lordcard.network.http.HttpURL;
-import com.lordcard.prerecharge.PrerechargeManager;
 import com.lordcard.ui.base.BaseActivity;
 import com.lordcard.ui.view.notification.NotificationService;
-import com.sdk.util.PayUtils;
 import com.sdk.util.SDKFactory;
 
 public class StartActivity extends BaseActivity {

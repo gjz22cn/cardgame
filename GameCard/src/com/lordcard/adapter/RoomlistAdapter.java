@@ -46,9 +46,6 @@ import com.lordcard.network.http.HttpURL;
 import com.lordcard.ui.base.FastJoinTask;
 import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
 import com.lordcard.ui.view.dialog.SignupDialog;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
 import com.sdk.util.RechargeUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -355,12 +352,7 @@ public class RoomlistAdapter extends BaseAdapter {
 					long limitBean = room.getLimit();
 					GameUser gu = (GameUser)GameCache.getObj(CacheKey.GAME_USER);
 					double btBean = limitBean - gu.getBean();
-					if(btBean > 0){	//金豆不足需要充值 ，直接在前端先判断。不需要多准确。
-						JDSMSPayUtil.setContext(context);
-						PayTipUtils.showTip(btBean/10000,PaySite.ROOM_ITEM_CLICK); 	//房间
-					}else{
-						joinRoom(room);
-					}
+					joinRoom(room);
 					String roomName = room.getName();
 					MobclickAgent.onEvent(context,roomName);
 				}
@@ -737,16 +729,6 @@ public class RoomlistAdapter extends BaseAdapter {
 													DialogUtils.toastTip("报名失败，请稍后再试！", 1000, Gravity.CENTER);
 													dismiss();
 												}
-												if (result.trim().equals(LESSBEAN)) {
-													room.setLimit(20000);
-													JDSMSPayUtil.setContext(context);
-													//进入房间时金豆不足
-													double b = RechargeUtils.calRoomJoinMoney(room);	//计算当前房间进入需要的基本金豆
-													PayTipUtils.showTip(b,PaySite.ROOM_ITEM_CLICK); //配置的提示方式
-													
-//													DialogUtils.rechargeTip(room, false, "报名该专场需要金豆2000，您的金豆不足。您将购买掌中游提供的20000金豆，确定后将跳转到支付界面购买，如果要购买更多金豆，请点击“其他金额购买”，您也可以通过完善资料来免费获取金豆。关闭此窗口直接返回不扣费。客服电话 4000666899。确认购买?");
-													dismiss();
-												}
 											}
 
 											@Override
@@ -801,14 +783,6 @@ public class RoomlistAdapter extends BaseAdapter {
 												if (result.trim().equals(SIGNFAIL)) {
 //													DialogUtils.mesTip("报名失败，请稍后再试！", false);
 													DialogUtils.toastTip("报名失败，请稍后再试！", 1000, Gravity.CENTER);
-													dismiss();
-												}
-												if (result.trim().equals(LESSBEAN)) {
-													JDSMSPayUtil.setContext(context);
-													room.setLimit(20000);
-													double b = RechargeUtils.calRoomJoinMoney(room);	//计算当前房间进入需要的基本金豆
-													PayTipUtils.showTip(b,PaySite.ROOM_ITEM_CLICK); //配置的提示方式
-//													DialogUtils.rechargeTip(room, false, "报名该专场需要金豆2000，您的金豆不足。您将购买掌中游提供的20000金豆，确定后将跳转到支付界面购买，如果要购买更多金豆，请点击“其他金额购买”，您也可以通过完善资料来免费获取金豆。关闭此窗口直接返回不扣费。客服电话 4000666899。确认购买?");
 													dismiss();
 												}
 											}

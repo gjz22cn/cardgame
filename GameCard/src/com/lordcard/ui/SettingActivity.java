@@ -455,7 +455,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				break;
 			case R.id.chong_setting:
 				MobclickAgent.onEvent(SettingActivity.this, "修改密码");
-				recharge();
+				//recharge();
 				break;
 			case R.id.set_back:
 				MobclickAgent.onEvent(SettingActivity.this, "设置返回");
@@ -529,12 +529,6 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				taskLayoutList.get(i).setVisibility(View.GONE);
 			}
 		}
-	}
-
-	private void recharge() {
-		Intent in = new Intent();
-		in.setClass(getApplicationContext(), SDKFactory.getPayView());
-		startActivity(in);
 	}
 
 	/**

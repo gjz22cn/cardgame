@@ -66,12 +66,13 @@
                         android:id="@+id/sign_rank_detail_btn"
                          style="@style/dialog_com_btn_style"
                         android:text="详情"/>
-
+<!-- 
                     <Button
                         android:id="@+id/sign_rank_ok_btn"
                         android:layout_marginLeft="180dp"
                         style="@style/dialog_com_btn_style"
                         android:text="报名" />
+                         -->
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

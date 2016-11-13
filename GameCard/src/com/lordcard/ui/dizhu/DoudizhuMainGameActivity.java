@@ -123,8 +123,6 @@ import com.lordcard.network.http.HttpUtils;
 import com.lordcard.network.socket.HURLEncoder;
 import com.lordcard.network.socket.ICallback;
 import com.lordcard.network.task.GetRankTask;
-import com.lordcard.prerecharge.PrerechargeManager;
-import com.lordcard.prerecharge.PrerechargeManager.PrerechargeDialogType;
 import com.lordcard.rule.DouDiZhuData;
 import com.lordcard.rule.DoudizhuRule;
 import com.lordcard.rule.HintPokerUtil;
@@ -149,9 +147,7 @@ import com.lordcard.ui.view.dialog.PhotoDialog;
 import com.lordcard.ui.view.dialog.SettingDialog;
 import com.lordcard.ui.view.dialog.TipsDialog;
 import com.lordcard.ui.view.notification.NotificationService;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
+//import com.sdk.jd.sms.util.JDSMSPayUtil;
 import com.sdk.util.RechargeUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -407,7 +403,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		buchu.setOnClickListener(clickListener); // 不出
 		chupai.setOnClickListener(clickListener); // 出牌
 		messbtnView.setOnClickListener(clickListener);
-		clearPrerechargeFlag();
 		joinGame(true);
 	}
 
@@ -499,20 +494,21 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					case R.id.game_robot: // "点击托管"
 						gameRobotClick();
 						break;
-					case R.id.game_pay:// 充值(游戏界面菜单栏充值按钮)
+					/*case R.id.game_pay:// 充值(游戏界面菜单栏充值按钮)
 						JDSMSPayUtil.setContext(ctx);
 						MobclickAgent.onEvent(ctx,"游戏中充值");
 						double b = RechargeUtils.calRoomJoinMoney(Database.JOIN_ROOM);	//计算当前房间进入需要的基本金豆
 						PayTipUtils.showTip(b,PaySite.PLAYING_CLICK); //配置的提示方式
 //						SDKFactory.smsPay(0, SDKConstant.PLAYING);
-						break;
+						break;*/
+						/*
 					case R.id.dzed_recharge_beans_btn:// 充值(通过预充值提示充值)
 						JDSMSPayUtil.setContext(ctx);
 						// 充值额度的处理未接入，等待接入
 						MobclickAgent.onEvent(ctx,"游戏中预充值");
 						PayTipUtils.showTip(rechargeMoney,PaySite.PREPARERECHARGE); //配置的提示方式
 //						SDKFactory.smsPay(rechargeMoney, SDKConstant.PLAYING);
-						break;
+						break;*/
 					case R.id.game_set:
 						if (Math.abs(System.currentTimeMillis() - Constant.CLICK_TIME) >= Constant.SPACING_TIME) {// 防止重复刷新
 							Constant.CLICK_TIME = System.currentTimeMillis();
@@ -575,7 +571,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 									}
 								}
 							} else {
-								JDSMSPayUtil.setContext(context);
+								//JDSMSPayUtil.setContext(context);
 								if (null == jiPaiQiChargeDialog)
 									jiPaiQiChargeDialog = new JiPaiQiChargeDialog(DoudizhuMainGameActivity.this, jiPaiQiTipsMsg);
 								Log.i("JI_PAI_QI_FREE_COUNT", "jiPaiQiTipsMsg:" + jiPaiQiTipsMsg);
@@ -590,12 +586,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						int allDouble = getCallDoubleNum();
 						GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
 						long currentWager = (Integer.valueOf(beishuNumber) * Database.JOIN_ROOM_BASEPOINT) * allDouble;
-						if ((!isShowPrerechargeDialog) && (cacheUser.getBean() >= 0) && (currentWager > cacheUser.getBean())) {
-							PrerechargeManager.createPrerechargeDialog(PrerechargeDialogType.Dialog_ingame, DoudizhuMainGameActivity.this, null, null, Integer.valueOf(beishuNumber) * allDouble).show();
-							isShowPrerechargeDialog = true;
-							borrowBeansBtn.setVisibility(View.INVISIBLE);
-							MobclickAgent.onEvent(ctx, "游戏中借点豆");
-						}
 						break;
 				}
 			}
@@ -1202,38 +1192,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	}
 
 	/**
-	 * 显示预充值提示信息布局
-	 */
-	public void showPrerechargeLl() {
-		/**
-		 * 1.当前堵注大于自身金豆数 2.beansInsufficientRl 未显示 3.rechargeLl 未显示
-		 **/
-		GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-		int allDouble = getCallDoubleNum();
-		long currentWager = (Integer.valueOf(beishuNumber) * Database.JOIN_ROOM_BASEPOINT) * allDouble;
-		if ((cacheUser.getBean() >= 0) && (currentWager > cacheUser.getBean())) {
-			beansInsufficientTv.setText("本局可赢" + PatternUtils.changeZhidou(currentWager) + "，您的金豆不足只能赢" + PatternUtils.changeZhidou(cacheUser.getBean()));
-			Log.i("freshUserInfo", "您的金豆不足只能赢" + cacheUser.getBean());
-//			int[] price = PrerechargeManager.calculatePrerechargePrice(cacheUser.getBean(), currentWager, ActivityUtils.getSimType());
-			int[] price = PrerechargeManager.calculatePrerechargePrice(cacheUser.getBean(), currentWager);
-			if (price.length == 0 || 0 == price[0]) {
-				rechargeBtn.setText("充值");
-			} else {
-				rechargeBtn.setText("充值" + price[0] + "元");
-				rechargeMoney = price[0];
-			}
-			//地主产生后才显示
-			if ((beansInsufficientRl.getVisibility() != View.VISIBLE) && (rechargeLl.getVisibility() != View.VISIBLE) && 0 != masterOrder) {
-				beansInsufficientRl.setVisibility(View.VISIBLE);
-				rechargeLl.setVisibility(View.VISIBLE);
-				if (cardStatView.getVisibility() == View.VISIBLE) {
-					gonePrerechargeTv(5000);
-				}
-			}
-		}
-	}
-
-	/**
 	 * 获取自己应结算的加倍数
 	 * @return
 	 */
@@ -1268,34 +1226,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		ScheduledTask.addDelayTask(prerechargeTask, time);
 	}
 
-	public void showPrerechargeDialog() {
-		/**
-		 * 1、如果当局还没有显示过预充值界面
-		 * 2、当前剩余牌数小于等于@PrerechargeManager.showPrerechargelastCardCount
-		 * 3、当前金豆大于等于0 4、当前赌注大于预充值条件
-		 **/
-		GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-		int allDouble = getCallDoubleNum();
-		long currentWager = (Integer.valueOf(beishuNumber) * Database.JOIN_ROOM_BASEPOINT) * allDouble;
-		if ((!isShowPrerechargeDialog) && (nowcard.size() <= PrerechargeManager.showPrerechargelastCardCount) && (cacheUser.getBean() >= 0) && (currentWager > (PrerechargeManager.showPrerechargePercent * cacheUser.getBean()))) {
-			PrerechargeManager.createPrerechargeDialog(PrerechargeDialogType.Dialog_ingame, DoudizhuMainGameActivity.this, null, null, Integer.valueOf(beishuNumber) * allDouble).show();
-			isShowPrerechargeDialog = true;
-		}
-	}
-
-	public void clearPrerechargeFlag() {
-		/** 重置预充值显示状态 **/
-		isShowPrerechargeDialog = false;
-		borrowBeansBtn.setVisibility(View.VISIBLE);
-		/** 重置加倍倍数 **/
-		DoubleNum = 1;
-		rechargeMoney = 0;
-		DoubleNum2 = 1;
-		DoubleNum3 = 1;
-		/** 清空预充值信息 **/
-		PrerechargeManager.clearPrerechargeInfo();
-	}
-
 	/**
 	 * 刷新用户物品信息
 	 */
@@ -1306,12 +1236,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				HttpRequest.getGameUserGoods(false);
 			}
 		});
-	}
-
-	public void dismissPrechargeDialog() {
-		if (PrerechargeManager.isShowPrerechargeDialog()) {
-			PrerechargeManager.dismissPrerechargeDialog();
-		}
 	}
 
 	private void initViewFlipper(String girlList) {
@@ -1642,7 +1566,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private void setBeiShuNumber(int point) {
 		beishuNumber = String.valueOf(point * Database.JOIN_ROOM_RATIO);
 		beishuNumView.setText(beishuNumber);
-		showPrerechargeLl();
 	}
 
 	@Override
@@ -1927,7 +1850,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		baoXiangLayout.setOnClickListener(null);
 		// gameBack.setOnClickListener(null);
 		gameRobot.setOnClickListener(null);
-		gamePay.setOnClickListener(null);
+		//gamePay.setOnClickListener(null);
 		gameSet.setOnClickListener(null);
 		tuoGuan.setOnClickListener(null);
 		jiaofenLayout.removeAllViews();
@@ -2363,8 +2286,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		// gameBack.setOnClickListener(clickListener);
 		gameRobot = (ImageButton) findViewById(R.id.game_robot);
 		gameRobot.setOnClickListener(clickListener);
-		gamePay = (ImageButton) findViewById(R.id.game_pay);
-		gamePay.setOnClickListener(clickListener);
+		//gamePay = (ImageButton) findViewById(R.id.game_pay);
+		//gamePay.setOnClickListener(clickListener);
 		// 判断可否短信充值
 //		if (!SmsPayUtil.canUseSmsPay()) {
 //			gamePay.setBackgroundResource(R.drawable.mianpage_pay_no);
@@ -2461,8 +2384,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		beansInsufficientTv = (TextView) findViewById(R.id.dzed_beans_insufficient_tv);
 		beansInsufficientRl.setVisibility(View.GONE);
 		rechargeLl = (LinearLayout) findViewById(R.id.dzed_recharge_ll);
-		rechargeBtn = (Button) findViewById(R.id.dzed_recharge_beans_btn);
-		rechargeBtn.setOnClickListener(clickListener);
+		//rechargeBtn = (Button) findViewById(R.id.dzed_recharge_beans_btn);
+		//rechargeBtn.setOnClickListener(clickListener);
 		borrowBeansBtn = (Button) findViewById(R.id.dzed_borrow_beans_btn);
 		borrowBeansBtn.setOnClickListener(clickListener);
 		rechargeLl.setVisibility(View.GONE);
@@ -2727,10 +2650,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						Play play = (Play) msg.getData().get("play");
 						playCard(play, false);
 						setShengxiaPai(play.getCount(), getPerOrder(play.getNextOrder()));
-						/** 显示预充值界面 **/
-						showPrerechargeDialog();
-						/** 显示预充值提示信息布局 **/
-						showPrerechargeLl();
 						refreshCardCountData();
 						/** 更新记牌器头像 **/
 						refreshJiPaiQiAvatar();
@@ -2739,8 +2658,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						MobclickAgent.onEventEnd(ctx,"在线斗地主");
 						hiddenPlayBtn();
 						LinkedList<Play> playResult = (LinkedList<Play>) msg.getData().get("playResult");
-						/** 关闭预充值窗口 **/
-						dismissPrechargeDialog();
 						/** 清除记牌器数据 **/
 						clearJiPaiQiData();
 						/** 隐藏记牌器 **/
@@ -3583,11 +3500,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		AudioPlayUtils.isPlay = true;
 		playOrStopBgMusic();
 		setBeiShuNumber(1);
-		/** 重置预充值标志 **/
-		clearPrerechargeFlag();
 		/** 重置记牌器数据 **/
 		clearJiPaiQiData();
-		showPrerechargeLl();
 		/** **/
 		btn_jipaiqi.setClickable(true);
 	}
@@ -3859,8 +3773,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			if (null != chupaicard)
 				addOutPokers(mySelfOrder, chupaicard);
 			refreshCardCountData();
-			showPrerechargeDialog();
-			showPrerechargeLl();
 		}
 	}
 
@@ -3946,7 +3858,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		if (type == 6 || type == 13) {
 			beishuNumber = String.valueOf(Integer.parseInt(beishuNumber) * 2);
 			beishuNumView.setText(beishuNumber);
-			showPrerechargeLl();
 		}
 	}
 
@@ -5736,22 +5647,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				}
 				return;
 			}
-			if (CmdUtils.CMD_HDETAIL.equals(cmd)) { // 加入游戏校验失败，金豆不足
-				Room room = JsonHelper.fromJson(detail, Room.class);
-				try {
-					JDSMSPayUtil.setContext(ctx);
-					//进入房间时金豆不足
-					double b = RechargeUtils.calRoomJoinMoney(room);	//计算当前房间进入需要的基本金豆
-					boolean isRecharge = PayTipUtils.showTip(b,PaySite.ROOM_ITEM_CLICK); //配置的提示方式
-					if(!isRecharge){
-//						DialogUtils.rechargeTip(room, true, null);		//默认提示方式
-					}
-				} catch (Exception e) {
-					ActivityUtils.finishAcitivity();
-				}
-				ClientCmdMgr.closeClient();
-				return;
-			}
+			
 			if (CmdUtils.CMD_RANK.equals(cmd)) { // 排名（普通赛制）
 				Log.i("paiming", "排名信息：" + cmd);
 				final List<GameScoreTradeRank> gstList = JsonHelper.fromJson(detail, new TypeToken<ArrayList<GameScoreTradeRank>>() {});
@@ -5835,31 +5731,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				bundle.putString("relink", detail);
 				message.setData(bundle);
 				handler.sendMessage(message);
-				return;
-			}
-			/** 预充值订单命令 **/
-			if (CmdUtils.CMD_PPC.equals(cmd)) {
-				JSONObject jsonObject = null;
-				String status = null;
-				String descrption = null;
-				String preOderNo = null;
-				try {
-					jsonObject = new JSONObject(detail);
-					status = jsonObject.getString(PrerechargeManager.PRERECHARGE_ORDER_PARAMS_STATUS);
-					descrption = jsonObject.getString(PrerechargeManager.PRERECHARGE_ORDER_PARAMS_DETAIL);
-					preOderNo = jsonObject.getString(PrerechargeManager.PRERECHARGE_ORDER_PARAMS_PREORDERNO);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				if (null != status && status.equalsIgnoreCase(Constant.SUCCESS)) {
-					if (null == descrption)
-						descrption = Database.currentActivity.getString(R.string.text_prerecharge_order_create_success);
-					DialogUtils.toastTip(descrption);
-					PrerechargeManager.mPayRecordOrder.setPreOrderNo(preOderNo);
-					PrerechargeManager.setPrePay(true);
-				} else {
-					DialogUtils.toastTip(Database.currentActivity.getString(R.string.text_prerecharge_order_create_failed));
-				}
 				return;
 			}
 		}
@@ -5977,7 +5848,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			Database.JOIN_ROOM_BASEPOINT = Database.JOIN_ROOM.getBasePoint();
 			beishuNumber = String.valueOf(relink.getRatio());
 			beishuNumView.setText(beishuNumber); // 重连后的倍数
-			showPrerechargeLl();
 			dishu.setText(String.valueOf(Database.JOIN_ROOM_BASEPOINT)); // 房间默认底数
 			mySelfId = ActivityUtils.getAndroidId();
 			List<Integer> myCardList = relink.getMyCardList();

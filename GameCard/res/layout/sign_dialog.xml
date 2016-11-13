@@ -81,7 +81,7 @@
                         android:text="返回"
                         android:textColor="@color/white"
                         android:visibility="gone" />
-
+<!-- 
                     <Button
                         android:id="@+id/sign_dialog_ok_btn"
                         android:layout_width="wrap_content"
@@ -90,6 +90,7 @@
                         android:background="@drawable/red_ok_btn"
                         android:text="充值"
                         android:textColor="@color/white" />
+                         -->
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

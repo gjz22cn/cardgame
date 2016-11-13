@@ -81,9 +81,6 @@ import com.lordcard.ui.dizhu.DoudizhuMainGameActivity;
 import com.lordcard.ui.view.MyLetterListView;
 import com.lordcard.ui.view.MyLetterListView.OnTouchingLetterChangedListener;
 import com.lordcard.ui.view.dialog.GameDialog;
-import com.sdk.jd.sms.util.JDSMSPayUtil;
-import com.sdk.util.PaySite;
-import com.sdk.util.PayTipUtils;
 import com.sdk.util.RechargeUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -799,16 +796,6 @@ public class InviteToDowanloadActivity extends BaseActivity {
 						} else if (HttpRequest.NO_SERVER.equals(v)) { // 游戏服务器不存在
 							DialogUtils.mesTip(getString(R.string.no_game_server), false);
 						}
-					} else if (CmdUtils.CMD_HDETAIL.equals(detail.getCmd())) { //金豆不足
-						Room vipRoom = new Room();
-						vipRoom.setLimit(Long.parseLong(detail.getDetail()));
-						vipRoom.setHomeType(Constant.ROOM_VIP_PRIVATE);
-						
-//						DialogUtils.rechargeTip(vipRoom, false, null);
-						JDSMSPayUtil.setContext(context);
-						double b = RechargeUtils.calRoomJoinMoney(vipRoom);
-						PayTipUtils.showTip(b,PaySite.VIP_CREATE); //配置的提示方式
-						
 					} else if (CmdUtils.CMD_CREATE.equals(detail.getCmd())) { // 成功
 						Room createRoom = JsonHelper.fromJson(detail.getDetail(), Room.class);
 						Database.JOIN_ROOM = createRoom;
