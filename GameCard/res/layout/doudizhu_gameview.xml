@@ -538,7 +538,7 @@
             android:orientation="vertical" >
 
             <RelativeLayout
-                android:id="@+id/top_right_rl"
+                android:id="@+id/top_right_rl1"
                 style="@style/main_game_head_wh1" >
 
                 <!-- android:background="@drawable/head_pic_right" > -->
@@ -600,7 +600,7 @@
                 android:id="@+id/top_right_ll"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/top_right_rl"
+                android:layout_below="@+id/top_right_rl1"
                 android:layout_marginTop="@dimen/user_name_margin"
                 android:gravity="right"
                 android:orientation="horizontal" >
@@ -631,7 +631,7 @@
 
         <LinearLayout
             android:id="@+id/dun_layout_right"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="45dp"
@@ -657,12 +657,13 @@
                 android:background="@null" >
             </RelativeLayout>
         </LinearLayout>
-
+<!-- 
         <RelativeLayout
             android:id="@+id/dunpairl3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
         </RelativeLayout>
+        -->
 
         <TextView
             android:id="@+id/play2Order"
@@ -721,7 +722,6 @@
             android:textSize="22sp" />
 
         <!-- 记牌器 -->
-
         <LinearLayout
             android:id="@+id/jipaiqi_layout_left"
             android:layout_width="100dp"
@@ -805,7 +805,7 @@
                     android:contentDescription="@string/image_description" />
             </RelativeLayout>
         </LinearLayout>
-
+ 
         <!-- 顶部倍数图片   start -->
 
         <RelativeLayout
@@ -846,7 +846,7 @@
                 android:background="@drawable/mainpage_pay_bg" />
                  -->
             <!-- 倍数 -->
-
+<!--
             <LinearLayout
                 android:layout_width="@dimen/beishu_height"
                 android:layout_height="@dimen/beishu_height"
@@ -862,8 +862,9 @@
                     android:textColor="@color/white"
                     android:textSize="12dp"
                     android:textStyle="bold" />
+                    -->
                 <!-- 顶部倍数数值   start -->
-
+<!--
                 <TextView
                     android:id="@+id/beishunumber"
                     android:layout_width="wrap_content"
@@ -872,8 +873,11 @@
                     android:text=""
                     android:textColor="@color/gold"
                     android:textSize="@dimen/bei_di_text_size" />
+                    -->
                 <!-- 顶部倍数数值   end -->
+                <!--
             </LinearLayout>
+            -->
 
             <RelativeLayout
                 android:id="@+id/dizhucard_rl"
@@ -885,13 +889,14 @@
                 android:background="@null"
                 android:gravity="center" >
 
+                <!-- 
                 <RelativeLayout
                     android:id="@+id/dizhucard"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@null"
                     android:gravity="center" >
-                </RelativeLayout>
+                </RelativeLayout>  -->
 
                 <RelativeLayout
                     android:id="@+id/system_info_rl"
@@ -941,7 +946,7 @@
                     </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
-
+<!--
             <LinearLayout
                 android:layout_width="@dimen/beishu_height"
                 android:layout_height="@dimen/beishu_height"
@@ -958,9 +963,9 @@
                     android:textColor="@color/white"
                     android:textSize="12dp"
                     android:textStyle="bold" />
-
+-->
                 <!-- 顶部底数数值   start -->
-
+<!--
                 <TextView
                     android:id="@+id/dishunumber"
                     android:layout_width="wrap_content"
@@ -968,8 +973,9 @@
                     android:text=""
                     android:textColor="@color/gold"
                     android:textSize="@dimen/bei_di_text_size" />
+                    -->
                 <!-- 顶部底数数值   end -->
-            </LinearLayout>
+ <!--           </LinearLayout>-->
 
             <ImageButton
                 android:id="@+id/game_set"
@@ -1408,6 +1414,7 @@
                 android:background="@drawable/bujiao_btn_bg" />
         </LinearLayout>
 
+        <!--
         <Button
             android:id="@+id/btn_jipaiqi"
             android:layout_width="40dp"
@@ -1417,6 +1424,7 @@
             android:layout_marginRight="50dp"
             android:layout_marginTop="185dp"
             android:background="@drawable/btn_jipaiqi_bg" />
+             -->
         <!-- 叫地主按钮    1分   2分  3分 倒计时钟 不叫 end -->
 
 
@@ -1531,7 +1539,7 @@
                 android:layout_marginTop="45px" />
         </RelativeLayout>
         <!-- 玩家信息展示框   end -->
-
+<!--
         <RelativeLayout
             android:id="@+id/bao_xiang_layout"
             android:layout_width="45dp"
@@ -1572,6 +1580,7 @@
                 android:textColor="@color/white"
                 android:textSize="11dp" />
         </RelativeLayout>
+        -->
 
         <Button
             android:id="@+id/gp_top_btn"
