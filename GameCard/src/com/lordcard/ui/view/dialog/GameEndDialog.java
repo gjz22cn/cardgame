@@ -77,7 +77,6 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 	/**将按钮设成可用*/
 	public static final int ENABLE_DIALOG = 1216;
 	private int nextPlay = -1;
-	private String beishuNumber = null;
 	private MultiScreenTool mst = MultiScreenTool.singleTonHolizontal();
 	private Context context;
 	private int order;
@@ -92,10 +91,8 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 	private TextView zhiDouTv1, zhiDouTv2, zhiDouTv3 = null;//金豆
 	private TextView zhiZuangTv1, zhiZuangTv2, zhiZuangTv3 = null;//钻石
 	private TextView zhiLiTv1, zhiLiTv2, zhiLiTv3 = null;//经验
-	private TextView zongBeiShuTv, diShuTv, nowZhiDouTv, nowZhiZuangTv, ZhiShangTv = null;//总倍数，底注，当前金豆，当前钻石，等级
+	private TextView nowZhiDouTv, nowZhiZuangTv, ZhiShangTv = null;//总倍数，底注，当前金豆，当前钻石，等级
 	private Button againBtn, backBtn, rechargeBtn;//关闭，再来一局，返回，微博分享
-	private ListView mBeiShuList;//左边倍数列表
-	private List<BeiShu> beiShu;//倍数数据
 	private RelativeLayout bottomLl;//底部跳转按钮容器控件
 	private IqGradeDialog mIqMaxGradeDialog = null;
 	private GameIqUpgradeDialog mIqMinUpgradeDialog = null;
@@ -179,7 +176,6 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 				}
 			}
 		};
-		beiShu = new ArrayList<GameEndDialog.BeiShu>();
 		initView();
 		refreshData();
 		//3分钟后自动离开
@@ -216,8 +212,6 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 		zhiLiTv1 = (TextView) findViewById(R.id.dzed_zhili_1);
 		zhiLiTv2 = (TextView) findViewById(R.id.dzed_zhili_2);
 		zhiLiTv3 = (TextView) findViewById(R.id.dzed_zhili_3);
-		zongBeiShuTv = (TextView) findViewById(R.id.dzed_zongbeishu);
-		diShuTv = (TextView) findViewById(R.id.dzed_dishu);
 		nowZhiDouTv = (TextView) findViewById(R.id.dzed_now_zhidou);
 		nowZhiZuangTv = (TextView) findViewById(R.id.dzed_now_zhizuang);
 		ZhiShangTv = (TextView) findViewById(R.id.dzed_now_zhishang);
@@ -225,9 +219,7 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 		againBtn.setOnClickListener(this);
 		backBtn = (Button) findViewById(R.id.dzed_back);
 		backBtn.setOnClickListener(this);
-		//rechargeBtn = (Button) findViewById(R.id.dzed_recharge_btn);
-		//rechargeBtn.setOnClickListener(this);
-		mBeiShuList = (ListView) findViewById(R.id.beishu_list);
+
 		// 如果是超快赛，则定时跳转到等待界面
 		if (1 == Database.JOIN_ROOM.getRoomType()) {
 			bottomLl.setVisibility(View.INVISIBLE);
@@ -316,21 +308,9 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 			cacheUser.setBean(bean);
 			GameCache.putObj(CacheKey.GAME_USER, cacheUser);
 		}
-		beiShu.add(new BeiShu(R.drawable.game_end_dibei, "底倍", end.getBaseRatio()));
-		beiShu.add(new BeiShu(R.drawable.game_end_jiaofen, "叫分", end.getCallRatio()));
-		beiShu.add(new BeiShu(R.drawable.game_end_zhadan, "炸弹", end.getBombRatio()));
-		beiShu.add(new BeiShu(R.drawable.game_end_double, "加倍", end.getDoubleRatio()));
-		beiShu.add(new BeiShu(R.drawable.game_end_spring, "春天", end.getSpringRatio()));
-		beishuNumber = String.valueOf(end.getRatio());
-		zongBeiShuTv.setText(beishuNumber);
-		diShuTv.setText(String.valueOf(Database.JOIN_ROOM_BASEPOINT));
-		mBeiShuList.setAdapter(new BeiShuAdapter());
-		Log.i("freshUserInfo", "当前金豆：" + end.getBean() + " 当前等级:" + end.getIq() + "底倍： " + end.getBaseRatio() + "炸弹：" + end.getBombRatio() + "春天：" + end.getSpringRatio() + "加倍：" + end.getDoubleRatio() + "叫分：" + end.getCallRatio() + "总倍数：" + end.getRatio() + "底倍数：" + Database.JOIN_ROOM_BASEPOINT);
 		/**如果当前智不足以支付在本房间再玩一局，弹出提示充值对话框*/
 		if (null != Database.JOIN_ROOM && end.getBean() < Database.JOIN_ROOM.getLimit()) {
 			Log.d("freshUserInfo", "end.getBean()<Database.JOIN_ROOM.getLimit()：" + (end.getBean() < Database.JOIN_ROOM.getLimit()));
-//			DialogUtils.rechargeTip(Database.JOIN_ROOM, true, null);
-			//mHandler.sendEmptyMessage(SHOW_ADD_BEEN);
 		} else {
 			Log.i("freshUserInfo", "Database.JOIN_ROOM==null");
 		}
@@ -598,68 +578,6 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 		}
 	}
 
-	class BeiShuAdapter extends BaseAdapter {
-
-		private LayoutInflater layoutInflater = null;
-
-		public BeiShuAdapter() {
-			this.layoutInflater = LayoutInflater.from(context);
-		}
-
-		@Override
-		public int getCount() {
-			return beiShu.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return beiShu.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHolder holder;
-			if (null == convertView) {
-				convertView = layoutInflater.inflate(R.layout.game_end_dialog_left_list_item, null);
-				mst.adjustView((LinearLayout) convertView.findViewById(R.id.gedlli_ll));
-				holder = new ViewHolder();
-				holder.iconIv = (ImageView) convertView.findViewById(R.id.gedlli_icon_iv);
-				holder.nameTv = (TextView) convertView.findViewById(R.id.gedlli_name_tv);
-				holder.numTv = (TextView) convertView.findViewById(R.id.gedlli_num_tv);
-				holder.symbolTv = (TextView) convertView.findViewById(R.id.gedlli_symbol_tv);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-			if (1 == beiShu.get(position).getNum() && !"底倍".equals(beiShu.get(position).getName().trim()) && !"叫分".equals(beiShu.get(position).getName().trim())) {
-				holder.symbolTv.setText("-");
-				holder.symbolTv.setTextColor(context.getResources().getColor(R.color.grey));
-				holder.nameTv.setTextColor(context.getResources().getColor(R.color.grey));
-				holder.numTv.setText("");
-			} else {
-				holder.symbolTv.setTextColor(context.getResources().getColor(R.color.white));
-				holder.nameTv.setTextColor(context.getResources().getColor(R.color.white));
-				holder.numTv.setText("" + beiShu.get(position).getNum());
-			}
-			holder.nameTv.setText(beiShu.get(position).getName());
-			holder.iconIv.setBackgroundResource(beiShu.get(position).getIcomId());
-			return convertView;
-		}
-
-		public class ViewHolder {
-
-			private TextView nameTv;//名称
-			private ImageView iconIv;//图片
-			private TextView numTv;//数量
-			private TextView symbolTv;//符号
-		}
-	}
-
 	@Override
 	public void dismiss() {
 		super.dismiss();
@@ -675,52 +593,6 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 		stopshowUpgradeTask();
 		stopGoOutTask2();
 		stopToWaitViewTask();
-	}
-
-	class BeiShu {
-
-		public BeiShu(int icomId, String name, int num) {
-			this.num = num;
-			this.name = name;
-			this.icomId = icomId;
-		}
-
-		private int num;
-		private int icomId;
-		private String name;
-		private String x = "X";
-
-		public final int getNum() {
-			return num;
-		}
-
-		public final void setNum(int num) {
-			this.num = num;
-		}
-
-		public final int getIcomId() {
-			return icomId;
-		}
-
-		public final void setIcomId(int icomId) {
-			this.icomId = icomId;
-		}
-
-		public final String getName() {
-			return name;
-		}
-
-		public final void setName(String name) {
-			this.name = name;
-		}
-
-		public final String getX() {
-			return x;
-		}
-
-		public final void setX(String x) {
-			this.x = x;
-		}
 	}
 
 	private void stopGoOutTask() {
