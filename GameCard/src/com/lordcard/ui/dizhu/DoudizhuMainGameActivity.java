@@ -155,14 +155,10 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 
 	/** 动画-无结束监听 */
 	public static final int IS_NONE = 11100;
-	/** 动画-头像移动 */
-	public static final int IS_HEAD_ANIM = 11101;
 	/** 动画-飞机 */
 	public static final int IS_FEIJI_ANIM = 11102;
 	/** 动画-王炸 */
 	public static final int IS_WANGZHA_ANIM = 11103;
-	/** 动画-宝箱移动 */
-	public static final int IS_BAOXIANG_ANIM = 11104;
 	/** 动画-炸弹 */
 	public static final int IS_ZHADAN_ANIM = 11105;
 	private Context context;
@@ -3872,50 +3868,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				handler.sendMessage(message);
 				return;
 			}
-			if (CmdUtils.CMD_GRAB.equals(cmd)) {// 如果是叫地主的话
-				hideSlowTip();
-				Message message = new Message();
-				Grab grab = JsonHelper.fromJson(detail, Grab.class); // jsonData是一个Json对象
-				message.what = 1;
-				Bundle bundle = new Bundle();
-				bundle.putSerializable("grab", grab);
-				message.setData(bundle);
-				handler.sendMessage(message);
-				return;
-			}
-			if (CmdUtils.CMD_GEN_LANDOWNERS.equals(cmd)) {// 产生地主(带踢拉功能)
-				hideSlowTip();
-				Message message = new Message();
-				GenLandowners gld = JsonHelper.fromJson(detail, GenLandowners.class); // jsonData是一个Json对象
-				message.what = 9;
-				Bundle bundle = new Bundle();
-				bundle.putSerializable("gld", gld);
-				message.setData(bundle);
-				handler.sendMessage(message);
-				return;
-			}
-			if (CmdUtils.CMD_TILA.equals(cmd)) {// 踢、拉(带踢拉功能)
-				hideSlowTip();
-				Message message = new Message();
-				TiLa tila = JsonHelper.fromJson(detail, TiLa.class); // jsonData是一个Json对象
-				message.what = 11;
-				Bundle bundle = new Bundle();
-				bundle.putSerializable("tila", tila);
-				message.setData(bundle);
-				handler.sendMessage(message);
-				return;
-			}
-			if (CmdUtils.CMD_SENDLASTCARDS.equals(cmd)) {// 发剩余的牌给地主(带踢拉功能)
-				hideSlowTip();
-				Message message = new Message();
-				LastCards lastCard = JsonHelper.fromJson(detail, LastCards.class); // jsonData是一个Json对象
-				message.what = 10;
-				Bundle bundle = new Bundle();
-				bundle.putSerializable("lastCard", lastCard);
-				message.setData(bundle);
-				handler.sendMessage(message);
-				return;
-			}
 			if (CmdUtils.CMD_PLAYING.equals(cmd)) {// 如果是打牌的話
 				hideSlowTip();
 				Message message = new Message();
@@ -5061,16 +5013,11 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				switch (type) {
-					case IS_HEAD_ANIM:
-						//moveMyHead();
-						break;
 					case IS_FEIJI_ANIM:
 						feijiImageView.setVisibility(View.INVISIBLE);
 						break;
 					case IS_WANGZHA_ANIM:
 						wangzhaImageView.setVisibility(View.INVISIBLE);
-						break;
-					case IS_BAOXIANG_ANIM:
 						break;
 					case IS_ZHADAN_ANIM:
 						zhadanIv.setVisibility(View.GONE);
