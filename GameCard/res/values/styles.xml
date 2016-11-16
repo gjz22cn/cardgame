@@ -203,38 +203,7 @@
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">32dp</item>
     </style>
-    
-    
-    <!-- MM购买 -->
-    <style name="mm_buy_btn_style">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/dialog_cancell_btn_text_color</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">@drawable/pay_group_item_bg</item>
-    </style>
 
-    <!-- 手机话费 -->
-    <style name="phone_buy_btn_style">
-        <item name="android:textSize">12dp</item>
-        <item name="android:layout_width">310dp</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:textColor">#7b0202</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_marginTop">6dp</item>
-        <item name="android:background">@drawable/pay_group_item_bg</item>
-    </style>
-    <!-- 支付宝 -->
-    <style name="zhifubao_btn_style">
-        <item name="android:textSize">12dp</item>
-        <item name="android:layout_width">310dp</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:textColor">#7b0202</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_marginTop">6dp</item>
-        <item name="android:background">@drawable/pay_group_ali_item_bg</item>
-    </style>
     <!-- 加增 -->
     <style name="jiazeng_style">
         <item name="android:layout_width">50dp</item>
