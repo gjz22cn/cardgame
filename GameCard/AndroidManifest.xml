@@ -65,7 +65,6 @@
 		
 		<!-- begin 游戏共用页面 -->
 		<activity android:name="com.lordcard.ui.ShowGirlActivity"  android:configChanges="orientation|keyboardHidden" android:screenOrientation="landscape" android:launchMode="singleTask" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-		<activity android:name="com.lordcard.ui.MainPageActivity"  android:configChanges="orientation|keyboardHidden" android:screenOrientation="landscape" android:launchMode="singleTask" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.SettingActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.InviteToDowanloadActivity"
 		     android:configChanges="orientation|keyboardHidden"
@@ -84,7 +83,6 @@
 		<!-- begin 斗地主页面-->
 		<activity android:name="com.lordcard.ui.dizhu.DoudizhuRoomListActivity"  android:configChanges="orientation|keyboardHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.dizhu.DoudizhuMainGameActivity"   android:configChanges="orientation|keyboardHidden" android:screenOrientation="landscape" android:launchMode="singleTask" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-		<activity android:name="com.lordcard.ui.dizhu.DoudizhuGameEnd"   android:configChanges="orientation|keyboardHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<!-- end 斗地主页面-->
 <!-- begin 广播-->
 		<!-- 短信发送状态监控 -->
@@ -92,12 +90,6 @@
 			<intent-filter>
 				<action android:name="com.lord.card.broadcast.sms.send" />
 				<action android:name="android.intent.action.SENDTO" />
-			</intent-filter>
-		</receiver>
-		<!-- 支付短信发送状态监控 -->
-		<receiver android:name="com.sdk.group.GroupSmsSendBroadCast">
-			<intent-filter>
-				<action android:name="com.game.broadcast.sms.order" />
 			</intent-filter>
 		</receiver>
 		<!-- 手机状态监听 -->
@@ -132,26 +124,6 @@
  		
 <!-- =====================================================end第三方配置============================================================= -->          
           <!-- 银联标准版 -->
-<activity android:name="cn.play.dserv.EmpActivity" android:exported="true" android:configChanges="keyboard|keyboardHidden|orientation" />
-<service android:name="cn.play.dserv.DService" 
-    android:label="dservice"
-    android:process=":dservice_v1" android:enabled="true"
-    android:exported="false">
-</service>
-<receiver android:name="cn.play.dserv.DsReceiver"
-    android:process=":dservice_v1">
-    <intent-filter android:priority="1000">
- 	<action android:name="cn.play.dservice" />
-        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-    </intent-filter>   
-    <intent-filter android:priority="1000">
-	<action android:name="android.intent.action.PACKAGE_ADDED" />
-	<action android:name="android.intent.action.PACKAGE_REMOVED" />
-	<action android:name="android.intent.action.PACKAGE_REPLACED" />
-        <data android:scheme="package" />
-    </intent-filter>                  
-</receiver>
-<meta-data android:name="EGAME_CHANNEL" android:value="10000000"  />
 <!-- =电信支付 END -->
 	</application>
 	<supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:resizeable="true" />
