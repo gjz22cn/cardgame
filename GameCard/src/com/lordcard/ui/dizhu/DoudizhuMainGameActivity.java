@@ -173,15 +173,14 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private Poker[] poker = null; // 扑克牌
 	private TouchRelativeLayout myCardsTouchLayout;
 	private RelativeLayout doudizhuLayout, doudizhuBackGround;
-	private LinearLayout playBtnLayout, jiaofenLayout;
+	private LinearLayout playBtnLayout;
 	private RelativeLayout tuoGuanLayout;
 	private RelativeLayout mySelfHeadRl;// 自己头像布局
 	private TextView nullTv, nullTv2;// 做布局撑自己头像布局用的
 	private int[] pai = null;
 	private Button chupai, tishi, buchu = null;
-	private AutoTask selfTask, leftTask, rightTask, pubTask, adTask, gameTask, task2, headTask;
+	private AutoTask selfTask, leftTask, rightTask, pubTask, adTask, gameTask, task2;
 	private MarqueeText marqueeText;
-	private Button bujiao, fen1, fen2, fen3 = null;
 	private TextView play1SurplusCount, play3SurplusCount, play2SurplusCount = null;
 	private List<Poker> nowcard = null; // 现在手中的牌
 	private List<Poker> chupaicard = null; // 准备出的牌
@@ -255,9 +254,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private int type = 0;
 	private GoodsValuesAdapter valueAdapter;
 	private RelativeLayout nextPlayLayout;
-	private LinearLayout tilaLayout; // 踢拉父布局
-	private Button tiLaBtn2, tiLaBtn4, buTiLaBtn;// 加倍2,加倍4，不加倍
-	private ImageView jiabei1Iv, jiabei2Iv, jiabei3Iv;
 	private TextView countdownTv;// 倒计时Tv
 	private MyBroadcastReciver mReciver;// 刷新系统时间的广播接收器
 	private MyBatteryReceiver mMyBatteryReceiver = null;// 刷新系统电量的广播接收器
@@ -289,7 +285,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private int jiao;// 手势点击（叫分）的次数
 	private boolean jiao1 = false, jiao2 = false, jiao3 = false;// （手势）可以叫分标识
 	private int jia;// 手势点击（加倍）的次数
-	private boolean jiaBei2 = false, jiaBei4 = false;// （手势）可以加倍标识
 	boolean isLongClickModule = false;
 	float startX, startY;
 	Timer timer;
@@ -383,11 +378,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		gameWaitLayout.setOnClickListener(null);
 		// 显示用户信息
 		setUserInfo();
-		// 为叫地主的按钮设置监听器
-		bujiao.setOnClickListener(clickListener); // 不叫地主
-		fen1.setOnClickListener(clickListener); // 叫1分
-		fen2.setOnClickListener(clickListener); // 叫2分
-		fen3.setOnClickListener(clickListener); // 叫3fen
 		tishi.setOnClickListener(clickListener); // 提示监听
 		buchu.setOnClickListener(clickListener); // 不出
 		chupai.setOnClickListener(clickListener); // 出牌
@@ -464,18 +454,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					case R.id.tishi_button:// 提示
 						setTishi();
 						break;
-					case R.id.fen1Button:
-						callPoint(1);
-						break;
-					case R.id.fen2Button:
-						callPoint(2);
-						break;
-					case R.id.fen3Button:
-						callPoint(3);
-						break;
-					case R.id.bujiaoButton:// 不叫
-						callPoint(0);
-						break;
 					case R.id.game_back:
 						MobclickAgent.onEvent(ctx,"游戏中退出");
 						DialogUtils.exitGame(ctx);
@@ -517,15 +495,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 							setImageNewGone(toolList.size());
 						}
 						break;
-					case R.id.tila_button_2:// 加倍2
-						callJiabei(2);
-						break;
-					case R.id.tila_button_4:// 加倍4
-						callJiabei(4);
-						break;
-					case R.id.bu_tila_button:// 不加倍
-						callBuJiaBei();
-						break;
 					case R.id.dzed_borrow_beans_btn:// 借点豆
 						int allDouble = getCallDoubleNum();
 						GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
@@ -535,91 +504,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			}
 		}
 	};
-
-	/**
-	 * 不加倍
-	 */
-	private void callBuJiaBei() {
-		stopTimer(0); // 暂停定时器
-		startTiLaTimer(1);
-		// 发送"不加倍"信息
-		CmdDetail chat2 = new CmdDetail();
-		chat2.setCmd(CmdUtils.CMD_TILA);
-		// 1:不加倍,2:加2倍,4:加4倍
-		chat2.setDetail("1");
-		CmdUtils.sendMessageCmd(chat2);
-		tilaLayout.setVisibility(View.GONE);
-		moveMyHead();
-		// 提示"不加倍"声音
-		AudioPlayUtils apu = AudioPlayUtils.getInstance();
-		String gd1 = Database.userMap.get(mySelfOrder).getGender();
-		if ("1".equals(gd1)) {// 女
-			// 女声
-			apu.playSound(R.raw.nv_bujiabei);
-		} else {
-			// 男声
-			apu.playSound(R.raw.nan_bujiabei);
-		}
-		// 显示"加倍"，"不加倍"
-		ImageView info1 = new ImageView(ctx);
-		info1.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.not_doubling, true));
-		play1PassLayout.removeAllViews();
-		info1.setPadding(0, 0, 0, 60);
-		play1PassLayout.addView(info1, mst.getAdjustLayoutParamsForImageView(info1));
-		ActivityUtils.startScaleAnim(play1PassLayout, ctx);// 播放缩放动画
-	}
-
-	/**
-	 * 加倍
-	 * 
-	 * @param multiple
-	 *            加倍的倍数( 2:加2倍 4:加4倍)
-	 */
-	private void callJiabei(int multiple) {
-		stopTimer(0); // 暂停定时器
-		startTiLaTimer(1);
-		CmdDetail chat = new CmdDetail();
-		// 发送"加倍"信息，
-		chat.setCmd(CmdUtils.CMD_TILA);
-		MobclickAgent.onEvent(ctx, "游戏中加"+multiple+"倍");
-		jiabei1Iv.setVisibility(View.VISIBLE);
-		ImageView info = new ImageView(ctx);
-		// 1:不加倍,2:加2倍,4:加4倍
-		if (2 == multiple) {
-			chat.setDetail("2");
-			// 给自己头像加上x2
-			jiabei1Iv.setImageResource(R.drawable.jiabei_x_2);
-			// 显示"加2倍"
-			info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.double_2, true));
-		} else {
-			chat.setDetail("4");
-			// 给自己头像加上x4
-			jiabei1Iv.setImageResource(R.drawable.jiabei_x_4);
-			// 显示"加4倍"
-			info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.double_4, true));
-		}
-		CmdUtils.sendMessageCmd(chat);
-		tilaLayout.setVisibility(View.GONE);
-		setTweenAnim(jiabei1Iv, R.anim.jump, IS_HEAD_ANIM);
-		// 提示"加倍"声音
-		AudioPlayUtils apu2 = AudioPlayUtils.getInstance();
-		String gd = Database.userMap.get(mySelfOrder).getGender();
-		if ("1".equals(gd)) {// 女
-			// 女声
-			apu2.playSound(R.raw.nv_jiabei);
-		} else {
-			// 男声
-			apu2.playSound(R.raw.nan_jiabei);
-		}
-		play1PassLayout.removeAllViews();
-		info.setPadding(0, 0, 0, 60);
-		play1PassLayout.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-		ActivityUtils.startScaleAnim(play1PassLayout, ctx);// 播放缩放动画
-		/** 更改自己加倍的倍数 **/
-		if (multiple == 2 || multiple == 4) {
-			DoubleNum = multiple;
-		}
-	}
 
 	private void showPopWindow(final boolean isShow) {
 		popThread = new Thread() {
@@ -1052,12 +936,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		if (playBtnLayout.getVisibility() == View.VISIBLE) { // 如果打牌的时候托管
 			setTuoGuan();
 		}
-		if (jiaofenLayout.getVisibility() == View.VISIBLE) {// 如果叫地主的时候托管
-			callPoint(0);
-		}
-		if (tilaLayout.getVisibility() == View.VISIBLE) {// 如果叫地主的时候托管
-			callBuJiaBei();
-		}
 	}
 
 	/**
@@ -1118,34 +996,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				}
 				info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.callthree, true));
 			}
-		}
-	}
-
-	/**
-	 * 叫分
-	 * 
-	 * @param point
-	 *            叫的分数
-	 */
-	private void callPoint(int point) {
-		for (int i = 0; i < nowcard.size(); i++) {
-			nowcard.get(i).ischeck = false;
-		}
-		jiaofenLayout.setVisibility(View.GONE);
-		stopTimer(0);
-		// setJiaofenXianshi(point, mySelfOrder);
-		ImageView info = new ImageView(ctx);
-		callPoints(point, info, mySelfOrder, true);
-		Log.i("jiaofenss", "callPoint:" + point);
-		if (point != 3) {
-			play1PassLayout.removeAllViews();
-			play1PassLayout.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-			ActivityUtils.startScaleAnim(play1PassLayout, ctx);// 播放缩放动画
-		}
-
-		CmdUtils.callDizhu(String.valueOf(point));
-		if (point < 3) { // 继续等待下家叫地主
-			startQiangTimer(1); // 开启抢地主定时器
 		}
 	}
 
@@ -1275,10 +1125,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			adTask.stop(true);
 			adTask = null;
 		}
-		if (headTask != null) {
-			headTask.stop(true);
-			headTask = null;
-		}
 		cancelTimer();
 		ImageUtil.releaseDrawable(doudizhuBackGround.getBackground());// 释放背景图片占的内存
 		ImageUtil.releaseDrawable(play1Icon.getBackground());
@@ -1401,10 +1247,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		}
 		userInfoText = null;
 		networkSlowtip = null;
-		bujiao.setOnClickListener(null); // 不叫地主
-		fen1.setOnClickListener(null); // 叫1分
-		fen2.setOnClickListener(null); // 叫2分
-		fen3.setOnClickListener(null); // 叫3fen
 		tishi.setOnClickListener(null); // 提示监听
 		buchu.setOnClickListener(null); // 不出
 		chupai.setOnClickListener(null); // 出牌
@@ -1418,8 +1260,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		gameRobot.setOnClickListener(null);
 		gameSet.setOnClickListener(null);
 		tuoGuan.setOnClickListener(null);
-		jiaofenLayout.removeAllViews();
-		jiaofenLayout = null;
 		playBtnLayout.removeAllViews();
 		playBtnLayout = null;
 		tuoGuanLayout.removeAllViews();
@@ -1696,25 +1536,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		messbtnView = (ImageView) findViewById(R.id.mess_btn_view);
 		chupai = (Button) findViewById(R.id.chupai_button);
 		buchu = (Button) findViewById(R.id.pass_button);
-		fen1 = (Button) findViewById(R.id.fen1Button);
-		fen2 = (Button) findViewById(R.id.fen2Button);
-		fen3 = (Button) findViewById(R.id.fen3Button);
 		jiao = 0;
-		fen1.setClickable(true);
-		fen2.setClickable(true);
-		fen3.setClickable(true);
-		bujiao = (Button) findViewById(R.id.bujiaoButton);
 		tishi = (Button) findViewById(R.id.tishi_button);
-		tilaLayout = (LinearLayout) findViewById(R.id.tila_ll);
-		tiLaBtn2 = (Button) findViewById(R.id.tila_button_2);
-		tiLaBtn2.setOnClickListener(clickListener);
-		tiLaBtn4 = (Button) findViewById(R.id.tila_button_4);
-		tiLaBtn4.setOnClickListener(clickListener);
-		buTiLaBtn = (Button) findViewById(R.id.bu_tila_button);
-		buTiLaBtn.setOnClickListener(clickListener);
-		jiabei1Iv = (ImageView) findViewById(R.id.double1_iv);
-		jiabei2Iv = (ImageView) findViewById(R.id.double2_iv);
-		jiabei3Iv = (ImageView) findViewById(R.id.double3_iv);
 		countdownTv = (TextView) findViewById(R.id.countdown);
 		countdownTv.setTypeface(typeface);
 		netSlowTip = (TextView) findViewById(R.id.netslow_tip);
@@ -1734,7 +1557,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		play1PassLayout = (RelativeLayout) findViewById(R.id.play1_pass_card);
 		play2PassLayout = (RelativeLayout) findViewById(R.id.play2pass_card);
 		play3PassLayout = (RelativeLayout) findViewById(R.id.play3_pass_card);
-		jiaofenLayout = (LinearLayout) findViewById(R.id.jiaofenRelative);
 		mSystemInfoRl = (RelativeLayout) findViewById(R.id.system_info_rl);
 		systemTime = (TextView) findViewById(R.id.system_time_tv);
 		systemTime.setTypeface(typeface);
@@ -1921,18 +1743,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		play2SurplusCount.setText(Integer.toString(initCardNum));
 		play3SurplusCount.setText(Integer.toString(initCardNum));
 		bierenchupai = null;
-		/** 叫分属性 */
-		fen1.setBackgroundResource(R.drawable.fen1_btn_bg);
-		fen2.setBackgroundResource(R.drawable.fen2_btn_bg);
-		fen3.setBackgroundResource(R.drawable.fen3_btn_bg);
-		jiao1 = false;
-		jiao2 = false;
-		jiao3 = false;
-		/** 加倍属性 */
-		tiLaBtn2.setBackgroundResource(R.drawable.jiabei_btn_bg_2);
-		tiLaBtn4.setBackgroundResource(R.drawable.jiabei_btn_bg_4);
-		jiaBei2 = false;
-		jiaBei4 = false;
 		baoFlag = false;
 	}
 
@@ -2085,7 +1895,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 							myCardsTouchLayout.getChildAt(i).setClickable(false);
 						}
 						cancelTuoGuanState();
-						callDizhu(fapai); // 叫地主
 						if (null != warn) {
 							warn.clear();
 						}
@@ -2096,40 +1905,12 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 							girlItems.setVisibility(View.INVISIBLE);
 							showPopWindow(true);
 						}
-
-						// mainGameGuideVI.setVisibility(View.VISIBLE);
-						/** 更新记牌器头像 **/
-						//refreshJiPaiQiAvatar();
-						
-						
 						
 						HashMap<String, String> purchase = new HashMap<String, String>();
 						purchase.put("room",Database.JOIN_ROOM.getName());
 						purchase.put("account",mGameUser.getAccount());
 						purchase.put("userctime",mGameUser.getCreateDate());
 						MobclickAgent.onEvent(ctx,"斗地主游戏中",purchase);
-						break;
-					case 1: // 叫地主更新界面
-						Grab grab = (Grab) msg.getData().get("grab");
-						if (grab.getNextOrder() == mySelfOrder) { // 上家叫的分
-							isTurnMySelf = true;
-							stopTimer(-1); // 暂停定时器
-						} else { // 下家叫的分
-							isTurnMySelf = false;
-							stopTimer(1); // 暂停定时器
-						}
-						truntoCallDizhu(grab);
-						break;
-					case 2: // 地主产生
-						hasDiZhu(msg);
-						if (headTask != null) {
-							headTask.stop(true);
-							headTask = null;
-						}
-						headTask = new HeadTask();
-						ScheduledTask.addDelayTask(headTask, 3000);
-						/** 更新记牌器头像 **/
-						//refreshJiPaiQiAvatar();
 						break;
 					case 3: // 收到打牌消息
 						hiddenPlayBtn();
@@ -2145,39 +1926,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						hiddenPlayBtn();
 						LinkedList<Play> playResult = (LinkedList<Play>) msg.getData().get("playResult");
 						setEndDonghua(playResult);
-						break;
-					case 5:// 收到叫地主定时器消息
-						int timeleast = 0;
-						// （-1 上家 0 自己 1 下载）
-						int callOrder = msg.arg1;
-						if (callOrder == 0) { // 自己叫地主
-							if (play1Timer != null) {
-								timeleast = Integer.parseInt(play1Timer.getText().toString()) - 1;
-								if (timeleast == 0) {
-									callPoint(0);
-									return;
-								} else {
-									play1Timer.setText(String.valueOf(timeleast));
-								}
-							}
-						} else if (callOrder == 1) {
-							if (play2Timer != null) {
-								timeleast = Integer.parseInt(play2Timer.getText().toString()) - 1;
-								if (timeleast != 0) {
-									play2Timer.setText(String.valueOf(timeleast));
-								}
-							}
-						} else if (callOrder == -1) {
-							if (play3Timer != null) {
-								timeleast = Integer.parseInt(play3Timer.getText().toString()) - 1;
-								if (timeleast != 0) {
-									play3Timer.setText(String.valueOf(timeleast));
-								}
-							}
-						}
-						if (timeleast == 6) { // 播放警告声音
-							AudioPlayUtils.getInstance().playSound(R.raw.warn);
-						}
 						break;
 					case 6:// 收到打牌定时器时间更新消息
 						TextView now = (TextView) findViewById(msg.arg1);
@@ -2234,31 +1982,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						};
 						ScheduledTask.addDelayTask(adTask, Constant.AD_PLAY_TIME);
 						break;
-					case 9: // 地主产生（带踢拉功能）
-						hasTiLaDiZhu(msg);
-						break;
-					case 10: // 接收显示地主的牌（带踢拉功能）
-						if (masterOrder == mySelfOrder) { // 停掉计时器
-							isTurnMySelf = true;
-							stopTimer(0);
-							moveMyHead();
-						} else if (getNextOrder(masterOrder) == mySelfOrder) { // 上家
-							stopTimer(-1);
-						} else {
-							stopTimer(1);
-						}
-						LastCards lastCard = (LastCards) msg.getData().get("lastCard");
-						// 更新地主牌数量
-						TextView masterCountView2 = null;
-						if (!isTurnMySelf) {
-							masterCountView2 = (TextView) findViewById(1100 + masterOrder);
-						} else {
-							masterCountView2 = play1SurplusCount;
-						}
-						masterCountView2.setText("20");
-						genxinMycard(lastCard.getId(), lastCard.getLast(), lastCard.getMasterOrder());
-						startOtherTimer();
-						break;
 					case 11:// 接收当前玩家的踢拉选择，提示下家是“踢”或"拉"
 						getTiLaMsg(msg);
 						/** 更新记牌器头像 **/
@@ -2283,7 +2006,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						if (callOrder1 == 0) { // 自己叫地主
 							timeleast1 = Integer.parseInt(play1Timer.getText().toString()) - 1;
 							if (timeleast1 == 0) {
-								callBuJiaBei();
+								//callBuJiaBei();
 							} else {
 								play1Timer.setText(String.valueOf(timeleast1));
 							}
@@ -2301,8 +2024,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						if (timeleast1 == 6) { // 播放警告声音
 							AudioPlayUtils.getInstance().playSound(R.raw.warn);
 						}
-						/** 更新记牌器头像 **/
-						//refreshJiPaiQiAvatar();
 						break;
 					case 17: // 退出游戏返回房间
 						DialogUtils.quitGameTip();
@@ -2375,10 +2096,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 							AnimUtils.startAnimationsOut1(mySelfHeadRl, 300, 150, nullTv, nullTv2);
 							nullTv2.setVisibility(View.GONE);
 							nullTv.setVisibility(View.VISIBLE);
-							if (headTask != null) {
-								headTask.stop(true);
-								headTask = null;
-							}
 						}
 						break;
 					case 303:// 隐藏美女图鉴
@@ -2398,8 +2115,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						break;
 					case 402:// 设置游戏的背景
 						doudizhuBackGround.setBackgroundDrawable(ImageUtil.getResDrawable(Database.GAME_BG_DRAWABLEID, false));
-						//setBeiShuNumber(1); // 房间默认倍数
-						//dishu.setText(String.valueOf(Database.JOIN_ROOM_BASEPOINT)); // 房间默认底数
 						break;
 					case 403:// 其他玩家断线通知
 						int breakOrder = msg.getData().getInt("breakOrder");
@@ -2458,28 +2173,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						tips.show();
 						tips.setText("您的金豆超过上限");
 						break;
-					case 777:// 叫分选项显示
-						jiaofenNum = msg.arg1;
-						if (jiaofenNum == 1 && fen1.isClickable()) {
-							fen1.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen1_selected, true));
-						} else if (jiaofenNum == 2 && fen2.isClickable()) {
-							if (fen1.isClickable()) {
-								fen1.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen1, true));
-							}
-							fen2.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen2_selected, true));
-						} else if (jiaofenNum == 3 && fen3.getVisibility() == View.VISIBLE) {
-							if (fen1.isClickable()) {
-								fen1.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen1, true));
-							}
-							if (fen2.isClickable()) {
-								fen2.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen2, true));
-							}
-							fen3.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen3_selected, true));
-						} else if (jiaofenNum > 3 && fen3.getVisibility() == View.VISIBLE) {
-							callPoint(3);
-						}
-						Log.i("lin", "a" + jiaofenNum);
-						break;
 					case Constant.HANDLER_WHAT_GAME_VIEW_SEND_MESS_TEXT://发送聊天信息
 						sendTextMessage(msg.getData().getString(Constant.GAME_VIEW_SEND_MESS_TEXT), msg.getData().getInt(Constant.GAME_VIEW_SEND_MESS_CLICK_TYPE));
 						break;
@@ -2508,104 +2201,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			}
 
 			/**
-			 * 地主产生
-			 * 
-			 * @param msg
-			 */
-			private void hasDiZhu(Message msg) {
-				jiaofenLayout.setVisibility(View.GONE);
-				Grab grabMaster = (Grab) msg.getData().get("master");
-				setDizhuIcon(grabMaster.getMasterOrder());
-				masterOrder = grabMaster.getMasterOrder();
-				isTurnMySelf = false;
-				if (masterOrder == mySelfOrder) { // 停掉计时器
-					isTurnMySelf = true;
-					stopTimer(0);
-				} else if (getNextOrder(masterOrder) == mySelfOrder) { // 上家
-					stopTimer(-1);
-				} else {
-					stopTimer(1);
-				}
-				// 更新地主牌数量
-				TextView masterCountView = null;
-				if (!isTurnMySelf) {
-					masterCountView = (TextView) findViewById(1100 + masterOrder);
-				} else {
-					masterCountView = play1SurplusCount;
-				}
-				masterCountView.setText("20");
-				int tempRatio = grabMaster.getRatio() / Database.JOIN_ROOM.getRatio();
-				ImageView info = new ImageView(ctx);
-				callPoints(tempRatio, info, masterOrder, false);
-				// 显示"加倍"，"不加倍"
-				if (mySelfOrder == masterOrder) {
-					info.setPadding(0, 0, 0, 60);
-					play1PassLayout.removeAllViews();
-					play1PassLayout.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-					ActivityUtils.startScaleAnim(play1PassLayout, ctx);// 播放缩放动画
-				} else {
-					RelativeLayout re = (RelativeLayout) findViewById(masterOrder + 1000);
-					if (re != null) {
-						re.removeAllViews();
-						re.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-						ActivityUtils.startScaleAnim(re, ctx);// 播放缩放动画
-					}
-				}
-				genxinMycard(grabMaster.getId(), grabMaster.getLastcards(), grabMaster.getMasterOrder());
-				startOtherTimer();
-			}
-
-			/**
-			 * 地主产生（带踢拉功能）
-			 * 
-			 * @param msg
-			 */
-			private void hasTiLaDiZhu(Message msg) {
-				jiaofenLayout.setVisibility(View.GONE);
-				GenLandowners gld = (GenLandowners) msg.getData().get("gld");
-				setDizhuIcon(gld.getMasterOrder());
-				masterOrder = gld.getMasterOrder();
-				isTurnMySelf = false;
-				int ratio = gld.getRatio() / Database.JOIN_ROOM.getRatio();
-				ImageView info = new ImageView(ctx);
-				callPoints(ratio, info, masterOrder, false);
-				Log.i("jiaofenss", "hasTiLaDiZhu:" + ratio);
-				// 关闭叫地主定时器
-				if (mySelfOrder == masterOrder) {// 自己
-					stopTimer(0); // 暂停定时器
-				} else if (JIABEI2_ID == (1600 + masterOrder)) {// 下家
-					stopTimer(1); // 暂停定时器
-				} else if (JIABEI3_ID == (1600 + masterOrder)) {// 上家
-					stopTimer(-1); // 暂停定时器
-				}
-				// ActivityUtils.startScaleAnim(play1PassLayout, ctx);//播放缩放动画
-				// 开启踢拉定时器
-				if (mySelfOrder == masterOrder) {// 自己
-					isTurnMySelf = false;
-					startTiLaTimer(1);
-				} else if (JIABEI2_ID == (1600 + masterOrder)) {// 下家
-					isTurnMySelf = false;
-					startTiLaTimer(-1);
-				} else if (JIABEI3_ID == (1600 + masterOrder)) {// 上家
-					isTurnMySelf = true;
-					startTiLaTimer(0);
-				}
-				// 显示"加倍"，"不加倍"
-				if (mySelfOrder == masterOrder) {
-					info.setPadding(0, 0, 0, 60);
-					play1PassLayout.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-					ActivityUtils.startScaleAnim(play1PassLayout, ctx);// 播放缩放动画
-				} else {
-					RelativeLayout re = (RelativeLayout) findViewById(masterOrder + 1000);
-					if (re != null) {
-						re.removeAllViews();
-						re.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-						ActivityUtils.startScaleAnim(re, ctx);// 播放缩放动画
-					}
-				}
-			}
-
-			/**
 			 * 接收当前玩家的踢拉选择，提示下家是“踢”或"拉"
 			 * 
 			 * @param msg
@@ -2619,85 +2214,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					gd = Database.userMap.get(tila.getOrder()).getGender();
 				}
 				AudioPlayUtils apu2 = AudioPlayUtils.getInstance();
-				if (null != tila.getOrder() && 0 != tila.getRatio()) {
-					// (1:不加倍,2:加2倍,4:加4倍,0:没有叫加倍不加倍)
-					if (1 != tila.getRatio()) {// 加倍
-						if (2 == tila.getRatio()) {
-							info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.double_2, true));
-							// 显示已加倍的状态
-							if (mySelfOrder == tila.getOrder()) {
-								jiabei1Iv.setVisibility(View.VISIBLE);
-								jiabei1Iv.setImageResource(R.drawable.jiabei_x_2);
-							}
-							if (JIABEI2_ID == (1600 + tila.getOrder())) {
-								jiabei2Iv.setVisibility(View.VISIBLE);
-								jiabei2Iv.setImageResource(R.drawable.jiabei_x_2);
-								setTweenAnim(jiabei2Iv, R.anim.jump, IS_NONE);
-								DoubleNum2 = 2;
-							}
-							if (JIABEI3_ID == (1600 + tila.getOrder())) {
-								jiabei3Iv.setVisibility(View.VISIBLE);
-								jiabei3Iv.setImageResource(R.drawable.jiabei_x_2);
-								setTweenAnim(jiabei3Iv, R.anim.jump, IS_NONE);
-								DoubleNum3 = 2;
-							}
-						} else {
-							info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.double_4, true));
-							// 显示已加倍的状态
-							if (mySelfOrder == tila.getOrder()) {
-								jiabei1Iv.setVisibility(View.VISIBLE);
-								jiabei1Iv.setImageResource(R.drawable.jiabei_x_4);
-							}
-							if (JIABEI2_ID == (1600 + tila.getOrder())) {
-								jiabei2Iv.setVisibility(View.VISIBLE);
-								jiabei2Iv.setImageResource(R.drawable.jiabei_x_4);
-								setTweenAnim(jiabei2Iv, R.anim.jump, IS_NONE);
-								DoubleNum2 = 4;
-							}
-							if (JIABEI3_ID == (1600 + tila.getOrder())) {
-								setTweenAnim(jiabei3Iv, R.anim.jump, IS_NONE);
-								jiabei3Iv.setImageResource(R.drawable.jiabei_x_4);
-								jiabei3Iv.setVisibility(View.VISIBLE);
-								DoubleNum3 = 4;
-							}
-						}
-						// 声音提示
-						if ("1".equals(gd)) {// 女
-							// 女声
-							apu2.playSound(R.raw.nv_jiabei);
-						} else {
-							// 男声
-							apu2.playSound(R.raw.nan_jiabei);
-						}
-						// 在对应的玩家头像显示加倍标识
-					} else {// 不加倍
-						info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.not_doubling, true));
-						if ("1".equals(gd)) {// 女
-							// 女声
-							apu2.playSound(R.raw.nv_bujiabei);
-						} else {
-							// 男声
-							apu2.playSound(R.raw.nan_bujiabei);
-						}
-					}
-					// 显示"加倍"，"不加倍"
-					if (mySelfOrder == tila.getOrder()) {
-						play1PassLayout.removeAllViews();
-						jiabei1Iv.setVisibility(View.VISIBLE);
-						info.setPadding(0, 0, 0, 60);
-						play1PassLayout.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-						ActivityUtils.startScaleAnim(play1PassLayout, ctx);// 播放缩放动画
-					} else {
-						RelativeLayout re = (RelativeLayout) findViewById(tila.getOrder() + 1000);
-						Log.i("Order", "tila.getOrder():" + tila.getOrder() + "      re:" + re);
-						if (re != null) {
-							re.removeAllViews();
-							re.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-							ActivityUtils.startScaleAnim(re, ctx);// 播放缩放动画
-						}
-					}
-					Log.i("Ordersss", "tila.getOrder():" + tila.getOrder() + "      mySelfOrder:" + mySelfOrder + "     masterOrder:" + masterOrder);
-				}
 				// 关闭当前踢拉定时器
 				if (null != tila.getOrder()) {
 					if (mySelfOrder == tila.getOrder()) {// 自己
@@ -2719,14 +2235,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					} else if (JIABEI3_ID == (1600 + tila.getNextOrder())) {// 上家
 						isTurnMySelf = false;
 						startTiLaTimer(-1);
-					}
-				}
-				// 下一个可否踢or拉
-				if (tila.getNextCan() && (null != tila.getNextOrder()) && (mySelfOrder == tila.getNextOrder())) {// 下一个是自己，并且可加倍
-					play1PassLayout.removeAllViews();
-					tilaLayout.setVisibility(View.VISIBLE);
-					if (isTuoguan) {
-						callBuJiaBei();
 					}
 				}
 			}
@@ -2770,18 +2278,12 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		masterOrder = 0;
 		callPoint = 0;
 		jiao = 0;
-		fen1.setClickable(true);
-		fen2.setClickable(true);
-		fen3.setClickable(true);
 		play2IsTuoGuan = false;
 		play3IsTuoGuan = false;
 		myCardsTouchLayout.removeAllViews();
 		play1PassLayout.removeAllViews();
 		play2PassLayout.removeAllViews();
 		play3PassLayout.removeAllViews();
-		jiabei1Iv.setVisibility(View.GONE);
-		jiabei2Iv.setVisibility(View.GONE);
-		jiabei3Iv.setVisibility(View.GONE);
 		wolTv1.setVisibility(View.GONE);
 		wolTv2.setVisibility(View.GONE);
 		wolTv3.setVisibility(View.GONE);
@@ -3056,8 +2558,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				hiddenPlayBtn();
 				firstChupai = true;
 				bierenchupai = null;
-				// 检测加倍
-				checkJiaBei(typeMe, false);
 				playDiZhuCardAudio(typeMe,valueMe, Database.userMap.get(mySelfOrder).getGender()); // 出牌的声音
 				// 如果是炸弹显示特效
 				PlayCardEffect.bomEffect(typeMe, doudizhuBackGround);
@@ -3074,8 +2574,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				playError(comeOnFling);
 			}
 		} else {
-			// 检测加倍
-			checkJiaBei(typeMe, false);
 			cardAddview(chupaicard, false);
 			initTiShiCount();
 			// 发送出牌消息
@@ -3131,24 +2629,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			zhidou.setText(String.valueOf(cacheUser.getBean()));
 		} else {
 			zhidou.setText(String.valueOf("20000"));
-		}
-	}
-
-	/**
-	 * 检测是否需要加倍
-	 * 
-	 * @param type
-	 * @param reShow
-	 *            是否重连时显示的牌
-	 * 
-	 */
-	public void checkJiaBei(int type, boolean reShow) {
-		if (reShow)
-			return;
-		// 如果是炸弹或者是火箭
-		if (type == 6 || type == 13) {
-			beishuNumber = String.valueOf(Integer.parseInt(beishuNumber) * 2);
-			//beishuNumView.setText(beishuNumber);
 		}
 	}
 
@@ -3324,95 +2804,12 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	}
 
 	/**
-	 * 叫地主提示多少分
-	 * 
-	 * @param ratio
-	 * @param ResId
-	 * @param perCallOrder
-	 *            上次叫分人
-	 */
-	public void setJiaofenXianshi(int ratio, int perCallOrder) {
-		ImageView info = new ImageView(this);
-		info.setBackgroundDrawable(ImageUtil.getResDrawable(backId(ratio, perCallOrder), true));
-		// play1PassLayout.removeAllViews();
-		// play2PassLayout.removeAllViews();
-		// play3PassLayout.removeAllViews();
-		if (perCallOrder != mySelfOrder) {// 如果是自己叫地主
-			RelativeLayout re = (RelativeLayout) findViewById(perCallOrder + 1000); // 叫分的人
-			if (re != null) {
-				re.removeAllViews();
-				// re.addView(info);
-				re.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-				ActivityUtils.startScaleAnim(re, ctx);// 播放缩放动画
-			}
-		} else {
-			if (3 == ratio) { // 叫三分放在此处是防止，自己点三分的时候出现重复的叫3分声音
-				String gender = Database.userMap.get(perCallOrder).getGender();
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playSound(R.raw.nv_3fen);// 叫3分
-				} else {
-					AudioPlayUtils.getInstance().playSound(R.raw.nan_3fen);// 叫3分
-				}
-				RelativeLayout re = (RelativeLayout) findViewById(perCallOrder + 1000); // 叫分的人
-				if (re != null) {
-					re.removeAllViews();
-					// re.addView(info);
-					re.addView(info, mst.getAdjustLayoutParamsForImageView(info));
-					ActivityUtils.startScaleAnim(re, ctx);// 播放缩放动画
-				}
-			}
-		}
-	}
-
-	/**
 	 * 清除出牌提示信息
 	 */
 	public void cleanAllChuPaiInfo() {
 		play1PassLayout.removeAllViews();
 		play3PassLayout.removeAllViews();
 		play2PassLayout.removeAllViews();
-	}
-
-	/**
-	 * 通过传入叫分的分值返回图片的id
-	 * 
-	 * @param ratio
-	 * @return
-	 */
-	public int backId(int ratio, int perCallOrder) {
-		int id = 0;
-		String gender = Database.userMap.get(perCallOrder).getGender();
-		switch (ratio) {
-			case 0:
-				id = R.drawable.call_bujiao;
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playSound(R.raw.nv_bujiao);// 不叫
-				} else {
-					AudioPlayUtils.getInstance().playSound(R.raw.nan_bujiao);// 不叫
-				}
-				break;
-			case 1:
-				id = R.drawable.callone;
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playSound(R.raw.nv_1fen);// 叫1分
-				} else {
-					AudioPlayUtils.getInstance().playSound(R.raw.nan_1fen);// 叫1分
-				}
-				break;
-			case 2:
-				id = R.drawable.calltwo;
-				if ("1".equals(gender)) {
-					AudioPlayUtils.getInstance().playSound(R.raw.nv_2fen);// 叫2分
-				} else {
-					AudioPlayUtils.getInstance().playSound(R.raw.nan_2fen);// 叫2分
-				}
-				break;
-			case 3:
-				id = R.drawable.callthree;
-				break;
-		}
-		Log.i("jiaofenss", "backId:" + ratio);
-		return id;
 	}
 
 	/**
@@ -3581,9 +2978,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			playCard(false);
 		}
 		hiddenPlayBtn();
-		if (tilaLayout.getVisibility() == View.VISIBLE && playBtnLayout.getVisibility() != View.VISIBLE && jiaofenLayout.getVisibility() != View.VISIBLE) {
-			callBuJiaBei();
-		}
 	}
 
 	/**
@@ -3690,75 +3084,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		play3Icon.setId(PLAY3ICON_ID);
 		zhezhao2.setId(ZHEZHAO2_ID);
 		zhezhao3.setId(ZHEZHAO3_ID);
-		jiabei2Iv.setId(JIABEI2_ID);
-		jiabei3Iv.setId(JIABEI3_ID);
-	}
-
-	/**
-	 * 一开始对自己判断是否叫地主
-	 * 
-	 * @param fapai
-	 */
-	public void callDizhu(Play fapai) {
-		// 如果是轮到自己叫地主,显示叫地主的布局
-		if (fapai.isCall()) {
-			isTurnMySelf = true;
-			jiaofenLayout.setVisibility(View.VISIBLE);
-			startQiangTimer(0);// 开启抢地主定时器
-		} else {
-			isTurnMySelf = false;
-			if (fapai.getCallOrder() == getNextOrder(mySelfOrder)) { // 下家
-				startQiangTimer(1);
-			} else { // 上家
-				startQiangTimer(-1);
-			}
-		}
-	}
-
-	/**
-	 * 根据服务器发送的消息来判断是否自己叫地主
-	 * 
-	 * @param grab
-	 */
-	public void truntoCallDizhu(Grab grab) {
-		int currentCallOrder = grab.getNextOrder(); // 当前叫分人的位置编号
-		Log.i("jiaofenss", "truntoCallDizhu1");
-		// 叫地主显示
-		setJiaofenXianshi(grab.getRatio(), getPerOrder(currentCallOrder));
-		if (callPoint < grab.getRatio()) {
-			callPoint = grab.getRatio();
-		} else {
-			grab.setRatio(callPoint);
-		}
-
-		if (currentCallOrder == mySelfOrder) { // 轮到自己叫分
-			if (isTuoguan) {
-				callPoint(0);
-				return;
-			} else {
-				// 叫地主提示
-				Log.i("jiaofenss", "truntoCallDizhu2");
-				// setJiaofenXianshi(grab.getRatio(),getPerOrder(currentCallOrder));
-				startQiangTimer(0); // 开启抢地主定时器
-				// 显示叫分栏
-				jiaofenLayout.setVisibility(View.VISIBLE);
-				// 根据别人叫分情况让某些叫分按钮不可按
-				if (grab.getRatio() == 1) { // 上次叫1分
-					fen1.setClickable(false);
-					fen1.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen1_no, true));
-				} else if (grab.getRatio() == 2) {// 上次叫2分
-					fen1.setClickable(false);
-					fen1.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen1_no, true));
-					fen2.setClickable(false);
-					fen2.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen2_no, true));
-				}
-			}
-		} else if (currentCallOrder != mySelfOrder) { // 下家叫的
-			startQiangTimer(-1);
-		}
-		Log.i("jiaofenss", "truntoCallDizhu3" + callPoint);
-		// 叫地主显示
-		// setJiaofenXianshi(grab.getRatio(), getPerOrder(currentCallOrder));
 	}
 
 	/**
@@ -3791,58 +3116,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			next = Order + 1;
 		}
 		return next;
-	}
-
-	/**
-	 * 设置地主的头像
-	 * 
-	 * @param msterOrder
-	 */
-	public void setDizhuIcon(int msterOrder) {
-		if (msterOrder == mySelfOrder) { // 如果自己是地主的话
-			GameUser mGameUser = Database.userMap.get(mySelfOrder);
-			ActivityUtils.setHead(ctx, play1Icon, mGameUser.getGender(), true, mGameUser.getIqImg(), true);// 地主
-			int po1 = getNextOrder(msterOrder);
-			GameUser mGameUser1 = Database.userMap.get(po1);
-			ImageView icon = (ImageView) findViewById(1300 + po1);
-			if (null != icon) {
-				ActivityUtils.setHead(ctx, icon, mGameUser1.getGender(), false, mGameUser1.getIqImg(), true);// 农民
-			}
-			int po2 = getNextOrder(po1);
-			GameUser mGameUser2 = Database.userMap.get(po2);
-			ImageView icon1 = (ImageView) findViewById(1300 + po2);
-			if (null != icon1) {
-				ActivityUtils.setHead(ctx, icon1, mGameUser2.getGender(), false, mGameUser2.getIqImg(), true);// 农民
-			}
-			zhezhao1.setVisibility(View.GONE);
-		} else {
-			ImageView icon2 = (ImageView) findViewById(1300 + msterOrder);
-			if (null != icon2) {
-				ActivityUtils.setHead(ctx, icon2, Database.userMap.get(msterOrder).getGender(), true, Database.userMap.get(msterOrder).getIqImg(), true);// 地主
-			}
-			int po3 = getNextOrder(msterOrder);
-			if (po3 == mySelfOrder) {
-				ActivityUtils.setHead(ctx, play1Icon, Database.userMap.get(mySelfOrder).getGender(), false, Database.userMap.get(mySelfOrder).getIqImg(), true);// 农民
-			} else {
-				ImageView icon3 = (ImageView) findViewById(1300 + po3);
-				if (null != icon3) {
-					ActivityUtils.setHead(ctx, icon3, Database.userMap.get(po3).getGender(), false, Database.userMap.get(po3).getIqImg(), true);// 农民
-				}
-			}
-			int po4 = getNextOrder(po3);
-			if (po4 == mySelfOrder) {
-				ActivityUtils.setHead(ctx, play1Icon, Database.userMap.get(mySelfOrder).getGender(), false, Database.userMap.get(mySelfOrder).getIqImg(), true);// 农民
-			} else {
-				ImageView icon4 = (ImageView) findViewById(1300 + po4);
-				if (null != icon4) {
-					ActivityUtils.setHead(ctx, icon4, Database.userMap.get(po4).getGender(), false, Database.userMap.get(po4).getIqImg(), true);// 农民
-				}
-			}
-			ImageView zhezhao = (ImageView) findViewById(1400 + msterOrder);
-			if (null != zhezhao) {
-				zhezhao.setVisibility(View.GONE);
-			}
-		}
 	}
 
 	/**
@@ -3962,7 +3235,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			if (isTuoguan) { // 如果当前正在托管
 				setTuoGuan();
 			} else {
-				jiaofenLayout.setVisibility(View.GONE);
 				// 开启一个定时器
 				startPlayTimer(R.id.play1Time);
 			}
@@ -4066,8 +3338,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				cad[i] = Integer.parseInt(otherPlayCards[i]);
 			}
 			bierenchupai = cad;
-			// 检测加倍
-			checkJiaBei(checkOtherChupai(bierenchupai), reShow);
 		}
 		if (play.getCount() == 0) { // 已出完牌 此牌为最后一手
 			return;
@@ -4184,18 +3454,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			msg.what = 6;
 			msg.arg1 = id;
 			handler.sendMessage(msg);
-		}
-	}
-
-	/**
-	 * 头像定时器
-	 * 
-	 * @author Administrator
-	 */
-	class HeadTask extends AutoTask {
-
-		public void run() {
-			handler.sendEmptyMessage(301);
 		}
 	}
 
@@ -4625,17 +3883,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				handler.sendMessage(message);
 				return;
 			}
-			if (CmdUtils.CMD_MASTER.equals(cmd)) {// 如果是叫地主成功的话
-				hideSlowTip();
-				Message message = new Message();
-				Grab master = JsonHelper.fromJson(detail, Grab.class); // jsonData是一个Json对象
-				message.what = 2;
-				Bundle bundle = new Bundle();
-				bundle.putSerializable("master", master);
-				message.setData(bundle);
-				handler.sendMessage(message);
-				return;
-			}
 			if (CmdUtils.CMD_GEN_LANDOWNERS.equals(cmd)) {// 产生地主(带踢拉功能)
 				hideSlowTip();
 				Message message = new Message();
@@ -5005,14 +4252,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			ActivityUtils.setHead(ctx, play1Icon, Database.userMap.get(mySelfOrder).getGender().trim(), (mySelfOrder == relink.getMasterOrder()), Database.userMap.get(mySelfOrder).getIqImg(), false);// 设置头像
 			Log.i("gameUserInfo", "断网重连：" + Database.userMap.get(mySelfOrder).getIqImg().toString());
 			play1Order.setText(String.valueOf(mySelfOrder));
-			if (1 != tempUser.getRatio()) {// 是否加倍
-				jiabei1Iv.setVisibility(View.VISIBLE);
-				if (2 == tempUser.getRatio()) {
-					jiabei1Iv.setImageResource(R.drawable.jiabei_x_2);
-				} else {
-					jiabei1Iv.setImageResource(R.drawable.jiabei_x_4);
-				}
-			}
 			iqTv1.setText("" + Database.userMap.get(mySelfOrder).getIq());
 			Map<String, String> dpMap = tempUser.getGameUser().getLevelImg();
 			try {
@@ -5057,14 +4296,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			if (tempUser.getIsAuto() == 1) {
 				play2Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.robot, true));
 				play2IsTuoGuan = true;
-			}
-			if (1 != tempUser.getRatio()) {// 是否加倍
-				jiabei2Iv.setVisibility(View.VISIBLE);
-				if (2 == tempUser.getRatio()) {
-					jiabei2Iv.setImageResource(R.drawable.jiabei_x_2);
-				} else {
-					jiabei2Iv.setImageResource(R.drawable.jiabei_x_4);
-				}
 			}
 			iqTv2.setText("" + Database.userMap.get(p2o).getIq());
 			Map<String, String> dpMap2 = tempUser.getGameUser().getLevelImg();
@@ -5144,14 +4375,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				play3Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.robot, true));
 				play3IsTuoGuan = true;
 			}
-			if (1 != tempUser.getRatio()) {// 是否加倍
-				jiabei3Iv.setVisibility(View.VISIBLE);
-				if (2 == tempUser.getRatio()) {
-					jiabei3Iv.setImageResource(R.drawable.jiabei_x_2);
-				} else {
-					jiabei3Iv.setImageResource(R.drawable.jiabei_x_4);
-				}
-			}
 			iqTv3.setText("" + Database.userMap.get(p3o).getIq());
 			cleanAllChuPaiInfo();
 			// 托管时的牌可按
@@ -5166,45 +4389,9 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			int myDo = relink.getIsMyDo();
 			boolean isMyDo = (myDo == 1) ? true : false; // 是否轮到我操作
 			hiddenPlayBtn(); // 隐藏出牌按钮
-			if (relStatus == Constant.STATUS_START) { // 开始叫地主
-				if (isMyDo) { // 轮到自己叫地主
-					Play play = new Play();
-					play.setCall(true);
-					callDizhu(play);
-				}
-				return;
-			}
-			if (relStatus == Constant.STATUS_GRAB) { // 正在叫地主
-				if (isMyDo) { // 轮到自己叫地主
-					Play play = new Play();
-					play.setCall(true);
-					callDizhu(play);
-				} else { // 其他人叫地主
-					isTurnMySelf = false;
-					if (relink.getNextPlayOrder() == getNextOrder(mySelfOrder)) { // 下家
-						startQiangTimer(1);
-					} else { // 上家
-						startQiangTimer(-1);
-					}
-				}
-				return;
-			}
-			if (relStatus == Constant.STATUS_TL) { // 轮到自己加倍
-				if (isMyDo) { // 轮到自己加倍
-					play1PassLayout.removeAllViews();
-					tilaLayout.setVisibility(View.VISIBLE);
-					isTurnMySelf = true;
-					callBuJiaBei();
-				}
-				masterOrder = relink.getMasterOrder();
-				setDizhuIcon(masterOrder);
-				return;
-			}
 
 			if (relStatus == Constant.STATUS_PLAYING) { // 正在打牌时重连
-				jiaofenLayout.setVisibility(View.GONE);
 				masterOrder = relink.getMasterOrder();
-				setDizhuIcon(masterOrder);
 				selfIsMove = true;
 				nullTv2.setVisibility(View.GONE);
 				nullTv.setVisibility(View.VISIBLE);
@@ -5493,7 +4680,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					long tapTime = endTap - startTap;
 					/** 收集两次点击的时间来区分单击与双击 **/
 					if (tapTime > 0 && tapTime < 200) {
-						if (jiaofenLayout.getVisibility() != View.VISIBLE) {// 双击取消选牌
+						if (playBtnLayout.getVisibility() == View.VISIBLE) {// 双击取消选牌
 							for (int i = 0; i < nowcard.size(); i++) {
 								poker[nowcard.get(i).getNumber()].params.topMargin = mst.adjustXIgnoreDensity(20);
 								poker[nowcard.get(i).getNumber()].setLayoutParams(poker[nowcard.get(i).getNumber()].params);
@@ -5506,7 +4693,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						}
 					} else {
 						// 单击提示牌型
-						if (playBtnLayout.getVisibility() == View.VISIBLE && jiaofenLayout.getVisibility() != View.VISIBLE && tilaLayout.getVisibility() != View.VISIBLE) {
+						if (playBtnLayout.getVisibility() == View.VISIBLE) {
 							if (mainGameGuideVI.isPoint()) {
 								mainGameGuideVI.setPointGone(true);
 							}
@@ -5519,83 +4706,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				}
 				startTap = System.currentTimeMillis();
 				endTap = 0;
-				/** 叫分选择 */
-				if (jiaofenLayout.getVisibility() == View.VISIBLE && tilaLayout.getVisibility() != View.VISIBLE && playBtnLayout.getVisibility() != View.VISIBLE) {
-					/**间距*/
-					int space = jiaofenLayout.getHeight() / 2;
-					Log.i("space", "jiaofenLayout...space:  " + space);
-					int left = jiaofenLayout.getLeft() - space;
-					int right = jiaofenLayout.getRight() + space;
-					int top = jiaofenLayout.getTop() - space;
-					int bottom = jiaofenLayout.getBottom() + space;
-					if (e.getRawX() < left || e.getRawX() > right || e.getRawY() < top || e.getRawY() > bottom) {
-						jiao++;
-						jiao1 = false;
-						jiao2 = false;
-						jiao3 = false;
-						if (fen1.isClickable()) {
-							if (jiao == 1) {
-								fen1.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen1_touch, true));
-								fen2.setBackgroundResource(R.drawable.fen2_btn_bg);
-								fen3.setBackgroundResource(R.drawable.fen3_btn_bg);
-								jiao1 = true;
-							} else if (jiao == 2) {
-								fen1.setBackgroundResource(R.drawable.fen1_btn_bg);
-								fen2.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen2_touch, true));
-								fen3.setBackgroundResource(R.drawable.fen3_btn_bg);
-								jiao2 = true;
-							} else {
-								fen1.setBackgroundResource(R.drawable.fen1_btn_bg);
-								fen2.setBackgroundResource(R.drawable.fen2_btn_bg);
-								fen3.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen3_touch, true));
-								jiao = 0;
-								jiao3 = true;
-							}
-						} else if (!fen1.isClickable() && fen2.isClickable()) {
-							if (jiao == 1) {
-								fen2.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen2_touch, true));
-								fen3.setBackgroundResource(R.drawable.fen3_btn_bg);
-								jiao2 = true;
-							} else {
-								fen2.setBackgroundResource(R.drawable.fen2_btn_bg);
-								fen3.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen3_touch, true));
-								jiao = 0;
-								jiao3 = true;
-							}
-						} else if (!fen1.isClickable() && !fen2.isClickable()) {
-							fen3.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.fen3_touch, true));
-							jiao = 0;
-							jiao3 = true;
-						}
-					}
-					return true;
-				}
-				/** 加倍选择 */
-				if (tilaLayout.getVisibility() == View.VISIBLE && jiaofenLayout.getVisibility() != View.VISIBLE && playBtnLayout.getVisibility() != View.VISIBLE) {
-					/**间距*/
-					int space = tilaLayout.getHeight() / 2;
-					Log.i("space", "tilaLayout--space:  " + space);
-					int left = tilaLayout.getLeft() - space;
-					int right = tilaLayout.getRight() + space;
-					int top = tilaLayout.getTop() - space;
-					int bottom = tilaLayout.getBottom() + space;
-					if (e.getRawX() < left || e.getRawX() > right || e.getRawY() < top || e.getRawY() > bottom) {
-						jia += 2;
-						jiaBei2 = false;
-						jiaBei4 = false;
-						if (jia == 2) {
-							tiLaBtn2.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.jiabei_2_touch, true));
-							tiLaBtn4.setBackgroundResource(R.drawable.jiabei_btn_bg_4);
-							jiaBei2 = true;
-						} else if (jia == 4) {
-							tiLaBtn2.setBackgroundResource(R.drawable.jiabei_btn_bg_2);
-							tiLaBtn4.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.jiabei_4_touch, true));
-							jiaBei4 = true;
-							jia = 0;
-						}
-					}
-					return true;
-				}
 			}
 		}
 		return true;
@@ -5619,7 +4729,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			}
 			if ((e1.getY() - e2.getY() < -length)) {// 向下滑动
 				// 手势提示 出牌 不出牌
-				if (playBtnLayout.getVisibility() == View.VISIBLE && jiaofenLayout.getVisibility() != View.VISIBLE && tilaLayout.getVisibility() != View.VISIBLE && buchu.getVisibility() != View.GONE) {
+				if (playBtnLayout.getVisibility() == View.VISIBLE && buchu.getVisibility() != View.GONE) {
 					if (mainGameGuideVI.isArrowIsDown()) {// 当前提示是向下滑动的提示
 						mainGameGuideVI.setArrowDownGone(true);
 					} else {// 若不是
@@ -5636,19 +4746,9 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					passCard();
 					return true;
 				}
-				// 手势提示 加倍，不加倍
-				if (tilaLayout.getVisibility() == View.VISIBLE && playBtnLayout.getVisibility() != View.VISIBLE && jiaofenLayout.getVisibility() != View.VISIBLE) {
-					callBuJiaBei();
-					return true;
-				}
-				// 手势不叫分
-				if (jiaofenLayout.getVisibility() == View.VISIBLE && tilaLayout.getVisibility() != View.VISIBLE && playBtnLayout.getVisibility() != View.VISIBLE) {
-					callPoint(0);
-					return true;
-				}
 			} else if (e1.getY() - e2.getY() > mst.adjustYIgnoreDensity(40)) {// 向上滑动
 				// 手势提示 出牌 不出牌
-				if (playBtnLayout.getVisibility() == View.VISIBLE && jiaofenLayout.getVisibility() != View.VISIBLE && tilaLayout.getVisibility() != View.VISIBLE) {
+				if (playBtnLayout.getVisibility() == View.VISIBLE) {
 					if (mainGameGuideVI.isArrowIsUp()) {
 						mainGameGuideVI.setArrowUpGone(true);
 					} else {
@@ -5668,26 +4768,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						if (time > 0 && time != 20) {
 							playCard(false);
 						}
-					}
-					return true;
-				}
-				// 手势提示 加倍
-				if (tilaLayout.getVisibility() == View.VISIBLE && playBtnLayout.getVisibility() != View.VISIBLE && jiaofenLayout.getVisibility() != View.VISIBLE) {
-					if (jiaBei2) {
-						callJiabei(2);
-					} else if (jiaBei4) {
-						callJiabei(4);
-					}
-					return true;
-				}
-				// 手势叫分
-				if (jiaofenLayout.getVisibility() == View.VISIBLE && tilaLayout.getVisibility() != View.VISIBLE && playBtnLayout.getVisibility() != View.VISIBLE) {
-					if (jiao1) {
-						callPoint(1);
-					} else if (jiao2) {
-						callPoint(2);
-					} else if (jiao3) {
-						callPoint(3);
 					}
 					return true;
 				}
@@ -5962,19 +5042,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	}
 
 	/**
-	 * 移动自己的头像
-	 */
-	private void moveMyHead() {
-		// 定时下移我的头像
-		if (headTask != null) {
-			headTask.stop(true);
-			headTask = null;
-		}
-		headTask = new HeadTask();
-		ScheduledTask.addRateTask(headTask, 1500);
-	}
-
-	/**
 	 * 设置动画
 	 * 
 	 * @param view
@@ -5995,7 +5062,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			public void onAnimationEnd(Animation animation) {
 				switch (type) {
 					case IS_HEAD_ANIM:
-						moveMyHead();
+						//moveMyHead();
 						break;
 					case IS_FEIJI_ANIM:
 						feijiImageView.setVisibility(View.INVISIBLE);

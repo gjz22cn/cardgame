@@ -267,15 +267,6 @@
                         android:textSize="10dp" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/double1_iv"
-                    android:layout_width="20dp"
-                    android:layout_height="17dp"
-                    android:layout_alignBottom="@+id/self_ll"
-                    android:layout_alignRight="@+id/top_1"
-                    android:src="@drawable/jiabei_x_2"
-                    android:visibility="gone" />
-
                 <LinearLayout
                     android:id="@+id/my_dunpai_ll"
                     android:layout_width="wrap_content"
@@ -442,15 +433,6 @@
                     android:textColor="#FFF402"
                     android:textSize="11dp" />
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/double3_iv"
-                android:layout_width="20dp"
-                android:layout_height="17dp"
-                android:layout_alignBottom="@+id/top_left_ll"
-                android:layout_toRightOf="@+id/top_left_ll"
-                android:src="@drawable/jiabei_x_2"
-                android:visibility="gone" />
         </RelativeLayout>
 
         <LinearLayout
@@ -617,16 +599,6 @@
                     android:textColor="#FFF402"
                     android:textSize="11dp" />
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/double2_iv"
-                android:layout_width="20dp"
-                android:layout_height="17dp"
-                android:layout_alignBottom="@+id/top_right_ll"
-                android:layout_alignLeft="@+id/top_right_ll"
-                android:layout_marginRight="-20dp"
-                android:src="@drawable/jiabei_x_2"
-                android:visibility="gone" />
         </RelativeLayout>
 
         <LinearLayout
@@ -1332,21 +1304,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:visibility="gone" >
-<!-- 
-            <Button
-                android:id="@+id/dzed_recharge_beans_btn"
-                style="@style/dialog_ok_btn_style"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="2dp"
-                android:background="@drawable/select1_btn_bg"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="充值10元"
-                android:textColor="@color/dialog_ok_btn_text_color"
-                android:textSize="12dp" />
-                 -->
+
 
             <Button
                 android:id="@+id/dzed_borrow_beans_btn"
@@ -1375,91 +1333,6 @@
             android:textColor="@color/white"
             android:textSize="15dp"
             android:visibility="gone" />
-        <!-- 叫地主按钮  1分   2分  3分 倒计时钟 不叫  start -->
-
-        <LinearLayout
-            android:id="@+id/jiaofenRelative"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/chu_marginTop"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <Button
-                android:id="@+id/fen1Button"
-                style="@style/game_tishi_btn_style"
-                android:layout_gravity="bottom"
-                android:background="@drawable/fen1_btn_bg" />
-
-            <Button
-                android:id="@+id/fen2Button"
-                style="@style/game_tishi_btn_style"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="@dimen/jiaofen_btn_margin_left"
-                android:background="@drawable/fen2_btn_bg" />
-
-            <Button
-                android:id="@+id/fen3Button"
-                style="@style/game_tishi_btn_style"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="@dimen/jiaofen_btn_margin_left"
-                android:background="@drawable/fen3_btn_bg" />
-
-            <Button
-                android:id="@+id/bujiaoButton"
-                style="@style/game_tishi_btn_style"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="@dimen/jiaofen_btn_margin_left"
-                android:background="@drawable/bujiao_btn_bg" />
-        </LinearLayout>
-
-        <!--
-        <Button
-            android:id="@+id/btn_jipaiqi"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignBaseline="@id/jiaofenRelative"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="185dp"
-            android:background="@drawable/btn_jipaiqi_bg" />
-             -->
-        <!-- 叫地主按钮    1分   2分  3分 倒计时钟 不叫 end -->
-
-
-        <!-- 加倍start -->
-
-        <LinearLayout
-            android:id="@+id/tila_ll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/chu_marginTop"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <Button
-                android:id="@+id/tila_button_2"
-                style="@style/game_tishi_btn_style"
-                android:layout_gravity="bottom"
-                android:background="@drawable/jiabei_btn_bg_2" />
-
-            <Button
-                android:id="@+id/tila_button_4"
-                style="@style/game_tishi_btn_style"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="25dp"
-                android:background="@drawable/jiabei_btn_bg_4" />
-
-            <Button
-                android:id="@+id/bu_tila_button"
-                style="@style/game_tishi_btn_style"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="25dp"
-                android:background="@drawable/bujiabei_btn_bg" />
-        </LinearLayout>
-        <!-- 加倍end -->
 
         <RelativeLayout
             android:id="@+id/busy_play2Time"
@@ -1539,48 +1412,6 @@
                 android:layout_marginTop="45px" />
         </RelativeLayout>
         <!-- 玩家信息展示框   end -->
-<!--
-        <RelativeLayout
-            android:id="@+id/bao_xiang_layout"
-            android:layout_width="45dp"
-            android:layout_height="70dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="100dp" >
-
-            <RelativeLayout
-                android:id="@+id/baoxiang"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/baoxiang"
-                android:gravity="center_horizontal"
-                android:orientation="vertical" >
-            </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/bao_xiang_star"
-                android:layout_width="30dp"
-                android:layout_height="26dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/baoxiang_start_3"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/bao_xiang_text"
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_below="@+id/baoxiang"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/baoxiang_text_bg"
-                android:gravity="center"
-                android:text="1/5"
-                android:textColor="@color/white"
-                android:textSize="11dp" />
-        </RelativeLayout>
-        -->
 
         <Button
             android:id="@+id/gp_top_btn"
