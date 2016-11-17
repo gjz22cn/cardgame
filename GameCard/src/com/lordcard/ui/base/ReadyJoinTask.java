@@ -79,7 +79,7 @@ package com.lordcard.ui.base;
 //					if (Database.GAME_TYPE == Constant.GAME_TYPE_DIZHU) { // 斗地主
 //						in.setClass(context, DoudizhuMainGameActivity.class);
 //					}
-//					MobclickAgent.onEvent(context, room.getName(), 1);
+//					//MobclickAgent.onEvent(context, room.getName(), 1);
 //					Boolean isFinish = param.getBoolean("finish");
 //					if (isFinish != null && isFinish) {
 //						Database.currentActivity.finish();

@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.umeng.analytics.MobclickAgent;
 import com.lordcard.common.exception.CrashApplication;
 import com.lordcard.common.util.ActivityUtils;
 import com.lordcard.common.util.DialogUtils;
@@ -289,7 +288,7 @@ public class AccountBindDialog extends Dialog implements OnClickListener {
 							Database.currentActivity.runOnUiThread(new Runnable() {
 								public void run() {
 									GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-									MobclickAgent.onEvent(context, "邀绑定账号提交数据");
+									////MobclickAgent.onEvent(context, "邀绑定账号提交数据");
 									DialogUtils.toastTip("修改成功");
 									gameIdTv.setText(cacheUser.getAccount());
 									gameAccountTv1.setText(cacheUser.getRelaAccount());

@@ -52,7 +52,7 @@ import com.lordcard.network.http.HttpUtils;
 import com.lordcard.ui.LoginActivity;
 import com.lordcard.ui.TaskMenuActivity;
 import com.lordcard.ui.view.dialog.UpdateDialog;
-import com.umeng.analytics.MobclickAgent;
+
 
 public class UpdateUtils {
 
@@ -194,8 +194,8 @@ public class UpdateUtils {
 										showText = "游戏正在更新，请稍候！";
 									}
 									DialogUtils.mesToastTip(showText);
-									MobclickAgent.onEvent(content,"更新");
-									MobclickAgent.onEvent(content,"静默更新");
+									//MobclickAgent.onEvent(content,"更新");
+									//MobclickAgent.onEvent(content,"静默更新");
 									downLoadNewVesionSev();// 静默
 								}
 							}

@@ -31,7 +31,6 @@ import com.lordcard.ui.view.dialog.BaoXiangDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
 import com.lordcard.ui.view.dialog.SingleDialog;
 import com.sdk.util.SDKFactory;
-import com.umeng.analytics.MobclickAgent;
 
 public class DialogUtils {
 
@@ -270,11 +269,11 @@ public class DialogUtils {
 
 						public void okClick() {
 							CmdUtils.exitGame();
-							MobclickAgent.onEvent(context, "确认退出游戏中");
+							////MobclickAgent.onEvent(context, "确认退出游戏中");
 							GameUser gu = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
 							// 记录逃跑日志
 							if (gu != null) {
-								MobclickAgent.onEvent(context, "逃跑:" + gu.getAccount());
+								////MobclickAgent.onEvent(context, "逃跑:" + gu.getAccount());
 								gu.setRound(0);
 								GameCache.putObj(CacheKey.GAME_USER, gu);
 							}

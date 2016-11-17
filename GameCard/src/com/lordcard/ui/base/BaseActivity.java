@@ -38,7 +38,6 @@ import com.lordcard.network.http.HttpRequest;
 import com.lordcard.ui.StartActivity;
 import com.lordcard.ui.dizhu.DoudizhuMainGameActivity;
 import com.sdk.util.SDKFactory;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * ui.base.BaseActivity
@@ -169,13 +168,13 @@ public class BaseActivity extends Activity {
 			Database.SCREEN_HEIGHT = dm.widthPixels;
 		}
 		try {
-			MobclickAgent.onResume(this, ChannelUtils.getUappKey(), ChannelUtils.getUChannel());
+			//MobclickAgent.onResume(this, ChannelUtils.getUappKey(), ChannelUtils.getUChannel());
 		} catch (Exception e) {}
 	}
 
 	public void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);
+		//MobclickAgent.onPause(this);
 	}
 
 	@Override

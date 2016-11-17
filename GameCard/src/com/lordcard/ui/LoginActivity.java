@@ -78,7 +78,7 @@ import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
 import com.lordcard.ui.view.dialog.AccountBindDialog;
 import com.lordcard.ui.view.dialog.ChangeAccountDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
-import com.umeng.analytics.MobclickAgent;
+
 
 @SuppressLint({ "HandlerLeak", "DefaultLocale", "SimpleDateFormat", "WorldReadableFiles" })
 public class LoginActivity extends BaseActivity implements ILoginView, OnTouchListener, OnGestureListener {
@@ -452,7 +452,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 						}
 						break;
 					case R.id.game_login_in:// 游戏大厅
-						MobclickAgent.onEvent(LoginActivity.this, "游戏大厅点击");
+						////MobclickAgent.onEvent(LoginActivity.this, "游戏大厅点击");
 						if (!ActivityUtils.isNetworkAvailable()) {
 							showNetWorkDialog();
 						} else {
@@ -468,15 +468,16 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 						}
 						break;
 					case R.id.game_login_change_account:// 切换账号
-						MobclickAgent.onEvent(LoginActivity.this, "切换账号点击");
+						////MobclickAgent.onEvent(LoginActivity.this, "切换账号点击");
 						if (!ActivityUtils.isNetworkAvailable()) {
 							showNetWorkDialog();
 						} else {
 							showLoginDialog();
 						}
 						break;
+						/*
 					case R.id.game_login_bind_account:// 绑定账号
-						MobclickAgent.onEvent(LoginActivity.this, "绑定账号点击");
+						//MobclickAgent.onEvent(LoginActivity.this, "绑定账号点击");
 						if (!ActivityUtils.isNetworkAvailable()) {
 							showNetWorkDialog();
 						} else {
@@ -491,9 +492,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 								}
 							}
 						}
-						break;
+						break;*/
 					case R.id.game_quick_login:// 快速游戏
-						MobclickAgent.onEvent(LoginActivity.this, "快速游戏点击");
+						////MobclickAgent.onEvent(LoginActivity.this, "快速游戏点击");
 						if (!ActivityUtils.isNetworkAvailable()) {
 							showNetWorkDialog();
 						} else {

@@ -28,7 +28,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.umeng.analytics.MobclickAgent;
 import com.lordcard.common.util.ImageUtil;
 import com.lordcard.common.util.MultiScreenTool;
 import com.lordcard.common.util.PatternUtils;
@@ -127,7 +126,7 @@ public class ChatDialog extends Dialog implements OnClickListener {
 //
 //				@Override
 //				public void onItemClick(AdapterView<?> parent, View arg1, int position, long arg3) {
-//					MobclickAgent.onEvent(DoudizhuMainGameActivity.this, "发送美女");
+//					//MobclickAgent.onEvent(DoudizhuMainGameActivity.this, "发送美女");
 //					String imageName = girlStr[position];
 //					CmdDetail chat = new CmdDetail();
 //					chat.setCmd(CmdUtils.CMD_CHAT);
@@ -202,7 +201,7 @@ public class ChatDialog extends Dialog implements OnClickListener {
 					b.putInt(Constant.GAME_VIEW_SEND_MESS_CLICK_TYPE,clickType);
 					msg.setData(b);
 					mHandler.sendMessage(msg);
-					MobclickAgent.onEvent(mContext, "聊天发送");
+					////MobclickAgent.onEvent(mContext, "聊天发送");
 					dismiss();
 				}
 				
@@ -218,7 +217,7 @@ public class ChatDialog extends Dialog implements OnClickListener {
 					b.putInt(Constant.GAME_VIEW_SEND_MESS_CLICK_TYPE,clickType);
 					msg.setData(b);
 					mHandler.sendMessage(msg);
-					MobclickAgent.onEvent(mContext, "聊天发送");
+					////MobclickAgent.onEvent(mContext, "聊天发送");
 					dismiss();
 				}
 				break;
@@ -227,7 +226,7 @@ public class ChatDialog extends Dialog implements OnClickListener {
 			case R.id.girl_grid://美女
 				break;
 			case R.id.quite_image_btn://
-				MobclickAgent.onEvent(mContext, "表情");
+				////MobclickAgent.onEvent(mContext, "表情");
 				clickType = Constant.MESSAGE_TYPE_TWO;
 				moRenBtn.setBackgroundResource(R.drawable.images_btn_2);
 				usualMessBtn.setBackgroundResource(R.drawable.images_btn_1);
@@ -236,7 +235,7 @@ public class ChatDialog extends Dialog implements OnClickListener {
 				getPageView(0);
 				break;
 			case R.id.usual_mess_btn://
-				MobclickAgent.onEvent(mContext, "短语");
+				////MobclickAgent.onEvent(mContext, "短语");
 				clickType = Constant.MESSAGE_TYPE_ZERO;
 				usualMessBtn.setBackgroundResource(R.drawable.images_btn_2);
 				moRenBtn.setBackgroundResource(R.drawable.images_btn_1);
@@ -245,7 +244,7 @@ public class ChatDialog extends Dialog implements OnClickListener {
 				getPageView(1);
 				break;
 			case R.id.think_mess_btn://
-				MobclickAgent.onEvent(mContext, "思考");
+				////MobclickAgent.onEvent(mContext, "思考");
 				clickType = Constant.MESSAGE_TYPE_ONE;
 				thinkMessBtn.setBackgroundResource(R.drawable.images_btn_2);
 				moRenBtn.setBackgroundResource(R.drawable.images_btn_1);
@@ -254,7 +253,7 @@ public class ChatDialog extends Dialog implements OnClickListener {
 				getPageView(2);
 				break;
 //				case R.id.girl_mess_btn:
-//				MobclickAgent.onEvent(PersonnalDoudizhuActivity.this, "美女");
+//				//MobclickAgent.onEvent(PersonnalDoudizhuActivity.this, "美女");
 //				clickType = Constant.MESSAGE_TYPE_THREE;
 //				girlMessBtn.setBackgroundResource(R.drawable.images_btn_2);
 //				moRenBtn.setBackgroundResource(R.drawable.images_btn_1);

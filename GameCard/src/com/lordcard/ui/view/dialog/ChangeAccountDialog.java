@@ -45,7 +45,6 @@ import com.lordcard.entity.JsonResult;
 import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpRequest;
 import com.lordcard.ui.LoginActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 切换账号对话框
@@ -201,7 +200,7 @@ public class ChangeAccountDialog extends Dialog implements OnClickListener, OnIt
 		Context ctx = CrashApplication.getInstance();
 		switch (v.getId()) {
 		case R.id.login_dl_login_btn:// 登录
-			MobclickAgent.onEvent(ctx, "切换账号登录");
+			////MobclickAgent.onEvent(ctx, "切换账号登录");
 			mst.unRegisterView(layout);
 			login();
 			break;
@@ -212,18 +211,18 @@ public class ChangeAccountDialog extends Dialog implements OnClickListener, OnIt
 			dismiss();
 			break;
 		case R.id.login_dl_forget_pwd:// 忘记密码
-			MobclickAgent.onEvent(ctx, "忘记密码");
+			////MobclickAgent.onEvent(ctx, "忘记密码");
 			FindPwdDialog findPwdDialog = new FindPwdDialog(context);
 			findPwdDialog.show();
 			break;
 		case R.id.game_register://注册
-			MobclickAgent.onEvent(ctx, "用户注册");
+			////MobclickAgent.onEvent(ctx, "用户注册");
 			dismiss();
 			handler.sendEmptyMessage(LoginActivity.HANDLER_WHAT_LOGIN_RESIGSTER_USER);
 			break;	
 			
 		case R.id.show:// 弹出下拉列表
-			MobclickAgent.onEvent(ctx, "切换账号下拉框");
+			////MobclickAgent.onEvent(ctx, "切换账号下拉框");
 			if (countList != null && countList.size() > 0 && !mInitPopup) {
 				mInitPopup = true;
 				initPopup();

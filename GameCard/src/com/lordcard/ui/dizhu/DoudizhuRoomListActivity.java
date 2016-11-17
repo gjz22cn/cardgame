@@ -101,7 +101,7 @@ import com.lordcard.ui.view.dialog.SignDialog;
 import com.sdk.constant.SDKConstant;
 import com.sdk.util.RechargeUtils;
 import com.sdk.util.SDKFactory;
-import com.umeng.analytics.MobclickAgent;
+
 
 @SuppressLint({ "WorldReadableFiles", "HandlerLeak" })
 public class DoudizhuRoomListActivity extends BaseActivity implements OnClickListener {
@@ -232,7 +232,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		/* james add: force enter vip room Tab */
 		{
 			Context ctx = CrashApplication.getInstance();
-			MobclickAgent.onEvent(ctx, "房间Tabvip房");
+			//MobclickAgent.onEvent(ctx, "房间Tabvip房");
 			roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg2, true));
 			//roomListGridView.setVisibility(View.GONE);
 			roomVipView.setVisibility(View.VISIBLE);
@@ -1126,7 +1126,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 			Context ctx = CrashApplication.getInstance();
 			switch (v.getId()) {
 				/*case R.id.common_room_btn: // 普通房
-					MobclickAgent.onEvent(ctx, "房间Tab普通房");
+					//MobclickAgent.onEvent(ctx, "房间Tab普通房");
 					roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg1, true));
 					roomListGridView.setVisibility(View.VISIBLE);
 //					fgpRoomListGridView.setVisibility(View.GONE);
@@ -1137,7 +1137,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 				//		case R.id.fast_game_place_room_btn: // 快速赛场
 				/*
 				case R.id.vip_room_btn: // vip房
-					MobclickAgent.onEvent(ctx, "房间Tabvip房");
+					//MobclickAgent.onEvent(ctx, "房间Tabvip房");
 					roomTopll.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.room_list_top_ll_bg2, true));
 					//roomListGridView.setVisibility(View.GONE);
 					roomVipView.setVisibility(View.VISIBLE);
@@ -1145,11 +1145,11 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 					SDKConstant.PAY_ROOM = 1;
 					break;*/
 				/*case R.id.game_place_room_btn: // 比赛场
-					MobclickAgent.onEvent(ctx, "房间Tab比赛场");
+					//MobclickAgent.onEvent(ctx, "房间Tab比赛场");
 					showMatch();
 					break;*/
 				case R.id.vip_join_btn: // 加入vip包房
-					MobclickAgent.onEvent(ctx, "加入vip包房");
+					//MobclickAgent.onEvent(ctx, "加入vip包房");
 					vipJoin();
 					break;
 				case R.id.vip_room_create: // 创建vip房
@@ -1230,7 +1230,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	public synchronized void vipRoomCreate() {
 		Context ctx = CrashApplication.getInstance();
 		int ratio = 10; // Hip包房倍数
-		MobclickAgent.onEvent(ctx, "创建房间" + ratio);
+		//MobclickAgent.onEvent(ctx, "创建房间" + ratio);
 		// 加入游戏
 		vipCreateCheckTask = new VipRoomCreateCheckTask();
 		vipCreateCheckTask.setFeedback(feedback);
@@ -1286,6 +1286,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 				String homeCode = param.getString("homeCode");
 				String pwd = param.getString("passwd");
 				String result = HttpRequest.rjoin(homeCode, pwd);
+				//Log.e("hallResult", result);
 				CmdDetail detail = JsonHelper.fromJson(result, CmdDetail.class);
 				if (CmdUtils.CMD_ERR_RJOIN.equals(detail.getCmd())) { // 加入失败
 					String v = detail.getDetail();
@@ -1395,7 +1396,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 //					GameDialog exitDialog = new GameDialog(DoudizhuRoomListActivity.this) {
 //
 //						public void okClick() {
-//							MobclickAgent.onEvent(ctx, "房间列表确认退出游戏");
+//							//MobclickAgent.onEvent(ctx, "房间列表确认退出游戏");
 //							Intent in = new Intent();
 //							in.setClass(DoudizhuRoomListActivity.this, SDKFactory.getLoginView());
 //							startActivity(in);
@@ -1403,7 +1404,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 //
 //						public void cancelClick() {
 //							dismiss();
-//							MobclickAgent.onEvent(ctx, "房间列表取消退出游戏");
+//							//MobclickAgent.onEvent(ctx, "房间列表取消退出游戏");
 //						};
 //					};
 //					exitDialog.show();

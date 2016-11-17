@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import com.lordcard.common.exception.CrashApplication;
 import com.lordcard.common.util.ActivityUtils;
 import com.lordcard.ui.LoginActivity;
-import com.umeng.analytics.MobclickAgent;
+
 
 /**
  * 支付方式工厂，获取当前的支付通道 com.lordcard.common.pay.PayFactory

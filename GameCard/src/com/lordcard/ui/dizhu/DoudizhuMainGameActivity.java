@@ -148,7 +148,6 @@ import com.lordcard.ui.view.dialog.TipsDialog;
 import com.lordcard.ui.view.notification.NotificationService;
 //import com.sdk.jd.sms.util.JDSMSPayUtil;
 import com.sdk.util.RechargeUtils;
-import com.umeng.analytics.MobclickAgent;
 
 @SuppressLint({ "HandlerLeak", "UseSparseArrays" })
 public class DoudizhuMainGameActivity extends BaseActivity implements IGameView, OnTouchListener, HasTiShiListenner, OnGestureListener, InitMainGameInterface {
@@ -402,19 +401,19 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		public void onClick(View v) {
 			int id = v.getId();
 			if (id == R.id.playimageView1 || id == R.id.zhezhao1) { // 位置1玩家图像
-				MobclickAgent.onEvent(ctx,"游戏中点玩家1头像");
+				////MobclickAgent.onEvent(ctx,"游戏中点玩家1头像");
 				String p1o = play1Order.getText().toString();
 				if (!TextUtils.isEmpty(p1o)) {
 					photoClick(play1Icon, Integer.parseInt(p1o), mySelfOrder == masterOrder);
 				}
 			} else if (id == PLAY2ICON_ID || id == ZHEZHAO2_ID) { // 位置2玩家图像
-				MobclickAgent.onEvent(ctx,"游戏中点玩家2头像");
+				////MobclickAgent.onEvent(ctx,"游戏中点玩家2头像");
 				String p2o = play2Order.getText().toString();
 				if (!TextUtils.isEmpty(p2o)) {
 					photoClick(play2Icon, Integer.parseInt(p2o), (PLAY2ICON_ID - 1300) == masterOrder);
 				}
 			} else if (id == PLAY3ICON_ID || id == ZHEZHAO3_ID) { // 位置3玩家图像
-				MobclickAgent.onEvent(ctx,"游戏中点玩家3头像");
+				////MobclickAgent.onEvent(ctx,"游戏中点玩家3头像");
 				String p3o = play3Order.getText().toString();
 				if (!TextUtils.isEmpty(p3o)) {
 					photoClick(play3Icon, Integer.parseInt(p3o), (PLAY3ICON_ID - 1300) == masterOrder);
@@ -430,7 +429,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 							if (!mChatDialog.isShowing()) {
 								mChatDialog.show();
 							}
-							MobclickAgent.onEvent(ctx,"游戏中聊天互动");
+							////MobclickAgent.onEvent(ctx,"游戏中聊天互动");
 						}
 						break;
 					case R.id.chupai_button:// 出牌
@@ -451,7 +450,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						setTishi();
 						break;
 					case R.id.game_back:
-						MobclickAgent.onEvent(ctx,"游戏中退出");
+						////MobclickAgent.onEvent(ctx,"游戏中退出");
 						DialogUtils.exitGame(ctx);
 						break;
 					case R.id.game_robot: // "点击托管"
@@ -484,7 +483,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						}
 						break;
 					case R.id.game_gilr_items:
-						MobclickAgent.onEvent(ctx,"游戏中美女道具");
+						////MobclickAgent.onEvent(ctx,"游戏中美女道具");
 						girlItems.setVisibility(View.INVISIBLE);
 						showPopWindow(true);
 						if (null != toolList) {
@@ -1063,7 +1062,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				ImageUtil.clearGirlBitMapCache();
 				popupWindow = null;
 			} else {
-				MobclickAgent.onEvent(DoudizhuMainGameActivity.this,"游戏中实体退出");
+				////MobclickAgent.onEvent(DoudizhuMainGameActivity.this,"游戏中实体退出");
 				DialogUtils.exitGame(DoudizhuMainGameActivity.this);
 			}
 			return true;
@@ -1754,7 +1753,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 				super.handleMessage(msg);
 				switch (msg.what) {
 					case 0: // 发牌更新界面
-						MobclickAgent.onEventBegin(ctx,"在线斗地主");
+						////MobclickAgent.onEventBegin(ctx,"在线斗地主");
 						ClientCmdMgr.setClientStatus(Client.PLAYING);
 						cancelTimer(); // 取消定时
 						gameWaitLayout.closeTimer();
@@ -1906,7 +1905,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						purchase.put("room",Database.JOIN_ROOM.getName());
 						purchase.put("account",mGameUser.getAccount());
 						purchase.put("userctime",mGameUser.getCreateDate());
-						MobclickAgent.onEvent(ctx,"斗地主游戏中",purchase);
+						////MobclickAgent.onEvent(ctx,"斗地主游戏中",purchase);
 						break;
 					case 3: // 收到打牌消息
 						hiddenPlayBtn();
@@ -1918,7 +1917,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						//refreshJiPaiQiAvatar();
 						break;
 					case 4: // 收到打完这盘的牌消息
-						MobclickAgent.onEventEnd(ctx,"在线斗地主");
+						////MobclickAgent.onEventEnd(ctx,"在线斗地主");
 						hiddenPlayBtn();
 						LinkedList<Play> playResult = (LinkedList<Play>) msg.getData().get("playResult");
 						setEndDonghua(playResult);
@@ -2155,7 +2154,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 
 							public void cancelClick() {
 								CmdUtils.exitGame();
-								MobclickAgent.onEvent(ctx,"超过上限取消");
+								////MobclickAgent.onEvent(ctx,"超过上限取消");
 								// 记录逃跑日志
 								GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
 								if (cacheUser != null) {
@@ -2173,7 +2172,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						sendTextMessage(msg.getData().getString(Constant.GAME_VIEW_SEND_MESS_TEXT), msg.getData().getInt(Constant.GAME_VIEW_SEND_MESS_CLICK_TYPE));
 						break;
 					case Constant.HANDLER_WHAT_GAME_VIEW_SEND_MESS_GIF://GIF表情
-						MobclickAgent.onEvent(ctx,"游戏中发送表情");
+						////MobclickAgent.onEvent(ctx,"游戏中发送表情");
 						final GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
 						String imageName = msg.getData().getString(Constant.GAME_VIEW_SEND_MESS_GIF);
 						int clickType = msg.getData().getInt(Constant.GAME_VIEW_SEND_MESS_CLICK_TYPE);

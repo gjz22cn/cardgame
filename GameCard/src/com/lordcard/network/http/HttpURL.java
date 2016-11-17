@@ -18,6 +18,8 @@ public class HttpURL {
 	//public static final String GAMEWEB_SERVER = "http://192.168.1.101:3000/gameweb/";
 	//public static final String GAMEWEB_SERVER = "http://192.168.1.103:3000/gameweb/";
 	public static final String GAMEWEB_SERVER = "http://139.196.39.19:3000/gameweb/";
+	//public static final String GAMEWEB_SERVER = "http://luqiqianchong.qicp.io:20273/gameweb/";
+	
 	// ///////////////////////////////////第三方接口参数
 	public static final String CHANNEL_NAME = ChannelUtils.getSerDir(); //渠道名称
 	/**游戏登录服务器 */

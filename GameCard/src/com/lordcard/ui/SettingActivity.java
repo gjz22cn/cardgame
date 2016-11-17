@@ -62,7 +62,7 @@ import com.lordcard.network.http.HttpRequest;
 import com.lordcard.ui.base.BaseActivity;
 import com.lordcard.ui.view.dialog.AccountBindDialog;
 import com.sdk.util.SDKFactory;
-import com.umeng.analytics.MobclickAgent;
+
 
 public class SettingActivity extends BaseActivity implements OnClickListener {
 
@@ -337,7 +337,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		}
 		switch (v.getId()) {
 			case R.id.set_account:
-				MobclickAgent.onEvent(SettingActivity.this, "我的账号");
+				//MobclickAgent.onEvent(SettingActivity.this, "我的账号");
 				gameAccountBtn.setTextColor(Color.WHITE);
 				gameAccountBtn.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.gpl_top_left_select, true));
 				gameSetBtn.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.gpl_top_center, true));
@@ -348,7 +348,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				getPageView(0);
 				break;
 			case R.id.set_set:
-				MobclickAgent.onEvent(SettingActivity.this, "S游戏设置");
+				//MobclickAgent.onEvent(SettingActivity.this, "S游戏设置");
 				gameSetBtn.setTextColor(Color.WHITE);
 				gameAccountBtn.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.gpl_top_left, true));
 				gameSetBtn.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.gpl_top_center_select, true));
@@ -359,7 +359,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				getPageView(1);
 				break;
 			case R.id.set_about:
-				MobclickAgent.onEvent(SettingActivity.this, "关于游戏");
+				//MobclickAgent.onEvent(SettingActivity.this, "关于游戏");
 				gameAboutBtn.setTextColor(Color.WHITE);
 				gameAccountBtn.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.gpl_top_left, true));
 				gameSetBtn.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.gpl_top_center, true));
@@ -370,7 +370,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				getPageView(3);
 				break;
 			case R.id.set_feedback:
-				MobclickAgent.onEvent(SettingActivity.this, "设置反馈");
+				//MobclickAgent.onEvent(SettingActivity.this, "设置反馈");
 				gameFeedBackBtn.setTextColor(Color.WHITE);
 				gameAccountBtn.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.gpl_top_left, true));
 				gameSetBtn.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.gpl_top_center, true));
@@ -384,7 +384,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				}
 				break;
 			case R.id.game_feedback_ok_btn: // 提交反馈问题
-				MobclickAgent.onEvent(SettingActivity.this, "提交反馈");
+				//MobclickAgent.onEvent(SettingActivity.this, "提交反馈");
 				String question = feedBackEdit.getText().toString();
 				if (TextUtils.isEmpty(question)) {
 					DialogUtils.mesTip("您提交的反馈问题不能为空!", false);
@@ -447,18 +447,18 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				}
 				break;
 			case R.id.xiugaimima:
-				MobclickAgent.onEvent(SettingActivity.this, "设置绑定账号");
+				//MobclickAgent.onEvent(SettingActivity.this, "设置绑定账号");
 				AccountBindDialog bindDialog = new AccountBindDialog(SettingActivity.this);
 				if (null != bindDialog && !bindDialog.isShowing()) {
 					bindDialog.show();
 				}
 				break;
 			case R.id.chong_setting:
-				MobclickAgent.onEvent(SettingActivity.this, "修改密码");
+				//MobclickAgent.onEvent(SettingActivity.this, "修改密码");
 				//recharge();
 				break;
 			case R.id.set_back:
-				MobclickAgent.onEvent(SettingActivity.this, "设置返回");
+				//MobclickAgent.onEvent(SettingActivity.this, "设置返回");
 				finishSelf();
 				break;
 			case R.id.setting_finish_button://保存设置
@@ -499,7 +499,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 	 * @param email
 	 */
 	private void submitInfo(final String email) {
-		MobclickAgent.onEvent(SettingActivity.this, "设置提交");
+		//MobclickAgent.onEvent(SettingActivity.this, "设置提交");
 		nickName.setText(PatternUtils.replaceBlank(nickName.getText().toString()));
 		GenericTask completePersonalInfoTask = new CompletePersonalInfoTask();
 		completePersonalInfoTask.setFeedback(feedback);

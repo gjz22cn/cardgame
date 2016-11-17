@@ -19,7 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lordcard.common.util.JsonHelper;
 import com.lordcard.common.util.MultiScreenTool;
 import com.lordcard.entity.Room;
-import com.umeng.analytics.MobclickAgent;
+
 
 public abstract class SignupDialog extends Dialog implements OnClickListener {
 
@@ -106,7 +106,7 @@ public abstract class SignupDialog extends Dialog implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.sign_btn:
 			mst.unRegisterView(layout);
-			MobclickAgent.onEvent(context, "合成剂专场报名");
+			//MobclickAgent.onEvent(context, "合成剂专场报名");
 			askJoin(room);
 			break;
 		case R.id.sign_cancel_btn:

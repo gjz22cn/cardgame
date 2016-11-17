@@ -46,7 +46,6 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpRequest;
 import com.lordcard.network.http.HttpURL;
 import com.lordcard.network.http.HttpUtils;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 比赛场详情对话框
@@ -164,7 +163,7 @@ public class DetailDialog extends Dialog implements OnClickListener {
 			public void onClick(View v) {
 				pageNum++;
 				getRecord();
-				MobclickAgent.onEvent(context, "详细获取更多记录");
+				////MobclickAgent.onEvent(context, "详细获取更多记录");
 			}
 		});
 

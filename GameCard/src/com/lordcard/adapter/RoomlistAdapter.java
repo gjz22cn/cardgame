@@ -47,7 +47,7 @@ import com.lordcard.ui.base.FastJoinTask;
 import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
 import com.lordcard.ui.view.dialog.SignupDialog;
 import com.sdk.util.RechargeUtils;
-import com.umeng.analytics.MobclickAgent;
+
 
 public class RoomlistAdapter extends BaseAdapter {
 
@@ -354,7 +354,7 @@ public class RoomlistAdapter extends BaseAdapter {
 					double btBean = limitBean - gu.getBean();
 					joinRoom(room);
 					String roomName = room.getName();
-					MobclickAgent.onEvent(context,roomName);
+					//MobclickAgent.onEvent(context,roomName);
 				}
 			}
 		});

@@ -37,7 +37,7 @@ import com.sdk.constant.SDKConfig;
 import com.sdk.constant.SDKConstant;
 import com.sdk.util.RechargeUtils;
 import com.sdk.util.SDKFactory;
-import com.umeng.analytics.MobclickAgent;
+
 
 /**
  * 签名对话框
@@ -223,7 +223,7 @@ public class SignDialog extends Dialog implements android.view.View.OnClickListe
 				break;
 			/*case R.id.sign_dialog_ok_btn:
 				// 进入充值界面
-				MobclickAgent.onEvent(context, "签到充值");
+				//MobclickAgent.onEvent(context, "签到充值");
 				SDKConfig.SIGN_DIALOG = true;
 				JDSMSPayUtil.setContext(context);
 				//点金快速支付暂时固定5元

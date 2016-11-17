@@ -82,7 +82,7 @@ import com.lordcard.ui.view.MyLetterListView;
 import com.lordcard.ui.view.MyLetterListView.OnTouchingLetterChangedListener;
 import com.lordcard.ui.view.dialog.GameDialog;
 import com.sdk.util.RechargeUtils;
-import com.umeng.analytics.MobclickAgent;
+
 
 @SuppressLint({ "HandlerLeak", "DefaultLocale" })
 public class InviteToDowanloadActivity extends BaseActivity {
@@ -153,7 +153,7 @@ public class InviteToDowanloadActivity extends BaseActivity {
 					}
 				}
 				if (type == 0) { // 邀请下载游戏
-					MobclickAgent.onEvent(InviteToDowanloadActivity.this,ActivityUtils.getVersionName() +"邀请下载游戏");
+					//MobclickAgent.onEvent(InviteToDowanloadActivity.this,ActivityUtils.getVersionName() +"邀请下载游戏");
 					if (sendList.size() > 0) {
 						GameDialog gameDialog = new GameDialog(Database.currentActivity) {
 
@@ -183,7 +183,7 @@ public class InviteToDowanloadActivity extends BaseActivity {
 						gameDialog.setText("您当前没有选择邀请的好友。是否继续选择?");
 					}
 				} else if (type == 1) { // 邀请加入vip包房
-					MobclickAgent.onEvent(InviteToDowanloadActivity.this,ActivityUtils.getVersionName() +"邀请加入vip包房");
+					//MobclickAgent.onEvent(InviteToDowanloadActivity.this,ActivityUtils.getVersionName() +"邀请加入vip包房");
 					if (sendList.size() > 0) {
 						GameDialog gameDialog = new GameDialog(Database.currentActivity) {
 

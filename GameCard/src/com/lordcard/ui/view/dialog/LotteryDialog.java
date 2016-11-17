@@ -46,7 +46,7 @@ import com.lordcard.network.http.HttpRequest;
 import com.lordcard.network.http.HttpURL;
 import com.lordcard.network.http.HttpUtils;
 import com.lordcard.ui.interfaces.PrizeInterface;
-import com.umeng.analytics.MobclickAgent;
+
 
 @SuppressLint("HandlerLeak")
 public class LotteryDialog extends Dialog implements PrizeInterface, android.view.View.OnClickListener {
@@ -138,11 +138,11 @@ public class LotteryDialog extends Dialog implements PrizeInterface, android.vie
 	 */
 	public synchronized void startLotZhizuan(int count) {
 		if (!lucking) {
-			MobclickAgent.onEvent(CrashApplication.getInstance(), "钻石抽奖" + count + "倍");
+			//MobclickAgent.onEvent(CrashApplication.getInstance(), "钻石抽奖" + count + "倍");
 			if (!lotJn.getText().toString().equals("")) {
 				int tempCoupon = Integer.parseInt(lotJn.getText().toString());
 				if (tempCoupon >= count) {
-					MobclickAgent.onEvent(CrashApplication.getInstance(), "幸运大抽奖 " + count + " 张兑奖", 1);
+					//MobclickAgent.onEvent(CrashApplication.getInstance(), "幸运大抽奖 " + count + " 张兑奖", 1);
 					stop = false;
 					lucking = true;
 					multiple = count / 10;
@@ -177,12 +177,12 @@ public class LotteryDialog extends Dialog implements PrizeInterface, android.vie
 	 */
 	public synchronized void startLottery(int count) {
 		if (!lucking) {
-			MobclickAgent.onEvent(CrashApplication.getInstance(), "幸运大抽奖" + count + "倍");
+			//MobclickAgent.onEvent(CrashApplication.getInstance(), "幸运大抽奖" + count + "倍");
 			// } else {
 			try {
 				int tempCoupon = Integer.parseInt(lotJn.getText().toString());
 				if (tempCoupon >= count) {
-					MobclickAgent.onEvent(CrashApplication.getInstance(), "幸运大抽奖 " + count + " 张兑奖", 1);
+					//MobclickAgent.onEvent(CrashApplication.getInstance(), "幸运大抽奖 " + count + " 张兑奖", 1);
 					stop = false;
 					lucking = true;
 					multiple = count;
@@ -1004,7 +1004,7 @@ public class LotteryDialog extends Dialog implements PrizeInterface, android.vie
 		switch (v.getId()) {
 			case R.id.choujiang_btn:
 				if (stop) {
-					MobclickAgent.onEvent(CrashApplication.getInstance(), "幸运大抽奖");
+					//MobclickAgent.onEvent(CrashApplication.getInstance(), "幸运大抽奖");
 					changeBgLayout.setBackgroundDrawable(ImageUtil.getDrawableResId(R.drawable.choujiang, true, true));
 					lotLeft.removeAllViews();
 					lotTop.removeAllViews();
@@ -1016,7 +1016,7 @@ public class LotteryDialog extends Dialog implements PrizeInterface, android.vie
 				break;
 			case R.id.zizhuan_btn:
 				if (stop) {
-					MobclickAgent.onEvent(CrashApplication.getInstance(), "钻石抽奖");
+					//MobclickAgent.onEvent(CrashApplication.getInstance(), "钻石抽奖");
 					changeBgLayout.setBackgroundDrawable(ImageUtil.getDrawableResId(R.drawable.zhizuan, true, true));
 					lotLeft.removeAllViews();
 					lotTop.removeAllViews();

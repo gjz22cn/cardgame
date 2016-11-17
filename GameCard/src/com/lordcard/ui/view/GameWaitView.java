@@ -41,7 +41,7 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpRequest;
 import com.lordcard.network.task.GetRankTask;
 import com.lordcard.ui.interfaces.ChangeProInterface;
-import com.umeng.analytics.MobclickAgent;
+
 
 /**
  * widget.GameWaitView
@@ -138,7 +138,7 @@ public class GameWaitView extends LinearLayout implements ChangeProInterface {
 					
 					//退出打牌界面
 					CmdUtils.exitGame();
-					MobclickAgent.onEvent(context, "退赛");
+					//MobclickAgent.onEvent(context, "退赛");
 					// 记录逃跑日志
 					GameUser gameUser = (GameUser)GameCache.getObj(CacheKey.GAME_USER);
 					if (gameUser != null) {

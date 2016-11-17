@@ -32,7 +32,7 @@ import com.bodong.dpaysdk.DPayManager;
 import com.bodong.dpaysdk.listener.DPayLoginListener;
 import com.bodong.dpaysdk.listener.DPayLogoutListener;
 import com.bodong.dpaysdk.listener.DPaySDKExitListener;
-import com.umeng.analytics.MobclickAgent;
+
 import com.lordcard.common.task.GenericTask;
 import com.lordcard.common.task.base.TaskParams;
 import com.lordcard.common.task.base.TaskResult;
@@ -222,7 +222,7 @@ public class DJLoginActivity extends BaseActivity implements OnClickListener {
 			findPwdDialog.show();
 			break;
 		case R.id.gonggao:
-			MobclickAgent.onEvent(DJLoginActivity.this, "公告");
+			//MobclickAgent.onEvent(DJLoginActivity.this, "公告");
 			gonggao.setClickable(false);
 			if (boolean1 == false) {
 				scrollView.setVisibility(View.GONE);

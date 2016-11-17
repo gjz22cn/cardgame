@@ -30,7 +30,7 @@ import com.lordcard.entity.GameRoomRuleDetail;
 import com.lordcard.entity.GameScoreTradeRank;
 import com.lordcard.entity.Room;
 import com.lordcard.network.http.HttpRequest;
-import com.umeng.analytics.MobclickAgent;
+
 
 /**
  * 比赛场详情对话框(待删除)
@@ -167,7 +167,7 @@ public class SignMatchDialog extends Dialog implements OnClickListener {
 		/*case R.id.sign_rank_ok_btn:
 			Message message = new Message();
 			if (isFuhe) {// 复合赛制
-				MobclickAgent.onEvent(context, "复活赛排名");
+				//MobclickAgent.onEvent(context, "复活赛排名");
 				message.what = FHGPlaceListAdapter.WHAT1;
 				Bundle bundle = new Bundle();
 				bundle.putInt(FHGPlaceListAdapter.POSITION, position);

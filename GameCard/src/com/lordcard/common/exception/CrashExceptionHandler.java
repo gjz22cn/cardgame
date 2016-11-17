@@ -29,7 +29,6 @@ import com.lordcard.common.util.DateUtil;
 import com.lordcard.constant.Constant;
 import com.lordcard.constant.Database;
 import com.lordcard.network.http.HttpRequest;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
@@ -194,7 +193,7 @@ public class CrashExceptionHandler implements UncaughtExceptionHandler {
 
 			if (!isExtends) {
 				String errorMsg = ActivityUtils.getVersionName() + " || " + ep.getCause();
-				MobclickAgent.reportError(Database.currentActivity, errorMsg);
+				//MobclickAgent.reportError(Database.currentActivity, errorMsg);
 				
 			}
 

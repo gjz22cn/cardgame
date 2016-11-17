@@ -31,7 +31,7 @@ import com.lordcard.entity.ContentTitle;
 import com.lordcard.entity.GoodsDetails;
 import com.lordcard.network.http.HttpURL;
 import com.lordcard.network.http.HttpUtils;
-import com.umeng.analytics.MobclickAgent;
+
 /**
  * 游戏指南
  * @author Administrator
@@ -109,7 +109,7 @@ public class GuideDialog extends Dialog implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 				try {
-					MobclickAgent.onEvent(context, "游戏指南选项");
+					//MobclickAgent.onEvent(context, "游戏指南选项");
 					if (detailList.get(position).getVisibility() == View.GONE) {
 						detailList.get(position).setVisibility(View.VISIBLE);
 					} else {

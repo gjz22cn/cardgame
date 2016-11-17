@@ -50,7 +50,7 @@ import com.lordcard.ui.view.dialog.GameDialog;
 import com.lordcard.ui.view.dialog.GuideDialog;
 import com.lordcard.ui.view.dialog.LotteryDialog;
 import com.sdk.util.SDKFactory;
-import com.umeng.analytics.MobclickAgent;
+
 
 public class MainMenuBar extends RelativeLayout implements OnClickListener {
 
@@ -166,7 +166,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 			case R.id.chongzhi_ll:
 				break;
 			case R.id.menu_rank_btn:// 背包
-				MobclickAgent.onEvent(context, "工具栏背包");
+				//MobclickAgent.onEvent(context, "工具栏背包");
 				if (goodsLayout.getVisibility() == View.VISIBLE) {
 					goneLayout();
 				} else {
@@ -174,27 +174,27 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				}
 				break;
 			case R.id.menu_friends_btn:// 好友
-				MobclickAgent.onEvent(context, "工具栏好友");
+				//MobclickAgent.onEvent(context, "工具栏好友");
 				goneLayout();
 				Intent friendsIntent = new Intent();
 				friendsIntent.setClass(getContext(), InviteToDowanloadActivity.class);
 				getContext().startActivity(friendsIntent);
 				break;
 			case R.id.menu_zhidou_btn:// 赠送金豆
-				MobclickAgent.onEvent(context, "工具栏赠送金豆");
+				//MobclickAgent.onEvent(context, "工具栏赠送金豆");
 				goneLayout();
 				Intent taskIt = new Intent();
 				taskIt.setClass(getContext(), TaskMenuActivity.class);
 				getContext().startActivity(taskIt);
 				break;
 			case R.id.menu_setting_btn:// 设置
-				MobclickAgent.onEvent(context, "工具栏工具栏设置");
+				//MobclickAgent.onEvent(context, "工具栏工具栏设置");
 				Intent settingIntent = new Intent();
 				settingIntent.setClass(getContext(), SettingActivity.class);
 				getContext().startActivity(settingIntent);
 				break;
 			case R.id.menu_lottery_btn:// 抽奖
-				MobclickAgent.onEvent(context, "工具栏抽奖");
+				//MobclickAgent.onEvent(context, "工具栏抽奖");
 				if (null != cacheUser && cacheUser.getIq() < 5) {
 					DialogUtils.mesToastTip("参与抽奖需要5级以上的等级！");
 				} else {
@@ -213,7 +213,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				}
 				break;
 			case R.id.goods_bag_image:// 物品囊
-				MobclickAgent.onEvent(context, "工具栏物品囊");
+				//MobclickAgent.onEvent(context, "工具栏物品囊");
 				if (bagDialog != null) {
 					bagDialog.dismiss();
 					bagDialog = null;
@@ -223,7 +223,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				bagDialog.show();
 				break;
 			case R.id.goods_envalues_image:// 物品宝鉴
-				MobclickAgent.onEvent(context, "工具栏宝鉴");
+				//MobclickAgent.onEvent(context, "工具栏宝鉴");
 				goneLayout();
 				if (valueDialog != null) {
 					valueDialog.dismiss();
@@ -233,7 +233,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				valueDialog.show();
 				break;
 			case R.id.goods_guide_image:// 游戏指南
-				MobclickAgent.onEvent(context, "工具栏游戏指南");
+				//MobclickAgent.onEvent(context, "工具栏游戏指南");
 				goneLayout();
 				if (guideDialog != null) {
 					guideDialog.dismiss();
@@ -243,7 +243,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				guideDialog.show();
 				break;
 			case R.id.menu_feedback_btn:// 游戏反馈
-				MobclickAgent.onEvent(context, "工具栏反馈");
+				//MobclickAgent.onEvent(context, "工具栏反馈");
 				goneLayout();
 				Bundle bundle = new Bundle();
 				bundle.putInt("page", 2);
@@ -253,14 +253,14 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				getContext().startActivity(setIntent);
 				break;
 			case R.id.duihuan:// 物品合成
-				MobclickAgent.onEvent(context, "工具栏合成炉");
+				//MobclickAgent.onEvent(context, "工具栏合成炉");
 				goneLayout();
 				Intent stoveIntent = new Intent();
 				stoveIntent.setClass(getContext(), StoveActivity.class);
 				getContext().startActivity(stoveIntent);
 				break;
 			case R.id.menu_play_btn:// 快速开始
-				MobclickAgent.onEvent(context, "工具栏快速游戏");
+				//MobclickAgent.onEvent(context, "工具栏快速游戏");
 				goneLayout();
 				if (cacheUser == null) {
 					DialogUtils.mesTip("用户信息过期，请重新登录", true);
