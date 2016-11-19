@@ -1,3 +1,0 @@
-<meta-data android:name="cpId" android:value="cpid:86005642" />
-        <meta-data android:name="AppId" android:value="appid:902117482920130412135014703100" />
-        <activity android:name="com.sdk.vac.pay.ui.VACPayActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
