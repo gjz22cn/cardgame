@@ -38,7 +38,6 @@ import com.lordcard.common.util.JsonHelper;
 import com.lordcard.constant.Database;
 import com.lordcard.entity.AssistantBtnContent;
 import com.lordcard.ui.base.BaseActivity;
-import com.lordcard.ui.view.Assistant;
 
 /**
  * 消息中心
@@ -46,7 +45,8 @@ import com.lordcard.ui.view.Assistant;
  */
 public class DataCentreActivity extends BaseActivity implements OnClickListener {
 
-	private LinearLayout asslayout, xiaomeiLayout; //游戏助理layout
+	//private LinearLayout asslayout, xiaomeiLayout; //游戏助理layout
+	private LinearLayout xiaomeiLayout; //游戏助理layout
 	private ImageView xiaomeiBtn;//游戏助理显示按钮
 	private DBHelper dbHelper;
 	private ListView assListView, privateListView, announcementListView;
@@ -208,7 +208,7 @@ public class DataCentreActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void initView() {
 		findViewById(R.id.set_back).setOnClickListener(this);
-		asslayout = (LinearLayout) findViewById(R.id.assistant_view2);
+		//asslayout = (LinearLayout) findViewById(R.id.assistant_view2);
 		xiaomeiLayout = (LinearLayout) findViewById(R.id.xiao_LinearLayout);
 		xiaomeiBtn = (ImageView) findViewById(R.id.xiaomei);
 		xiaomeiBtn.setVisibility(View.GONE);
@@ -358,9 +358,9 @@ public class DataCentreActivity extends BaseActivity implements OnClickListener 
 					if (xiaomeiLayout.getVisibility() == View.VISIBLE) {
 						AnimUtils.startAnimationsOutLeft(xiaomeiLayout, 500);
 					}
-					asslayout.removeAllViews();
-					Assistant assistant = new Assistant(Database.currentActivity, handler, content, list2, xiaomeiLayout, xiaomeiBtn);
-					asslayout.addView(assistant);
+					//asslayout.removeAllViews();
+					//Assistant assistant = new Assistant(Database.currentActivity, handler, content, list2, xiaomeiLayout, xiaomeiBtn);
+					//asslayout.addView(assistant);
 				}
 			});
 			return convertView;

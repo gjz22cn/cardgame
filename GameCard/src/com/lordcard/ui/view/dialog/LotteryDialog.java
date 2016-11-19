@@ -81,7 +81,7 @@ public class LotteryDialog extends Dialog implements PrizeInterface, android.vie
 	public int minRunCount, runIndex; // 抽奖最小转动圈数,当前转动圈数
 	public static boolean voiceON = true;
 	private Map<Integer, Bitmap> bitmapCache;
-	private GoodsDialog gDialog;
+	//private GoodsDialog gDialog;
 	/**
 	 * a1 2000金豆抽奖 a2 10000金豆抽奖 a3 20000金豆抽奖 a4 50000金豆抽奖 a5 100000金豆抽奖 a6
 	 * 1000000金豆抽奖 a7 5000000金豆抽奖 a8 5000金豆抽奖
@@ -1053,8 +1053,8 @@ public class LotteryDialog extends Dialog implements PrizeInterface, android.vie
 				// mmDialog.show();
 				break;
 			case R.id.lot_wp: // 物品篮
-				gDialog = new GoodsDialog(Database.currentActivity);
-				gDialog.show();
+				//gDialog = new GoodsDialog(Database.currentActivity);
+				//gDialog.show();
 				break;
 			case R.id.lot_miss: // 返回
 				this.dismiss();
@@ -1162,7 +1162,7 @@ public class LotteryDialog extends Dialog implements PrizeInterface, android.vie
 	public void onDestory() {
 		exit();
 		mst = null;
-		gDialog = null;
+		//gDialog = null;
 		lotterItemList = null;
 		zhizuanItemList = null;
 		bitmapCache = null;

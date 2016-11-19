@@ -806,50 +806,6 @@
                 android:layout_height="@dimen/beishu_height"
                 android:background="@drawable/setting_back_bg"
                 android:visibility="gone" />
-<!-- 
-            <ImageButton
-                android:id="@+id/game_pay"
-                android:layout_width="@dimen/beishu_height"
-                android:layout_height="@dimen/beishu_height"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="50dp"
-                android:enabled="false"
-                android:visibility="invisible" 
-                android:background="@drawable/mainpage_pay_bg" />
-                 -->
-            <!-- 倍数 -->
-<!--
-            <LinearLayout
-                android:layout_width="@dimen/beishu_height"
-                android:layout_height="@dimen/beishu_height"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="90dp"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="倍数 "
-                    android:textColor="@color/white"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-                    -->
-                <!-- 顶部倍数数值   start -->
-<!--
-                <TextView
-                    android:id="@+id/beishunumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text=""
-                    android:textColor="@color/gold"
-                    android:textSize="@dimen/bei_di_text_size" />
-                    -->
-                <!-- 顶部倍数数值   end -->
-                <!--
-            </LinearLayout>
-            -->
 
             <RelativeLayout
                 android:id="@+id/dizhucard_rl"
@@ -860,15 +816,6 @@
                 android:layout_margin="3dp"
                 android:background="@null"
                 android:gravity="center" >
-
-                <!-- 
-                <RelativeLayout
-                    android:id="@+id/dizhucard"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:gravity="center" >
-                </RelativeLayout>  -->
 
                 <RelativeLayout
                     android:id="@+id/system_info_rl"
@@ -918,36 +865,6 @@
                     </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
-<!--
-            <LinearLayout
-                android:layout_width="@dimen/beishu_height"
-                android:layout_height="@dimen/beishu_height"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="90dp"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="底注"
-                    android:textColor="@color/white"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
--->
-                <!-- 顶部底数数值   start -->
-<!--
-                <TextView
-                    android:id="@+id/dishunumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/gold"
-                    android:textSize="@dimen/bei_di_text_size" />
-                    -->
-                <!-- 顶部底数数值   end -->
- <!--           </LinearLayout>-->
 
             <ImageButton
                 android:id="@+id/game_set"
@@ -1293,31 +1210,6 @@
                 android:textSize="15dp" />
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/dzed_recharge_ll"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="25dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-
-            <Button
-                android:id="@+id/dzed_borrow_beans_btn"
-                style="@style/dialog_ok_btn_style"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/select1_btn_bg"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="借点豆"
-                android:textColor="@color/dialog_ok_btn_text_color"
-                android:textSize="12dp" />
-        </LinearLayout>
 
         <TextView
             android:id="@+id/network_slow_tip"

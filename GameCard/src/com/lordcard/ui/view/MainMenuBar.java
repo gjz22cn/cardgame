@@ -44,7 +44,6 @@ import com.lordcard.ui.SettingActivity;
 import com.lordcard.ui.StoveActivity;
 import com.lordcard.ui.TaskMenuActivity;
 import com.lordcard.ui.base.FastJoinTask;
-import com.lordcard.ui.view.dialog.BagDialog;
 import com.lordcard.ui.view.dialog.EnvalueDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
 import com.lordcard.ui.view.dialog.GuideDialog;
@@ -61,9 +60,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 	private TextView zhidouTv;//用户金豆
 	private LinearLayout chongzhiLl;//(充值的另一入口)
 	//物品宝鉴，游戏指南，好友，金豆赠送，反馈,抽奖，
-	private ImageView goodsValueView, goodsGuideView, friendsBtn, zhidouBtn, feedbackBtn,lotteryBtn;
-	private LinearLayout goodsLayout;
-	//	private TextView transparentTv, lotTv;
+	//private ImageView zhidouBtn, feedbackBtn;
 	private TextView transparentTv;
 	private TextView nameTv;//昵称
 	private MultiScreenTool mst = MultiScreenTool.singleTonHolizontal();
@@ -71,7 +68,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 	private GuideDialog guideDialog;
 	private EnvalueDialog valueDialog;
 	private LotteryDialog lotDialog;
-	private BagDialog bagDialog;
 	private GenericTask rjoinTask;
 	
 	private boolean isCheck = false;
@@ -87,42 +83,21 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 		
 		isCheck = SettingUtils.getBoolean(SettingUtils.GAME_CHECK);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		/*if(isCheck){
-			inflater.inflate(R.layout.main_menu_bar_check, this);
-		}else{
-			inflater.inflate(R.layout.main_menu_bar, this);
-		}*/
 		inflater.inflate(R.layout.main_menu_bar, this);
-		goodsLayout = (LinearLayout) findViewById(R.id.goods_layout);
-		//addMoneyBtn = (Button) findViewById(R.id.menu_add_money_btn);
-		//rankBtn = (Button) findViewById(R.id.menu_rank_btn);
-		//goodsBagView = (Button) findViewById(R.id.goods_bag_image);
+		//goodsLayout = (LinearLayout) findViewById(R.id.goods_layout);
 		settingIv = (ImageView) findViewById(R.id.menu_setting_btn);
 		zhidouTv = (TextView) findViewById(R.id.menu_zhidou_tv);
-		lotteryBtn = (ImageView) findViewById(R.id.menu_lottery_btn);
-		//goodsDuihuanView = (Button) findViewById(R.id.duihuan);
+		//lotteryBtn = (ImageView) findViewById(R.id.menu_lottery_btn);
 		transparentTv = (TextView) findViewById(R.id.menu_transparent_tv);
-		friendsBtn = (ImageView) findViewById(R.id.menu_friends_btn);
-		zhidouBtn = (ImageView) findViewById(R.id.menu_zhidou_btn);
-		goodsValueView = (ImageView) findViewById(R.id.goods_envalues_image);
-		goodsGuideView = (ImageView) findViewById(R.id.goods_guide_image);
-		feedbackBtn = (ImageView) findViewById(R.id.menu_feedback_btn);
-		//quickPlay = (Button) findViewById(R.id.menu_play_btn);
-		//receiveBeenBtn = (Button) findViewById(R.id.menu_receive_been_btn);
-		//receiveBeenBtn.setOnClickListener(this);
-		//quickPlay.setOnClickListener(this);
-		//addMoneyBtn.setOnClickListener(this);
-		//rankBtn.setOnClickListener(this);
-		friendsBtn.setOnClickListener(this);
-		zhidouBtn.setOnClickListener(this);
+		//friendsBtn = (ImageView) findViewById(R.id.menu_friends_btn);
+		//zhidouBtn = (ImageView) findViewById(R.id.menu_zhidou_btn);
+		//feedbackBtn = (ImageView) findViewById(R.id.menu_feedback_btn);
+		//friendsBtn.setOnClickListener(this);
+		//zhidouBtn.setOnClickListener(this);
 		settingIv.setOnClickListener(this);
-		lotteryBtn.setOnClickListener(this);
+		//lotteryBtn.setOnClickListener(this);
 		transparentTv.setOnClickListener(this);
-		//goodsBagView.setOnClickListener(this);
-		goodsValueView.setOnClickListener(this);
-		goodsGuideView.setOnClickListener(this);
-		//goodsDuihuanView.setOnClickListener(this);
-		feedbackBtn.setOnClickListener(this);
+		//feedbackBtn.setOnClickListener(this);
 		mst.adjustView(findViewById(R.id.menu_mst));
 
 		setUserInfo();
@@ -149,10 +124,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 		}
 	}
 
-	public LinearLayout getGoodsLayout() {
-		return goodsLayout;
-	}
-
 	public TextView getTransparentTv() {
 		return transparentTv;
 	}
@@ -164,21 +135,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 		switch (v.getId()) {
 			//case R.id.menu_add_money_btn:// 充值
 			case R.id.chongzhi_ll:
-				break;
-			case R.id.menu_rank_btn:// 背包
-				//MobclickAgent.onEvent(context, "工具栏背包");
-				if (goodsLayout.getVisibility() == View.VISIBLE) {
-					goneLayout();
-				} else {
-					visibleLayout();
-				}
-				break;
-			case R.id.menu_friends_btn:// 好友
-				//MobclickAgent.onEvent(context, "工具栏好友");
-				goneLayout();
-				Intent friendsIntent = new Intent();
-				friendsIntent.setClass(getContext(), InviteToDowanloadActivity.class);
-				getContext().startActivity(friendsIntent);
 				break;
 			case R.id.menu_zhidou_btn:// 赠送金豆
 				//MobclickAgent.onEvent(context, "工具栏赠送金豆");
@@ -193,54 +149,7 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				settingIntent.setClass(getContext(), SettingActivity.class);
 				getContext().startActivity(settingIntent);
 				break;
-			case R.id.menu_lottery_btn:// 抽奖
-				//MobclickAgent.onEvent(context, "工具栏抽奖");
-				if (null != cacheUser && cacheUser.getIq() < 5) {
-					DialogUtils.mesToastTip("参与抽奖需要5级以上的等级！");
-				} else {
-					if (lotDialog == null) {
-						lotDialog = new LotteryDialog(getContext());
-					}
-					LotteryDialog.voiceON = true;
-					if (!lotDialog.isShowing()) {
-						lotDialog.show();
-					}
-				}
-				break;
 			case R.id.menu_transparent_tv:// 透明层
-				if (goodsLayout.getVisibility() == View.VISIBLE) {
-					goneLayout();
-				}
-				break;
-			case R.id.goods_bag_image:// 物品囊
-				//MobclickAgent.onEvent(context, "工具栏物品囊");
-				if (bagDialog != null) {
-					bagDialog.dismiss();
-					bagDialog = null;
-				}
-				bagDialog = new BagDialog(getContext());
-				goneLayout();
-				bagDialog.show();
-				break;
-			case R.id.goods_envalues_image:// 物品宝鉴
-				//MobclickAgent.onEvent(context, "工具栏宝鉴");
-				goneLayout();
-				if (valueDialog != null) {
-					valueDialog.dismiss();
-					valueDialog = null;
-				}
-				valueDialog = new EnvalueDialog(getContext());
-				valueDialog.show();
-				break;
-			case R.id.goods_guide_image:// 游戏指南
-				//MobclickAgent.onEvent(context, "工具栏游戏指南");
-				goneLayout();
-				if (guideDialog != null) {
-					guideDialog.dismiss();
-					guideDialog = null;
-				}
-				guideDialog = new GuideDialog(getContext());
-				guideDialog.show();
 				break;
 			case R.id.menu_feedback_btn:// 游戏反馈
 				//MobclickAgent.onEvent(context, "工具栏反馈");
@@ -251,13 +160,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 				setIntent.setClass(getContext(), SettingActivity.class);
 				setIntent.putExtras(bundle);
 				getContext().startActivity(setIntent);
-				break;
-			case R.id.duihuan:// 物品合成
-				//MobclickAgent.onEvent(context, "工具栏合成炉");
-				goneLayout();
-				Intent stoveIntent = new Intent();
-				stoveIntent.setClass(getContext(), StoveActivity.class);
-				getContext().startActivity(stoveIntent);
 				break;
 			case R.id.menu_play_btn:// 快速开始
 				//MobclickAgent.onEvent(context, "工具栏快速游戏");
@@ -272,12 +174,10 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 	}
 
 	private void goneLayout() {
-		goodsLayout.setVisibility(View.GONE);
 		transparentTv.setVisibility(View.GONE);
 	}
 
 	private void visibleLayout() {
-		goodsLayout.setVisibility(View.VISIBLE);
 		transparentTv.setVisibility(View.VISIBLE);
 	}
 
@@ -293,7 +193,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 			lotDialog.onDestory();
 			lotDialog = null;
 		}
-		bagDialog = null;
 		this.context = null;
 		if (rjoinTask != null) {
 			rjoinTask.cancel(true);

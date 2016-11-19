@@ -27,7 +27,6 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.ui.LoginActivity;
 import com.lordcard.ui.TaskMenuActivity;
 import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
-import com.lordcard.ui.view.dialog.BaoXiangDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
 import com.lordcard.ui.view.dialog.SingleDialog;
 import com.sdk.util.SDKFactory;
@@ -112,27 +111,6 @@ public class DialogUtils {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-		});
-	}
-
-	/** 开宝箱 */
-	public static void baoxiangTip(final String msg, final boolean isFinish) {
-		Database.currentActivity.runOnUiThread(new Runnable() {
-
-			public void run() {
-				try {
-					BaoXiangDialog baoXiangDialog = new BaoXiangDialog(Database.currentActivity) {
-
-						public void okClick() {
-							if (isFinish) {
-								ActivityUtils.finishAcitivity();
-							}
-						}
-					};
-					baoXiangDialog.show();
-					baoXiangDialog.setText(msg);
-				} catch (Exception e) {}
 			}
 		});
 	}

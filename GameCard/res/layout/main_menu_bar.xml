@@ -106,6 +106,5 @@
         android:background="#aa000000"
         android:visibility="gone" />
 
-    <include layout="@layout/bag_view" />
 
 </RelativeLayout>

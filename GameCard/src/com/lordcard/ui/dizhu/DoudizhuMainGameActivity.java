@@ -202,7 +202,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private int masterOrder = 0;
 	private JSONObject advList = null;
 	private ADWideget adWidget = null;
-	private String beishuNumber = null;
 	private RelativeLayout.LayoutParams adWidgetLayoutParam = null;
 	private SettingDialog settingDialog = null;
 	private ImageButton gameRobot, gameSet, tuoGuan, gamePay;
@@ -231,21 +230,16 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private GameWaitView gameWaitLayout = null;
 	private Button rankTop;// 排名按钮
 	private int tiShiCount = -1;
-	//private RelativeLayout baoXiangLayout, baoxiang;// 宝箱布局,宝箱
-	//private TextView baoText;
 	private int quang, allQuan = 0;
-	private boolean baoFlag = false;
 	private LinearLayout publicLayout;
 	private boolean isTurnMySelf = true; // 是否轮到自己
 	private TextView networkSlowtip; // 网络慢提示语
 	private boolean areButtonsShowing;
 	private MainGameGuideView mainGameGuideVI;// 手势提示引导View
 	private TextView gpType, gpRound, gpScore, gpCount, gpRank = null;
-	// private ImageView slipIv;
 	private LinearLayout gpRl;
 	private ImageView zhadanIv; // 炸弹
 	private Map<Integer, Boolean> warn = null; // 警告记录(是否有警告过)
-	private int callPoint = 0;
 	private int type = 0;
 	private GoodsValuesAdapter valueAdapter;
 	private RelativeLayout nextPlayLayout;
@@ -264,7 +258,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private LinearLayout gridlLayout;
 	private List<GamePropsType> toolList, usetool;
 	private ViewFlipper viewFlipper = null;
-	// private GestureDetector mGestureDetector;
 	private GestureDetector gestureDetector = null;
 	private List<Map<String, String>> girlList;
 	private Button back;
@@ -274,11 +267,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private GameEndDialog mGameEndDialog;// 结束对话框
 	private MatchRankDialog mrDialog;// 排名对话框(快速赛)
 	private GameOverDialog god;// 比赛结束排名对话框
-	// private Vibrate vibrate;
-	// private boolean offVibrate = false;
-	private int jiaofenNum;
-	private int jiao;// 手势点击（叫分）的次数
-	private boolean jiao1 = false, jiao2 = false, jiao3 = false;// （手势）可以叫分标识
 	private int jia;// 手势点击（加倍）的次数
 	boolean isLongClickModule = false;
 	float startX, startY;
@@ -288,18 +276,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private static boolean newImageIsShow = false;
 	private RelativeLayout beansInsufficientRl;// 智斗不足显示布局
 	private TextView beansInsufficientTv;// 智斗不足显示Tv
-	private LinearLayout rechargeLl;// 充值按钮容器布局
-	private Button rechargeBtn;// 充值按钮
-	private int rechargeMoney = 0;//预充值金额
-	private Button borrowBeansBtn;// 借点豆
 	/** 是否已显示预充值画面 **/
 	private boolean isShowPrerechargeDialog = false;
-	/** 自己加倍倍数**/
-	private int DoubleNum = 1;
-	/** 下家的加倍倍数**/
-	private int DoubleNum2 = 1;
-	/** 上家的加倍倍数**/
-	private int DoubleNum3 = 1;
 	private static String gameOverDetail = "";// 比赛结束对话框信息
 	/** 记牌器 **/
 	private JiPaiQiTurnPlateView leftJiPaiQiTurnPlateView;
@@ -311,8 +289,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private View topLeftShieldView;
 	private View topRightShieldView;
 	private View cardStatView;
-	//private View leftJiPaiQiLayout;
-	//private View rightJiPaiQiLayout;
 	private boolean isJiPaiQiEnable = false;
 	private String jiPaiQiTipsMsg;
 	private Button btn_jipaiqi;
@@ -355,7 +331,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		isSystemInfo = false;
 		play2IsTuoGuan = false;
 		play3IsTuoGuan = false;
-		callPoint = 0;
 		HttpRequest.getCacheServer(true);
 		ctx = this;
 		AudioPlayUtils.isPlay = true;
@@ -489,11 +464,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						if (null != toolList) {
 							setImageNewGone(toolList.size());
 						}
-						break;
-					case R.id.dzed_borrow_beans_btn:// 借点豆
-						int allDouble = getCallDoubleNum();
-						GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-						long currentWager = (Integer.valueOf(beishuNumber) * Database.JOIN_ROOM_BASEPOINT) * allDouble;
 						break;
 				}
 			}
@@ -778,27 +748,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	}
 
 	/**
-	 * 获取自己应结算的加倍数
-	 * @return
-	 */
-	private int getCallDoubleNum() {
-		int allDouble = DoubleNum;
-		//如果自己是地主,倍数未所有人倍数之和
-		if (0 != masterOrder && masterOrder == mySelfOrder) {
-			int callDouble2 = (1 == DoubleNum2) ? 1 : (DoubleNum * DoubleNum2);
-			int callDouble3 = (1 == DoubleNum3) ? 1 : (DoubleNum * DoubleNum3);
-			allDouble = callDouble2 + callDouble3;
-		} else {
-			if (masterOrder == getNextOrder(mySelfOrder)) {
-				allDouble = (1==DoubleNum) ? 1 : DoubleNum * DoubleNum2;
-			} else {
-				allDouble = (1==DoubleNum) ? 1 : DoubleNum * DoubleNum3;
-			}
-		}
-		return allDouble;
-	}
-
-	/**
 	 * 刷新用户物品信息
 	 */
 	public void refreshUserGoodsInfo() {
@@ -864,30 +813,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		}
 	}
 
-	public void giveCoupon() {
-		new Thread() {
-
-			public void run() {
-				try {
-					GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-					Map<String, String> paramMap = new HashMap<String, String>();
-					paramMap.put("loginToken", cacheUser.getLoginToken());
-					paramMap.put("count", String.valueOf(quang));
-					String count = HttpUtils.post(HttpURL.COUPON_GIVE_URL, paramMap);
-					if (count.equals("0")) {
-						if (6 == Database.JOIN_ROOM.getHomeType()) {
-							DialogUtils.mesToastTip("亲，您目前未能获得钻石，继续加油吧！");
-						} else {
-							DialogUtils.mesToastTip("很遗憾,未获得任何物品");
-						}
-					} else {
-						DialogUtils.mesToastTip(count);
-					}
-				} catch (Exception e) {}
-			}
-		}.start();
-	}
-
 	public void sendTextMessage(String talk, int clickType) {
 		if (talk.equals("")) {
 			Toast.makeText(DoudizhuMainGameActivity.this, "发送消息不能为空", Toast.LENGTH_SHORT).show();
@@ -898,7 +823,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		}
 		CmdDetail chat = new CmdDetail();
 		chat.setCmd(CmdUtils.CMD_CHAT);
-		// chat.setGameToken(Database.USER.getLoginToken());
 		CmdDetail detail = new CmdDetail();
 		detail.setType(clickType);
 		detail.setValue(talk);
@@ -942,55 +866,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		// 取消托管时的牌可按
 		for (int i = 0; i < myCardsTouchLayout.getChildCount(); i++) {
 			myCardsTouchLayout.getChildAt(i).setClickable(false);
-		}
-	}
-
-	/**
-	 * 打牌前的叫分
-	 * 
-	 * @param tempRatio
-	 *            分数
-	 * @param info
-	 *            View
-	 * @param order
-	 *            玩家位置
-	 * @param isLocal
-	 *            是否是本地叫
-	 */
-	private void callPoints(int tempRatio, ImageView info, int order, boolean isLocal) {
-		AudioPlayUtils audioPlayUtils = AudioPlayUtils.getInstance();
-		String gender = Database.userMap.get(order).getGender();
-		if (tempRatio == 0) {
-			if ("1".equals(gender)) {
-				AudioPlayUtils.getInstance().playSound(R.raw.nv_bujiao);
-			} else {
-				AudioPlayUtils.getInstance().playSound(R.raw.nan_bujiao); // 不叫
-			}
-			info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.call_bujiao, true));
-		} else if (tempRatio == 1) {
-			if ("1".equals(gender)) {
-				audioPlayUtils.playMusic(false, R.raw.nv_1fen); // 别人叫1分
-			} else {
-				audioPlayUtils.playMusic(false, R.raw.nan_1fen); // 别人叫1分
-			}
-			info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.callone, true));
-		} else if (tempRatio == 2) {
-			if ("1".equals(gender)) {
-				audioPlayUtils.playMusic(false, R.raw.nv_2fen); // 别人叫2分
-			} else {
-				audioPlayUtils.playMusic(false, R.raw.nan_2fen); // 别人叫2分
-			}
-			info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.calltwo, true));
-		} else if (tempRatio == 3) {
-			// 自己叫的三分，要在产生地主的时候发出声音，以免声音重复
-			if (!isLocal) {
-				if ("1".equals(gender)) {
-					audioPlayUtils.playMusic(false, R.raw.nv_3fen); // 别人叫3分
-				} else {
-					audioPlayUtils.playMusic(false, R.raw.nan_3fen); // 别人叫3分
-				}
-				info.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.callthree, true));
-			}
 		}
 	}
 
@@ -1080,7 +955,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		gestureDetector = null;
 		if (popThread != null) {
 			popThread.interrupt();
-			// popThread = null;
 		}
 		valueAdapter = null;
 		AudioPlayUtils.getInstance().stopMusic();
@@ -1303,7 +1177,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		play1Order = null;
 		play2Order = null;
 		play3Order = null;
-		//beishuNumView = null;
 		zhidou = null;
 		ImageUtil.releaseDrawable(play1Icon.getBackground());
 		ImageUtil.releaseDrawable(play2Icon.getBackground());
@@ -1338,7 +1211,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			userinfoshowView.removeAllViews();
 			userinfoshowView = null;
 		}
-		// ImageUtil.clearImageWeakMap();
 		ActivityPool.remove(this);
 		if (null != mReciver) {
 			this.unregisterReceiver(mReciver);
@@ -1368,10 +1240,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			DouDiZhuData datas = new DouDiZhuData(nowcard);
 			data.fillPokerList();
 			List<List<Poker>> tishiList = data.getTiShi();
-			// List<List<Poker>> tishiList = data.getTiShi(otherplay1);
 			datas.fillAllPokerList();
 			List<List<Poker>> tishiList2 = datas.getTiShi();
-			// List<List<Poker>> tishiList = new ArrayList<List<Poker>>();
 			HintPokerUtil aList = new HintPokerUtil();
 			tishiList = aList.filterHintPoker(tishiList, tishiList2);
 			if (tishiList == null || tishiList.size() == 0) {
@@ -1393,16 +1263,13 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			}
 		} else {
 			checkOtherChupai(bierenchupai);
-			// int tishi[] = DoudizhuRule.GettiShi(otherplay1, nowcard);
 			DouDiZhuData data = new DouDiZhuData(nowcard);
 			DouDiZhuData datas = new DouDiZhuData(nowcard);
 			data.fillPokerList();
 			List<List<Poker>> tishiList = data.getTiShi(otherplay1);
-			// List<List<Poker>> tishiList = data.getTiShi(otherplay1);
 			checkOtherChupai(bierenchupai);
 			datas.fillAllPokerList();
 			List<List<Poker>> tishiList2 = datas.getTiShi(otherplay1);
-			// List<List<Poker>> tishiList = new ArrayList<List<Poker>>();
 			HintPokerUtil aList = new HintPokerUtil();
 			if (tishiList != null && tishiList2 != null) {
 				tishiList = aList.filterHintPoker(tishiList, tishiList2);
@@ -1449,11 +1316,9 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			DouDiZhuData datas = new DouDiZhuData(nowcard);
 			data.fillPokerList();
 			List<List<Poker>> tishiList = data.getTiShi(otherplay1);
-			// List<List<Poker>> tishiList = data.getTiShi(otherplay1);
 			checkOtherChupai(bierenchupai);
 			datas.fillAllPokerList();
 			List<List<Poker>> tishiList2 = datas.getTiShi(otherplay1);
-			// List<List<Poker>> tishiList = new ArrayList<List<Poker>>();
 			HintPokerUtil aList = new HintPokerUtil();
 			if (tishiList != null && tishiList2 != null) {
 				tishiList = aList.filterHintPoker(tishiList, tishiList2);
@@ -1475,7 +1340,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			toast.setView(toastRoot);
 			TextView tv = (TextView) toastRoot.findViewById(R.id.TextViewInfo);
 			tv.setText("");
-			// toast.setGravity(Gravity.CENTER, 0, 0);
 			toast.show();
 			TextView now = (TextView) findViewById(R.id.play1Time);
 			now.setText("5");
@@ -1531,7 +1395,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		messbtnView = (ImageView) findViewById(R.id.mess_btn_view);
 		chupai = (Button) findViewById(R.id.chupai_button);
 		buchu = (Button) findViewById(R.id.pass_button);
-		jiao = 0;
 		tishi = (Button) findViewById(R.id.tishi_button);
 		countdownTv = (TextView) findViewById(R.id.countdown);
 		countdownTv.setTypeface(typeface);
@@ -1563,7 +1426,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		playBtnLayout = (LinearLayout) findViewById(R.id.play_choice);
 		doudizhuLayout = (RelativeLayout) findViewById(R.id.doudizhu_layout);
 		doudizhuBackGround = (RelativeLayout) findViewById(R.id.doudizhugame_relative);
-		// doudizhuBackGround.setOnTouchListener(this);
 		play1Icon = (ImageView) findViewById(R.id.playimageView1);
 		play1Icon.setOnClickListener(clickListener);
 		zhezhao1 = (ImageView) findViewById(R.id.zhezhao1);
@@ -1582,10 +1444,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		dpRl1 = (RelativeLayout) findViewById(R.id.dunpairl1);
 		dpRl2 = (RelativeLayout) findViewById(R.id.dunpairl2);
 		dpRl3 = (RelativeLayout) findViewById(R.id.dunpairl3);
-		//baoXiangLayout = (RelativeLayout) findViewById(R.id.bao_xiang_layout);
-		//baoxiang = (RelativeLayout) findViewById(R.id.baoxiang);
 		Map<String, String> roomRuleMap = JsonHelper.fromJson(Database.JOIN_ROOM.getRule(), new TypeToken<Map<String, String>>() {});
-		//baoText = (TextView) findViewById(R.id.bao_xiang_text);
 		mySelfHeadRl = (RelativeLayout) findViewById(R.id.game_self_ll);
 		nullTv = (TextView) findViewById(R.id.null_tv);
 		nullTv.setVisibility(View.GONE);
@@ -1659,7 +1518,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		gpRound = (TextView) findViewById(R.id.doudizhu_game_round_tv);
 		gpScore = (TextView) findViewById(R.id.doudizhu_game_sorce_tv);
 		gpRank = (TextView) findViewById(R.id.doudizhu_game_rank_tv);
-		// slipIv = (ImageView) findViewById(R.id.doudizhu_slip_img);
 		zhadanIv = (ImageView) findViewById(R.id.zhadan_iv);
 		setViewInitData();
 		rankTop = (Button) findViewById(R.id.gp_top_btn);
@@ -1682,8 +1540,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			bitmapList.add(bitmap);
 		}
 		/** 记牌器 **/
-		//leftJiPaiQiLayout = findViewById(R.id.jipaiqi_layout_left);
-		//rightJiPaiQiLayout = findViewById(R.id.jipaiqi_layout_right);
 		leftJiPaiQiTurnPlateView = (JiPaiQiTurnPlateView) findViewById(R.id.jipaiqi_left);
 		leftJiPaiQiTurnPlateView.setLocation(Location.Top_Left);
 		rightJiPaiQiTurnPlateView = (JiPaiQiTurnPlateView) findViewById(R.id.jipaiqi_right);
@@ -1700,12 +1556,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		beansInsufficientRl = (RelativeLayout) findViewById(R.id.dzed_beans_insufficient_rl);
 		beansInsufficientTv = (TextView) findViewById(R.id.dzed_beans_insufficient_tv);
 		beansInsufficientRl.setVisibility(View.GONE);
-		rechargeLl = (LinearLayout) findViewById(R.id.dzed_recharge_ll);
-		//rechargeBtn = (Button) findViewById(R.id.dzed_recharge_beans_btn);
-		//rechargeBtn.setOnClickListener(clickListener);
-		borrowBeansBtn = (Button) findViewById(R.id.dzed_borrow_beans_btn);
-		borrowBeansBtn.setOnClickListener(clickListener);
-		rechargeLl.setVisibility(View.GONE);
 		mSystemInfoRl.setVisibility(View.VISIBLE);
 	}
 
@@ -1738,7 +1588,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		play2SurplusCount.setText(Integer.toString(initCardNum));
 		play3SurplusCount.setText(Integer.toString(initCardNum));
 		bierenchupai = null;
-		baoFlag = false;
 	}
 
 	/**
@@ -1770,7 +1619,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						if (!TextUtils.isEmpty(mGameUser.getNickname())) {// 保存自己的名字供单机使用
 							GameCache.putStr(Constant.GAME_NAME_CACHE, mGameUser.getNickname());
 						}
-//						ActivityUtils.setDefaultHead(ctx, play1Icon, mGameUser.getGender(), false);
 						play1Order.setText(String.valueOf(mySelfOrder));
 						iqTv1.setText("" + mGameUser.getIq());
 						Map<String, String> dpMap = mGameUser.getLevelImg();
@@ -1809,7 +1657,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						int p2o = getNextOrder(mySelfOrder);
 						GameUser mGameUser2 = Database.userMap.get(p2o);
 						playTextView2.setText(mGameUser2.getNickname()); // 下家
-//						ActivityUtils.setDefaultHead(ctx, play2Icon, mGameUser2.getGender(), false);
 						play2Order.setText(String.valueOf(p2o));
 						iqTv2.setText("" + mGameUser2.getIq());
 						Map<String, String> dpMap2 = mGameUser2.getLevelImg();
@@ -1848,7 +1695,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						int p3o = getPerOrder(mySelfOrder);
 						GameUser mGameUser3 = Database.userMap.get(p3o);
 						playTextView3.setText(mGameUser3.getNickname()); // 下家
-//						ActivityUtils.setDefaultHead(ctx, play3Icon, mGameUser3.getGender(), false);
 						play3Order.setText(String.valueOf(p3o));
 						iqTv3.setText("" + mGameUser3.getIq());
 						Map<String, String> dpMap3 = mGameUser3.getLevelImg();
@@ -1976,11 +1822,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 							}
 						};
 						ScheduledTask.addDelayTask(adTask, Constant.AD_PLAY_TIME);
-						break;
-					case 11:// 接收当前玩家的踢拉选择，提示下家是“踢”或"拉"
-						getTiLaMsg(msg);
-						/** 更新记牌器头像 **/
-						//refreshJiPaiQiAvatar();
 						break;
 					case 12:// 刷新倒计时
 						countDownTime -= 60;
@@ -2186,51 +2027,11 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						String dj = JsonHelper.toJson(detail);
 						chat.setDetail(dj);
 						myFrame.removeAllViews();
-						// girlLeftFrame.removeAllViews();
 						girlLeftFrame.setVisibility(View.GONE);
 						startTask(myFrame, selfTask);
 						messageFrame(myFrame, imageName, clickType, null);
 						CmdUtils.sendMessageCmd(chat);
 						break;
-				}
-			}
-
-			/**
-			 * 接收当前玩家的踢拉选择，提示下家是“踢”或"拉"
-			 * 
-			 * @param msg
-			 */
-			private void getTiLaMsg(Message msg) {
-				TiLa tila = (TiLa) msg.getData().get("tila");
-				ImageView info = new ImageView(ctx);
-				Log.i("Ordersss", "加倍玩家的位置:" + tila.getOrder() + "\n下一个踢or拉玩家的位置:" + tila.getNextOrder() + "\n加倍的倍数 (1:不加倍,2:加2倍,4:加4倍):" + tila.getRatio() + "\n下一家是否可踢啦:" + tila.getNextCan());
-				String gd = "0";
-				if (null != Database.userMap && Database.userMap.containsKey(tila.getOrder())) {
-					gd = Database.userMap.get(tila.getOrder()).getGender();
-				}
-				AudioPlayUtils apu2 = AudioPlayUtils.getInstance();
-				// 关闭当前踢拉定时器
-				if (null != tila.getOrder()) {
-					if (mySelfOrder == tila.getOrder()) {// 自己
-						stopTimer(0); // 暂停定时器
-					} else if (JIABEI2_ID == (1600 + tila.getOrder())) {// 下家
-						stopTimer(1); // 暂停定时器
-					} else if (JIABEI3_ID == (1600 + tila.getOrder())) {// 上家
-						stopTimer(-1); // 暂停定时器
-					}
-				}
-				// 开启下一家踢拉定时器
-				if (tila.getNextCan() && null != tila.getNextOrder()) {
-					if (mySelfOrder == tila.getNextOrder()) {// 自己
-						isTurnMySelf = true;
-						startTiLaTimer(0);
-					} else if (JIABEI2_ID == (1600 + tila.getNextOrder())) {// 下家
-						isTurnMySelf = false;
-						startTiLaTimer(1);
-					} else if (JIABEI3_ID == (1600 + tila.getNextOrder())) {// 上家
-						isTurnMySelf = false;
-						startTiLaTimer(-1);
-					}
 				}
 			}
 		};
@@ -2271,8 +2072,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		refreshUserGoodsInfo();
 		setUserInfo();
 		masterOrder = 0;
-		callPoint = 0;
-		jiao = 0;
 		play2IsTuoGuan = false;
 		play3IsTuoGuan = false;
 		myCardsTouchLayout.removeAllViews();
@@ -2283,7 +2082,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		wolTv2.setVisibility(View.GONE);
 		wolTv3.setVisibility(View.GONE);
 		beansInsufficientRl.setVisibility(View.GONE);
-		rechargeLl.setVisibility(View.GONE);
 		if (selfIsMove) {
 			selfIsMove = false;
 			nullTv.setVisibility(View.GONE);
@@ -2346,7 +2144,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		nowcard = new ArrayList<Poker>();
 		chupaicard = new ArrayList<Poker>();
 		otherplay1 = new ArrayList<Poker>();
-		// ImageUtil.clearPokerMap();
 		setViewInitData();
 		showWaitView();
 		AudioPlayUtils.isPlay = true;
@@ -2423,7 +2220,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			userinfoshowView.setLayoutParams(layoutParams);
 			StringBuffer msgBuffer = new StringBuffer();
 			msgBuffer.append(mess);
-			// .append(u.getAccount()).append("</font><br/>");
 			userInfoText.setLayoutParams(textParam);
 			userInfoText.setText(mess);
 		} catch (Exception e) {
@@ -3114,39 +2910,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	}
 
 	/**
-	 * 地主产生后开始定时器
-	 */
-	public void startOtherTimer() {
-		if (mySelfOrder != masterOrder) {
-			startPlayTimer(masterOrder + 1200);
-		}
-	}
-
-	/**
-	 * 抢地主定时器开始 （-1 上家 0 自己 1 下家）
-	 */
-	public void startQiangTimer(int callOrder) {
-		if (gameTask != null) {
-			gameTask.stop(true);
-			gameTask = null;
-		}
-		gameTask = new DizhuTask(callOrder);
-		ScheduledTask.addRateTask(gameTask, 1000);
-	}
-
-	/**
-	 * 踢拉定时器开始 （-1 上家 0 自己 1 下家）
-	 */
-	public void startTiLaTimer(int callOrder) {
-		if (gameTask != null) {
-			gameTask.stop(true);
-			gameTask = null;
-		}
-		gameTask = new TiLaTask(callOrder);
-		ScheduledTask.addRateTask(gameTask, 1000);
-	}
-
-	/**
 	 * 打牌定时器开始
 	 */
 	public void startPlayTimer(int id) {
@@ -3189,57 +2952,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		if (now != null) {
 			now.setVisibility(View.GONE);
 			now.setText(String.valueOf(Constant.WAIT_TIME));
-		}
-	}
-
-	/**
-	 * 根据地主产生来决定是否需要更新自己的牌
-	 * 
-	 * @param master
-	 */
-	public void genxinMycard(String id, String lastCards, int mastOder) {
-		// 清除叫地主信息
-		// cleanAllChuPaiInfo();
-		for (int i = 0; i < nowcard.size(); i++) {
-			poker[nowcard.get(i).getNumber()].params.topMargin = mst.adjustYIgnoreDensity(20);
-			poker[nowcard.get(i).getNumber()].setLayoutParams(poker[nowcard.get(i).getNumber()].params);
-			poker[nowcard.get(i).getNumber()].ischeck = false;
-		}
-		// 如果自己是地主的话
-		if (id.equals(mySelfId)) {
-			String dipai = lastCards;
-			String str = dipai.substring(1, dipai.length() - 1);
-			String[] dizhuCard = str.split(",");//地主牌
-			int[] now = new int[20];
-			for (int i = 0; i < pai.length; i++) {
-				now[i] = pai[i];
-			}
-			for (int i = 0; i < dizhuCard.length; i++) {
-				now[i + 17] = Integer.parseInt(dizhuCard[i]);
-			}
-			// 清除再添加自己手中的牌
-			for (int i = 0; i < paixu.length; i++) {
-				myCardsTouchLayout.removeView(poker[paixu[i]]);
-			}
-			nowcard.clear();
-			addCard(now);
-			// 把地主的牌数加上3
-			play1SurplusCount.setText("" + now.length);
-			play1PassLayout.removeAllViews();
-			showPlayBtn(true);
-			if (isTuoguan) { // 如果当前正在托管
-				setTuoGuan();
-			} else {
-				// 开启一个定时器
-				startPlayTimer(R.id.play1Time);
-			}
-		} else { // 如果自己不是地主的话
-			String dipai = lastCards;
-			String str = dipai.substring(1, dipai.length() - 1);
-			String[] dizhuCard = str.split(",");
-			// 把地主的牌数加上3
-			TextView cardCount = (TextView) findViewById(1100 + mastOder);
-			cardCount.setText("20");
 		}
 	}
 
@@ -3362,68 +3074,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			// 抹去上轮出的牌
 			RelativeLayout res = (RelativeLayout) findViewById(play.getNextOrder() + 1000);
 			res.removeAllViews();
-		}
-	}
-
-	/**
-	 * 叫地主定时器
-	 * 
-	 * @author Administrator
-	 */
-	class DizhuTask extends AutoTask { // TimerTask { // 叫地主定时器
-
-		private int callOrder; // 是否是自己叫地主 （-1 上家 0 自己 1 下载）
-
-		public DizhuTask(int callOrder) {
-			this.callOrder = callOrder;
-			if (callOrder == 0) { // 自己
-				play1Timer.setVisibility(View.VISIBLE);
-				play1Timer.setText(String.valueOf(Constant.WAIT_TIME));
-			} else if (callOrder == 1) { // 下家
-				play2Timer.setVisibility(View.VISIBLE);
-				play2Timer.setText(String.valueOf(Constant.WAIT_TIME));
-			} else if (callOrder == -1) { // 上家
-				play3Timer.setVisibility(View.VISIBLE);
-				play3Timer.setText(String.valueOf(Constant.WAIT_TIME));
-			}
-		}
-
-		public void run() {
-			Message msg = new Message();
-			msg.arg1 = callOrder;
-			msg.what = 5;
-			handler.sendMessage(msg);
-		}
-	}
-
-	/**
-	 * 踢拉定时器
-	 * 
-	 * @author Administrator
-	 */
-	class TiLaTask extends AutoTask { // TimerTask { //
-
-		private int callOrder; // 是否是自己叫地主 （-1 上家 0 自己 1 下载）
-
-		public TiLaTask(int callOrder) {
-			this.callOrder = callOrder;
-			if (callOrder == 0) { // 自己
-				play1Timer.setVisibility(View.VISIBLE);
-				play1Timer.setText(String.valueOf(Constant.WAIT_TIME));
-			} else if (callOrder == 1) { // 下家
-				play2Timer.setVisibility(View.VISIBLE);
-				play2Timer.setText(String.valueOf(Constant.WAIT_TIME));
-			} else if (callOrder == -1) { // 上家
-				play3Timer.setVisibility(View.VISIBLE);
-				play3Timer.setText(String.valueOf(Constant.WAIT_TIME));
-			}
-		}
-
-		public void run() {
-			Message msg = new Message();
-			msg.arg1 = callOrder;
-			msg.what = 13;
-			handler.sendMessage(msg);
 		}
 	}
 
@@ -3756,8 +3406,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						((ViewGroup) ImageUtil.getGifDrawable(imageName).getParent()).removeView(ImageUtil.getGifDrawable(imageName));
 					}
 					ImageUtil.getGifDrawable(imageName).showAnimation();
-					// ImageUtil.getGifDrawable(imageName).setShowDimension(mst.adjustXIgnoreDensity(150),
-					// mst.adjustYIgnoreDensity(150));
 					layout.addView(ImageUtil.getGifDrawable(imageName), new ViewGroup.LayoutParams(mst.adjustXIgnoreDensity(150), mst.adjustYIgnoreDensity(150)));
 				}
 			}
@@ -3779,8 +3427,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					}
 					girlLeftFrame.setVisibility(View.GONE);
 					ImageUtil.getGifDrawable(talk).showAnimation();
-					// ImageUtil.getGifDrawable(talk).setShowDimension(mst.adjustXIgnoreDensity(150),
-					// mst.adjustYIgnoreDensity(150));
 					layout.addView(ImageUtil.getGifDrawable(talk), new ViewGroup.LayoutParams(mst.adjustXIgnoreDensity(150), mst.adjustYIgnoreDensity(150)));
 				}
 			}
@@ -3822,7 +3468,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		public synchronized void messageHandler(CmdDetail cmdDtl) {
 			String cmd = cmdDtl.getCmd();
 			String detail = cmdDtl.getDetail();
-			Log.d("zhilishengji", "cmd:" + cmd + "-------detail:" + detail);
+			Log.d("playMsg", "cmd:" + cmd + "-------detail:" + detail);
 			if (CmdUtils.CMD_STARTREADY.equals(cmd)) {// 如果是准备的话)
 				if (1 == Database.JOIN_ROOM.getRoomType()) {// 如果是超快赛
 					if (hasEnd) {
@@ -3833,18 +3479,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					}
 				}
 				CmdUtils.ready();
-				return;
-			}
-			if (CmdUtils.NO_SCOPE_BEAN.equals(cmd)) {//金豆超过
-				Message message = new Message();
-				String mess = cmdDtl.getMes();
-				if (mess != null && !TextUtils.isEmpty(mess)) {
-					message.what = 666;
-					Bundle bundle = new Bundle();
-					bundle.putString("tipsmess", mess);
-					message.setData(bundle);
-					handler.sendMessage(message);
-				}
 				return;
 			}
 			if (CmdUtils.CMD_START.equals(cmd)) {// 如果是发牌的话
@@ -4170,7 +3804,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			Database.JOIN_ROOM_CODE = Database.JOIN_ROOM.getCode();
 			Database.JOIN_ROOM_RATIO = relink.getRoom().getRatio();
 			Database.JOIN_ROOM_BASEPOINT = Database.JOIN_ROOM.getBasePoint();
-			beishuNumber = String.valueOf(relink.getRatio());
+			//beishuNumber = String.valueOf(relink.getRatio());
 			mySelfId = ActivityUtils.getAndroidId();
 			List<Integer> myCardList = relink.getMyCardList();
 			pai = new int[myCardList.size()];

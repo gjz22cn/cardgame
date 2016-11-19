@@ -33,7 +33,6 @@ import com.lordcard.common.anim.PlayCardAnima;
 import com.lordcard.common.exception.CrashApplication;
 import com.lordcard.common.net.DownloadUtils;
 import com.lordcard.constant.Database;
-import com.lordcard.ui.view.dialog.BagDialog;
 
 public class ImageUtil {
 
@@ -892,7 +891,7 @@ public class ImageUtil {
 						if (convertUrlToFileName(path).equals(convertUrlToFileName(Database.LASTPIC))) {
 							DialogUtils.mesToastTip("您的图集已经下载完成！");
 							if (null != mHandler) {
-								mHandler.sendEmptyMessage(BagDialog.DOWN_MEI_NU_OK);
+								//mHandler.sendEmptyMessage(BagDialog.DOWN_MEI_NU_OK);
 							}
 						}
 						tempBitmap = null;

@@ -1286,7 +1286,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 				String homeCode = param.getString("homeCode");
 				String pwd = param.getString("passwd");
 				String result = HttpRequest.rjoin(homeCode, pwd);
-				//Log.e("hallResult", result);
+				Log.e("hallResult", result);
 				CmdDetail detail = JsonHelper.fromJson(result, CmdDetail.class);
 				if (CmdUtils.CMD_ERR_RJOIN.equals(detail.getCmd())) { // 加入失败
 					String v = detail.getDetail();
@@ -1307,7 +1307,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 					Database.JOIN_ROOM_RATIO = room.getRatio();
 					Database.JOIN_ROOM_BASEPOINT = room.getBasePoint();
 					Intent in = new Intent();
-					//					in.setClass(DoudizhuRoomListActivity.this, Database.VIP_GAME_TYPE);
+					//in.setClass(DoudizhuRoomListActivity.this, Database.VIP_GAME_TYPE);
 					in.setClass(DoudizhuRoomListActivity.this, DoudizhuMainGameActivity.class);
 					in.putExtra("isviproom", true); // 标识是vip包房
 					startActivity(in);
@@ -1375,44 +1375,13 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.room_list_layout: // 点击屏幕
-				if (mMainMenuBar.getGoodsLayout().getVisibility() == View.VISIBLE) {
-					mMainMenuBar.getGoodsLayout().setVisibility(View.GONE);
-					mMainMenuBar.getTransparentTv().setVisibility(View.GONE);
-				}
 				break;
 		}
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		final Context ctx = CrashApplication.getInstance();
 		// 重写返回键
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (mMainMenuBar.getGoodsLayout().getVisibility() == View.VISIBLE) {
-				mMainMenuBar.getGoodsLayout().setVisibility(View.GONE);
-				mMainMenuBar.getTransparentTv().setVisibility(View.GONE);
-				return true;
-			} else {
-//				try {
-//					GameDialog exitDialog = new GameDialog(DoudizhuRoomListActivity.this) {
-//
-//						public void okClick() {
-//							//MobclickAgent.onEvent(ctx, "房间列表确认退出游戏");
-//							Intent in = new Intent();
-//							in.setClass(DoudizhuRoomListActivity.this, SDKFactory.getLoginView());
-//							startActivity(in);
-//						}
-//
-//						public void cancelClick() {
-//							dismiss();
-//							//MobclickAgent.onEvent(ctx, "房间列表取消退出游戏");
-//						};
-//					};
-//					exitDialog.show();
-//					exitDialog.setText("是否退出游戏？");
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-			}
 		}
 		return super.onKeyDown(keyCode, event);
 	}
@@ -1460,7 +1429,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 		}
 		AssistantBean.assistantBean = null;
 		DataCentreBean.datacentrebean = null;
-		//		小美女图标或者消息内容本身存在时，有新消息但没显示时，把旧消息加入消息中心
+		//小美女图标或者消息内容本身存在时，有新消息但没显示时，把旧消息加入消息中心
 		if (Database.ADD_DATA_CENTRE && Assistant.GAME_ASSISTANT != null) {
 			String json = JsonHelper.toJson(Assistant.GAME_ASSISTANT);
 			ContentValues values = new ContentValues();
