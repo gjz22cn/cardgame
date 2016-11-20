@@ -46,7 +46,6 @@ import com.lordcard.network.http.HttpURL;
 import com.lordcard.ui.base.FastJoinTask;
 import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
 import com.lordcard.ui.view.dialog.SignupDialog;
-import com.sdk.util.RechargeUtils;
 
 
 public class RoomlistAdapter extends BaseAdapter {
@@ -347,7 +346,6 @@ public class RoomlistAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				if (Math.abs(System.currentTimeMillis() - Constant.CLICK_TIME) >= Constant.SPACING_TIME) {
 					Constant.CLICK_TIME=System.currentTimeMillis();
-					RechargeUtils.calRoomJoinMoney(room);
 					
 					long limitBean = room.getLimit();
 					GameUser gu = (GameUser)GameCache.getObj(CacheKey.GAME_USER);

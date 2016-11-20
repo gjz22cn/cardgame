@@ -35,7 +35,6 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.ui.view.AlignLeftGallery;
 import com.sdk.constant.SDKConfig;
 import com.sdk.constant.SDKConstant;
-import com.sdk.util.RechargeUtils;
 import com.sdk.util.SDKFactory;
 
 

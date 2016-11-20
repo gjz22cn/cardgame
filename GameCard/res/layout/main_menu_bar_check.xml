@@ -30,11 +30,12 @@
                     android:layout_marginRight="@dimen/main_menu_bar_slip_margin"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/memubar_wire" />
-
+<!-- 
                 <Button
                     android:id="@+id/menu_receive_been_btn"
                     style="@style/main_menu_bar_btn_wh1"
                     android:background="@drawable/home_receive_been_button_1" />
+                     -->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -44,11 +45,12 @@
                     android:layout_marginRight="@dimen/main_menu_bar_slip_margin"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/memubar_wire" />
-
+<!--
                 <Button
                     android:id="@+id/menu_add_money_btn"
                     style="@style/main_menu_bar_btn_wh1"
                     android:background="@drawable/home_present" />
+                    -->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,11 +61,11 @@
                     android:layout_marginTop="1dp"
                     android:background="@drawable/memubar_wire" />
 
-                <Button
+              <!--  <Button
                     android:id="@+id/goods_bag_image"
                     style="@style/main_menu_bar_btn_wh1"
                     android:background="@drawable/home_goods_list" />
-
+-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="47dp"

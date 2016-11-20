@@ -2,7 +2,6 @@ package com.lordcard.ui.view.dialog;
 
 import com.zzyddz.shui.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,18 +20,10 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -50,7 +41,6 @@ import com.lordcard.entity.GameUser;
 import com.lordcard.entity.Play;
 import com.lordcard.network.http.GameCache;
 import com.lordcard.ui.base.IGameView;
-import com.sdk.util.RechargeUtils;
 
 
 /**

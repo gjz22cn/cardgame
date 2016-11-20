@@ -128,7 +128,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	//private GridView roomListGridView, fhgpRoomListGridView;//,fgpRoomListGridView;//普通房间，快速赛场列表,复合赛场列表
 	private LinearLayout roomTopll;// 顶部的布局
 	private LinearLayout roomVipView;
-	private Button vipRoomBtn;
 	private EditText joinRoomText;
 	private Button vipJoinBtn, vipRoomCreate;
 	private RelativeLayout roomListLayout, roomListGuide;
