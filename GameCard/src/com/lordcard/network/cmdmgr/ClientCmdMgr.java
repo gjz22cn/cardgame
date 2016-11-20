@@ -1,7 +1,6 @@
 package com.lordcard.network.cmdmgr;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.lordcard.constant.Database;
 import com.lordcard.network.http.HttpRequest;

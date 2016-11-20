@@ -51,17 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/wire" />
-
-        <RadioButton
-            android:id="@+id/gen_assistant"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/gpl_right_bg"
-            android:button="@null"
-            android:gravity="center"
-            android:text="游戏助理"
-            android:textColor="@color/color_radio_button" />
     </RadioGroup>
 
     <TextView
@@ -152,13 +141,6 @@
             android:textColor="@color/white"
             android:visibility="gone" />
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/assistant_view2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/xiao_LinearLayout"

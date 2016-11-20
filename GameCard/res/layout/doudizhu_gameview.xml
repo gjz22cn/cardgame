@@ -1506,22 +1506,6 @@
         android:layout_height="1dp"
         android:layout_marginTop="72dp" />
 
-    <LinearLayout
-        android:id="@+id/login_sliding_handle_ll"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:id="@+id/game_gilr_items"
-            android:layout_width="43dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="-7dp"
-            android:background="@drawable/left_to_right" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/netslow_tip"
         android:layout_width="fill_parent"

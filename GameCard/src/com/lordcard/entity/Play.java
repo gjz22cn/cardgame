@@ -18,6 +18,7 @@ public class Play implements Serializable {
 	@Expose @SerializedName("co") 	private int callOrder; // 开始叫分的人位置
 	@Expose @SerializedName("e") 	private boolean escape; // 是否逃跑
 	@Expose @SerializedName("no") 	private Integer nextOrder; // 下一个出牌人位置
+	@Expose @SerializedName("gno") 	private Integer gameNo; 	// 当前局数
 	@Expose @SerializedName("nm") 	private Map<Integer, String> nickMap; // 玩家名称
 
 	@Expose @SerializedName("r") 	private int ratio; //总倍数
@@ -111,6 +112,10 @@ public class Play implements Serializable {
 		this.nextOrder = nextOrder;
 	}
 
+	public int getGameNo() {
+		return gameNo;
+	}
+	
 	public Map<Integer, String> getNickMap() {
 		return nickMap;
 	}

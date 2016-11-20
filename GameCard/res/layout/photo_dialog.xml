@@ -176,34 +176,4 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/photo_line" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/goods_evalue_gridhight"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical" >
-
-        <HorizontalScrollView
-            android:id="@+id/horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/goods_evalue_gridhight"
-            android:layout_gravity="center_vertical"
-            android:scrollbars="none" >
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center" >
-
-                <GridView
-                    android:id="@+id/goods_info"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/goods_evalue_gridhight"
-                    android:layout_gravity="center_vertical" />
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
-
 </LinearLayout>

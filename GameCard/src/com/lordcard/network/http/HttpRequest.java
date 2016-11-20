@@ -62,6 +62,7 @@ public class HttpRequest {
 	public static final String NO_SERVER = "7"; // 没有可用的游戏服务器
 	public static final String NO_FULL_GOODS = "8"; // 没有足够的物品
 	public static final String NULL_PRIZE = "10"; // 没有中奖
+	public static final String ROOM_IS_FULL = "11"; // 没有中奖
 	public static final String LOGIN_TOKEN_ILLEGAL = "token_illegal"; // 用户Token非法
 	public static final String REQUEST_ILLEGAL = "req_illegal"; // 非法的用户请求
 

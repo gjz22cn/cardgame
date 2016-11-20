@@ -75,6 +75,7 @@
     <!-- dialog 提示信息 -->
     <string name="no_join_home">您申请加入的房间不存在！</string>
     <string name="no_game_server">游戏服务器暂未开启！</string>
+    <string name="room_is_full">房间已满！</string>
     <string name="link_server_fail">您的网络缓慢,请稍候再试！</string>
     <string name="room_create_fail">创建Vip包房失败，请稍候在试!</string>
     <string name="invite_friend_fail">邀请好友失败，请稍候在试!</string>

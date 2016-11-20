@@ -15,7 +15,6 @@ import com.lordcard.common.exception.LogUtil;
 import com.lordcard.common.schedule.AutoTask;
 import com.lordcard.common.schedule.ScheduledTask;
 import com.lordcard.common.util.ActivityUtils;
-import com.lordcard.common.util.Base64Util;
 import com.lordcard.common.util.DateUtil;
 import com.lordcard.common.util.DialogUtils;
 import com.lordcard.common.util.JsonHelper;
@@ -26,7 +25,6 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.network.socket.ClientAdapter;
 import com.lordcard.network.socket.GameClient;
 import com.lordcard.network.socket.HBMgr;
-import com.lordcard.network.socket.HURLEncoder;
 import com.lordcard.network.socket.ICallback;
 import com.lordcard.network.socket.SocketConfig;
 

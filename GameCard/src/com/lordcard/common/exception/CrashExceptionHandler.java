@@ -27,7 +27,6 @@ import com.lordcard.common.util.ActivityPool;
 import com.lordcard.common.util.ActivityUtils;
 import com.lordcard.common.util.DateUtil;
 import com.lordcard.constant.Constant;
-import com.lordcard.constant.Database;
 import com.lordcard.network.http.HttpRequest;
 
 /**

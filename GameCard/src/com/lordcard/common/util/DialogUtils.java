@@ -29,7 +29,6 @@ import com.lordcard.ui.TaskMenuActivity;
 import com.lordcard.ui.dizhu.DoudizhuRoomListActivity;
 import com.lordcard.ui.view.dialog.GameDialog;
 import com.lordcard.ui.view.dialog.SingleDialog;
-import com.sdk.util.SDKFactory;
 
 public class DialogUtils {
 

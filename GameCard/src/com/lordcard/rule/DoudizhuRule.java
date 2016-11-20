@@ -107,9 +107,7 @@ public class DoudizhuRule {
 			}
 		}
 		
-		/* hard code here */
-		return true;
-		//return compter;
+		return compter;
 	}
 
 	/**
@@ -811,6 +809,23 @@ public class DoudizhuRule {
 		}
 	   return value;
    }
+   
+   /**
+	 * 检测对否包含黑桃三
+	 * 
+	 * @param cards
+	 * @return
+	 */
+	public static boolean checkHasHeitao3(List<Poker> cards) {		
+		for (int i = 0; i < cards.size(); i++) {
+			if (2 == cards.get(i).getNumber()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+	
 	/**
 	 * 检测是什么牌
 	 * 

@@ -6,7 +6,6 @@ import java.util.Random;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.lordcard.common.util.Base64Util;
-import com.lordcard.common.util.EncodeUtils;
 import com.lordcard.common.util.JsonHelper;
 
 public class CmdDetail implements Serializable{

@@ -41,12 +41,9 @@ import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpRequest;
 import com.lordcard.ui.InviteToDowanloadActivity;
 import com.lordcard.ui.SettingActivity;
-import com.lordcard.ui.StoveActivity;
 import com.lordcard.ui.TaskMenuActivity;
 import com.lordcard.ui.base.FastJoinTask;
-import com.lordcard.ui.view.dialog.EnvalueDialog;
 import com.lordcard.ui.view.dialog.GameDialog;
-import com.lordcard.ui.view.dialog.GuideDialog;
 import com.lordcard.ui.view.dialog.LotteryDialog;
 import com.sdk.util.SDKFactory;
 
@@ -65,8 +62,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 	private TextView nameTv;//昵称
 	private MultiScreenTool mst = MultiScreenTool.singleTonHolizontal();
 	private Context context;
-	private GuideDialog guideDialog;
-	private EnvalueDialog valueDialog;
 	private LotteryDialog lotDialog;
 	private GenericTask rjoinTask;
 	
@@ -187,8 +182,6 @@ public class MainMenuBar extends RelativeLayout implements OnClickListener {
 		if (mst != null) {
 			mst = null;
 		}
-		guideDialog = null;
-		valueDialog = null;
 		if (lotDialog != null) {
 			lotDialog.onDestory();
 			lotDialog = null;

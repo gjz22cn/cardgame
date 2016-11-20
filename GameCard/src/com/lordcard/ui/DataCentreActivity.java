@@ -208,7 +208,6 @@ public class DataCentreActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void initView() {
 		findViewById(R.id.set_back).setOnClickListener(this);
-		//asslayout = (LinearLayout) findViewById(R.id.assistant_view2);
 		xiaomeiLayout = (LinearLayout) findViewById(R.id.xiao_LinearLayout);
 		xiaomeiBtn = (ImageView) findViewById(R.id.xiaomei);
 		xiaomeiBtn.setVisibility(View.GONE);
@@ -219,7 +218,7 @@ public class DataCentreActivity extends BaseActivity implements OnClickListener 
 		assistantNum = (TextView) findViewById(R.id.num_assistant);
 		announcementNum = (TextView) findViewById(R.id.num_announcement);
 		privateNum = (TextView) findViewById(R.id.num_private);
-		assistantBtn = (RadioButton) findViewById(R.id.gen_assistant);
+		//assistantBtn = (RadioButton) findViewById(R.id.gen_assistant);
 		privateBtn = (RadioButton) findViewById(R.id.gen_private);
 		announcementBtn = (RadioButton) findViewById(R.id.gen_announcement);
 		noMessageTv=(TextView) findViewById(R.id.no_message_tv);
@@ -228,12 +227,6 @@ public class DataCentreActivity extends BaseActivity implements OnClickListener 
 			@Override
 			public void onCheckedChanged(RadioGroup arg0, int arg1) {
 				switch (arg1) {
-					case R.id.gen_assistant://游戏助理
-						assListView.setVisibility(View.VISIBLE);
-						announcementListView.setVisibility(View.GONE);
-						privateListView.setVisibility(View.GONE);
-						setNomessageTvVisibleOrGone(assJsonList);
-						break;
 					case R.id.gen_announcement://系统公告
 						assListView.setVisibility(View.GONE);
 						announcementListView.setVisibility(View.VISIBLE);

@@ -50,7 +50,7 @@ public class ChatDialog extends Dialog implements OnClickListener {
 	private RelativeLayout thinkMessLayout, morenImageLayout, usualMessLayout, girlMessLayout;
 	private EditText messEditText, thinkText;
 	private GridView girlGrid, boyGrid; // 美女和小孩gif
-	private MyAdapter girlGridAdapter, boyGridAdapter;
+	private MyAdapter boyGridAdapter;
 	private ListView messList, thinkList;
 	private Context mContext;
 	private Handler mHandler;
@@ -117,34 +117,6 @@ public class ChatDialog extends Dialog implements OnClickListener {
 					dismiss();
 				}
 			});
-//			// 美女 start
-//			girlGrid = (GridView) layout.findViewById(R.id.girl_grid);
-//			girlGrid.setPadding(1, 1, 1, 1);
-//			girlGridAdapter = new MyAdapter(girlsDrawable);
-//			girlGrid.setAdapter(girlGridAdapter);
-//			girlGrid.setOnItemClickListener(new Gallery.OnItemClickListener() {
-//
-//				@Override
-//				public void onItemClick(AdapterView<?> parent, View arg1, int position, long arg3) {
-//					//MobclickAgent.onEvent(DoudizhuMainGameActivity.this, "发送美女");
-//					String imageName = girlStr[position];
-//					CmdDetail chat = new CmdDetail();
-//					chat.setCmd(CmdUtils.CMD_CHAT);
-//					CmdDetail chatDetail = new CmdDetail();
-//					chatDetail.setType(clickType);
-//					chatDetail.setValue(imageName);
-//					chatDetail.setFromUserId(cacheUser.getAccount());
-//					String dj = JsonHelper.toJson(chatDetail);
-//					chat.setDetail(dj);
-//					myFrame.removeAllViews();
-//					myFrame.setVisibility(View.GONE);
-//					startTask(girlLeftFrame, selfTask);
-//					messageFrame(girlLeftFrame, imageName, clickType, null);
-//					ClientCmdMgr.sendCmd(chat);
-//					reNameDialog.dismiss();
-//				}
-//			});
-//			// 美女 end
 			messList = (ListView) findViewById(R.id.message_list);
 			messList.setAdapter(new ArrayAdapter<String>(mContext, R.layout.mess_list_item, getMessData()));
 			messList.setOnItemClickListener(new OnItemClickListener() {
@@ -293,39 +265,6 @@ public class ChatDialog extends Dialog implements OnClickListener {
 		thinkText.setText("");
 		messEditText.setText("");
 		
-//		girlGridAdapter = null;
-//		boyGridAdapter = null;
-//		if (thinkMessLayout != null) {
-//			thinkMessLayout.removeAllViews();
-//			thinkMessLayout = null;
-//		}
-//		if (morenImageLayout != null) {
-//			morenImageLayout.removeAllViews();
-//			morenImageLayout = null;
-//		}
-//		if (usualMessLayout != null) {
-//			usualMessLayout.removeAllViews();
-//			usualMessLayout = null;
-//		}
-//		if (girlMessLayout != null) {
-//			girlMessLayout.removeAllViews();
-//			girlMessLayout = null;
-//		}
-		
-//		if (boyGrid != null && boyGrid.getChildCount() > 0) {
-//			boyGrid.destroyDrawingCache();
-//			boyGrid.clearAnimation();
-//			boyGrid = null;
-//		}
-//		if (girlGrid != null && girlGrid.getChildCount() > 0) {
-//			girlGrid.destroyDrawingCache();
-//			girlGrid.clearAnimation();
-//			girlGrid = null;
-//		}
-//		if (null != taskLayoutList) {
-//			taskLayoutList.clear();
-//		}
-//		taskLayoutList = null;
 		super.dismiss();
 	}
 }

@@ -59,7 +59,7 @@ public class PhotoDialog extends Dialog implements OnClickListener {
 	private TextView zhiShangTv;//等级
 	private Button reportBtn;//举报
 	private LinearLayout reportLl;//举报容器控件
-	private GridView goodsList;
+	//private GridView goodsList;
 	private LinearLayout mainLayout;
 	private List<Goods> imageurl;
 	private String showAccount;
@@ -144,8 +144,8 @@ public class PhotoDialog extends Dialog implements OnClickListener {
 				gameDialog.setText("确定举报此玩家？无故举报会有惩罚哦！");
 			}
 		});
-		goodsList = (GridView) findViewById(R.id.goods_info);
-		goodsList.setSelector(new ColorDrawable(Color.TRANSPARENT));
+		//goodsList = (GridView) findViewById(R.id.goods_info);
+		//goodsList.setSelector(new ColorDrawable(Color.TRANSPARENT));
 		freshUserInfo();
 	}
 
@@ -205,15 +205,15 @@ public class PhotoDialog extends Dialog implements OnClickListener {
 								if (size < 4) {
 									size = 4;
 								}
-								LayoutParams linearParams = (LinearLayout.LayoutParams) goodsList.getLayoutParams(); // 取控件mGrid当前的布局参数
-								linearParams.width = size * (mst.adjustXIgnoreDensity(numColumn + space)) + 20;
-								goodsList.setLayoutParams(linearParams);
-								goodsList.setNumColumns(size);
-								goodsList.setColumnWidth(mst.adjustXIgnoreDensity(numColumn));
-								goodsList.setHorizontalSpacing(mst.adjustXIgnoreDensity(space));
-								goodsList.setStretchMode(GridView.NO_STRETCH);
-								GoodsValuesAdapter valueAdapter = new GoodsValuesAdapter(imageurl);
-								goodsList.setAdapter(valueAdapter);
+								//LayoutParams linearParams = (LinearLayout.LayoutParams) goodsList.getLayoutParams(); // 取控件mGrid当前的布局参数
+								//linearParams.width = size * (mst.adjustXIgnoreDensity(numColumn + space)) + 20;
+								//goodsList.setLayoutParams(linearParams);
+								//goodsList.setNumColumns(size);
+								//goodsList.setColumnWidth(mst.adjustXIgnoreDensity(numColumn));
+								//goodsList.setHorizontalSpacing(mst.adjustXIgnoreDensity(space));
+								//goodsList.setStretchMode(GridView.NO_STRETCH);
+								//GoodsValuesAdapter valueAdapter = new GoodsValuesAdapter(imageurl);
+								//goodsList.setAdapter(valueAdapter);
 							}
 						});
 					} else {}
@@ -243,56 +243,5 @@ public class PhotoDialog extends Dialog implements OnClickListener {
 	public void dismiss() {
 		mst.unRegisterView(mainLayout);
 		super.dismiss();
-	}
-
-	/**
-	 * 初始化物品栏
-	 */
-	private class GoodsValuesAdapter extends BaseAdapter {
-
-		private List<Goods> gifInt;
-		private LayoutInflater mInflater;
-
-		public GoodsValuesAdapter(List<Goods> goodbagList) {
-			this.gifInt = goodbagList;
-			this.mInflater = LayoutInflater.from(context);
-		}
-
-		public int getCount() {
-			if (gifInt != null && gifInt.size() >= 4) {
-				return gifInt.size();
-			} else {
-				return 4;
-			}
-		}
-
-		public Object getItem(int position) {
-			return gifInt.get(position);
-		}
-
-		public long getItemId(int position) {
-			return position;
-		}
-
-		public View getView(int position, View convertView, ViewGroup parent) {
-			convertView = mInflater.inflate(R.layout.goods_gif_item, null);
-			ImageView ivpic = (ImageView) convertView.findViewById(R.id.goods_pic);
-			ivpic.setBackgroundDrawable(ImageUtil.getResDrawable(R.drawable.daoju, true));
-			final ImageView iv = (ImageView) convertView.findViewById(R.id.goodsview);
-			// final TextView tv = (TextView)
-			// convertView.findViewById(R.id.goodstextview);
-			if (gifInt != null && position < gifInt.size()) {
-				// tv.setText("" + gifInt.get(position).getCouponNum());
-				ImageUtil.setImg(HttpURL.URL_PIC_ALL + gifInt.get(position).getPicPath(), iv, new ImageCallback() {
-
-					public void imageLoaded(final Bitmap bitmap, final ImageView view) {
-						view.setImageBitmap(bitmap);
-					}
-				});
-			} else {
-				iv.setImageBitmap(null);
-			}
-			return convertView;
-		}
 	}
 }

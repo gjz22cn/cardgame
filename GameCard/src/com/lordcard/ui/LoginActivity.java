@@ -6,17 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,14 +32,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
-/* james hard code remove cm module */
-//import cn.cmgame.billing.api.GameInterface;
-//import cn.egame.terminal.paysdk.EgamePay;
-//import cn.play.dserv.CheckTool;
-//import cn.play.dserv.ExitCallBack;
-
 import com.lordcard.common.exception.CrashApplication;
 import com.lordcard.common.mydb.DBHelper;
 import com.lordcard.common.schedule.AutoTask;
@@ -88,11 +76,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, OnTouchLi
 	private Button loginBtn, changeAccountBtn, bindAccountBtn, quickMatch, quickLogin, updateBtn;
 	private AccountBindDialog mAccountBindDialog;// 绑定账号对话框
 	private SharedPreferences sharedPrefrences;
-//	private SharedPreferences sharedViewfiper;
 	private Editor editor;
 	private GameDialog netWorkDialog = null;
 	public static final String LOGIN_VIEW_FLIPPER = "login_view_flipper";
-//	private boolean isBackState = false;//退出状态，标记当前是否准备退出的状态（点击两次退出，两次间隔时间超过10秒表示重新开始标记）
 	public static final String KEY_USER = "user_key";
 	/**更新界面账号*/
 	public static final int HANDLER_WHAT_LOGIN_UPDATE_USER = 1000;

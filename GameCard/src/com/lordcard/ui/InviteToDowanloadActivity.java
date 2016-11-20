@@ -81,7 +81,6 @@ import com.lordcard.ui.dizhu.DoudizhuMainGameActivity;
 import com.lordcard.ui.view.MyLetterListView;
 import com.lordcard.ui.view.MyLetterListView.OnTouchingLetterChangedListener;
 import com.lordcard.ui.view.dialog.GameDialog;
-import com.sdk.util.RechargeUtils;
 
 
 @SuppressLint({ "HandlerLeak", "DefaultLocale" })
@@ -110,11 +109,9 @@ public class InviteToDowanloadActivity extends BaseActivity {
 	private RelativeLayout layout;
 	private Map<String,String> allSettingMsgMap = null;
     private EditText obj_name_find;
-    private Context context;
-	protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.invited_download);
-		this.context = this;
 		setNameText();
 		allSettingMsgMap = (HashMap<String, String>)GameCache.getObj(CacheKey.ALL_SETTING_KEY);
 		layout = (RelativeLayout) findViewById(R.id.invited_download);

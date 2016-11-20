@@ -24,7 +24,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -38,13 +37,9 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Animation.AnimationListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -99,7 +94,6 @@ import com.lordcard.ui.view.dialog.GameIqUpgradeDialog;
 import com.lordcard.ui.view.dialog.IqGradeDialog;
 import com.lordcard.ui.view.dialog.SignDialog;
 import com.sdk.constant.SDKConstant;
-import com.sdk.util.RechargeUtils;
 import com.sdk.util.SDKFactory;
 
 
@@ -173,14 +167,12 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	private TextView timeShiTv, zhishangTv;// 系统时间(时、分),等级值
 	private MyBroadcastReciver mReciver;//刷新系统时间的广播接收器
 	private IqGradeDialog mIqGradeDialog = null;
-    private Context context;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.room_list);
 		PackageReceiver.registerReceiver(this);
 		Bundle bundle = this.getIntent().getExtras();
-		context = this;
 		initView();
 		initHandler();
 		loadRoomItem();
@@ -1296,7 +1288,9 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 						DialogUtils.mesTip(getString(R.string.no_join_home), false);
 					} else if (HttpRequest.NO_SERVER.equals(v)) { // 游戏服务器不存在
 						DialogUtils.mesTip(getString(R.string.no_game_server), false);
-					}
+					} else if (HttpRequest.ROOM_IS_FULL.equals(v)) { // 房间已满
+						DialogUtils.mesTip(getString(R.string.room_is_full), false);
+					} 
 				} else if (CmdUtils.CMD_RJOIN.equals(detail.getCmd())) { // 成功
 																			// 返回游戏服务器IP地址
 					Room room = JsonHelper.fromJson(detail.getDetail(), Room.class);

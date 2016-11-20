@@ -64,7 +64,6 @@
 		<activity android:name="com.lordcard.ui.LoginActivity" android:configChanges="orientation|keyboardHidden"  android:windowSoftInputMode="adjustPan" android:screenOrientation="landscape" android:launchMode="singleTask" android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 		
 		<!-- begin 游戏共用页面 -->
-		<activity android:name="com.lordcard.ui.ShowGirlActivity"  android:configChanges="orientation|keyboardHidden" android:screenOrientation="landscape" android:launchMode="singleTask" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.SettingActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.InviteToDowanloadActivity"
 		     android:configChanges="orientation|keyboardHidden"
@@ -75,7 +74,6 @@
 		<activity android:name="com.lordcard.ui.TaskMenuActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 
 		<activity android:name="com.lordcard.ui.GamePlaceActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-		<activity android:name="com.lordcard.ui.StoveActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.NotifiyActivity" android:launchMode="singleTask"/>
 		<activity android:name="com.lordcard.ui.DataCentreActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 		<!-- end 游戏共用页面 -->
