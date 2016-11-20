@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -73,7 +72,6 @@ import com.lordcard.entity.ContactPeople;
 import com.lordcard.entity.GameAsistantContent;
 import com.lordcard.entity.GameHallView;
 import com.lordcard.entity.GameUser;
-import com.lordcard.entity.MessageCenter;
 import com.lordcard.entity.Room;
 import com.lordcard.entity.RoomSignup;
 import com.lordcard.network.base.ThreadPool;
@@ -215,7 +213,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 			public void run() {
 				getTvMessageDate();
 				sign();
-				getAssistant();
+				//getAssistant();
 				getSettingDates();
 			}
 		});
@@ -534,25 +532,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 	}
 
 	/**
-	 * 获取游戏助理 消息中心
-	 */
-	private void getAssistant() {
-		/* james hard code */
-		/*
-		try {
-			// 第一次取游戏助理根据账号(数据库)来获取数据
-			assjson = HttpRequest.getAsstContent();
-			getGameMessage();
-			if (mHandler == null)
-				return;
-			Message message = new Message();
-			message.what = HANDLER_WHAT_ROOM_LIST_SET_ASSISTANT_DATA;
-			mHandler.sendMessage(message);
-		} catch (Exception e) {}
-		*/
-	}
-
-	/**
 	 * 获取各界面提示内容信息
 	 */
 	private void getTvMessageDate() {
@@ -606,13 +585,6 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 				Database.JI_PAI_QI_FREE_COUNT = 1;
 			}
 		}
-	}
-
-	/**
-	 * 游戏公告推送插入数据库
-	 */
-	private void getGameMessage() {
-		Database.MESSAGE_CENTER = JsonHelper.fromJson(HttpRequest.getGameData(), new TypeToken<List<MessageCenter>>() {});
 	}
 
 	/**
@@ -1020,7 +992,7 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 										creatAT.cancel();
 										creatAT = null;
 										task.cancel();
-										getAssistant();
+										//getAssistant();
 									}
 								}
 							}

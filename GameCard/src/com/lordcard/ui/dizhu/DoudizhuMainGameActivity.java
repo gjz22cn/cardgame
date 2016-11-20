@@ -15,7 +15,6 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -79,7 +78,6 @@ import com.lordcard.common.util.Vibrate;
 import com.lordcard.constant.CacheKey;
 import com.lordcard.constant.Constant;
 import com.lordcard.constant.Database;
-import com.lordcard.entity.GamePropsType;
 import com.lordcard.entity.GameScoreTradeRank;
 import com.lordcard.entity.GameUser;
 import com.lordcard.entity.MarqueeText;
@@ -119,7 +117,6 @@ import com.lordcard.ui.view.dialog.GameOverDialog;
 import com.lordcard.ui.view.dialog.MatchRankDialog;
 import com.lordcard.ui.view.dialog.PhotoDialog;
 import com.lordcard.ui.view.dialog.SettingDialog;
-import com.lordcard.ui.view.dialog.TipsDialog;
 import com.lordcard.ui.view.notification.NotificationService;
 
 @SuppressLint({ "HandlerLeak", "UseSparseArrays" })
