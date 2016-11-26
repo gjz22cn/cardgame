@@ -874,15 +874,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="50dp"
                 android:background="@drawable/game_setting_bg" />
-
-            <ImageButton
-                android:id="@+id/game_robot"
-                android:layout_width="@dimen/beishu_height"
-                android:layout_height="@dimen/beishu_height"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/game_robot_bg_bg" />
         </RelativeLayout>
 
         <TextView
@@ -1189,28 +1180,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/dzed_beans_insufficient_rl"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/tuoguan_bg"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <TextView
-                android:id="@+id/dzed_beans_insufficient_tv"
-                android:layout_width="410dp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text=" 本局可赢30000000您的金豆不足只能赢100000"
-                android:textColor="@color/gold"
-                android:textSize="15dp" />
-        </RelativeLayout>
-
-
         <TextView
             android:id="@+id/network_slow_tip"
             android:layout_width="180dp"
@@ -1314,36 +1283,6 @@
             android:layout_marginBottom="120dp"
             android:layout_marginRight="15dp"
             android:background="@drawable/rank_btn" />
-
-        <RelativeLayout
-            android:id="@+id/tuo_guan_layout"
-            android:layout_width="643dp"
-            android:layout_height="45dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/tuoguan_bg"
-            android:visibility="gone" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal" >
-
-                <ImageView
-                    android:layout_width="113dp"
-                    android:layout_height="29dp"
-                    android:background="@drawable/tuoguan_text" />
-
-                <ImageButton
-                    android:id="@+id/tuo_guan_btn"
-                    android:layout_width="91dp"
-                    android:layout_height="29dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/tuoguan_cancel_btn_bg" />
-            </LinearLayout>
-        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/dzm_public_mess_layout"

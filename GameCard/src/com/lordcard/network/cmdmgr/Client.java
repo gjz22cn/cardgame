@@ -142,41 +142,10 @@ public class Client implements GameClient {
 					return;
 				}
 			}
-			//系统公告和聊天
-			/*if(cmd.equals(CmdUtils.CMD_MES)||cmd.equals(CmdUtils.CMD_CHAT))
-			{
-				String mes = detail.getDetail();
-				//String mess =new String(Base64Util.decode(mes),"UTF-8");
-				String mess =HURLEncoder.readUTF(mes);
-				detail.setDetail(mess);
-				return;
-			}*/
-			//消息客户端ID
-			//			String androidId = detail.getAndroId();
-			//			if(!TextUtils.isEmpty(androidId)){
-			//				if(ActivityUtils.getAndroidId().equals(androidId)){		//我自己返回的消息
-			//					CmdDetail outCmd = seqCmdMap.get("out_"+detail.getSeq());
-			//					if(outCmd.isHasDo()){	//当前消息已处理 直接返回
-			//						return;
-			//					}
-			//					outCmd.setHasDo(true);
-			//					cmdqueue.remove(outCmd);
-			//				}else{						//收到的是别人发送过来的消息
-			//					String inKey = "in_"+detail.getAndroId()+"_"+detail.getSeq();
-			//					CmdDetail inCmd = seqCmdMap.get(inKey);
-			//					if(inCmd != null){	//其他人当前发送的消息已接收处理
-			//						return;
-			//					}else{
-			//						
-			//					}
-			//					seqCmdMap.put(inKey,detail);		//记录当前处理的消息
-			//				}
-			//			}
+
 			if (callback != null) {
 				callback.messageHandler(detail);
 			}
-//			String mess_test =new String(Base64Util.decode(detail.getMes()),"UTF-8");
-//			System.out.println(mess_test);
 		} catch (Exception e) {
 			LogUtil.err("socket消息处理出错 :  msg :" + msg, e);
 		}
@@ -223,8 +192,6 @@ public class Client implements GameClient {
 				return;
 			}
 			Log.d(Constant.LOG_TAG, "重连  " + relinkCount);
-			//			close();
-			//			startSocket(host, port);
 			clientAdapter.closeSocket();
 			clientAdapter = null;
 			clientAdapter = new ClientAdapter(this, host, port);

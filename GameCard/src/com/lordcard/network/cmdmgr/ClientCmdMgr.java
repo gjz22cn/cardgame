@@ -2,6 +2,7 @@ package com.lordcard.network.cmdmgr;
 
 import android.text.TextUtils;
 
+import com.lordcard.common.util.ActivityUtils;
 import com.lordcard.constant.Database;
 import com.lordcard.network.http.HttpRequest;
 import com.lordcard.network.socket.ICallback;
@@ -105,6 +106,7 @@ public class ClientCmdMgr {
 	 */
 	public static void sendCmd(CmdDetail detail) {
 		if (client != null) {
+			detail.setAndroId(ActivityUtils.getAndroidId());
 			client.sendCmd(detail);
 		}
 	}

@@ -39,7 +39,6 @@ import com.lordcard.entity.GameUser;
 import com.lordcard.network.base.ThreadPool;
 import com.lordcard.network.http.GameCache;
 import com.lordcard.network.http.HttpRequest;
-import com.lordcard.ui.InviteToDowanloadActivity;
 import com.lordcard.ui.SettingActivity;
 import com.lordcard.ui.TaskMenuActivity;
 import com.lordcard.ui.base.FastJoinTask;

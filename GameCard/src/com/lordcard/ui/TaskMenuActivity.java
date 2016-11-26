@@ -536,12 +536,6 @@ public class TaskMenuActivity extends BaseActivity {
 					userIt.setClass(TaskMenuActivity.this, SettingActivity.class);
 					startActivity(userIt);
 					break;
-				case R.id.frients_btn:// 邀请好友
-					//MobclickAgent.onEvent(TaskMenuActivity.this, "邀请好友获取金豆");
-					Intent ftIt = new Intent();
-					ftIt.setClass(TaskMenuActivity.this, InviteToDowanloadActivity.class);
-					startActivity(ftIt);
-					break;
 				case R.id.invitation_msg_btn:
 					bottInvitationMsgBtn.setTextColor(Color.WHITE);
 					if ("close".equals(emsSwitch)) {

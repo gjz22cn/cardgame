@@ -12,7 +12,8 @@ public class SocketConfig {
 	public static int SOLINGER = 1;
 
 	public static boolean isOpenHB = true;		//是否开启心跳检测
-	public static int WAIT_TIME_OUT = 18000;	//心跳超时40秒
+	//public static int WAIT_TIME_OUT = 18000;	//心跳超时40秒
+	public static int WAIT_TIME_OUT = 300000;	//心跳超时40秒
 	public static int HB_TIME = 10000;			//前端向后端发送心跳间隔时间
 	public static int SOCKET_RE_TIME = 10000;	//socket消息重发时间
 	public static int SOCKET_RE_COUNT = 2;		//最多重发的次数

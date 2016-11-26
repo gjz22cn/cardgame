@@ -82,7 +82,6 @@ import com.lordcard.network.http.HttpRequest;
 import com.lordcard.network.http.HttpURL;
 import com.lordcard.network.http.HttpUtils;
 import com.lordcard.ui.DataCentreActivity;
-import com.lordcard.ui.InviteToDowanloadActivity;
 import com.lordcard.ui.LoginActivity;
 import com.lordcard.ui.base.BaseActivity;
 import com.lordcard.ui.view.Assistant;
@@ -1299,7 +1298,8 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 				param = params[0];
 				Database.GAME_GROUP_NUM = 3;
 				int ratio = param.getInt("ratio");
-				String result = HttpRequest.createRoom(Database.GAME_GROUP_NUM, ratio, true);
+				//String result = HttpRequest.createRoom(Database.GAME_GROUP_NUM, ratio, true);
+				String result = HttpRequest.createRoom(Database.GAME_GROUP_NUM, ratio, false);
 				// 创建失败
 				if (result.equals(HttpRequest.FAIL_STATE)) {
 					DialogUtils.mesTip(getString(R.string.room_create_fail), false);
@@ -1318,14 +1318,18 @@ public class DoudizhuRoomListActivity extends BaseActivity implements OnClickLis
 						}
 						return TaskResult.FAILED;
 					} else if (CmdUtils.CMD_CREATE.equals(detail.getCmd())) { // 成功
-						if (HttpRequest.SUCCESS_STATE.equals(detail.getDetail())) { // 校验通过
-							Database.JOIN_ROOM_RATIO = ratio; // vip包房倍数
-							Intent in = new Intent();
-							in.putExtra("isviproom", true); // 标识是vip包房
-							in.putExtra("type", 1); // 邀请加入vip
-							in.setClass(DoudizhuRoomListActivity.this, InviteToDowanloadActivity.class);
-							startActivity(in);
-						}
+						Room createRoom = JsonHelper.fromJson(detail.getDetail(), Room.class);
+						Database.JOIN_ROOM = createRoom;
+						Database.GAME_SERVER = Database.JOIN_ROOM.getGameServer(); // 游戏服务器
+						Database.JOIN_ROOM_CODE = createRoom.getCode();
+						Database.JOIN_ROOM_RATIO = createRoom.getRatio(); // vip包房倍数
+						Database.JOIN_ROOM_BASEPOINT = createRoom.getBasePoint();
+						Database.GAME_BG_DRAWABLEID = R.drawable.background_3;
+
+						Intent in = new Intent();
+						in.putExtra("isviproom", true); // 标识是vip包房
+						in.setClass(DoudizhuRoomListActivity.this, DoudizhuMainGameActivity.class);
+						startActivity(in);
 					}
 				}
 			} catch (Exception e) {

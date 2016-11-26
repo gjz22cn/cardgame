@@ -65,12 +65,6 @@
 		
 		<!-- begin 游戏共用页面 -->
 		<activity android:name="com.lordcard.ui.SettingActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-		<activity android:name="com.lordcard.ui.InviteToDowanloadActivity"
-		     android:configChanges="orientation|keyboardHidden"
-		     android:launchMode="singleTask"
-		     android:windowSoftInputMode="adjustPan"
-		     android:screenOrientation="portrait" 
-		     android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 		<activity android:name="com.lordcard.ui.TaskMenuActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 
 		<activity android:name="com.lordcard.ui.GamePlaceActivity" android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustResize|stateHidden" android:launchMode="singleTask" android:screenOrientation="landscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
