@@ -798,14 +798,17 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/game_hudong_bg" />
-            <!-- 暂时去掉返回键 -->
-
-            <ImageButton
-                android:id="@+id/game_back"
-                android:layout_width="@dimen/beishu_height"
-                android:layout_height="@dimen/beishu_height"
-                android:background="@drawable/setting_back_bg"
-                android:visibility="gone" />
+            
+            <TextView
+                android:id="@+id/game_info_jushu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/mess_btn_view"
+                android:text="局数: 1"
+                android:textColor="@color/gold"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:id="@+id/dizhucard_rl"
@@ -866,13 +869,24 @@
                 </RelativeLayout>
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/game_info_zhangshu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/game_set"
+                android:text="统计: 0"
+                android:textColor="@color/gold"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+                        
             <ImageButton
                 android:id="@+id/game_set"
                 android:layout_width="@dimen/beishu_height"
                 android:layout_height="@dimen/beishu_height"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/game_setting_bg" />
         </RelativeLayout>
 

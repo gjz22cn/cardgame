@@ -158,6 +158,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private TextView play1Timer, play3Timer, play2Timer = null;
 	private TextView zhidou = null;
 	private TextView netSlowTip = null;
+	private TextView jushu, zhangshu = null;
 	private ImageView play1Icon, play3Icon, play2Icon = null;// 头像
 	private ImageView zhezhao1, zhezhao3, zhezhao2 = null;
 	private RelativeLayout dpRl1, dpRl2, dpRl3;// 盾牌1，盾牌2，盾牌3
@@ -351,10 +352,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						break;
 					case R.id.tishi_button:// 提示
 						setTishi();
-						break;
-					case R.id.game_back:
-						////MobclickAgent.onEvent(ctx,"游戏中退出");
-						DialogUtils.exitGame(ctx);
 						break;
 					case R.id.game_set:
 						if (Math.abs(System.currentTimeMillis() - Constant.CLICK_TIME) >= Constant.SPACING_TIME) {// 防止重复刷新
@@ -1167,6 +1164,11 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		findViewById(R.id.dun_layout_right);
 		initCardCountLayout();
 		mSystemInfoRl.setVisibility(View.VISIBLE);
+		
+		jushu = (TextView) findViewById(R.id.game_info_jushu);
+		zhangshu = (TextView) findViewById(R.id.game_info_zhangshu);
+		jushu.setText("局数：1");
+		zhangshu.setText("统计：0");
 	}
 
 	public void initCardCountLayout() {
@@ -1194,7 +1196,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		play1Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
 		play2Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
 		play3Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
-		play1SurplusCount.setText("?");
+		play1SurplusCount.setText(String.valueOf(initCardNum));
 		play2SurplusCount.setText("?");
 		play3SurplusCount.setText("?");
 		bierenchupai = null;
@@ -1341,6 +1343,9 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 							e.printStackTrace();
 						}
 						cleanAllChuPaiInfo();
+						
+						jushu.setText("局数：" + fapai.getGameNo());
+						zhangshu.setText("统计：" + fapai.getZhangshu());
 						
 						if (fapai.getNextOrder()== mySelfOrder) {
 							showPlayBtn(true);
