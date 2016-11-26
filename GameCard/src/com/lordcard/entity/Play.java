@@ -11,7 +11,7 @@ public class Play implements Serializable {
 	private static final long serialVersionUID = 186874763769645267L;
 
 	@Expose @SerializedName("i") 	private String id; // 出牌人编号
-	@Expose @SerializedName("ct") 	private int count; // 剩余的牌数
+	@Expose @SerializedName("ct") 	private int count=99; // 剩余的牌数
 	@Expose @SerializedName("cd") 	private String cards; // 出的牌的json格式字符串
 	@Expose @SerializedName("o") 	private int order; // 游戏出牌顺序
 	@Expose @SerializedName("cl") 	private boolean call; // 叫分

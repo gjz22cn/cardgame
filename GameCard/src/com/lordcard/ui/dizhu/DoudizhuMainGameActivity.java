@@ -1194,9 +1194,9 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		play1Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
 		play2Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
 		play3Icon.setImageDrawable(ImageUtil.getResDrawable(R.drawable.nongmin, true));
-		play1SurplusCount.setText(Integer.toString(initCardNum));
-		play2SurplusCount.setText(Integer.toString(initCardNum));
-		play3SurplusCount.setText(Integer.toString(initCardNum));
+		play1SurplusCount.setText("?");
+		play2SurplusCount.setText("?");
+		play3SurplusCount.setText("?");
 		bierenchupai = null;
 	}
 
@@ -1462,7 +1462,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						break;
 					case 22:// 淘汰或比赛结束
 						if (!TextUtils.isEmpty(gameOverDetail)) {
-							// String details = msg.getData().getString("detail");
 							Log.i("joinBottomll", "detail:" + gameOverDetail);
 							Map<String, String> map = JsonHelper.fromJson(gameOverDetail, new TypeToken<Map<String, String>>() {});
 							final String rank = map.get("rank");
@@ -1501,8 +1500,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					case 200:// 重连
 						String relink = (String) msg.getData().get("relink");
 						doReLink(relink);
-						//reSetJiPaiQiDataForRelink(relink);
-						//refreshJiPaiQiAvatar();
 						break;
 					case 300:// 添加广告
 						try {
@@ -2251,28 +2248,11 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	 */
 	public void setShengxiaPai(int paiCount, final int order) {
 		if (order != mySelfOrder) {
-			final TextView nowView = (TextView) findViewById(1100 + order);
-			nowView.setText(String.valueOf(paiCount));
-			// 牌数少于三张,且之前没有警告过
-			if (paiCount <= 3 && null != warn && warn.containsKey(1100 + order) && !warn.get(1100 + order)) {
-				AudioPlayUtils.getInstance().playSound(R.raw.audio_warn);// 警告
-				Animation animationjg = AnimationUtils.loadAnimation(this, R.anim.my_scale_action);
-				nowView.startAnimation(animationjg);
-				animationjg.setAnimationListener(new AnimationListener() {
-
-					@Override
-					public void onAnimationStart(Animation animation) {}
-
-					@Override
-					public void onAnimationRepeat(Animation animation) {}
-
-					@Override
-					public void onAnimationEnd(Animation animation) {
-						nowView.setTextColor(getResources().getColor(color.gold));
-						warn.put(1100 + order, true);
-					}
-				});
-				nowView.setTextColor(getResources().getColor(color.red));
+			final TextView nowView = (TextView) findViewById(1100 + order);	
+			if (paiCount == 1) {
+				nowView.setText(String.valueOf(paiCount));
+			} else if (paiCount > 1) {
+				nowView.setText("?");
 			}
 		} else { // 自己出的牌
 			play1SurplusCount.setText(String.valueOf(paiCount));

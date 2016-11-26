@@ -82,21 +82,13 @@ public class DoudizhuRule {
 		boolean compter = false;
 		// 如果两个人出的牌类型不一样
 		if (typeMe != typeOher) {
-			// System.out.println("牌型不一样");
-			if (typeOher == 13) {// 如果别人出王炸则一定自己打不过
+			if (typeOher == Zhadan) {// 如果别人出炸而自己不是王炸一定打不过
 				compter = false;
 			}
-			if (typeOher == 6 && typeMe != 13) {// 如果别人出炸而自己不是王炸一定打不过
-				compter = false;
-			}
-			if (typeMe == 13) {// 自己如果是王炸则自己一定牌比较大
-				compter = true;
-			}
-			if (typeMe == 6 && typeOher != 13) {// 如果自己出炸而别人不是王炸一定打得过
+			if (typeMe == Zhadan) {// 如果自己出炸而别人不是王炸一定打得过
 				compter = true;
 			}
 		} else {// 两个人出牌的类型一样
-				// System.out.println("牌型一样");
 			if (maxOhther >= maxMe) {
 				compter = false;
 			} else {
