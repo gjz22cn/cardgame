@@ -1,6 +1,7 @@
 package com.lordcard.rule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -16,12 +17,19 @@ import com.lordcard.entity.Poker;
 public class DoudizhuRule {
     public static final int Danpai = 1;
     public static final int Yidui = 2;
-    public static final int Sandaier = 3;
+    public static final int Santiao = 3;
     public static final int Liandui = 4;
     public static final int Shunzi = 5;
     public static final int Feiji = 6;
     public static final int Zhadan = 7;
-    public static final int siZhang = 15;
+    //public static final int Santiao = 8;
+    public static final int Sidai = 8;
+    //public static final int siZhang = 15;
+
+    
+    public static Boolean ZhaDanKeChaiDai = false;
+
+    
 /*
 	public static final int Danpai = 1;
 	public static final int Yidui = 2;
@@ -163,7 +171,7 @@ public class DoudizhuRule {
 		 * for(Card card :Othercards){ //System.out.println(card.getValue()); }
 		 */
 		// 首先检测别人是什么类型的牌
-		int cardType = checkpai(Othercards);
+		int cardType = checkpai(Othercards, false);
 
 		if (Mycards.size() >= Othercards.size()) {
 			switch (cardType) {
@@ -194,7 +202,7 @@ public class DoudizhuRule {
 					}
 				}
 				break;
-			case Sandaier:
+			case Santiao:
 				tishi = new int[5];
 				int Sandaier = getMaxNumber(Othercards);
 				// System.out.println("三带2最大牌是 "+Sandaier);
@@ -795,7 +803,7 @@ public class DoudizhuRule {
 	   switch (cardStyle) {
 	    case Danpai:
 	    case Yidui:
-	    case Sandaier:
+	    case Santiao:
 	    	value = cards.get(0).getValue();
 			break;
 		}
@@ -824,7 +832,7 @@ public class DoudizhuRule {
 	 * @param cards
 	 * @return
 	 */
-	public static int checkpai(List<Poker> cards) {
+	public static int checkpai(List<Poker> cards, boolean isFinal) {
 		int cardStyle = 0;
 		if (cards.size() == 0) {// 如果0张牌
 			cardStyle = error; // error
@@ -839,15 +847,20 @@ public class DoudizhuRule {
 				cardStyle = Yidui;// 一对
 			}
 			break;
-			/*
 		case 3:// 如果是3张牌
+			if (!isFinal) {
+				return error;
+			}
 			if (pokerCount == 3) {
 				cardStyle = Santiao;
 			}
-			break;*/
+			break;
 		case 4:// 如果是4张牌
 			if (pokerCount == 4) {
 				cardStyle = Zhadan; // 炸弹
+			} else if(pokerCount == 3) {
+				if (!isFinal) {	return error; }
+				cardStyle = Santiao;
 			} else if(pokerCount == 2){
                 if(checkLiandui(cards)){
                     return Liandui; // 连对
@@ -855,28 +868,72 @@ public class DoudizhuRule {
             }
 			break;
 		case 5:// 如果是5张牌
-			if (pokerCount == 3 || pokerCount == 4) {	// 三挑
-				cardStyle = Sandaier;
+			if (pokerCount == 4) {
+                //炸弹可以拆带
+                if(!ZhaDanKeChaiDai){
+                	if (!isFinal) {	return error; }
+                    return Sidai;
+                }
+			} else if (pokerCount == 3) {	// 三挑
+				cardStyle = Santiao;
 			} else if (checkShunpai(cards)) {	// 是顺牌
 				cardStyle = Shunzi;
 			}
 			break;
 		case 6:// 如果是6张
-			if (checkShunpai(cards)) {
+			if (pokerCount == 4) {
+                //炸弹可以拆带
+                if(!ZhaDanKeChaiDai){
+                	if (!isFinal) {	return error; }
+                    return Sidai;
+                }
+			} else if (pokerCount == 3) {
+				if (!isFinal) {	return error; }
+				if (checkFeiji(cards, isFinal)) { // 检测飞机
+					cardStyle = Feiji;
+				}
+			} else if (pokerCount == 2) {
+				if (checkLiandui(cards)) {
+					cardStyle = Liandui;
+				}
+			} else if (checkShunpai(cards)) {
 				cardStyle = Shunzi;
-			} else if (checkLiandui(cards)) {
-				cardStyle = Liandui;
+			}
+			break;
+			
+		case 7:
+			if (pokerCount == 4) {
+				if(ZhaDanKeChaiDai){
+                    return Sidai;
+                }
+			} else if (pokerCount == 3) {
+				if (!isFinal) {	return error; }
+				if (checkFeiji(cards, isFinal)) { // 检测飞机
+					cardStyle = Feiji;
+				}
+			} else if (pokerCount == 1) {
+				if (checkShunpai(cards)) {
+					cardStyle = Shunzi;
+				}
 			}
 			break;
 		}
 
-		if (cards.size() >= 7) {
-			if (checkShunpai(cards)) { 	// 检测顺牌
-				cardStyle = Shunzi;
-			} else if (checkLiandui(cards)) { // 检测连对
-				cardStyle = Liandui;
-			} else if (checkFeiji(cards)) { // 检测飞机
-				cardStyle = Feiji;
+		if (cards.size() > 7) {
+			if (pokerCount == 4) {
+				
+			} else if (pokerCount == 3) {
+				if (checkFeiji(cards, isFinal)) { // 检测飞机
+					cardStyle = Feiji;
+				}
+			} else if (pokerCount == 2) {
+				if (checkLiandui(cards)) { // 检测连对
+					cardStyle = Liandui;
+				}
+			} else if (pokerCount == 1) {
+				if (checkShunpai(cards)) { 	// 检测顺牌
+					cardStyle = Shunzi;
+				}
 			}
 		}
 		return cardStyle;
@@ -1286,38 +1343,60 @@ public class DoudizhuRule {
 	 * @param cards
 	 * @return
 	 */
-	public static boolean checkFeiji(List<Poker> cards) {
+	public static boolean checkFeiji(List<Poker> cards, boolean isFinal) {
 		int size = cards.size();
-		int num = size/5;
-		int v1=0, v2=0;
+		int[] threeA = { 99, 99, 99, 99, 99 };
+		int count = 0;
+		int i=0;
+		int conCount = 0;
 		
-		/* 5556667788、333444555667788 */
-		if (size%5 != 0 ||  num < 2) {
-			return false;
-		}
+		/* 55566679JK、333444555A67788 */
+		//Log.e("feiji", "size="+String.valueOf(size)+",isFinal="+String.valueOf(isFinal));
 		
-		for(int i=0; i<num; i++) {
-			if(cards.get(i).getValue() ==  cards.get(i+1).getValue() &&
-					cards.get(i).getValue() ==  cards.get(i+2).getValue() &&
-					cards.get(num*3+i).getValue() ==  cards.get(num*3+i+1).getValue()) {
-				if (v1==0) {
-					v1 = cards.get(i).getValue();
-					v2 = cards.get(num*3+i).getValue();
-				} else {
-					if (cards.get(i).getValue() == v1+1 &&
-							cards.get(num*3+i).getValue() == v2+1) {
-						v1 = cards.get(i).getValue();
-						v2 = cards.get(num*3+i).getValue();
-					} else {
-						return false;
+		for (i = 0; i < cards.size(); i++) {
+			int tempValue=0;			
+			tempValue = cards.get(i).getValue();
+			if (numberCount(tempValue, cards) == 3) {
+				boolean hasRecord = false;
+				for (int k=0; k<count; k++) {
+					if(threeA[k] == tempValue) {
+						hasRecord = true;
+						break;
 					}
 				}
-			} else {
-				return false;
+
+				if (!hasRecord) {
+					threeA[count] = tempValue;
+					count++;
+				}
 			}
 		}
 		
-		return true;
+		Arrays.sort(threeA);
+
+		for (i=0; i<count; i++) {
+			if ((threeA[i]+1)!= threeA[i+1]) {
+				break;
+			}
+			conCount++;
+		}
+		
+		if (conCount > 0) {
+			conCount++;
+		}
+		
+		if (conCount < 2) {
+			return false;
+		}
+		
+		int expectCnt = 3*conCount + 2*conCount;
+		if (expectCnt < size) {
+			return false;
+		} else if (expectCnt == size) {
+			return true;			
+		} else {
+			return isFinal;
+		}
 	}
 
 	//

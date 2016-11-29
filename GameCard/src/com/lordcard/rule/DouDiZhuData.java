@@ -60,11 +60,6 @@ public class DouDiZhuData {
 	Map<Integer, PokerOfOnePlay> shunZi12 = new HashMap<Integer, PokerOfOnePlay>();
 
 	/**
-	 * 策略集合
-	 */
-	// List<Strategy> strategys = new ArrayList<Strategy>();
-
-	/**
 	 * 地主,我顺序和otherCard牌主顺序
 	 */
 	private Integer dzorder;
@@ -390,18 +385,6 @@ public class DouDiZhuData {
 	 * 添加散牌
 	 */
 	private void addSanPai() {
-		// for (PokerOfOneValue v : pokers.values()){
-		// if (v.PokerNum() != 1 || v.getValue() >= 15 || v.getUnusedNum() ==
-		// 0){
-		// continue;
-		// }
-		//
-		// PokerOfOnePlay poop = new
-		// PokerOfOnePlay(v.getValue(),DoudizhuRule.Danpai);
-		// poop.add(v);
-		// sanPai.put(v.getValue(), poop);
-		//
-		// }
 		int j = 18;
 		if (pokers.containsKey(16) && pokers.containsKey(17)) {
 			j = 16;
@@ -620,27 +603,6 @@ public class DouDiZhuData {
 	/**
 	 * 添加三张
 	 */
-	/*
-	private void addSanZhang() {
-		for (PokerOfOneValue poov : this.getPokers().values()) {
-			// 添加三张
-			if (poov.PokerNum() == 3 && poov.getUnusedNum() == 3) {
-				PokerOfOnePlay poop = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.Santiao);
-				poop.add(poov);
-				sanZhang.put(poov.getValue(), poop);
-				// 设置已经使用标志（为了后面判断散牌和对子）
-				for (Poker p : poov.getPokers()) {
-					p.setUsed(true);
-				}
-				continue;
-			}
-		}
-	}
-	*/
-
-	/**
-	 * 添加三张
-	 */
 	private void addAllSanZhang() {
 		for (PokerOfOneValue poov : this.getPokers().values()) {
 			// 添加三张
@@ -648,7 +610,7 @@ public class DouDiZhuData {
 				continue;
 			}
 
-			PokerOfOnePlay poop = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.Sandaier);
+			PokerOfOnePlay poop = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.Santiao);
 			poop.add(poov);
 			sanZhang.put(poov.getValue(), poop);
 		}
@@ -665,7 +627,7 @@ public class DouDiZhuData {
 				poop.add(poov);
 				zhaDan.put(poov.getValue(), poop);
 
-				PokerOfOnePlay poop2 = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.siZhang);
+				PokerOfOnePlay poop2 = new PokerOfOnePlay(poov.getValue(), DoudizhuRule.Sidai);
 				poop2.add(poov);
 				siZhang.put(poov.getValue(), poop2);
 				// 设置已经使用标志（为了后面判断散牌和对子）
@@ -674,14 +636,6 @@ public class DouDiZhuData {
 				}
 				continue;
 			}
-
-		}
-		// 添加王炸
-		if (pokers.containsKey(16) && pokers.containsKey(17)) {
-			PokerOfOnePlay poop = new PokerOfOnePlay(17, DoudizhuRule.Zhadan);
-			poop.add(pokers.get(16));
-			poop.add(pokers.get(17));
-			zhaDan.put(17, poop);
 		}
 	}
 
@@ -710,7 +664,6 @@ public class DouDiZhuData {
 					break;
 				}
 			}
-
 		}
 	}
 
@@ -748,9 +701,7 @@ public class DouDiZhuData {
 	 */
 	public List<List<Poker>> getTiShi(List<Poker> otherPokers) {
 		List<List<Poker>> myPlay = new ArrayList<List<Poker>>();
-		// List<List<Poker>> myPlay = new ArrayList<List<Poker>>();
 		if (otherPokers == null) {
-
 			this.isInitiative = true;
 			myPlay.add(getInitiativeTiShi());
 			return myPlay;
@@ -758,9 +709,7 @@ public class DouDiZhuData {
 
 		this.isInitiative = false;
 
-		// printUsedState();
 		clearUsedState();
-		// printUsedState();
 		// 指向某个牌型数组的指针
 		Map<Integer, PokerOfOnePlay> play = null;
 		// 附带牌（带单或者带对）的数量，
@@ -768,7 +717,7 @@ public class DouDiZhuData {
 		// 带单牌还是带对子
 		boolean takeSanPai = true;
 		// 牌的类型
-		int type = DoudizhuRule.checkpai(otherPokers);
+		int type = DoudizhuRule.checkpai(otherPokers, false);
 		// 对手牌最大
 		int otherMaxValue = DoudizhuRule.getMaxNumber(otherPokers);
 
@@ -780,7 +729,7 @@ public class DouDiZhuData {
 			case DoudizhuRule.Yidui:
 				play = duiZi;
 				break;
-			case DoudizhuRule.Sandaier:
+			case DoudizhuRule.Santiao:
 				play = sanZhang;
 				attachmentCount = 1;
 				takeSanPai = false;
@@ -789,17 +738,10 @@ public class DouDiZhuData {
 				play = zhaDan;
 				break;
 			case DoudizhuRule.Feiji:
-				//play = feiJi.get(otherPokers.size() / 3);
 				play = feiJi.get(otherPokers.size() / 5);
 				attachmentCount = otherPokers.size() / 5;
 				takeSanPai = false;
 				break;
-				/*
-			case DoudizhuRule.feijidaidui:
-				play = feiJi.get(otherPokers.size() / 5);
-				attachmentCount = otherPokers.size() / 5;
-				takeSanPai = false;
-				break;*/
 			case DoudizhuRule.Liandui:
 				play = lianDui.get(otherPokers.size() / 2);
 				break;
@@ -821,7 +763,6 @@ public class DouDiZhuData {
 					continue;
 				}
 				List<Poker> ret = new ArrayList<Poker>();
-				// printUsedState();
 				PokerOfOnePlay poop = play.get(i);
 
 				if (poop.getMaxValue() > otherMaxValue) {
@@ -850,7 +791,6 @@ public class DouDiZhuData {
 
 					if (play1 != null) {
 						ret.addAll(play1);
-
 					}
 					if (play2 != null) {
 						ret.addAll(play2);
@@ -872,9 +812,7 @@ public class DouDiZhuData {
 						}
 					}
 				}
-
 			}
-
 		}
 		return myPlay;
 	}
@@ -991,21 +929,7 @@ public class DouDiZhuData {
 					printPokers(nowPlaying, nowPlayingAttachment);
 					// 计算得分
 					point = 0;
-					// for (Strategy s : strategys) {
-					// switch (s.check()) {
-					// case 0:
-					// // 此策略器不适合使用
-					// break;
-					// case 1:
-					// // 计算得分并累加
-					// point += s.getPoint();
-					// break;
-					// case 2:
-					// // 直接处理，返回结果
-					// oldPlay = s.handler();
-					// return oldPlay;
-					// }
-					// }
+
 					System.out.println("总得分：" + point);
 					if (firstLoop) {
 						firstLoop = false;
@@ -1026,21 +950,7 @@ public class DouDiZhuData {
 				setNowPlayingAttachment(null);
 				printPokers(nowPlaying, nowPlayingAttachment);
 				point = 0;
-				// for (Strategy s : strategys) {
-				// switch (s.check()) {
-				// case 0:
-				// // 此策略器不适合使用
-				// break;
-				// case 1:
-				// // 计算得分并累加
-				// point += s.getPoint();
-				// break;
-				// case 2:
-				// // 直接处理，返回结果
-				// oldPlay = s.handler();
-				// return oldPlay;
-				// }
-				// }
+
 				System.out.println("总得分：" + point);
 				if (firstLoop) {
 					firstLoop = false;
@@ -1076,21 +986,7 @@ public class DouDiZhuData {
 				// 不带散、不带对的情况
 				// 计算得分
 				point = 0;
-				// for (Strategy s : strategys) {
-				// switch (s.check()) {
-				// case 0:
-				// // 此策略器不适合使用
-				// break;
-				// case 1:
-				// // 计算得分并累加
-				// point += s.getPoint();
-				// break;
-				// case 2:
-				// // 直接处理，返回结果
-				// oldPlay = s.handler();
-				// return oldPlay;
-				// }
-				// }
+
 				System.out.println("总得分：" + point);
 				if (firstLoop) {
 					firstLoop = false;
@@ -1127,21 +1023,7 @@ public class DouDiZhuData {
 				// 不带散、不带对的情况
 				// 计算得分
 				point = 0;
-				// for (Strategy s : strategys) {
-				// switch (s.check()) {
-				// case 0:
-				// // 此策略器不适合使用
-				// break;
-				// case 1:
-				// // 计算得分并累加
-				// point += s.getPoint();
-				// break;
-				// case 2:
-				// // 直接处理，返回结果
-				// oldPlay = s.handler();
-				// return oldPlay;
-				// }
-				// }
+
 				System.out.println("总得分：" + point);
 				if (firstLoop) {
 					firstLoop = false;
@@ -1184,21 +1066,7 @@ public class DouDiZhuData {
 				printPokers(nowPlaying, nowPlayingAttachment);
 				// 计算得分
 				point = 0;
-				// for (Strategy s : strategys) {
-				// switch (s.check()) {
-				// case 0:
-				// // 此策略器不适合使用
-				// break;
-				// case 1:
-				// // 计算得分并累加
-				// point += s.getPoint();
-				// break;
-				// case 2:
-				// // 直接处理，返回结果
-				// oldPlay = s.handler();
-				// return oldPlay;
-				// }
-				// }
+
 				System.out.println("总得分：" + point);
 				if (firstLoop) {
 					firstLoop = false;
@@ -1217,21 +1085,7 @@ public class DouDiZhuData {
 			printPokers(nowPlaying, nowPlayingAttachment);
 			// 计算得分
 			point = 0;
-			// for (Strategy s : strategys) {
-			// switch (s.check()) {
-			// case 0:
-			// // 此策略器不适合使用
-			// break;
-			// case 1:
-			// // 计算得分并累加
-			// point += s.getPoint();
-			// break;
-			// case 2:
-			// // 直接处理，返回结果
-			// oldPlay = s.handler();
-			// return oldPlay;
-			// }
-			// }
+
 			System.out.println("总得分：" + point);
 			if (firstLoop) {
 				firstLoop = false;
@@ -1273,21 +1127,7 @@ public class DouDiZhuData {
 			} else {
 				point = 0;
 			}
-			// for (Strategy s : strategys) {
-			// switch (s.check()) {
-			// case 0:
-			// // 此策略器不适合使用
-			// break;
-			// case 1:
-			// // 计算得分并累加
-			// point += s.getPoint();
-			// break;
-			// case 2:
-			// // 直接处理，返回结果
-			// oldPlay = s.handler();
-			// return oldPlay;
-			// }
-			// }
+
 			System.out.println("总得分：" + point);
 			if (firstLoop) {
 				firstLoop = false;
@@ -1341,21 +1181,7 @@ public class DouDiZhuData {
 			} else {
 				point = 0;
 			}
-			// for (Strategy s : strategys) {
-			// switch (s.check()) {
-			// case 0:
-			// // 此策略器不适合使用
-			// break;
-			// case 1:
-			// // 计算得分并累加
-			// point += s.getPoint();
-			// break;
-			// case 2:
-			// // 直接处理，返回结果
-			// oldPlay = s.handler();
-			// return oldPlay;
-			// }
-			// }
+
 			System.out.println("总得分：" + point);
 			if (firstLoop) {
 				firstLoop = false;
@@ -1389,21 +1215,7 @@ public class DouDiZhuData {
 			} else {
 				point = 0;
 			}
-			// for (Strategy s : strategys) {
-			// switch (s.check()) {
-			// case 0:
-			// // 此策略器不适合使用
-			// break;
-			// case 1:
-			// // 计算得分并累加
-			// point += s.getPoint();
-			// break;
-			// case 2:
-			// // 直接处理，返回结果
-			// oldPlay = s.handler();
-			// return oldPlay;
-			// }
-			// }
+
 			System.out.println("总得分：" + point);
 			if (firstLoop) {
 				firstLoop = false;
@@ -1418,32 +1230,12 @@ public class DouDiZhuData {
 			this.setUsedState(play, false);
 		}
 
-		// setNowPlayingAttachment(null);
-		// 四张
-		/*
-		 * for(int j = 3; j<16; ++j){ if (!siZhang.containsKey(j)){ continue; }
-		 * PokerOfOnePlay poop = siZhang.get(j); play = poop.getOnePlay(); if
-		 * (play.size() == 0){ continue; } this.setUsedState(play, true);
-		 * nowPlaying = play; //带散、带对的情况 for (int i = 1; i < 3; ++i){ attachment
-		 * = this.getAttachment(2, i % 2 == 1 ? true : false); if (attachment ==
-		 * null){ continue; } this.setUsedState(attachment, true);
-		 * setNowPlayingAttachment(attachment); printPokers(nowPlaying,
-		 * nowPlayingAttachment); //计算得分 point = 0; for (Strategy s :
-		 * strategys){ switch(s.check()){ case 0: //此策略器不适合使用 break; case 1:
-		 * //计算得分并累加 point += s.getPoint(); break; case 2: //直接处理，返回结果 oldPlay =
-		 * s.handler(); return oldPlay; } } System.out.println("总得分：" + point);
-		 * if (firstLoop){ firstLoop = false; oldPlay = play; oldPoint = point;
-		 * oldAttachment = null; } if (point > oldPoint){ oldPlay = play;
-		 * oldPoint = point; oldAttachment = attachment; }
-		 * this.setUsedState(attachment, false); } this.setUsedState(play,
-		 * false); }
-		 */
 		if (oldPlay != null && oldAttachment != null) {
 			oldPlay.addAll(oldAttachment);
 
 		}
 		// 如果地主报单但是手中只有单牌
-		if (oldPlay != null && mineorder != dzorder.intValue() && isdzBaodan && DoudizhuRule.checkpai(oldPlay) == 1) {
+		if (oldPlay != null && mineorder != dzorder.intValue() && isdzBaodan && DoudizhuRule.checkpai(oldPlay, false) == 1) {
 			for (int i = 17; i > 2; --i) {
 				if (!sanPai.containsKey(i)) {
 					continue;
@@ -1455,7 +1247,7 @@ public class DouDiZhuData {
 
 		}
 		// 如果自己是地主，平民报单且自己只有单牌
-		if (oldPlay != null && mineorder == dzorder.intValue() && ispmBaodan && DoudizhuRule.checkpai(oldPlay) == 1) {
+		if (oldPlay != null && mineorder == dzorder.intValue() && ispmBaodan && DoudizhuRule.checkpai(oldPlay, false) == 1) {
 			for (int i = 17; i > 2; --i) {
 				if (!sanPai.containsKey(i)) {
 					continue;
@@ -1543,7 +1335,6 @@ public class DouDiZhuData {
 					this.setUsedState(usedList, false);
 					return ret;
 				}
-
 			}
 
 			// this.setUsedState(ret, true);
@@ -1581,7 +1372,6 @@ public class DouDiZhuData {
 					this.setUsedState(usedList, false);
 					return ret;
 				}
-
 			}
 		} else {
 			// 带对
@@ -1606,10 +1396,6 @@ public class DouDiZhuData {
 				if (!pokers.containsKey(i)) {
 					continue;
 				}
-				// int n = pokers.get(i).getUnusedNum();
-				// if (n == 4) {
-				// continue;
-				// }
 				List<Poker> dui = pokers.get(i).getUnusedPoker(2);
 				if (dui.size() != 2) {
 					continue;
@@ -1892,14 +1678,6 @@ public class DouDiZhuData {
 		this.shunZi12 = shunZi12;
 	}
 
-	// public List<Strategy> getStrategys() {
-	// return strategys;
-	// }
-
-	// public void setStrategys(List<Strategy> strategys) {
-	// this.strategys = strategys;
-	// }
-
 	public List<Poker> getNowPlayingAttachment() {
 		return nowPlayingAttachment;
 	}
@@ -2057,15 +1835,6 @@ public class DouDiZhuData {
 				}
 
 			}
-
-			//			this.clearUsedState();
-			//			List<Poker> oldPlay = null;
-			//			List<Poker> play = null;
-			//			List<Poker> oldAttachment = null;
-			//			List<Poker> attachment = null;
-			//			int oldPoint = 0;
-			//			int point = 0;
-			//			boolean firstLoop = true;
 
 			// 飞机带单
 			clearUsedState();
@@ -2267,5 +2036,4 @@ public class DouDiZhuData {
 		// 指向某个牌型数组的指针
 		return myPlay;
 	}
-
 }

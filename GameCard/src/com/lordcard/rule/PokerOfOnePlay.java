@@ -60,7 +60,7 @@ public class PokerOfOnePlay {
 			} else {
 				return pokers.get(0).getUnusedPoker(2);
 			}
-		case DoudizhuRule.Sandaier:
+		case DoudizhuRule.Santiao:
 			if (pokers.get(0).getUnusedNum() < 3) {
 				return new ArrayList<Poker>();
 			} else {
@@ -75,7 +75,7 @@ public class PokerOfOnePlay {
 				return ret;
 			}
 			return new ArrayList<Poker>();
-		case DoudizhuRule.siZhang:
+		case DoudizhuRule.Sidai:
 			if (pokers.size() == 1 && pokers.get(0).getUnusedNum() == 4) {
 				return pokers.get(0).getUnusedPoker(4);
 			}
@@ -127,7 +127,7 @@ public class PokerOfOnePlay {
 			} else {
 				return pokers.get(0).getPokerIgnoreUsedState(2);
 			}
-		case DoudizhuRule.Sandaier:
+		case DoudizhuRule.Santiao:
 			if (pokers.get(0).PokerNum() < 3) {
 				return new ArrayList<Poker>();
 			} else {
@@ -142,7 +142,7 @@ public class PokerOfOnePlay {
 				return ret;
 			}
 			return new ArrayList<Poker>();
-		case DoudizhuRule.siZhang:
+		case DoudizhuRule.Sidai:
 			if (pokers.size() == 1 && pokers.get(0).PokerNum() == 4) {
 				return pokers.get(0).getPokerIgnoreUsedState(4);
 			}

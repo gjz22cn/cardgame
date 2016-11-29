@@ -70,6 +70,7 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 	private MultiScreenTool mst = MultiScreenTool.singleTonHolizontal();
 	private Context context;
 	private int order;
+	private int gameNo=1;
 	private LinkedList<Play> users = null;
 	private Handler mHandler;
 	private Handler handler;
@@ -82,7 +83,7 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 	private TextView zhiZuangTv1, zhiZuangTv2, zhiZuangTv3 = null;//钻石
 	private TextView zhiLiTv1, zhiLiTv2, zhiLiTv3 = null;//经验
 	private TextView nowZhiDouTv, nowZhiZuangTv, ZhiShangTv = null;//总倍数，底注，当前金豆，当前钻石，等级
-	private Button againBtn, backBtn, rechargeBtn;//关闭，再来一局，返回，微博分享
+	private Button againBtn, backBtn;//关闭，再来一局，返回，微博分享
 	private RelativeLayout bottomLl;//底部跳转按钮容器控件
 	private IqGradeDialog mIqMaxGradeDialog = null;
 	private GameIqUpgradeDialog mIqMinUpgradeDialog = null;
@@ -123,7 +124,8 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 					case GO_AGAIN://再来一局
 						dismiss();
 						release();
-						handler.sendEmptyMessage(26);
+						//handler.sendEmptyMessage(26);
+						handler.sendEmptyMessage(24);
 						break;
 					case SHOW_IQ_GRADE_MIN://显示IQ升级对话框(小级)
 						String result = msg.getData().getString("getCelebratedText");
@@ -166,6 +168,9 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 				}
 			}
 		};
+		for (Play end : users) {
+			gameNo = end.getGameNo();
+		}
 		initView();
 		refreshData();
 		//3分钟后自动离开
@@ -221,6 +226,11 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 				}
 			};
 			ScheduledTask.addDelayTask(toWaitViewTask, 3000);
+		}
+		if (gameNo == 15) {
+			againBtn.setVisibility(View.INVISIBLE);
+		} else {
+			backBtn.setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -549,14 +559,6 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.dzed_again://再来一局
-				double btBean = 0;
-				if (null != Database.JOIN_ROOM) {
-					GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-					if (null != cacheUser) {
-						long bean = (long) cacheUser.getBean();
-						btBean = Database.JOIN_ROOM.getLimit() - bean;
-					}
-				}
 				mHandler.sendEmptyMessage(GO_AGAIN);
 				break;
 			case R.id.dzed_back://返回大厅

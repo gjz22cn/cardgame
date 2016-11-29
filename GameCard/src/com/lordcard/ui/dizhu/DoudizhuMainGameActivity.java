@@ -1,8 +1,6 @@
 package com.lordcard.ui.dizhu;
 
 import com.zzyddz.shui.R;
-import com.zzyddz.shui.R.color;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -152,7 +150,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private int valueMe = -1;
 	private int typeplay1 = 0;// 别人出牌的类型
 	private int mySelfOrder;// 自己出牌的顺序为
-	private String mySelfId = null; // 自己的id
 	private int card_jiange = 37;
 	private boolean firstChupai = true;
 	private TextView play1Timer, play3Timer, play2Timer = null;
@@ -1486,13 +1483,13 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						}
 						break;
 					case 24:// 重新设置数据（普通赛制/快速赛）
-						handler.sendEmptyMessage(22);
+						//handler.sendEmptyMessage(22);
 						startAgain(false);
 						hasEnd = false;
-						if (hasCallReady) {// 若后台有请求过准备状态，则此时立刻回复
+						//if (hasCallReady) {// 若后台有请求过准备状态，则此时立刻回复
 							CmdUtils.ready();
-							hasCallReady = false;
-						}
+							//hasCallReady = false;
+						//}
 						break;
 					case 25:// 返回大厅
 						// 离开房间
@@ -1859,7 +1856,11 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			for (Poker card : chupaicard) {
 				checkpai.add(card);
 			}
-			typeMe = DoudizhuRule.checkpai(checkpai);
+			if (nowcard.size() == chupaicard.size()) {
+				typeMe = DoudizhuRule.checkpai(checkpai, true);
+			} else {
+				typeMe = DoudizhuRule.checkpai(checkpai, false);
+			}
 			valueMe = DoudizhuRule.checkpaiValue(typeMe,checkpai);
 		} else {
 			playError(comeOnFling);
@@ -1867,6 +1868,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		}
 		// 对自己的牌型进行检测
 		if (typeMe == 0) {
+			Log.e("paly", "typeMe="+String.valueOf(typeMe));
 			playError(comeOnFling);
 			return;
 		}
@@ -1874,6 +1876,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		if (!firstChupai) {
 			typeplay1 = checkOtherChupai(bierenchupai);
 			// 检查谁大
+			Log.e("paly", "typeOther="+String.valueOf(typeplay1)+", tyoeMe="+String.valueOf(typeMe));
 			if (DoudizhuRule.compterpai(typeplay1, typeMe, DoudizhuRule.getMaxNumber(otherplay1), DoudizhuRule.getMaxNumber(chupaicard), bierenchupai.length, chupaicard.size())) {
 				cardAddview(chupaicard, false);
 				initTiShiCount();
@@ -2158,7 +2161,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		for (int i = 0; i < otherpaixu.length; i++) {
 			otherplay1.add(poker[otherpaixu[i]]);
 		}
-		int type = DoudizhuRule.checkpai(otherplay1);
+		int type = DoudizhuRule.checkpai(otherplay1, false);
 		return type;
 	}
 
@@ -2474,7 +2477,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			}
 			/** 记录别人已经出的牌 **/
 			addOutPokers(play.getOrder(), carList);
-			int type = DoudizhuRule.checkpai(carList);
+			int type = DoudizhuRule.checkpai(carList, true);
 			int value = DoudizhuRule.checkpaiValue(type,carList);
 			int playOrder = 1;
 			if (play.getCount() > 0) {
@@ -2623,7 +2626,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					AudioPlayUtils.getInstance().playMultiMusic2(R.raw.nan_bomb, R.raw.boombeffect);
 				}
 				break;
-			case DoudizhuRule.Sandaier:// 如果是五张牌 三待二
+			case DoudizhuRule.Santiao:// 如果是五张牌 三待二
 				if ("1".equals(gender)) {
 					AudioPlayUtils.getInstance().playSound(R.raw.nv_3dai2);
 				} else {
@@ -2932,7 +2935,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					cacheUser = Database.userMap.get(fapai.getOrder());
 					GameCache.putObj(CacheKey.GAME_USER, cacheUser);
 				}
-				mySelfId = fapai.getId();
+				fapai.getId();
 				message.what = 0;
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("fapai", fapai);
@@ -3238,8 +3241,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			Database.JOIN_ROOM_CODE = Database.JOIN_ROOM.getCode();
 			Database.JOIN_ROOM_RATIO = relink.getRoom().getRatio();
 			Database.JOIN_ROOM_BASEPOINT = Database.JOIN_ROOM.getBasePoint();
-			//beishuNumber = String.valueOf(relink.getRatio());
-			mySelfId = ActivityUtils.getAndroidId();
+			ActivityUtils.getAndroidId();
 			List<Integer> myCardList = relink.getMyCardList();
 			pai = new int[myCardList.size()];
 			for (int i = 0; i < myCardList.size(); i++) {
