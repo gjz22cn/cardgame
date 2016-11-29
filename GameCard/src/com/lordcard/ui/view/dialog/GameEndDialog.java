@@ -71,6 +71,7 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 	private Context context;
 	private int order;
 	private int gameNo=1;
+	private int maxGameNum=10;
 	private LinkedList<Play> users = null;
 	private Handler mHandler;
 	private Handler handler;
@@ -227,7 +228,7 @@ public class GameEndDialog extends Dialog implements IGameView, android.view.Vie
 			};
 			ScheduledTask.addDelayTask(toWaitViewTask, 3000);
 		}
-		if (gameNo == 15) {
+		if (gameNo == maxGameNum) {
 			againBtn.setVisibility(View.INVISIBLE);
 		} else {
 			backBtn.setVisibility(View.INVISIBLE);

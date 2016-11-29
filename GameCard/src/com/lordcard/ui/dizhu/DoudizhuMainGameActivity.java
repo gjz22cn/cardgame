@@ -135,6 +135,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private TextView nullTv, nullTv2;// 做布局撑自己头像布局用的
 	private int[] pai = null;
 	private boolean isMustHeiTao3 = false;
+	private boolean xiajiabaodan = true;
 	private Button chupai, tishi, buchu = null;
 	private AutoTask selfTask, leftTask, rightTask, pubTask, adTask, gameTask, task2;
 	private MarqueeText marqueeText;
@@ -193,7 +194,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private int quang, allQuan = 0;
 	private LinearLayout publicLayout;
 	private TextView networkSlowtip; // 网络慢提示语
-	private boolean areButtonsShowing;
 	private MainGameGuideView mainGameGuideVI;// 手势提示引导View
 	private TextView gpType, gpRound, gpScore, gpCount, gpRank = null;
 	private LinearLayout gpRl;
@@ -206,7 +206,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 	private MyBatteryReceiver mMyBatteryReceiver = null;// 刷新系统电量的广播接收器
 	private long countDownTime = 0;// 剩余时间
 	private GenericTask checkJoinTask;
-	private boolean hasCallReady = false;// 后台是否请求准备状态
 	private boolean hasEnd = false;// 后台返回结束命令
 	private List<Map<String, String>> girls;
 	private ImageView imageNewIv;// 新美女图鉴提示标签
@@ -1344,6 +1343,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						jushu.setText("局数：" + fapai.getGameNo());
 						zhangshu.setText("统计：" + fapai.getZhangshu());
 						
+						isMustHeiTao3 = false;
+						xiajiabaodan = false;
 						if (fapai.getNextOrder()== mySelfOrder) {
 							showPlayBtn(true);
 							startPlayTimer(R.id.play1Time);
@@ -1374,7 +1375,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						purchase.put("room",Database.JOIN_ROOM.getName());
 						purchase.put("account",mGameUser.getAccount());
 						purchase.put("userctime",mGameUser.getCreateDate());
-						////MobclickAgent.onEvent(ctx,"斗地主游戏中",purchase);
 						break;
 					case 3: // 收到打牌消息
 						hiddenPlayBtn();
@@ -1382,11 +1382,8 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 						playCard(play, false);
 						setShengxiaPai(play.getCount(), getPerOrder(play.getNextOrder()));
 						refreshCardCountData();
-						/** 更新记牌器头像 **/
-						//refreshJiPaiQiAvatar();
 						break;
 					case 4: // 收到打完这盘的牌消息
-						////MobclickAgent.onEventEnd(ctx,"在线斗地主");
 						hiddenPlayBtn();
 						LinkedList<Play> playResult = (LinkedList<Play>) msg.getData().get("playResult");
 						setEndDonghua(playResult);
@@ -1462,42 +1459,15 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 					case 20:// 退出游戏
 						DialogUtils.exitGame(DoudizhuMainGameActivity.this);
 						break;
-					case 22:// 淘汰或比赛结束
-						if (!TextUtils.isEmpty(gameOverDetail)) {
-							Log.i("joinBottomll", "detail:" + gameOverDetail);
-							Map<String, String> map = JsonHelper.fromJson(gameOverDetail, new TypeToken<Map<String, String>>() {});
-							final String rank = map.get("rank");
-							String prize = map.get("prize");
-							List<PrizeGoods> prizeGoods = null;
-							if ("-1".equals(prize)) {// -1表示为没人任何奖品
-								prizeGoods = new ArrayList<PrizeGoods>();
-							} else {
-								prizeGoods = JsonHelper.fromJson(prize, new TypeToken<List<PrizeGoods>>() {});
-							}
-							final List<PrizeGoods> prizeGoods2 = prizeGoods;
-							GameUser cacheUser = (GameUser) GameCache.getObj(CacheKey.GAME_USER);
-							cacheUser.setRound(0);// 还原比赛轮数位0
-							GameCache.putObj(CacheKey.GAME_USER, cacheUser);
-							gameWaitLayout.setjoinBottomllVisible();
-							showGameOverDialog(rank, prizeGoods2);
-						}
-						break;
-					case 24:// 重新设置数据（普通赛制/快速赛）
-						//handler.sendEmptyMessage(22);
+					case 24: // 再来一局
 						startAgain(false);
 						hasEnd = false;
-						//if (hasCallReady) {// 若后台有请求过准备状态，则此时立刻回复
-							CmdUtils.ready();
-							//hasCallReady = false;
-						//}
+						CmdUtils.ready();
 						break;
 					case 25:// 返回大厅
 						// 离开房间
 						ClientCmdMgr.closeClient();
 						finishSelf();
-						break;
-					case 26:// 再来一局
-						startAgain(true);
 						break;
 					case 200:// 重连
 						String relink = (String) msg.getData().get("relink");
@@ -1850,6 +1820,7 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		if (bierenchupai == null) {
 			firstChupai = true;
 		}
+		
 		// 检测自己的出牌类型
 		if (chupaicard.size() != 0) {
 			checkpai = new ArrayList<Poker>();
@@ -1868,15 +1839,22 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 		}
 		// 对自己的牌型进行检测
 		if (typeMe == 0) {
-			Log.e("paly", "typeMe="+String.valueOf(typeMe));
+			//Log.e("paly", "typeMe="+String.valueOf(typeMe));
 			playError(comeOnFling);
 			return;
 		}
+		
+		// 跑得快下家报单检查
+		if (!DoudizhuRule.xiajiabaodanCheck(typeMe, xiajiabaodan, valueMe, nowcard)) {
+			playError(comeOnFling);
+			return;
+		}
+		
 		// 检查别人出什么牌
 		if (!firstChupai) {
 			typeplay1 = checkOtherChupai(bierenchupai);
 			// 检查谁大
-			Log.e("paly", "typeOther="+String.valueOf(typeplay1)+", tyoeMe="+String.valueOf(typeMe));
+			//Log.e("paly", "typeOther="+String.valueOf(typeplay1)+", tyoeMe="+String.valueOf(typeMe));
 			if (DoudizhuRule.compterpai(typeplay1, typeMe, DoudizhuRule.getMaxNumber(otherplay1), DoudizhuRule.getMaxNumber(chupaicard), bierenchupai.length, chupaicard.size())) {
 				cardAddview(chupaicard, false);
 				initTiShiCount();
@@ -2259,6 +2237,9 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			final TextView nowView = (TextView) findViewById(1100 + order);	
 			if (paiCount == 1) {
 				nowView.setText(String.valueOf(paiCount));
+				if(order == getNextOrder(mySelfOrder)) {
+					xiajiabaodan = true;
+				}
 			} else if (paiCount > 1) {
 				nowView.setText("?");
 			}
@@ -2912,14 +2893,6 @@ public class DoudizhuMainGameActivity extends BaseActivity implements IGameView,
 			String detail = cmdDtl.getDetail();
 			Log.d("playMsg", "cmd:" + cmd + "-------detail:" + detail);
 			if (CmdUtils.CMD_STARTREADY.equals(cmd)) {// 如果是准备的话)
-				if (1 == Database.JOIN_ROOM.getRoomType()) {// 如果是超快赛
-					if (hasEnd) {
-						// 如果普通赛制的结束对话框弹出来了，
-						// 则不马上回复准备，而是等对话框消失后回复准备
-						hasCallReady = true;
-						return;
-					}
-				}
 				CmdUtils.ready();
 				return;
 			}
